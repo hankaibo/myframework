@@ -42,9 +42,9 @@
         </div>
     </div>
 
-    <div class="container" >
+    <div class="container" style="padding: 0 15px">
         <div class="row">
-            <div class="col-md-3">
+            <div class="col-lg-3">
                 <div id="accordion">
                     <h3>系统管理</h3>
                     <div>
@@ -55,7 +55,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9">
+            <div class="col-lg-9">
                 <iframe id="rightFrame" name="rightFrame" src="" width="100%" height="400px;" ></iframe> 
             </div>
         </div>

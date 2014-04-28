@@ -31,17 +31,18 @@
     
     <!-- 别名定义 -->
 <!--     <typeAliases> -->
-<!--         <typeAlias alias="User" type="cn.littleprincess.system.po.BaseUser" /> -->
+<!--         <typeAlias alias="User" type="cn.mypandora.system.po.BaseUser" /> -->
 <!--     </typeAliases> -->
     
     <plugins>
-        <plugin interceptor="cn.littleprincess.orm.OffsetLimitInterceptor"/>
+        <plugin interceptor="cn.mypandora.orm.OffsetLimitInterceptor"/>
     </plugins>
     
     <mappers>
-        <mapper resource="mapping/base.mybatis.xml" />
-        <mapper resource="mapping/BaseUser.mybatis.xml" />
-        <mapper resource="mapping/BaseDept.mybatis.xml" />
+        <mapper resource="mapping/base/base.mybatis.xml" />
+        <mapper resource="mapping/base/BaseUser.mybatis.xml" />
+        <mapper resource="mapping/base/BaseDept.mybatis.xml" />
+        <mapper resource="mapping/base/BaseLog.mybatis.xml" />
     </mappers>
     
 </configuration>
