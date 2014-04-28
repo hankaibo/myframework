@@ -51,13 +51,13 @@
     <tx:annotation-driven />
     <aop:aspectj-autoproxy proxy-target-class="true" />
     <!-- *****************************日志***************************** -->
-    <bean id="myLogAspect" class="cn.mypandora.log.MyLogAspect"/>
-    <aop:config>
-        <aop:aspect ref="myLogAspect">
-            <aop:pointcut id="logPointCut" expression="execution(* cn.mypandora..*(..))"/>
-            <aop:after pointcut-ref="logPointCut" method="doSuccessLog"/>
-        </aop:aspect>
-    </aop:config>
+<!--     <bean id="myLogAspect" class="cn.mypandora.log.MyLogAspect"/> -->
+<!--     <aop:config> -->
+<!--         <aop:aspect ref="myLogAspect"> -->
+<!--             <aop:pointcut id="logPointCut" expression="execution(* cn.mypandora..*(..))"/> -->
+<!--             <aop:after pointcut-ref="logPointCut" method="doSuccessLog"/> -->
+<!--         </aop:aspect> -->
+<!--     </aop:config> -->
 
     <!-- *****************************验证码***************************** -->
     <bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
