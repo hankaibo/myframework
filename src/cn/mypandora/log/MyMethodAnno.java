@@ -30,28 +30,15 @@ import java.lang.annotation.Target;
 @Documented
 @Inherited
 public @interface MyMethodAnno {
-//    /** 
-//     * @Title: moduleName
-//     * @Description: 模块名称
-//     * @return
-//     * @return String
-//     */
-//    String moduleName();
-//    /** 
-//     * @Title: logType
-//     * @Description: 日志类别
-//     * @return
-//     * @return String
-//     */
-//    String logType();
-    /** 
+    /**
      * @Title: description
      * @Description: 方法描述
      * @return
      * @return String
      */
     String description() default "no description";
-    /** 
+
+    /**
      * @Title: value
      * @Description: 是否进行性能测试
      * @return

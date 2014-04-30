@@ -15,6 +15,8 @@ import org.apache.ibatis.reflection.property.PropertyTokenizer;
 import org.apache.ibatis.scripting.xmltags.ForEachSqlNode;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -35,6 +37,7 @@ import cn.mypandora.orm.model.BaseEntity;
  */
 @Repository
 public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEntityDao<T> {
+    private static final Logger logger = LoggerFactory.getLogger(BaseEntityDaoImpl.class);
 
     private static final String ADD = "add";
     private static final String UPDATE = "update";
@@ -60,9 +63,7 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      */
     String createSqlKeyName(String sqlKey) {
         String key = getNameSpace() + "." + sqlKey;
-        // if (log.isDebugEnabled()) {
-        // log.debug(SQL_KEY + key + SQL_KEY_END);
-        // }
+        logger.debug(SQL_KEY + key + SQL_KEY_END);
         return key;
     }
 

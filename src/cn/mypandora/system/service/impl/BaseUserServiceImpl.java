@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import cn.mypandora.log.MyMethodAnno;
 import cn.mypandora.orm.dao.IBaseEntityDao;
 import cn.mypandora.orm.service.impl.AbstractBaseEntityOperation;
 import cn.mypandora.system.dao.BaseUserDao;
@@ -86,6 +87,7 @@ public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> i
      */
     //@formatter:on
     @Override
+    @MyMethodAnno(description="查询某一用户")
     public BaseUser findUserByUsername(String username) {
         return dao.findEntityByCondition("findUserByName", username);
     }

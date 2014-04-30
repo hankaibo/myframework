@@ -49,8 +49,9 @@
                     <h3>系统管理</h3>
                     <div>
                         <ul class=" ">
-                            <li><a href="javascript:void(0)" onclick="openRight('<c:url value="/user/list.html"/>')">打开用户列表</a></li>
-                            <li><a href="javascript:void(0)" onclick="openRight('<c:url value="/dept/list.html"/>')">打开部门列表</a></li>
+                            <li><a href="javascript:void(0)" onclick="openRight('<c:url value="/user/list.html"/>')">用户列表</a></li>
+                            <li><a href="javascript:void(0)" onclick="openRight('<c:url value="/dept/list.html"/>')">部门列表</a></li>
+                            <li><a href="javascript:void(0)" onclick="openRight('<c:url value="/log/list.html"/>')">日志列表</a></li>
                         </ul>
                     </div>
                 </div>

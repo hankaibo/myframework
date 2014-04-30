@@ -35,30 +35,26 @@
     </bean>
 
     <!-- *****************************myBatis文件***************************** -->
-    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource" />
         <property name="configLocation" value="classpath:mybatis-config.xml" />
+        <property name="mapperLocations" value="classpath:mapping/**/*.xml" />
     </bean>
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sessionFactory" />
+        <constructor-arg index="0" ref="sqlSessionFactory" />
+        <constructor-arg index="1" value="BATCH" />
     </bean>
 
     <!-- *****************************事务管理***************************** -->
+    <!-- 启动AOP -->
+    <aop:aspectj-autoproxy proxy-target-class="false" />
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
     <!-- 可通过注解控制事务 -->
     <tx:annotation-driven />
-    <aop:aspectj-autoproxy proxy-target-class="true" />
     <!-- *****************************日志***************************** -->
-<!--     <bean id="myLogAspect" class="cn.mypandora.log.MyLogAspect"/> -->
-<!--     <aop:config> -->
-<!--         <aop:aspect ref="myLogAspect"> -->
-<!--             <aop:pointcut id="logPointCut" expression="execution(* cn.mypandora..*(..))"/> -->
-<!--             <aop:after pointcut-ref="logPointCut" method="doSuccessLog"/> -->
-<!--         </aop:aspect> -->
-<!--     </aop:config> -->
-
+    <bean class="cn.mypandora.log.MyLogAspect" />
     <!-- *****************************验证码***************************** -->
     <bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
         <property name="config">

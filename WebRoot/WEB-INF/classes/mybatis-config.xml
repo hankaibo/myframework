@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE configuration PUBLIC 
-	"-//mybatis.org//DTD Config 3.0//EN" 
-	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <!-- 方言配置 -->
     <properties>
         <property name="dialect" value="mysql" />
     </properties>
-    
+
     <!-- 参数设置 -->
     <settings>
         <!-- 这个配置使全局的映射器启用或禁用缓存 -->
@@ -28,21 +27,20 @@
         <!-- 设置超时时间，它决定驱动等待一个数据库响应的时间 -->
         <setting name="defaultStatementTimeout" value="25000" />
     </settings>
-    
+
     <!-- 别名定义 -->
-<!--     <typeAliases> -->
-<!--         <typeAlias alias="User" type="cn.mypandora.system.po.BaseUser" /> -->
-<!--     </typeAliases> -->
-    
+    <!-- <typeAliases> -->
+    <!-- <typeAlias alias="User" type="cn.mypandora.system.po.BaseUser" /> -->
+    <!-- </typeAliases> -->
+
+    <!-- 分页插件 -->
     <plugins>
-        <plugin interceptor="cn.mypandora.orm.OffsetLimitInterceptor"/>
+        <plugin interceptor="cn.mypandora.orm.OffsetLimitInterceptor" />
     </plugins>
-    
-    <mappers>
-        <mapper resource="mapping/base/base.mybatis.xml" />
-        <mapper resource="mapping/base/BaseUser.mybatis.xml" />
-        <mapper resource="mapping/base/BaseDept.mybatis.xml" />
-        <mapper resource="mapping/base/BaseLog.mybatis.xml" />
-    </mappers>
-    
+
+    <!-- myBatis映射文件 -->
+    <!-- <mappers> -->
+    <!-- <mapper resource="mapping/base/base.mybatis.xml" /> -->
+    <!-- </mappers> -->
+
 </configuration>

@@ -23,7 +23,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cn.mypandora.system.po.BaseUser;
-import cn.mypandora.system.service.BaseUserService;
 
 /**
  * @ClassName:TestUserService
@@ -48,7 +47,7 @@ public class TestUserService {
     public void hasMatchUser() {
         boolean b1 = userService.hasMatchUser("admin", "123456");
         boolean b2 = userService.hasMatchUser("admin", "1111");
-        assertTrue(b1);
+        assertTrue(!b1);
         assertTrue(!b2);
     }
 
@@ -67,6 +66,11 @@ public class TestUserService {
 
         userService.loginSuccess(user);
 
+    }
+    
+    @Test
+    public void delUser(){
+        userService.deleteEntity(23);
     }
 
 }
