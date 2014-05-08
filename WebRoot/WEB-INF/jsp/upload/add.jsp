@@ -8,8 +8,13 @@
 <title>上传文件</title>
 </head>
 <body>
-<div class="container">
-    <form class="form-horizontal" role="form" action="<c:url value="/upload/upload.html"/>" method="post" enctype="multipart/form-data">
+<div class="container" style="margin: 0;width:100%">
+    <ul class="nav nav-tabs">
+        <li><a href="<c:url value="/readonline/listswf.html"/>">swf文件列表</a></li>
+        <li><a href="<c:url value="/readonline/listswf.html"/>">文件列表</a></li>
+        <li class="active"><a href="#">上传</a></li>
+    </ul>
+    <form class="form-horizontal" role="form" action="<c:url value="/readonline/upload.html"/>" method="post" enctype="multipart/form-data">
         <fieldset>
             <label>File:</label><input type="file" name="file"/><br/>
         </fieldset>

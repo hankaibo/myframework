@@ -8,7 +8,7 @@
 <title>用户新增</title>
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin: 0;width:100%">
     <ul class="nav nav-tabs">
         <li><a href="<c:url value="/user/list.html"/>">用户列表</a></li>
         <li class="active"><a href="#">添加</a></li>
@@ -23,7 +23,15 @@
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">性别</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control" id="inputSex" placeholder="性别" name="sex">
+                <label class="radio-inline">
+                    <input type="radio" name="sex" id="inlineCheckbox1" value="1"> 男
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="sex" id="inlineCheckbox2" value="0"> 女
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="sex" id="inlineCheckbox3" value="2" checked> 保密
+                </label>
             </div>
         </div>
         <div class="form-group">
@@ -34,7 +42,7 @@
         </div>
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-4">
-                <button type="submit" class="btn btn-primary">保存</button>
+                <button type="submit" class="btn btn-primary active">保存</button>
             </div>
         </div>
     </form>

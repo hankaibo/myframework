@@ -30,11 +30,11 @@
 </script>
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin: 0;width:100%">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#">日志列表</a></li>
     </ul>
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table table-striped table-bordered table-hover table-condensed">
         <tbody>
             <tr>
                 <th>ID</th>

@@ -17,7 +17,13 @@
 
 </head>
 <body>
-    <div class="container">
+    <div class="container" style="margin: 0;width:100%">
+<!--         <ul class="nav nav-tabs"> -->
+<%--             <li><a href="<c:url value="/readonline/listswf.html"/>">swf文件列表</a></li> --%>
+<%--             <li><a href="<c:url value="/readonline/listswf.html"/>">文件列表</a></li> --%>
+<%--             <li><a href="<c:url value="/readonline/toupload.html"/>">上传</a></li> --%>
+<!--             <li class="active"><a href="#">查看</a></li> -->
+<!--         </ul> -->
         <div style="position: absolute; left: 10px; top: 10px;">
             <div id="documentViewer" class="flexpaper_viewer" style="width: 770px; height: 500px"></div>
         </div>

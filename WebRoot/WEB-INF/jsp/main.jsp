@@ -32,7 +32,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">系统管理</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="#"><abbr title="I'm a dog." class="initialism">About me</abbr></a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="javascript:void(0)">${user.username }</a></li>
@@ -42,23 +42,23 @@
         </div>
     </div>
 
-    <div class="container" style="padding: 0 15px">
+    <div class="container" style="width:95%">
         <div class="row">
-            <div class="col-lg-3">
+            <div class="col-lg-2" style="padding-right: 5px;">
                 <div id="accordion">
                     <h3>系统管理</h3>
                     <div>
-                        <ul class=" ">
-                            <li><a href="javascript:void(0)" onclick="openRight('<c:url value="/user/list.html"/>')">用户列表</a></li>
+                        <ul class="list-unstyled">
+                            <li><a href="javascript:void(0)" class="active" onclick="openRight('<c:url value="/user/list.html"/>')">用户列表</a></li>
                             <li><a href="javascript:void(0)" onclick="openRight('<c:url value="/dept/list.html"/>')">部门列表</a></li>
                             <li><a href="javascript:void(0)" onclick="openRight('<c:url value="/log/list.html"/>')">日志列表</a></li>
-                            <li><a href="javascript:void(0)" onclick="openRight('<c:url value="/upload/list.html"/>')">上传文件</a></li>
+                            <li><a href="javascript:void(0)" onclick="openRight('<c:url value="/readonline/listswf.html"/>')">在线阅读</a></li>
                         </ul>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-9">
-                <iframe id="rightFrame" name="rightFrame" src="" width="100%" height="400px;" ></iframe> 
+            <div class="col-lg-10" style="padding-left: 5px;">
+                <iframe id="rightFrame" name="rightFrame" src="" width="100%" height="500px;" frameborder="0"></iframe> 
             </div>
         </div>
     </div>

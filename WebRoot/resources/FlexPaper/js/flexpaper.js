@@ -58,7 +58,8 @@ window.FlexPaperViewerEmbedding = window.$f = function(id, args) {
     if(_SWFFile!=null && _SWFFile.indexOf("{" )==0 && _SWFFile.indexOf("[*," ) > 0 && _SWFFile.indexOf("]" ) > 0){_SWFFile = escape(_SWFFile);} // split file fix
 
     window[instance] = flashembed(id, {
-        src						    : _jsDirectory+"../FlexPaperViewer.swf",
+//        src						    : _jsDirectory+"../FlexPaperViewer.swf",
+        src						    : "/myframework/resources/FlexPaper/FlexPaperViewer.swf",
         version					    : [10, 0],
         expressInstall			    : "js/expressinstall.swf",
         wmode					    : _WMode

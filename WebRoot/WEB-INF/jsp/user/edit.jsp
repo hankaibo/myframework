@@ -5,34 +5,50 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
 <title>用户修改</title>
 </head>
 <body>
-    <form action="<c:url value="/user/edit.html"/>" method="post">
+<div class="container" style="margin: 0;width:100%">
+    <ul class="nav nav-tabs">
+        <li><a href="<c:url value="/user/list.html"/>">用户列表</a></li>
+        <li class="active"><a href="#">修改</a></li>
+    </ul>
+    <form class="form-horizontal" role="form" action="<c:url value="/user/edit.html"/>" method="post">
         <input type="hidden" value="${user.id }" name="id"/>
         <input type="hidden" value="${user.credits }" name="credits"/>
-        <table align="center">
-            <tbody>
-                <tr>
-                    <td colspan="6">用户修改</td>
-                </tr>
-                <tr>
-                    <td>用户名:</td>
-                    <td><input type="text" name="username" value="${user.username }"/></td>
-                </tr>
-                <tr>
-                    <td>性别:</td>
-                    <td><input type="text" name="sex" value="${user.sex }"/></td>
-                </tr>
-                <tr>
-                    <td>生日:</td>
-                    <td><input type="text" name="birthday" value="<fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd" />"/></td>
-                </tr>
-                <tr>
-                    <td colspan="3" style="text-align: right;"><input type="submit" value="修改"/></td>
-                </tr>
-            </tbody>
-        </table>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="inputUsername" placeholder="用户名" name="username" value="${user.username }"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">性别</label>
+            <div class="col-sm-4">
+                <label class="radio-inline">
+                    <input type="radio" name="sex" id="inlineCheckbox1" value="1" <c:if test="${user.sex eq 1 }" >checked</c:if>> 男
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="sex" id="inlineCheckbox2" value="0" <c:if test="${user.sex eq 0 }" >checked</c:if>> 女
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="sex" id="inlineCheckbox3" value="2" <c:if test="${user.sex eq 2 }" >checked</c:if>> 保密
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">生日</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="inputBirthday" placeholder="生日" name="birthday" value="<fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd" />"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-4">
+                <button type="submit" class="btn btn-primary active">修改</button>
+            </div>
+        </div>
     </form>
+</div>
 </body>
 </html>

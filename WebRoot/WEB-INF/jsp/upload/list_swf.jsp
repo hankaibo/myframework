@@ -30,13 +30,13 @@
 </script>
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin: 0;width:100%">
     <ul class="nav nav-tabs">
-      <li><a href="<c:url value="/upload/list.html"/>">文件列表</a></li>
       <li class="active"><a href="#">swf文件列表</a></li>
-      <li><a href="<c:url value="/upload/toupload.html"/>">上传</a></li>
+      <li><a href="<c:url value="/readonline/list.html"/>">文件列表</a></li>
+      <li><a href="<c:url value="/readonline/toupload.html"/>">上传</a></li>
     </ul>
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table table-striped table-bordered table-hover table-condensed">
         <tbody>
             <tr>
                 <th>ID</th>
@@ -47,7 +47,7 @@
                 <tr>
                     <td>${file.id }</td>
                     <td>${file.fileName }</td>
-                    <td><a href="<c:url value="/upload/toshow.html?id=${file.id}"/>">查看</a></td>
+                    <td><a href="<c:url value="/readonline/toshow.html?id=${file.id}"/>">查看</a></td>
                 </tr>
             </c:forEach>
             <tr>

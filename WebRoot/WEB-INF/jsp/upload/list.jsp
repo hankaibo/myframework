@@ -23,20 +23,20 @@
             /*回调方法*/
             paged       : function(pageNum) {
                 //如果是一般动态页或者是静态页的话，就直接跳转到相应的页面   
-                location.href="<%= appContextPath %>/upload/list.html?currentPage="+pageNum;
+                location.href="<%= appContextPath %>/readonline/list.html?currentPage="+pageNum;
             }
         }); 
     });
 </script>
 </head>
 <body>
-<div class="container">
+<div class="container" style="margin: 0;width:100%">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#">文件列表</a></li>
-      <li><a href="<c:url value="/upload/listswf.html"/>">swf文件列表</a></li>
-      <li><a href="<c:url value="/upload/toupload.html"/>">上传</a></li>
+        <li><a href="<c:url value="/readonline/listswf.html"/>">swf文件列表</a></li>
+        <li class="active"><a href="#">文件列表</a></li>
+        <li><a href="<c:url value="/readonline/toupload.html"/>">上传</a></li>
     </ul>
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table table-striped table-bordered table-hover table-condensed">
         <tbody>
             <tr>
                 <th>ID</th>
@@ -47,7 +47,7 @@
                 <tr>
                     <td>${file.id }</td>
                     <td>${file.fileName }</td>
-                    <td><a href="<c:url value="/upload/del.html?id=${file.id}"/>">删除</a></td>
+                    <td><a href="<c:url value="/readonline/del.html?id=${file.id}"/>">删除</a></td>
                 </tr>
             </c:forEach>
             <tr>
