@@ -70,7 +70,7 @@ public class TestUserService {
     
     @Test
     public void delUser(){
-        userService.deleteEntity(23);
+        userService.deleteUser(23L);
     }
 
 }

@@ -37,5 +37,5 @@
     <!-- </property> -->
     <!-- </bean> -->
     <!-- </property> -->
-
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
 </beans>

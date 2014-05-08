@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import cn.mypandora.orm.Page;
 import cn.mypandora.orm.dao.IBaseEntityDao;
 import cn.mypandora.orm.service.impl.AbstractBaseEntityOperation;
 import cn.mypandora.system.dao.BaseLogDao;
@@ -33,6 +34,7 @@ public class BaseLogServiceImpl extends AbstractBaseEntityOperation<BaseLog> imp
 
     @Resource
     private BaseLogDao dao;
+
     //@formatter:off
     /* (非 Javadoc)
      * Title: getDao
@@ -44,6 +46,48 @@ public class BaseLogServiceImpl extends AbstractBaseEntityOperation<BaseLog> imp
     @Override
     public IBaseEntityDao<BaseLog> getDao() {
         return dao;
+    }
+
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: addLog
+     * Description:
+     * @param log
+     * @see cn.mypandora.system.service.BaseLogService#addLog(cn.mypandora.system.po.BaseLog)
+     */
+    //@formatter:on
+    @Override
+    public void addLog(BaseLog log) {
+        dao.addEntity(log);
+    }
+
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: deleteLog
+     * Description:
+     * @param id
+     * @see cn.mypandora.system.service.BaseLogService#deleteLog(java.lang.Long)
+     */
+    //@formatter:on
+    @Override
+    public void deleteLog(Long id) {
+        dao.deleteEntity(id);
+    }
+
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: findByCondition
+     * Description:
+     * @param string
+     * @param object
+     * @param page
+     * @return
+     * @see cn.mypandora.system.service.BaseLogService#findByCondition(java.lang.String, java.lang.Object, cn.mypandora.orm.Page)
+     */
+    //@formatter:on
+    @Override
+    public Page<BaseLog> findLogByCondition(String string, Object object, Page<BaseLog> page) {
+        return dao.findByCondition(string, object, page);
     }
 
 }

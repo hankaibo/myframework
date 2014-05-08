@@ -6,11 +6,12 @@
  * @Author: kaibo
  * @CreateDate: 2014-4-27 下午3:30:10 
  *
- */ 
+ */
 package cn.mypandora.system.service;
 
-import cn.mypandora.orm.service.IBaseEntityService;
+import cn.mypandora.orm.Page;
 import cn.mypandora.system.po.BaseLog;
+
 
 /**
  * @ClassName: BaseLogService
@@ -21,6 +22,33 @@ import cn.mypandora.system.po.BaseLog;
  * @UpdateDate: 2014-4-27 下午3:30:10
  * @UpdateRemark: What is modified?
  */
-public interface BaseLogService extends IBaseEntityService<BaseLog>{
+public interface BaseLogService {
+
+    /** 
+     * @Title: addLog
+     * @Description: 新增日志。
+     * @param log
+     * @return void
+     */
+    void addLog(BaseLog log);
+
+    /** 
+     * @Title: deleteLog
+     * @Description: 删除日志(物理)。
+     * @param id
+     * @return void
+     */
+    void deleteLog(Long id);
+
+    /** 
+     * @Title: findByCondition
+     * @Description: 分页查询日志。
+     * @param string
+     * @param object
+     * @param page
+     * @return
+     * @return Page<BaseLog>
+     */
+    Page<BaseLog> findLogByCondition(String string, Object object, Page<BaseLog> page);
 
 }

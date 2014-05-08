@@ -22,7 +22,7 @@ import cn.mypandora.orm.model.BaseTree;
  * @UpdateDate: 2014-3-10 下午11:56:27
  * @UpdateRemark: What is modified?
  */
-public interface IBaseNestedService<T extends BaseTree> extends IBaseEntityService<BaseTree> {
+public interface IBaseNestedService<T extends BaseTree> {
 
     /**
      * @Title: loadFullTree

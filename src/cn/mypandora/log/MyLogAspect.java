@@ -21,6 +21,7 @@ import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -56,24 +57,26 @@ public class MyLogAspect {
      */
     @After("pointcut()")
     public void afterSuccessLog(JoinPoint point) throws Throwable {
-        Object[] param = point.getArgs();
-        Method method = null;
-        String methodName = point.getSignature().getName();
-
-        Class targetClass = point.getTarget().getClass();
-        method = targetClass.getMethod(methodName, param[0].getClass());
+        //
+        MethodSignature joinMethodSignature=(MethodSignature) point.getSignature();
+        //连接点对象的方法和方法名
+        Method method = joinMethodSignature.getMethod();
+        String methodName = method.getName();
+        Class<?>[] parameterTypes = method.getParameterTypes();
+        //
+        Object target=point.getTarget();
+        method=target.getClass().getMethod(methodName,parameterTypes);
         if (method != null) {
             boolean hasAnnotation = method.isAnnotationPresent(MyMethodAnno.class);
             if (hasAnnotation) {
                 MyMethodAnno anno = method.getAnnotation(MyMethodAnno.class);
-                String methodDesc = anno.description();
                 BaseLog log = new BaseLog();
                 log.setCreateTime(new Timestamp(System.currentTimeMillis()));
-                log.setUsername("从Session中获 用户名称");
-                log.setIp("127.0.0.1");
+                log.setUsername("稍后获取");
+                log.setIp("稍后获取");
                 log.setDescription(anno.description());
 
-                service.addEntity(log);
+                service.addLog(log);
             }
         }
     }
@@ -105,4 +108,5 @@ public class MyLogAspect {
         logger.debug("end around");
         return object;
     }
+
 }

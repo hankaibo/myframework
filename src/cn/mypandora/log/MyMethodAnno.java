@@ -1,6 +1,6 @@
 /**   
  * @ProjectName: MyFramework
- * @Package: cn.mypandora.log 
+ * @Package: cn.littleprincess.log 
  * @ClassName: MyMethodAnno 
  * Copyright © hankaibo. All rights reserved.
  * @Author: kaibo
@@ -30,6 +30,7 @@ import java.lang.annotation.Target;
 @Documented
 @Inherited
 public @interface MyMethodAnno {
+
     /**
      * @Title: description
      * @Description: 方法描述

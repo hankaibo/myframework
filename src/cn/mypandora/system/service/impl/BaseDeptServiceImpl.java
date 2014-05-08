@@ -48,5 +48,34 @@ public class BaseDeptServiceImpl extends AbstractBaseNestedOperation<BaseDept> i
         return dao;
     }
 
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: findById
+     * Description:
+     * @param id
+     * @return
+     * @see cn.mypandora.system.service.BaseDeptService#findById(java.lang.Long)
+     */
+    //@formatter:on
+    @Override
+    public BaseDept findById(Long id) {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: updateEntity
+     * Description:
+     * @param dept
+     * @see cn.mypandora.system.service.BaseDeptService#updateEntity(cn.mypandora.system.po.BaseDept)
+     */
+    //@formatter:on
+    @Override
+    public void updateEntity(BaseDept dept) {
+        // TODO Auto-generated method stub
+        
+    }
+
 
 }

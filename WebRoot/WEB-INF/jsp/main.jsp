@@ -52,6 +52,7 @@
                             <li><a href="javascript:void(0)" onclick="openRight('<c:url value="/user/list.html"/>')">用户列表</a></li>
                             <li><a href="javascript:void(0)" onclick="openRight('<c:url value="/dept/list.html"/>')">部门列表</a></li>
                             <li><a href="javascript:void(0)" onclick="openRight('<c:url value="/log/list.html"/>')">日志列表</a></li>
+                            <li><a href="javascript:void(0)" onclick="openRight('<c:url value="/upload/list.html"/>')">上传文件</a></li>
                         </ul>
                     </div>
                 </div>

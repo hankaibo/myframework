@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import cn.mypandora.log.MyMethodAnno;
+import cn.mypandora.orm.Page;
 import cn.mypandora.orm.dao.IBaseEntityDao;
 import cn.mypandora.orm.service.impl.AbstractBaseEntityOperation;
 import cn.mypandora.system.dao.BaseUserDao;
@@ -40,9 +41,6 @@ import cn.mypandora.system.service.BaseUserService;
 public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> implements BaseUserService {
     @Resource
     private BaseUserDao dao;
-
-    // @Resource
-    // private LoginLogDao loginLogDao;
 
     //@formatter:off
     /* (非 Javadoc)
@@ -87,7 +85,6 @@ public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> i
      */
     //@formatter:on
     @Override
-    @MyMethodAnno(description="查询某一用户")
     public BaseUser findUserByUsername(String username) {
         return dao.findEntityByCondition("findUserByName", username);
     }
@@ -101,16 +98,82 @@ public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> i
      */
     //@formatter:on
     @Override
-    @Transactional 
+    @Transactional
+    @MyMethodAnno(description = "用户登录成功")
     public void loginSuccess(BaseUser user) {
         user.setCredits(5 + user.getCredits());
         dao.updateEntity(user);
+    }
 
-        // LoginLog loginLog = new LoginLog();
-        // loginLog.setUserId(user.getUserId());
-        // loginLog.setIp(user.getLastIp());
-        // loginLog.setLoginDate(user.getLastVisit());
-        // loginLogDao.insertLoginLog(loginLog);
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: addUser
+     * Description:
+     * @param baseUser
+     * @see cn.mypandora.system.service.BaseUserService#addUser(cn.mypandora.system.po.BaseUser)
+     */
+    //@formatter:on
+    @Override
+    @MyMethodAnno(description = "新增用户")
+    public void addUser(BaseUser baseUser) {
+        dao.addEntity(baseUser);
+    }
 
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: deleteUser
+     * Description:
+     * @param id
+     * @see cn.mypandora.system.service.BaseUserService#deleteUser(java.lang.Long)
+     */
+    //@formatter:on
+    @Override
+    @MyMethodAnno(description = "删除用户")
+    public void deleteUser(Long id) {
+        dao.deleteEntity(id);
+    }
+
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: updateUser
+     * Description:
+     * @param baseUser
+     * @see cn.mypandora.system.service.BaseUserService#updateUser(cn.mypandora.system.po.BaseUser)
+     */
+    //@formatter:on
+    @Override
+    @MyMethodAnno(description = "修改用户")
+    public void updateUser(BaseUser baseUser) {
+        dao.updateEntity(baseUser);
+    }
+
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: findUserById
+     * Description:
+     * @param id
+     * @return
+     * @see cn.mypandora.system.service.BaseUserService#findUserById(java.lang.Long)
+     */
+    //@formatter:on
+    @Override
+    public BaseUser findUserById(Long id) {
+        return dao.findById(id);
+    }
+
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: findPageUserByCondition
+     * Description:
+     * @param string
+     * @param object
+     * @param page
+     * @return
+     * @see cn.mypandora.system.service.BaseUserService#findPageUserByCondition(java.lang.String, java.lang.Object, cn.mypandora.orm.Page)
+     */
+    //@formatter:on
+    @Override
+    public Page<BaseUser> findPageUserByCondition(String string, Object object, Page<BaseUser> page) {
+        return dao.findByCondition(string, object, page);
     }
 }

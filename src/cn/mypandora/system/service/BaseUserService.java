@@ -9,7 +9,7 @@
  */
 package cn.mypandora.system.service;
 
-import cn.mypandora.orm.service.IBaseEntityService;
+import cn.mypandora.orm.Page;
 import cn.mypandora.system.po.BaseUser;
 
 /**
@@ -21,7 +21,49 @@ import cn.mypandora.system.po.BaseUser;
  * @UpdateDate: 2014年3月7日 下午5:08:53
  * @UpdateRemark: What is modified?
  */
-public interface BaseUserService extends IBaseEntityService<BaseUser> {
+public interface BaseUserService {
+    
+
+    /**
+     * @Title: loginSuccess
+     * @Description: 用户登录成功之后，积分+5，保存。
+     * @param user
+     * @return void
+     */
+    void loginSuccess(BaseUser user);
+
+    /** 
+     * @Title: addUser
+     * @Description: 新增用户。
+     * @param baseUser
+     * @return void
+     */
+    void addUser(BaseUser baseUser);
+
+    /** 
+     * @Title: deleteUser
+     * @Description: 按主键删除用户(物理)。
+     * @param id
+     * @return void
+     */
+    void deleteUser(Long id);
+
+    /** 
+     * @Title: updateEntity
+     * @Description: 修改用户。
+     * @param baseUser
+     * @return void
+     */
+    void updateUser(BaseUser baseUser);
+
+    /** 
+     * @Title: findById
+     * @Description: 按主键查询用户。
+     * @param id
+     * @return
+     * @return BaseUser
+     */
+    BaseUser findUserById(Long id);
 
     /**
      * @Title: hasMatchUser
@@ -42,11 +84,15 @@ public interface BaseUserService extends IBaseEntityService<BaseUser> {
      */
     BaseUser findUserByUsername(String username);
 
-    /**
-     * @Title: loginSuccess
-     * @Description: 用户登录成功之后，积分+5，保存。
-     * @param user
-     * @return void
+    /** 
+     * @Title: findPageUserByCondition
+     * @Description: 根据条件分页查询用户。
+     * @param string
+     * @param object
+     * @param page
+     * @return
+     * @return Page<BaseUser>
      */
-    void loginSuccess(BaseUser user);
+    Page<BaseUser> findPageUserByCondition(String string, Object object, Page<BaseUser> page);
+    
 }

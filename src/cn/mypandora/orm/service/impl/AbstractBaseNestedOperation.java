@@ -24,8 +24,7 @@ import cn.mypandora.orm.service.IBaseNestedService;
  * @UpdateDate: 2014-3-11 上午12:17:29
  * @UpdateRemark: What is modified?
  */
-public abstract class AbstractBaseNestedOperation<T extends BaseTree> extends AbstractBaseEntityOperation<BaseTree>
-        implements IBaseNestedService<T> {
+public abstract class AbstractBaseNestedOperation<T extends BaseTree> implements IBaseNestedService<T> {
 
     public abstract IBaseNestedDao<T> getDao();
 
@@ -140,8 +139,8 @@ public abstract class AbstractBaseNestedOperation<T extends BaseTree> extends Ab
      */
     //@formatter:on
     @Override
-    public void moveUp(Long id,Long upId) {
-        //当前节点不是首节点
+    public void moveUp(Long id, Long upId) {
+        // 当前节点不是首节点
         if (!getDao().isFirstNode(id)) {
             // 弟弟（自身）节点左右值减2
             getDao().brotherMinus2(id);
@@ -160,8 +159,8 @@ public abstract class AbstractBaseNestedOperation<T extends BaseTree> extends Ab
      */
     //@formatter:on
     @Override
-    public void moveDown(Long id,Long downId) {
-        //当前节点不是末节点
+    public void moveDown(Long id, Long downId) {
+        // 当前节点不是末节点
         if (!getDao().isLastNode(id)) {
             // 哥哥节点（自身）左右值加2
             getDao().brotherPlus2(id);

@@ -48,7 +48,7 @@ public class BaseUserController {
             @RequestParam(value = "currentPage", required = true, defaultValue = "1") int currentPage) {
         Page<BaseUser> page = new Page<>();
         page.setCurrentPage(currentPage);
-        page = baseUserService.findByCondition("pageUsers", null, page);
+        page = baseUserService.findPageUserByCondition("pageUsers", null, page);
         model.put("users", page.getResultList());
         model.put("page", page);
         return "user/list";
@@ -74,7 +74,7 @@ public class BaseUserController {
      */
     @RequestMapping(value = "/add.html", method = RequestMethod.POST)
     public String add(BaseUser baseUser) {
-        baseUserService.addEntity(baseUser);
+        baseUserService.addUser(baseUser);
         return "redirect:/user/list.html";
     }
 
@@ -87,7 +87,7 @@ public class BaseUserController {
      */
     @RequestMapping(value = "/del.html", method = RequestMethod.GET)
     public String del(Long id) {
-        baseUserService.deleteEntity(id);
+        baseUserService.deleteUser(id);
         return "redirect:/user/list.html";
     }
 
@@ -100,7 +100,7 @@ public class BaseUserController {
      */
     @RequestMapping(value = "/toedit.html", method = RequestMethod.GET)
     public String toEdit(Long id, ModelMap model) {
-        BaseUser baseUser = baseUserService.findById(id);
+        BaseUser baseUser = baseUserService.findUserById(id);
         model.put("user", baseUser);
         return "user/edit";
     }
@@ -114,7 +114,7 @@ public class BaseUserController {
      */
     @RequestMapping(value = "/edit.html", method = RequestMethod.POST)
     public String edit(BaseUser baseUser) {
-        baseUserService.updateEntity(baseUser);
+        baseUserService.updateUser(baseUser);
         return "redirect:/user/list.html";
     }
 }

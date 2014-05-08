@@ -49,7 +49,7 @@ public class BaseLogController {
             @RequestParam(value = "currentPage", required = true, defaultValue = "1") int currentPage) {
         Page<BaseLog> page = new Page<>();
         page.setCurrentPage(currentPage);
-        page = baseLogService.findByCondition("pageLogs", null, page);
+        page = baseLogService.findLogByCondition("pageLogs", null, page);
         model.put("logs", page.getResultList());
         model.put("page", page);
         return "log/list";
@@ -64,7 +64,7 @@ public class BaseLogController {
      */
     @RequestMapping(value = "/del.html", method = RequestMethod.GET)
     public String del(Long id) {
-        baseLogService.deleteEntity(id);
+        baseLogService.deleteLog(id);
         return "redirect:/log/list.html";
     }
 

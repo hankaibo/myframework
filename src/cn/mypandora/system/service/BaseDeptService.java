@@ -23,4 +23,21 @@ import cn.mypandora.system.po.BaseDept;
  */
 public interface BaseDeptService extends IBaseNestedService<BaseDept> {
 
+    /** 
+     * @Title: findById
+     * @Description: TODO
+     * @param id
+     * @return
+     * @return BaseDept
+     */
+    BaseDept findById(Long id);
+
+    /** 
+     * @Title: updateEntity
+     * @Description: TODO
+     * @param dept
+     * @return void
+     */
+    void updateEntity(BaseDept dept);
+
 }

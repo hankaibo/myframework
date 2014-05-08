@@ -11,7 +11,9 @@ import org.apache.ibatis.mapping.ParameterMapping;
 import org.apache.ibatis.mapping.ParameterMode;
 import org.apache.ibatis.mapping.ResultMap;
 import org.apache.ibatis.reflection.MetaObject;
+import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 import org.apache.ibatis.reflection.property.PropertyTokenizer;
+import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
 import org.apache.ibatis.scripting.xmltags.ForEachSqlNode;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
@@ -541,7 +543,8 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
         List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
         if (parameterMappings != null) {
             Object[] parameterArray = new Object[parameterMappings.size()];
-            MetaObject metaObject = param == null ? null : MetaObject.forObject(param, null, null);
+            MetaObject metaObject = param == null ? null : MetaObject.forObject(param, new DefaultObjectFactory(),
+                    new DefaultObjectWrapperFactory());
             for (int i = 0; i < parameterMappings.size(); i++) {
                 ParameterMapping parameterMapping = parameterMappings.get(i);
                 if (parameterMapping.getMode() != ParameterMode.OUT) {
