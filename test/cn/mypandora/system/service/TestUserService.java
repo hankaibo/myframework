@@ -1,17 +1,5 @@
 package cn.mypandora.system.service;
 
-/**   
- * @ProjectName:MySpring
- * @Package:cn.mypandora.service 
- * @ClassName:TestUserService 
- * @Description:TODO
- * Copyright © 2013东软集团股份有限公司. All rights reserved.
- * @Author:hankaibo
- * @CreateDate: 2013-8-14 下午11:44:58 
- * @Version:v1.0
- *
- */
-
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -26,7 +14,7 @@ import cn.mypandora.system.po.BaseUser;
 
 /**
  * @ClassName:TestUserService
- * @Description:TODO
+ * @Description:用户JUnit测试类。
  * @Author:hankaibo
  * @date:2013-8-14
  * @UpdateUser:hankaibo
@@ -67,9 +55,9 @@ public class TestUserService {
         userService.loginSuccess(user);
 
     }
-    
+
     @Test
-    public void delUser(){
+    public void delUser() {
         userService.deleteUser(23L);
     }
 

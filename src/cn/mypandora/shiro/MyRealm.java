@@ -25,7 +25,7 @@ import cn.mypandora.system.service.BaseUserService;
 
 /**
  * @ClassName: MyRealm
- * @Description: TODO
+ * @Description: 自定义realm.
  * @Author: kaibo
  * @date: 2014-4-22
  * @UpdateUser: kaibo

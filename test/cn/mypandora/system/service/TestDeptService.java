@@ -19,11 +19,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import cn.mypandora.system.po.BaseDept;
-import cn.mypandora.system.service.BaseDeptService;
 
 /**
  * @ClassName: TestDeptService
- * @Description: TODO
+ * @Description: 部门JUnit测试。
  * @Author: kaibo
  * @date: 2014-3-11
  * @UpdateUser: kaibo
@@ -65,7 +64,7 @@ public class TestDeptService {
     
     @Test
     public void getAncestry() {
-        List<BaseDept> list = deptService.getAncestry(9L);
+        List<BaseDept> list = deptService.getDeptAncestry(9L);
         myPrint(list);
     }
 

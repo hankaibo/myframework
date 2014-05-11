@@ -1,17 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%
-    String appContextPath = ((HttpServletRequest) request).getContextPath();
-%> 
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/js/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="<%= appContextPath %>/resources/js/jqpagination/jquery.jqpagination.js"></script>
-<link type="text/css" rel="stylesheet" href="<%= appContextPath %>/resources/js/jqpagination/css/jqpagination.css" />
+<link type="text/css" rel="stylesheet" href="${ctx}/resources/css/bootstrap.min.css" />
+<script type="text/javascript" src="${ctx}/resources/js/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="${ctx}/resources/js/jqpagination/jquery.jqpagination.js"></script>
+<link type="text/css" rel="stylesheet" href="${ctx}/resources/js/jqpagination/css/jqpagination.css" />
 <title>用户列表</title>
 <script type="text/javascript">
     $(function(){
@@ -23,7 +21,7 @@
             /*回调方法*/
             paged       : function(pageNum) {
                 //如果是一般动态页或者是静态页的话，就直接跳转到相应的页面   
-                location.href="<%= appContextPath %>/user/list.html?currentPage="+pageNum;
+                location.href="${ctx}/user/users?currentPage="+pageNum;
             }
         }); 
     });
@@ -33,7 +31,7 @@
 <div class="container" style="margin: 0;width:100%">
     <ul class="nav nav-tabs">
       <li class="active"><a href="#">用户列表</a></li>
-      <li><a href="<c:url value="/user/toadd.html"/>">添加</a></li>
+      <li><a href="<c:url value="/user"/>">添加</a></li>
     </ul>
     <table class="table table-striped table-bordered table-hover table-condensed">
         <tbody>
@@ -52,8 +50,8 @@
                     <td>${user.sex }</td>
                     <td><fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd" /></td>
                     <td>${user.credits }</td>
-                    <td><a href="<c:url value="/user/toedit.html?id=${user.id}"/>">修改</a>|<a
-                        href="<c:url value="/user/del.html?id=${user.id}"/>">删除</a></td>
+                    <td><a href="${ctx}/user/${user.id}">修改</a>|
+                        <a href="${ctx}/user/${user.id}/delete">删除</a></td>
                 </tr>
             </c:forEach>
             <tr>

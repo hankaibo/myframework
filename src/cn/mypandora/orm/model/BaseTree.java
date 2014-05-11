@@ -11,7 +11,7 @@ package cn.mypandora.orm.model;
 
 /**
  * @ClassName: BaseTree
- * @Description: TODO
+ * @Description: 左右树基础类。
  * @Author: kaibo
  * @date: 2014-3-11
  * @UpdateUser: kaibo

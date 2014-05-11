@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,7 +24,7 @@ import cn.mypandora.system.service.BaseLogService;
 
 /**
  * @ClassName: BaseLogController
- * @Description: TODO
+ * @Description: 日志管理Controller。
  * @Author: kaibo
  * @date: 2014-4-30
  * @UpdateUser: kaibo
@@ -44,7 +45,7 @@ public class BaseLogController {
      * @return
      * @return String
      */
-    @RequestMapping(value = "/list.html")
+    @RequestMapping(value = "/logs", method = RequestMethod.GET)
     public String list(ModelMap model,
             @RequestParam(value = "currentPage", required = true, defaultValue = "1") int currentPage) {
         Page<BaseLog> page = new Page<>();
@@ -57,15 +58,15 @@ public class BaseLogController {
 
     /**
      * @Title: del
-     * @Description: 删除用户。
+     * @Description: 删除日志。
      * @param id
      * @return
      * @return String
      */
-    @RequestMapping(value = "/del.html", method = RequestMethod.GET)
-    public String del(Long id) {
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+    public String del(@PathVariable Long id) {
         baseLogService.deleteLog(id);
-        return "redirect:/log/list.html";
+        return "redirect:/log/logs";
     }
 
 }

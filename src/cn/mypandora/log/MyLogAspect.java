@@ -30,7 +30,7 @@ import cn.mypandora.system.service.BaseLogService;
 
 /**
  * @ClassName: MyLogAspect
- * @Description: TODO
+ * @Description: 增强类。
  * @Author: kaibo
  * @date: 2014-4-27
  * @UpdateUser: kaibo

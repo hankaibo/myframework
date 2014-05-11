@@ -6,7 +6,7 @@ import java.util.List;
 
 /**
  * @ClassName:MyBatisSql
- * @Description:TODO
+ * @Description: 获取MyBatis运行时SQL。
  * @Author:hankaibo
  * @date:2014-1-1
  * @UpdateUser:hankaibo

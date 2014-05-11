@@ -14,7 +14,7 @@ import cn.mypandora.system.po.BaseUser;
 
 /**
  * @ClassName: BaseUserService
- * @Description: 用户接口。
+ * @Description: 用户管理Service。
  * @Author: kaibo
  * @date: 2014年3月7日
  * @UpdateUser: kaibo

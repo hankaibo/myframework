@@ -23,7 +23,7 @@ import com.jacob.com.Variant;
 
 /**
  * @ClassName: MyFileConversionUtil
- * @Description: TODO
+ * @Description: 文件转换工具类:包括word、excel、ppt转pdf;pdf转swf。
  * @Author: kaibo
  * @date: 2014-5-7
  * @UpdateUser: kaibo

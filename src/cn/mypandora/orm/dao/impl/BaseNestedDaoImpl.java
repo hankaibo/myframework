@@ -20,7 +20,7 @@ import cn.mypandora.orm.model.BaseTree;
 
 /**
  * @ClassName: BaseNestedDaoImpl
- * @Description: TODO
+ * @Description: 嵌套DAO实现类。
  * @Author: kaibo
  * @date: 2014-3-11
  * @UpdateUser: kaibo

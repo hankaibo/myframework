@@ -1,18 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%
-    String appContextPath = ((HttpServletRequest) request)
-					.getContextPath();
-%>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="<%=appContextPath%>/resources/js/ztree/css/zTreeStyle.css" type="text/css">
-<script type="text/javascript" src="<%=appContextPath%>/resources/js/jquery-1.7.2.min.js"></script>
-<script type="text/javascript" src="<%=appContextPath%>/resources/js/ztree/jquery.ztree.core-3.5.js"></script>
-<script type="text/javascript" src="<%=appContextPath%>/resources/js/ztree/jquery.ztree.exedit-3.5.min.js"></script>
-<script type="text/javascript" src="<%=appContextPath%>/resources/js/ztree/jquery.ztree.excheck-3.5.min.js"></script>
+<link rel="stylesheet" href="${ctx }/resources/js/ztree/css/zTreeStyle.css" type="text/css">
+<script type="text/javascript" src="${ctx }/resources/js/jquery-1.7.2.min.js"></script>
+<script type="text/javascript" src="${ctx }/resources/js/ztree/jquery.ztree.core-3.5.js"></script>
+<script type="text/javascript" src="${ctx }/resources/js/ztree/jquery.ztree.exedit-3.5.min.js"></script>
+<script type="text/javascript" src="${ctx }/resources/js/ztree/jquery.ztree.excheck-3.5.min.js"></script>
 <title>用户列表</title>
 <script type="text/javascript">
     $(function(){
@@ -61,10 +58,14 @@
             var zTree = $.fn.zTree.getZTreeObj("treeDemo");
             zTree.selectNode(treeNode);
             if(confirm("确认删除 节点 -- " + treeNode.name + " 吗？")){
-                var url="<c:url value="/dept/del.html"/>";
-                var data={"id":treeNode.id};
-                $.getJSON(url,data,function(data){
-                    return true;
+                var url="${ctx }/dept/"+treeNode.id;
+                $.ajax({
+                    type:"delete",
+                    url:url,
+                    dataType:"json",
+                    success:function(data){
+                        return true;
+                    }
                 });
             }
         }
@@ -90,10 +91,16 @@
                 setTimeout(function(){zTree.editName(treeNode)}, 10);
                 return false;
             }else{
-                var url="<c:url value="/dept/edit.html"/>";
+                var url="${ctx }/dept";
                 var data={"name":newName,"id":treeNode.id};
-                $.getJSON(url,data,function(data){
-                    return true;
+                $.ajax({
+                    type:"PUT",
+                    url:url,
+                    data:data,
+                    dataType:"json",
+                    success:function(data){
+                        return true;
+                    }
                 });
             }
         }
@@ -139,9 +146,15 @@
             if (btn){
                 btn.bind("click", function(){
                     var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-                    $.getJSON("<c:url value="/dept/add.html"/>?id="+treeNode.id,function(data){
-                        zTree.addNodes(treeNode, {id:data.id, pId:treeNode.id, name:data.name});
-                        return true;
+                    $.ajax({
+                        type:"post",
+                        url:"${ctx }/dept",
+                        data:"id="+treeNode.id,
+                        dataType:"json",
+                        success:function(data){
+                            zTree.addNodes(treeNode, {id:data.id, pId:treeNode.id, name:data.name});
+                            return true;
+                        }
                     });
                 });
             }
@@ -149,41 +162,40 @@
             var upBtn = $("#upBtn_"+treeNode.tId);
             if (upBtn){
                 upBtn.bind("click", function(){
-                        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-                        var sNodes = zTree.getSelectedNodes();
-                        var upNode = sNodes[0].getPreNode();
-                        $.getJSON("<c:url value='/dept/moveUp.json'/>?id="+treeNode.id+"&upId="+upNode.id,function(data){
-                            if(data.result=='true'){
-                                zTree.moveNode(upNode,treeNode,"prev");
-                                return true;
-                            }
-                        });
-//                     $.ajax({url:"<c:url value="/dept/moveUp.json"/>?id="+treeNode.id+"&upId="+upNode.id,
-//                         type:"GET",
-//                         dataType:"json",
-//                         success:function(data){
-//                             zTree.moveNode(upNode,treeNode,"prev");
-//                             return true;
-//                         },
-//                         error:function(XMLHttpRequest, textStatus, errorThrown) {
-//                             this; // 调用本次AJAX请求时传递的options参数
-//                         }
-//                     });
+                    var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+                    var sNodes = zTree.getSelectedNodes();
+                    var upNode = sNodes[0].getPreNode();
+                    $.ajax({url:"${ctx }/dept/"+treeNode.id+"/"+upNode.id+"/up",
+                        type:"GET",
+                        dataType:"json",
+                        success:function(data){
+                            zTree.moveNode(upNode,treeNode,"prev");
+                            return true;
+                        },
+                        error:function(XMLHttpRequest, textStatus, errorThrown) {
+                            this; // 调用本次AJAX请求时传递的options参数
+                        }
+                    });
                 });
             }
             //下移（兄弟节点之间）
             var downBtn = $("#downBtn_"+treeNode.tId);
             if (downBtn){
                 downBtn.bind("click", function(){
-                        var zTree = $.fn.zTree.getZTreeObj("treeDemo");
-                        var sNodes = zTree.getSelectedNodes();
-                        var downNode = sNodes[0].getNextNode();
-                        $.getJSON("<c:url value="/dept/moveDown.json"/>?id="+treeNode.id+"&downId="+downNode.id,function(data){
-                            if(data.result==true){
-                                zTree.moveNode(downNode,treeNode,"next");
-                                return true;
-                            }
-                        });
+                    var zTree = $.fn.zTree.getZTreeObj("treeDemo");
+                    var sNodes = zTree.getSelectedNodes();
+                    var downNode = sNodes[0].getNextNode();
+                    $.ajax({url:"${ctx }/dept/"+treeNode.id+"/"+downNode.id+"/down",
+                        type:"GET",
+                        dataType:"json",
+                        success:function(data){
+                            zTree.moveNode(downNode,treeNode,"next");
+                            return true;
+                        },
+                        error:function(XMLHttpRequest, textStatus, errorThrown) {
+                            this; // 调用本次AJAX请求时传递的options参数
+                        }
+                    });
                 });
             }
         };

@@ -15,14 +15,14 @@ import org.springframework.stereotype.Service;
 
 import cn.mypandora.orm.Page;
 import cn.mypandora.orm.dao.IBaseEntityDao;
-import cn.mypandora.orm.service.impl.AbstractBaseEntityOperation;
+import cn.mypandora.orm.service.AbstractBaseEntityOperation;
 import cn.mypandora.system.dao.BaseLogDao;
 import cn.mypandora.system.po.BaseLog;
 import cn.mypandora.system.service.BaseLogService;
 
 /**
  * @ClassName: BaseLogServiceImpl
- * @Description: TODO
+ * @Description: 日志管理Service实现类。
  * @Author: kaibo
  * @date: 2014-4-27
  * @UpdateUser: kaibo

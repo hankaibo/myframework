@@ -1,14 +1,3 @@
-/**   
- * @ProjectName:MySpring
- * @Package:cn.mypandora.web 
- * @ClassName:LoginController 
- * @Description:TODO
- * Copyright © 2013东软集团股份有限公司. All rights reserved.
- * @Author:hankaibo
- * @CreateDate: 2013-8-15 上午1:04:21 
- * @Version:v1.0
- *
- */
 package cn.mypandora.system.controller;
 
 import java.awt.image.BufferedImage;
@@ -36,7 +25,7 @@ import com.google.code.kaptcha.Producer;
 
 /**
  * @ClassName:LoginController
- * @Description:用户登录。
+ * @Description:登录管理Controller。
  * @Author:hankaibo
  * @date:2013-8-15
  * @UpdateUser:hankaibo
@@ -44,7 +33,6 @@ import com.google.code.kaptcha.Producer;
  * @UpdateRemark:What is modified?
  */
 @Controller
-// 1标注一个spring mvc的bean
 @RequestMapping(value = "/login")
 public class LoginController {
     @Resource
@@ -52,14 +40,12 @@ public class LoginController {
     @Resource
     private BaseUserService baseUserService;
 
-    // 2负责处理/index.html请求
-    @RequestMapping(value = "/index.html", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String loginPage() {
         return "login";
     }
 
-    // 3负责处理/loginCheck.html的请求
-    @RequestMapping(value = "/loginCheck.html")
+    @RequestMapping(method = RequestMethod.POST)
     public ModelAndView loginCheck(HttpServletRequest request, HttpServletResponse response, LoginCommand loginCommand) {
         // 首先判断cookie是否有效，是否能自动登录
 //        Cookie autoCookie = MyCookieUtil.isCookieExist(MyCookieUtil.COOKIE_KEY, request);
@@ -131,7 +117,7 @@ public class LoginController {
      * @throws Exception
      * @return void
      */
-    @RequestMapping(value = "/captcha-image.html")
+    @RequestMapping(value = "/captcha-image",method=RequestMethod.GET)
     public void getKaptchaImage(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setDateHeader("Expires", 0);
         // Set standard HTTP/1.1 no-cache headers.

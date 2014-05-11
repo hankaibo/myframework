@@ -15,7 +15,7 @@ import cn.mypandora.orm.model.BaseEntity;
 
 /**
  * @ClassName: BasePermission
- * @Description: TODO
+ * @Description: 权限实体域对象。
  * @Author: kaibo
  * @date: 2014-4-22
  * @UpdateUser: kaibo

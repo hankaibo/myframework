@@ -13,7 +13,7 @@ import cn.mypandora.orm.model.BaseEntity;
 
 /**
  * @ClassName: UploadFile
- * @Description: TODO
+ * @Description: 上传文件实体域对象。
  * @Author: kaibo
  * @date: 2014-5-7
  * @UpdateUser: kaibo

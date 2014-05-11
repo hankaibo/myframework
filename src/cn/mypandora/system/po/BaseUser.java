@@ -17,7 +17,7 @@ import cn.mypandora.orm.model.BaseEntity;
 
 /**
  * @ClassName: BaseUser
- * @Description: TODO
+ * @Description: 用户实体域对象。
  * @Author: kaibo
  * @date: 2014年3月7日
  * @UpdateUser: kaibo
@@ -28,14 +28,22 @@ public class BaseUser extends BaseEntity {
 
     private static final long serialVersionUID = 1866721052326765131L;
 
+    /** @Fields username :姓名 */
     private String username;
+    /** @Fields password :密码 */
     private String password;
+    /** @Fields realName :真实姓名 */
     private String realName;
+    /** @Fields sex :性别 */
     private Integer sex;
+    /** @Fields birthday :生日 */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
+    /** @Fields lastIp :最后登录IP */
     private String lastIp;
+    /** @Fields lastVisit :最后登录日期 */
     private Date lastVisit;
+    /** @Fields credits :积分 */
     private int credits;
 
     /**
@@ -68,7 +76,6 @@ public class BaseUser extends BaseEntity {
         this.password = password;
     }
 
-
     /**
      * @return the realName
      */
@@ -77,7 +84,8 @@ public class BaseUser extends BaseEntity {
     }
 
     /**
-     * @param realName the realName to set
+     * @param realName
+     *            the realName to set
      */
     public void setRealName(String realName) {
         this.realName = realName;

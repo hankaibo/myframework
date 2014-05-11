@@ -16,14 +16,14 @@ import org.springframework.stereotype.Service;
 import cn.mypandora.log.MyMethodAnno;
 import cn.mypandora.orm.Page;
 import cn.mypandora.orm.dao.IBaseEntityDao;
-import cn.mypandora.orm.service.impl.AbstractBaseEntityOperation;
+import cn.mypandora.orm.service.AbstractBaseEntityOperation;
 import cn.mypandora.system.dao.ReadOnlineDao;
 import cn.mypandora.system.po.UploadFile;
 import cn.mypandora.system.service.ReadOnlineService;
 
 /**
  * @ClassName: ReadOnlineServiceImpl
- * @Description: TODO
+ * @Description: 在线阅读Service实现类。
  * @Author: kaibo
  * @date: 2014-5-7
  * @UpdateUser: kaibo

@@ -1,14 +1,3 @@
-/**   
- * @ProjectName:MySpring
- * @Package:cn.mypandora.service 
- * @ClassName:UserService 
- * @Description:TODO
- * Copyright © 2013东软集团股份有限公司. All rights reserved.
- * @Author:hankaibo
- * @CreateDate: 2013-8-14 下午11:12:00 
- * @Version:v1.0
- *
- */
 package cn.mypandora.system.service.impl;
 
 import java.util.HashMap;
@@ -23,14 +12,14 @@ import org.springframework.transaction.annotation.Transactional;
 import cn.mypandora.log.MyMethodAnno;
 import cn.mypandora.orm.Page;
 import cn.mypandora.orm.dao.IBaseEntityDao;
-import cn.mypandora.orm.service.impl.AbstractBaseEntityOperation;
+import cn.mypandora.orm.service.AbstractBaseEntityOperation;
 import cn.mypandora.system.dao.BaseUserDao;
 import cn.mypandora.system.po.BaseUser;
 import cn.mypandora.system.service.BaseUserService;
 
 /**
  * @ClassName:UserService
- * @Description:TODO
+ * @Description:用户管理Service实现类。
  * @Author:hankaibo
  * @date:2013-8-14
  * @UpdateUser:hankaibo

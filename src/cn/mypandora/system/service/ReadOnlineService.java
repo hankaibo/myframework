@@ -14,7 +14,7 @@ import cn.mypandora.system.po.UploadFile;
 
 /**
  * @ClassName: ReadOnlineService
- * @Description: TODO
+ * @Description: 在线管理Service。
  * @Author: kaibo
  * @date: 2014-5-7
  * @UpdateUser: kaibo

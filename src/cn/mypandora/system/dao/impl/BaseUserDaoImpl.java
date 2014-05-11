@@ -1,14 +1,3 @@
-/**   
- * @ProjectName:MySpring
- * @Package:cn.mypandora.dao 
- * @ClassName:UserDao 
- * @Description:TODO
- * Copyright © 2013东软集团股份有限公司. All rights reserved.
- * @Author:hankaibo
- * @CreateDate: 2013-8-13 下午11:36:17 
- * @Version:v1.0
- *
- */
 package cn.mypandora.system.dao.impl;
 
 import org.springframework.stereotype.Repository;
@@ -19,7 +8,7 @@ import cn.mypandora.system.po.BaseUser;
 
 /**
  * @ClassName:UserDao
- * @Description:TODO
+ * @Description:用户管理DAO实现类。
  * @Author:hankaibo
  * @date:2013-8-13
  * @UpdateUser:hankaibo

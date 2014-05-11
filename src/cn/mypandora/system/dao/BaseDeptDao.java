@@ -14,7 +14,7 @@ import cn.mypandora.system.po.BaseDept;
 
 /**
  * @ClassName: BaseDeptDao
- * @Description: TODO
+ * @Description: 部门管理DAO。
  * @Author: kaibo
  * @date: 2014-3-10
  * @UpdateUser: kaibo

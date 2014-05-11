@@ -18,6 +18,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,7 +30,7 @@ import cn.mypandora.util.MyTreeUtil;
 
 /**
  * @ClassName: BaseDeptController
- * @Description: TODO
+ * @Description: 部门管理Controller。
  * @Author: kaibo
  * @date: 2014-3-10
  * @UpdateUser: kaibo
@@ -44,14 +45,14 @@ public class BaseDeptController {
 
     /**
      * @Title: list
-     * @Description: 获取整棵树
+     * @Description: 获取整个部门树。
      * @param model
      * @return
      * @return String
      */
-    @RequestMapping(value = "/list.html")
+    @RequestMapping(value = "/depts", method = RequestMethod.GET)
     public String list(ModelMap model) {
-        List<BaseDept> listDepts = baseDeptService.loadFullTree();
+        List<BaseDept> listDepts = baseDeptService.loadFullDept();
 
         List<ParentChildTree> listPCTrees = new ArrayList<>();
         for (BaseDept dept : listDepts) {
@@ -69,16 +70,16 @@ public class BaseDeptController {
      * @return
      * @return BaseDept
      */
-    @RequestMapping(value = "/add.html", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     public Map<String, Object> add(Long id) {
         Map<String, Object> map = new HashMap<>();
-        BaseDept dept = (BaseDept) baseDeptService.findById(id);
+        BaseDept dept = (BaseDept) baseDeptService.findDeptById(id);
         map.put("name", "testName");
         map.put("lft", dept.getRgt());
         map.put("rgt", dept.getRgt() + 1);
         map.put("parentId", dept.getId());
-        baseDeptService.addChild(id, map);
+        baseDeptService.addDept(id, map);
         return map;
     }
 
@@ -89,10 +90,10 @@ public class BaseDeptController {
      * @return
      * @return String
      */
-    @RequestMapping(value = "/edit.html", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody
     public String edit(BaseDept dept) {
-        baseDeptService.updateEntity(dept);
+        baseDeptService.updateDept(dept);
         return "true";
     }
 
@@ -103,10 +104,10 @@ public class BaseDeptController {
      * @return
      * @return String
      */
-    @RequestMapping(value = "/del.html", method = RequestMethod.GET)
+    @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public String del(Long id) {
-        baseDeptService.delChild(id);
+    public String del(@PathVariable Long id) {
+        baseDeptService.delDept(id);
         return "true";
     }
 
@@ -119,11 +120,12 @@ public class BaseDeptController {
      *            哥哥节点ID
      * @return void
      */
-    @RequestMapping(value = "/moveUp.json", method = RequestMethod.GET)
-    public @ResponseBody Map<String, String> moveUp(Long id, Long upId) {
-        Map<String, String> result=new HashMap<>();
-        baseDeptService.moveUp(id, upId);
-        
+    @RequestMapping(value = "/{id}/{upId}/up", method = RequestMethod.GET)
+    public @ResponseBody
+    Map<String, String> moveUp(@PathVariable Long id, @PathVariable Long upId) {
+        Map<String, String> result = new HashMap<>();
+        baseDeptService.moveUpDept(id, upId);
+
         result.put("result", "true");
         return result;
     }
@@ -137,11 +139,12 @@ public class BaseDeptController {
      *            弟弟节点ID
      * @return void
      */
-    @RequestMapping(value = "/moveDown.json", method = RequestMethod.GET)
-    public @ResponseBody Map<String, Object> moveDown(Long id, Long downId) {
-        Map<String, Object> result=new HashMap<>();
-        baseDeptService.moveDown(id, downId);
-        
+    @RequestMapping(value = "{id}/{upId}/down", method = RequestMethod.GET)
+    public @ResponseBody
+    Map<String, Object> moveDown(@PathVariable Long id, @PathVariable Long downId) {
+        Map<String, Object> result = new HashMap<>();
+        baseDeptService.moveDownDept(id, downId);
+
         result.put("result", true);
         return result;
     }

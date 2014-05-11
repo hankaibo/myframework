@@ -15,7 +15,7 @@ import cn.mypandora.orm.model.BaseEntity;
 
 /**
  * @ClassName: BaseRole
- * @Description: TODO
+ * @Description: 角色实体域对象。
  * @Author: kaibo
  * @date: 2014-4-22
  * @UpdateUser: kaibo

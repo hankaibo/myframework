@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -23,7 +24,7 @@ import cn.mypandora.system.service.BaseUserService;
 
 /**
  * @ClassName: BaseUserController
- * @Description: 用户的CRUD.
+ * @Description: 用户管理Controller。
  * @Author: kaibo
  * @date: 2014-3-13
  * @UpdateUser: kaibo
@@ -43,7 +44,7 @@ public class BaseUserController {
      * @return
      * @return String
      */
-    @RequestMapping(value = "/list.html")
+    @RequestMapping(value = "/users", method = RequestMethod.GET)
     public String list(ModelMap model,
             @RequestParam(value = "currentPage", required = true, defaultValue = "1") int currentPage) {
         Page<BaseUser> page = new Page<>();
@@ -55,13 +56,13 @@ public class BaseUserController {
     }
 
     /**
-     * @Title: toAdd
+     * @Title: add
      * @Description: 跳转到添加页面。
      * @return
      * @return String
      */
-    @RequestMapping(value = "/toadd.html")
-    public String toAdd() {
+    @RequestMapping(method = RequestMethod.GET)
+    public String add() {
         return "user/add";
     }
 
@@ -72,49 +73,49 @@ public class BaseUserController {
      * @return
      * @return String
      */
-    @RequestMapping(value = "/add.html", method = RequestMethod.POST)
+    @RequestMapping(method = RequestMethod.POST)
     public String add(BaseUser baseUser) {
         baseUserService.addUser(baseUser);
-        return "redirect:/user/list.html";
+        return "redirect:/user/users";
     }
 
     /**
-     * @Title: del
+     * @Title: delete
      * @Description: 删除用户。
      * @param id
      * @return
      * @return String
      */
-    @RequestMapping(value = "/del.html", method = RequestMethod.GET)
-    public String del(Long id) {
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+    public String delete(@PathVariable Long id) {
         baseUserService.deleteUser(id);
-        return "redirect:/user/list.html";
+        return "redirect:/user/users";
     }
 
     /**
-     * @Title: toEdit
+     * @Title: update
      * @Description: 跳转到用户修改页面。
      * @param id
      * @return
      * @return String
      */
-    @RequestMapping(value = "/toedit.html", method = RequestMethod.GET)
-    public String toEdit(Long id, ModelMap model) {
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String update(@PathVariable Long id, ModelMap model) {
         BaseUser baseUser = baseUserService.findUserById(id);
         model.put("user", baseUser);
         return "user/edit";
     }
 
     /**
-     * @Title: edit
+     * @Title: update
      * @Description: 用户修改。
      * @param baseUser
      * @return
      * @return String
      */
-    @RequestMapping(value = "/edit.html", method = RequestMethod.POST)
-    public String edit(BaseUser baseUser) {
+    @RequestMapping(method = RequestMethod.PUT)
+    public String update(BaseUser baseUser) {
         baseUserService.updateUser(baseUser);
-        return "redirect:/user/list.html";
+        return "redirect:/user/users";
     }
 }

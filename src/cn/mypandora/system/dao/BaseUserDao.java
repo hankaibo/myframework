@@ -16,7 +16,7 @@ import cn.mypandora.system.po.BaseUser;
 
 /**
  * @ClassName: BaseUserDao
- * @Description: TODO
+ * @Description: 用户管理DAO。
  * @Author: kaibo
  * @date: 2014年3月7日
  * @UpdateUser: kaibo

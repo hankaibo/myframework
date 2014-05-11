@@ -14,7 +14,7 @@ import cn.mypandora.system.po.UploadFile;
 
 /**
  * @ClassName: ReadOnlineDao
- * @Description: TODO
+ * @Description: 在线阅读DAO。
  * @Author: kaibo
  * @date: 2014-5-7
  * @UpdateUser: kaibo

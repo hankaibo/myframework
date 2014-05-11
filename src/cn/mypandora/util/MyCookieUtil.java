@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * @ClassName: MyCookieUtil
- * @Description: TODO
+ * @Description: cookie工具，记住我功能使用。
  * @Author: kaibo
  * @date: 2014-3-23
  * @UpdateUser: kaibo

@@ -13,7 +13,7 @@ import cn.mypandora.orm.model.BaseTree;
 
 /**
  * @ClassName: BaseDept
- * @Description: TODO
+ * @Description: 部门实体域对象。
  * @Author: kaibo
  * @date: 2014-3-10
  * @UpdateUser: kaibo

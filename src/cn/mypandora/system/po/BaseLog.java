@@ -13,7 +13,7 @@ import cn.mypandora.orm.model.BaseEntity;
 
 /**
  * @ClassName: BaseLog
- * @Description: TODO
+ * @Description: 日志实体域对象。
  * @Author: kaibo
  * @date: 2014-4-27
  * @UpdateUser: kaibo

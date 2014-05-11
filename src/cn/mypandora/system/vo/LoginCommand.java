@@ -1,19 +1,8 @@
-/**   
- * @ProjectName:MySpring
- * @Package:cn.mypandora.web 
- * @ClassName:LoginCommand 
- * @Description:TODO
- * Copyright © 2013东软集团股份有限公司. All rights reserved.
- * @Author:hankaibo
- * @CreateDate: 2013-8-15 上午1:17:56 
- * @Version:v1.0
- *
- */
 package cn.mypandora.system.vo;
 
 /**
  * @ClassName:LoginCommand
- * @Description:TODO
+ * @Description:登录页面PO。
  * @Author:hankaibo
  * @date:2013-8-15
  * @UpdateUser:hankaibo

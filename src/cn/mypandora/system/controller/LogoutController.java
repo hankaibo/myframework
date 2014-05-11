@@ -20,7 +20,7 @@ import cn.mypandora.util.MyCookieUtil;
 
 /**
  * @ClassName: LogoutController
- * @Description: TODO
+ * @Description: 登出管理Controller。
  * @Author: kaibo
  * @date: 2014-3-23
  * @UpdateUser: kaibo
@@ -39,7 +39,7 @@ public class LogoutController {
      * @return
      * @return String
      */
-    @RequestMapping(value = "/index.html", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String loginPage(HttpServletRequest request, HttpServletResponse response) {
         MyCookieUtil.removeCookie(MyCookieUtil.COOKIE_KEY, request, response);
         request.getSession().removeAttribute("loginId");

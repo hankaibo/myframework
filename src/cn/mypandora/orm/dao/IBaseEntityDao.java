@@ -8,7 +8,7 @@ import cn.mypandora.orm.model.BaseEntity;
 
 /**
  * @ClassName:IBaseEntityService
- * @Description:接口和DAO通用操作。
+ * @Description:DAO通用操作。
  * @Author:hankaibo
  * @date:2014-1-1
  * @UpdateUser:hankaibo

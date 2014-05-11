@@ -20,6 +20,7 @@ import javax.servlet.http.Part;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,7 +32,7 @@ import cn.mypandora.util.MyFileConversionUtil;
 
 /**
  * @ClassName: ReadOnlineController
- * @Description: TODO
+ * @Description: 在线阅读管理Controller。
  * @Author: kaibo
  * @date: 2014-5-7
  * @UpdateUser: kaibo
@@ -44,7 +45,15 @@ public class ReadOnlineController {
     @Resource
     private ReadOnlineService readOnlineService;
 
-    @RequestMapping(value = "/list.html")
+    /**
+     * @Title: list
+     * @Description: 显示原始文件列表。
+     * @param model
+     * @param currentPage
+     * @return
+     * @return String
+     */
+    @RequestMapping(value = "/files")
     public String list(ModelMap model,
             @RequestParam(value = "currentPage", required = true, defaultValue = "1") int currentPage) {
         Page<UploadFile> page = new Page<>();
@@ -54,29 +63,29 @@ public class ReadOnlineController {
         page = readOnlineService.findPageFileByCondition("pageFiles", params, page);
         model.put("files", page.getResultList());
         model.put("page", page);
-        return "upload/list";
+        return "readonline/list";
     }
 
     /**
-     * @Title: toUpload
+     * @Title: add
      * @Description: 打开上传页面。
      * @return
      * @return String
      */
-    @RequestMapping(value = "/toupload.html")
-    public String toUpload() {
-        return "upload/add";
+    @RequestMapping(method = RequestMethod.GET)
+    public String add() {
+        return "readonline/add";
     }
 
     /**
-     * @Title: upload
-     * @Description: 上传文件。
+     * @Title: add
+     * @Description: 上传原始文件。
      * @param part
      * @return
      * @return String
      */
-    @RequestMapping(value = "/upload.html", method = RequestMethod.POST)
-    public String upload(@RequestParam("file") Part part) {
+    @RequestMapping(method = RequestMethod.POST)
+    public String add(@RequestParam("file") Part part) {
         System.out.println(getFileName(part));
         System.out.println(part.getContentType());
         System.out.println(part.getSize());
@@ -124,10 +133,18 @@ public class ReadOnlineController {
             throw new RuntimeException(e);
         }
         // 显示上传的文件列表
-        return "redirect:/upload/list.html";
+        return "redirect:/readonline/files";
     }
 
-    @RequestMapping(value = "/listswf.html")
+    /**
+     * @Title: listSWF
+     * @Description: 显示swf文件列表。
+     * @param model
+     * @param currentPage
+     * @return
+     * @return String
+     */
+    @RequestMapping(value = "/flashs", method = RequestMethod.GET)
     public String listSWF(ModelMap model,
             @RequestParam(value = "currentPage", required = true, defaultValue = "1") int currentPage) {
         Page<UploadFile> page = new Page<>();
@@ -137,14 +154,35 @@ public class ReadOnlineController {
         page = readOnlineService.findPageFileByCondition("pageFiles", params, page);
         model.put("files", page.getResultList());
         model.put("page", page);
-        return "upload/list_swf";
+        return "readonline/list_swf";
     }
 
-    @RequestMapping(value = "/toshow.html", method = RequestMethod.GET)
-    public String toShow(Long id, ModelMap model) {
+    /**
+     * @Title: show
+     * @Description: 查看swf文件。
+     * @param id
+     * @param model
+     * @return
+     * @return String
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String show(@PathVariable Long id, ModelMap model) {
         UploadFile uploadFile = readOnlineService.findFileById(id);
         model.put("file", uploadFile);
-        return "upload/show_swf";
+        return "readonline/show_swf";
+    }
+
+    /**
+     * @Title: delete
+     * @Description: 删除原始文件。
+     * @param id
+     * @return
+     * @return String
+     */
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+    public String delete(@PathVariable Long id) {
+        readOnlineService.deleteFile(id);
+        return "redirect:/readonline/files";
     }
 
     /**

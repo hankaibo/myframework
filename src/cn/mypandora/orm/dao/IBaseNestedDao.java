@@ -15,7 +15,7 @@ import cn.mypandora.orm.model.BaseTree;
 
 /**
  * @ClassName: IBaseNestedDao
- * @Description: TODO
+ * @Description: 嵌套DAO通用操作。
  * @Author: kaibo
  * @date: 2014-3-16
  * @UpdateUser: kaibo

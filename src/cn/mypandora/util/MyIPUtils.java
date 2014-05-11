@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 /**
  * @ClassName: MyIPUtils
- * @Description: TODO
+ * @Description: IP获取工具类。
  * @Author: kaibo
  * @date: 2014-5-4
  * @UpdateUser: kaibo

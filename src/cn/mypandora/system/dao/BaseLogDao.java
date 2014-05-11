@@ -14,7 +14,7 @@ import cn.mypandora.system.po.BaseLog;
 
 /**
  * @ClassName: BaseLogDao
- * @Description: TODO
+ * @Description: 日志管理DAO。
  * @Author: kaibo
  * @date: 2014-4-27
  * @UpdateUser: kaibo

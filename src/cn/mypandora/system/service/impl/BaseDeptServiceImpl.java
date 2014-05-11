@@ -1,29 +1,20 @@
-/**   
- * @ProjectName:MySpring
- * @Package:cn.mypandora.service.impl
- * @ClassName:BaseDeptServiceImpl
- * @Description:TODO
- * Copyright © 2013东软集团股份有限公司. All rights reserved.
- * @Author:hankaibo
- * @CreateDate: 2013-8-14 下午11:12:00 
- * @Version:v1.0
- *
- */
 package cn.mypandora.system.service.impl;
+
+import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import cn.mypandora.orm.dao.IBaseNestedDao;
-import cn.mypandora.orm.service.impl.AbstractBaseNestedOperation;
+import cn.mypandora.orm.service.AbstractBaseNestedOperation;
 import cn.mypandora.system.dao.BaseDeptDao;
 import cn.mypandora.system.po.BaseDept;
 import cn.mypandora.system.service.BaseDeptService;
 
 /**
  * @ClassName:BaseDeptServiceImpl
- * @Description:TODO
+ * @Description:部门管理Service实现类。
  * @Author:hankaibo
  * @date:2013-8-14
  * @UpdateUser:hankaibo
@@ -40,7 +31,7 @@ public class BaseDeptServiceImpl extends AbstractBaseNestedOperation<BaseDept> i
      * Title: getDao
      * Description:
      * @return
-     * @see cn.mypandora.orm.service.impl.AbstractBaseNestedOperation#getDao()
+     * @see cn.mypandora.orm.service.AbstractBaseNestedOperation#getDao()
      */
     //@formatter:on
     @Override
@@ -50,32 +41,174 @@ public class BaseDeptServiceImpl extends AbstractBaseNestedOperation<BaseDept> i
 
     //@formatter:off
     /* (非 Javadoc)
-     * Title: findById
+     * Title: loadFullDept
      * Description:
-     * @param id
      * @return
-     * @see cn.mypandora.system.service.BaseDeptService#findById(java.lang.Long)
+     * @see cn.mypandora.system.service.BaseDeptService#loadFullDept()
      */
     //@formatter:on
     @Override
-    public BaseDept findById(Long id) {
-        // TODO Auto-generated method stub
-        return null;
+    public List<BaseDept> loadFullDept() {
+        return getDao().loadFullTree();
     }
 
     //@formatter:off
     /* (非 Javadoc)
-     * Title: updateEntity
+     * Title: getDeptDescendants
      * Description:
-     * @param dept
-     * @see cn.mypandora.system.service.BaseDeptService#updateEntity(cn.mypandora.system.po.BaseDept)
+     * @param id
+     * @return
+     * @see cn.mypandora.system.service.BaseDeptService#getDeptDescendants(java.lang.Long)
      */
     //@formatter:on
     @Override
-    public void updateEntity(BaseDept dept) {
-        // TODO Auto-generated method stub
-        
+    public List<BaseDept> getDeptDescendants(Long id) {
+        return getDao().getDescendants(id);
     }
 
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: getDeptChilds
+     * Description:
+     * @param id
+     * @return
+     * @see cn.mypandora.system.service.BaseDeptService#getDeptChilds(java.lang.Long)
+     */
+    //@formatter:on
+    @Override
+    public List<BaseDept> getDeptChilds(Long id) {
+        return getDao().getChilds(id);
+    }
+
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: getDeptParent
+     * Description:
+     * @param id
+     * @return
+     * @see cn.mypandora.system.service.BaseDeptService#getDeptParent(java.lang.Long)
+     */
+    //@formatter:on
+    @Override
+    public BaseDept getDeptParent(Long id) {
+        return getDao().getParent(id);
+    }
+
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: getDeptAncestry
+     * Description:
+     * @param id
+     * @return
+     * @see cn.mypandora.system.service.BaseDeptService#getDeptAncestry(java.lang.Long)
+     */
+    //@formatter:on
+    @Override
+    public List<BaseDept> getDeptAncestry(Long id) {
+        return getDao().getAncestry(id);
+    }
+
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: addDept
+     * Description:
+     * @param id
+     * @param params
+     * @see cn.mypandora.system.service.BaseDeptService#addDept(java.lang.Long, java.lang.Object)
+     */
+    //@formatter:on
+    @Override
+    public void addDept(Long id, Object params) {
+        getDao().lftPlus2(id);
+        getDao().rgtPlus2(id);
+        getDao().insertNode(params);
+        getDao().parentRgtPlus2(id);
+
+    }
+
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: delDept
+     * Description:
+     * @param id
+     * @see cn.mypandora.system.service.BaseDeptService#delDept(java.lang.Long)
+     */
+    //@formatter:on
+    @Override
+    public void delDept(Long id) {
+        getDao().lftMinus2(id);
+        getDao().rgtMinus2(id);
+        getDao().deleteEntity(id);
+
+    }
+
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: moveUpDept
+     * Description:
+     * @param id
+     * @param upId
+     * @see cn.mypandora.system.service.BaseDeptService#moveUpDept(java.lang.Long, java.lang.Long)
+     */
+    //@formatter:on
+    @Override
+    public void moveUpDept(Long id, Long upId) {
+        // 当前节点不是首节点
+        if (!getDao().isFirstNode(id)) {
+            // 弟弟（自身）节点左右值减2
+            getDao().brotherMinus2(id);
+            // 哥哥节点左右值加去2
+            getDao().brotherPlus2(upId);
+        }
+
+    }
+
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: moveDownDept
+     * Description:
+     * @param id
+     * @param downId
+     * @see cn.mypandora.system.service.BaseDeptService#moveDownDept(java.lang.Long, java.lang.Long)
+     */
+    //@formatter:on
+    @Override
+    public void moveDownDept(Long id, Long downId) {
+        // 当前节点不是末节点
+        if (!getDao().isLastNode(id)) {
+            // 哥哥节点（自身）左右值加2
+            getDao().brotherPlus2(id);
+            // 弟弟节点左右值减2
+            getDao().brotherMinus2(downId);
+        }
+
+    }
+
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: findDeptById
+     * Description:
+     * @param id
+     * @return
+     * @see cn.mypandora.system.service.BaseDeptService#findDeptById(java.lang.Long)
+     */
+    //@formatter:on
+    @Override
+    public BaseDept findDeptById(Long id) {
+        return (BaseDept) dao.findById(id);
+    }
+
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: updateDept
+     * Description:
+     * @param dept
+     * @see cn.mypandora.system.service.BaseDeptService#updateDept(cn.mypandora.system.po.BaseDept)
+     */
+    //@formatter:on
+    @Override
+    public void updateDept(BaseDept dept) {
+        dao.updateEntity(dept);
+    }
 
 }

@@ -1,19 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="${ctx}/resources/css/bootstrap.min.css" />
 <title>用户新增</title>
 </head>
 <body>
 <div class="container" style="margin: 0;width:100%">
     <ul class="nav nav-tabs">
-        <li><a href="<c:url value="/user/list.html"/>">用户列表</a></li>
+        <li><a href="${ctx}/user/users">用户列表</a></li>
         <li class="active"><a href="#">添加</a></li>
     </ul>
-    <form class="form-horizontal" role="form" action="<c:url value="/user/add.html"/>" method="post">
+    <form class="form-horizontal" role="form" action="${ctx}/user" method="post">
         <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
             <div class="col-sm-4">
