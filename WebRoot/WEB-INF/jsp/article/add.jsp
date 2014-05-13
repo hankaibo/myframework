@@ -13,6 +13,11 @@
 <script type="text/javascript">
     UE.getEditor('inputContent',{
         //这里可以选择自己需要的工具按钮名称,此处仅选择如下五个
+        toolbars:[['fullscreen', 'source', '|', 'undo', 'redo', '|',
+                   'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|',
+                   'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
+                   'insertimage', 'insertvideo', 'music', '|', 'pagebreak', 'horizontal', '|',
+                   'print', 'preview']],
         //focus时自动清空初始化时的内容
         autoClearinitialContent:true,
         //关闭字数统计

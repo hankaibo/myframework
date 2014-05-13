@@ -1,10 +1,10 @@
-/**   
+/**
  * @ProjectName: MyFramework
- * @Package: cn.mypandora.system.service 
- * @ClassName: TestDeptService 
+ * @Package: cn.mypandora.system.service
+ * @ClassName: TestDeptService
  * Copyright © hankaibo. All rights reserved.
  * @Author: kaibo
- * @CreateDate: 2014-3-11 下午3:49:16 
+ * @CreateDate: 2014-3-11 下午3:49:16
  *
  */
 package cn.mypandora.system.service;
@@ -53,7 +53,7 @@ public class TestDeptService {
 //        List<BaseDept> list = deptService.getChilds(2);
 //        myPrint(list);
 //    }
-    
+
 //    @Test
 //    public void getParent(){
 //         BaseDept dept=deptService.getParent(1);
@@ -61,7 +61,7 @@ public class TestDeptService {
 //             System.out.println(dept.getNodeId()+"__"+dept.getName());
 //         }
 //    }
-    
+
     @Test
     public void getAncestry() {
         List<BaseDept> list = deptService.getDeptAncestry(9L);
@@ -78,8 +78,8 @@ public class TestDeptService {
 //         map.put("parentId", dept.getNodeId());
 //         deptService.addChild(1, map);
 //     }
-    
-    
+
+
     private void myPrint(List<BaseDept> list){
         for (BaseDept dept : list) {
             System.out.print(dept.getNodeId() + "___");

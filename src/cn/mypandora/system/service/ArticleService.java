@@ -39,6 +39,23 @@ public interface ArticleService {
     void deleteArticle(Long id);
 
     /**
+     * @Title: updateArticle
+     * @Description: 修改文章。
+     * @param article
+     * @return void
+     */
+    void updateArticle(Article article);
+
+    /**
+     * @Title: findArticleById
+     * @Description: 查找一篇文章。
+     * @param id
+     * @return
+     * @return Article
+     */
+    Article findArticleById(Long id);
+
+    /**
      * @Title: findPageArticleByCondition
      * @Description: 根据条件分页查询文章。
      * @param string

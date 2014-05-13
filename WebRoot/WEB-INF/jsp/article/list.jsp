@@ -36,16 +36,16 @@
     <table class="table table-striped table-bordered table-hover table-condensed">
         <tbody>
             <tr>
-                <th>ID</th>
                 <th>名称</th>
+                <th>作者</th>
                 <th>操作</th>
             </tr>
             <c:forEach var="article" items="${articles}">
                 <tr>
-                    <td>${article.id }</td>
-                    <td>${article.id }</td>
-                    <td><a href="${ctx}/article/${article.id}">修改</a>|<a
-                        href="${ctx}/article/${article.id}/delete>">删除</a></td>
+                    <td>${article.title }</td>
+                    <td>${article.author }</td>
+                    <td><a href="${ctx}/article/${article.id}">修改</a>|
+                        <a href="${ctx}/article/${article.id}/delete">删除</a></td>
                 </tr>
             </c:forEach>
             <tr>

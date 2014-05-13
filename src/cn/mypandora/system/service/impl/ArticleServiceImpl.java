@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import cn.mypandora.log.MyMethodAnno;
 import cn.mypandora.orm.Page;
 import cn.mypandora.orm.dao.IBaseEntityDao;
 import cn.mypandora.orm.service.AbstractBaseEntityOperation;
@@ -56,6 +57,7 @@ public class ArticleServiceImpl extends AbstractBaseEntityOperation<Article> imp
      */
     //@formatter:on
     @Override
+    @MyMethodAnno(description="保存文章")
     public void saveArticle(Article article) {
         dao.addEntity(article);
     }
@@ -71,6 +73,33 @@ public class ArticleServiceImpl extends AbstractBaseEntityOperation<Article> imp
     @Override
     public void deleteArticle(Long id) {
         dao.deleteEntity(id);
+    }
+
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: updateArticle
+     * Description:
+     * @param article
+     * @see cn.mypandora.system.service.ArticleService#updateArticle(cn.mypandora.system.po.Article)
+     */
+    //@formatter:on
+    @Override
+    public void updateArticle(Article article) {
+        dao.updateEntity(article);
+    }
+
+    //@formatter:off
+    /* (非 Javadoc)
+     * Title: findArticleById
+     * Description:
+     * @param id
+     * @return
+     * @see cn.mypandora.system.service.ArticleService#findArticleById(java.lang.Long)
+     */
+    //@formatter:on
+    @Override
+    public Article findArticleById(Long id) {
+        return dao.findById(id);
     }
 
     //@formatter:off

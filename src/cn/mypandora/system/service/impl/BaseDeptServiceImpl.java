@@ -5,6 +5,7 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import cn.mypandora.orm.dao.IBaseNestedDao;
 import cn.mypandora.orm.service.AbstractBaseNestedOperation;
@@ -118,6 +119,7 @@ public class BaseDeptServiceImpl extends AbstractBaseNestedOperation<BaseDept> i
      */
     //@formatter:on
     @Override
+    @Transactional
     public void addDept(Long id, Object params) {
         getDao().lftPlus2(id);
         getDao().rgtPlus2(id);

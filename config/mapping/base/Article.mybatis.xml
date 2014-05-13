@@ -30,10 +30,12 @@
         <![CDATA[
             INSERT INTO t_article (
                 title,
-                author
+                author,
+                content
             ) VALUES (
                 #{title, jdbcType=VARCHAR},
-                #{author, jdbcType=VARCHAR}
+                #{author, jdbcType=VARCHAR},
+                #{content, jdbcType=VARCHAR}
             )
         ]]>
         <selectKey resultType="long" keyProperty="id">
@@ -48,4 +50,19 @@
         ]]> 
     </delete>
     
+    
+    <select id="findById" resultMap="articleMap" parameterType="java.lang.Long">
+        select * from t_article
+        where id = #{id}
+    </select>
+    
+    <update id="update">
+        <![CDATA[
+            update  t_article 
+            set     title=#{title, jdbcType=VARCHAR},
+                    author=#{author, jdbcType=NUMERIC},
+                    content=#{content, jdbcType=DATE}
+            WHERE   id = #{id, jdbcType=NUMERIC}
+        ]]>
+    </update>
 </mapper>

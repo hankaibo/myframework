@@ -1,9 +1,10 @@
-    <%@ page language="java" pageEncoding="utf-8"%>
-    <%@ page import="java.io.*"%>
-    <%@ page import="java.net.*"%>
-    <%@ page import="java.util.*"%>
-    <%@ page import="ueditor.Uploader" %>
-    <%
+
+<%@ page language="java" pageEncoding="utf-8"%>
+<%@ page import="java.io.*"%>
+<%@ page import="java.net.*"%>
+<%@ page import="java.util.*"%>
+<%@ page import="cn.mypandora.util.Uploader"%>
+<%
     	request.setCharacterEncoding("utf-8");
     	response.setCharacterEncoding("utf-8");
     	String url = request.getParameter("upfile");
@@ -65,7 +66,7 @@
    	response.getWriter().print("{'url':'" + outstr + "','tip':'"+state+"','srcUrl':'" + url + "'}" );
 
     %>
-    <%!
+<%!
     public String getFileType(String fileName){
     	String[] fileType = {".gif" , ".png" , ".jpg" , ".jpeg" , ".bmp"};
     	Iterator<String> type = Arrays.asList(fileType).iterator();

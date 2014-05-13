@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -45,7 +46,7 @@ public class ArticleController {
      * @return
      * @return String
      */
-    @RequestMapping(value = "/articles")
+    @RequestMapping(value = "/articles",method=RequestMethod.GET)
     public String list(ModelMap model,
             @RequestParam(value = "currentPage", required = true, defaultValue = "1") int currentPage) {
         Page<Article> page = new Page<>();
@@ -76,6 +77,46 @@ public class ArticleController {
     @RequestMapping(method=RequestMethod.POST)
     public String add(Article article){
         articleService.saveArticle(article);
+        return "redirect:/article/articles";
+    }
+    
+    /**
+     * @Title: delete
+     * @Description: 删除文章。
+     * @param id
+     * @return
+     * @return String
+     */
+    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+    public String delete(@PathVariable Long id) {
+        articleService.deleteArticle(id);
+        return "redirect:/article/articles";
+    }
+    
+    /**
+     * @Title: update
+     * @Description: 跳转到文章修改页面。
+     * @param id
+     * @return
+     * @return String
+     */
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
+    public String update(@PathVariable Long id, ModelMap model) {
+        Article article = articleService.findArticleById(id);
+        model.put("article", article);
+        return "article/edit";
+    }
+
+    /**
+     * @Title: update
+     * @Description: 文章修改。
+     * @param baseUser
+     * @return
+     * @return String
+     */
+    @RequestMapping(method = RequestMethod.PUT)
+    public String update(Article article) {
+        articleService.updateArticle(article);
         return "redirect:/article/articles";
     }
     
