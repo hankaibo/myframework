@@ -1,7 +1,7 @@
 /**   
  * @ProjectName: myframework
  * @Package: cn.mypandora.system.dao.impl 
- * @ClassName: ReadOnlineDaoImpl 
+ * @ClassName: BaseUploadDaoImpl 
  * Copyright © hankaibo. All rights reserved.
  * @Author: kaibo
  * @CreateDate: 2014-5-7 下午2:21:28 
@@ -12,12 +12,12 @@ package cn.mypandora.system.dao.impl;
 import org.springframework.stereotype.Repository;
 
 import cn.mypandora.orm.dao.impl.BaseEntityDaoImpl;
-import cn.mypandora.system.dao.ReadOnlineDao;
+import cn.mypandora.system.dao.BaseUploadDao;
 import cn.mypandora.system.po.UploadFile;
 
 /**
- * @ClassName: ReadOnlineDaoImpl
- * @Description: 在线阅读DAO操作实现类。
+ * @ClassName: BaseUploadDaoImpl
+ * @Description: 上传文件DAO操作实现类。
  * @Author: kaibo
  * @date: 2014-5-7
  * @UpdateUser: kaibo
@@ -25,7 +25,7 @@ import cn.mypandora.system.po.UploadFile;
  * @UpdateRemark: What is modified?
  */
 @Repository
-public class ReadOnlineDaoImpl extends BaseEntityDaoImpl<UploadFile> implements ReadOnlineDao {
+public class BaseUploadDaoImpl extends BaseEntityDaoImpl<UploadFile> implements BaseUploadDao {
 
     //@formatter:off
     /* (非 Javadoc)

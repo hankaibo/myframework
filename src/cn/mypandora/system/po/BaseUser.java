@@ -34,6 +34,14 @@ public class BaseUser extends BaseEntity {
     private String password;
     /** @Fields realName :真实姓名 */
     private String realName;
+    /** @Fields email :邮箱 */
+    private String email;
+    /** @Fields phone :电话 */
+    private String phone;
+    /** @Fields mobile :手机 */
+    private String mobile;
+    /** @Fields pictureUrl :头像地址 */
+    private String pictureUrl;
     /** @Fields sex :性别 */
     private Integer sex;
     /** @Fields birthday :生日 */
@@ -89,6 +97,66 @@ public class BaseUser extends BaseEntity {
      */
     public void setRealName(String realName) {
         this.realName = realName;
+    }
+
+    /**
+     * @return the email
+     */
+    public String getEmail() {
+        return email;
+    }
+
+    /**
+     * @param email
+     *            the email to set
+     */
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    /**
+     * @return the phone
+     */
+    public String getPhone() {
+        return phone;
+    }
+
+    /**
+     * @param phone
+     *            the phone to set
+     */
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    /**
+     * @return the mobile
+     */
+    public String getMobile() {
+        return mobile;
+    }
+
+    /**
+     * @param mobile
+     *            the mobile to set
+     */
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    /**
+     * @return the pictureUrl
+     */
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    /**
+     * @param pictureUrl
+     *            the pictureUrl to set
+     */
+    public void setPictureUrl(String pictureUrl) {
+        this.pictureUrl = pictureUrl;
     }
 
     /**

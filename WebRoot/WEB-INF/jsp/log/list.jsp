@@ -6,10 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="${ctx}/resources/css/bootstrap.min.css" />
-<link type="text/css" rel="stylesheet" href="${ctx}/resources/js/jqpagination/css/jqpagination.css" />
-<script type="text/javascript" src="${ctx}/resources/js/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/jqpagination/jquery.jqpagination.js"></script>
+<%@ include file="./../header.jsp" %>
 <title>日志列表</title>
 <script type="text/javascript">
     $(function(){
@@ -54,7 +51,7 @@
             </c:forEach>
             <tr>
                 <td colspan="6">
-                    <ul class="gigantic pagination">
+                    <ul class="pagination">
                         <li><a href="#" class="first" data-action="first">&laquo;</a></li>
                         <li><a href="#" class="previous" data-action="previous">&lsaquo;</a></li>
                         <input type="text" readonly="readonly" />

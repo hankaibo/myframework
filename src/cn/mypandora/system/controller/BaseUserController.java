@@ -118,4 +118,49 @@ public class BaseUserController {
         baseUserService.updateUser(baseUser);
         return "redirect:/user/users";
     }
+    
+    /***********************个人信息**********************/
+    /** 
+     * @Title: myInfo
+     * @Description: 显示我的个人信息。
+     * @param model
+     * @return
+     * @return String
+     */
+    @RequestMapping(value = "/me", method = RequestMethod.GET)
+    public String myInfo(ModelMap model) {
+        BaseUser userself=new BaseUser();
+        // TODO 用户ID应从session中获取。
+        userself=baseUserService.findUserById(5L);
+        model.put("userself", userself);
+        return "user/myinfo";
+    }
+    
+    /** 
+     * @Title: updateMe
+     * @Description: 跳转到修改我的信息页面。
+     * @param id
+     * @param model
+     * @return
+     * @return String
+     */
+    @RequestMapping(value = "/me/{id}", method = RequestMethod.GET)
+    public String updateMe(@PathVariable Long id, ModelMap model) {
+        BaseUser baseUser = baseUserService.findUserById(id);
+        model.put("user", baseUser);
+        return "user/myedit";
+    }
+    
+    /** 
+     * @Title: updateMe
+     * @Description: 修改我的个人信息。
+     * @param baseUser
+     * @return
+     * @return String
+     */
+    @RequestMapping(value = "/me", method = RequestMethod.PUT)
+    public String updateMe(BaseUser baseUser) {
+        baseUserService.updateUser(baseUser);
+        return "redirect:/user/me";
+    }
 }

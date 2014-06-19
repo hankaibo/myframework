@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<c:set var="ctx" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link type="text/css" rel="stylesheet" href="${ctx}/resources/css/singin.css" />
-<link type="text/css" rel="stylesheet" href="${ctx}/resources/css/bootstrap.min.css" />
-<script type="text/javascript" src="${ctx}/resources/js/jquery-1.10.2.js"></script>
+<link type="text/css" rel="stylesheet" href="${ctx}/resources/js/jqueryui/css/ui-lightness/jquery-ui-1.10.4.custom.css">
+<%@ include file="header.jsp" %>
 <title>登陆</title>
 <script type="text/javascript">
     $(function() {

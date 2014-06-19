@@ -5,7 +5,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="${ctx}/resources/css/bootstrap.min.css" />
+<link type="text/css" rel="stylesheet" href="${ctx}/resources/js/jqueryui/css/jquery-ui-1.10.0.custom.css" />
+<%@ include file="./../header.jsp" %>
+<script type="text/javascript">
+$(function() {
+    $( "#inputBirthday" ).datepicker({
+        maxDate: new Date()
+    });
+});
+</script>
 <title>用户新增</title>
 </head>
 <body>
@@ -19,6 +27,12 @@
             <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" id="inputUsername" placeholder="用户名" name="username">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-4">
+                <input type="password" class="form-control" id="inputPassword" placeholder="密码" name="password">
             </div>
         </div>
         <div class="form-group">

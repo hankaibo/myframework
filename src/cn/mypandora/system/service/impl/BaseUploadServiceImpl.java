@@ -1,7 +1,7 @@
 /**   
  * @ProjectName: myframework
  * @Package: cn.mypandora.system.service.impl 
- * @ClassName: ReadOnlineServiceImpl 
+ * @ClassName: BaseUploadServiceImpl 
  * Copyright © hankaibo. All rights reserved.
  * @Author: kaibo
  * @CreateDate: 2014-5-7 下午12:42:34 
@@ -17,13 +17,13 @@ import cn.mypandora.log.MyMethodAnno;
 import cn.mypandora.orm.Page;
 import cn.mypandora.orm.dao.IBaseEntityDao;
 import cn.mypandora.orm.service.AbstractBaseEntityOperation;
-import cn.mypandora.system.dao.ReadOnlineDao;
+import cn.mypandora.system.dao.BaseUploadDao;
 import cn.mypandora.system.po.UploadFile;
-import cn.mypandora.system.service.ReadOnlineService;
+import cn.mypandora.system.service.BaseUploadService;
 
 /**
- * @ClassName: ReadOnlineServiceImpl
- * @Description: 在线阅读Service实现类。
+ * @ClassName: BaseUploadServiceImpl
+ * @Description: 上传文件Service实现类。
  * @Author: kaibo
  * @date: 2014-5-7
  * @UpdateUser: kaibo
@@ -31,10 +31,10 @@ import cn.mypandora.system.service.ReadOnlineService;
  * @UpdateRemark: What is modified?
  */
 @Service
-public class ReadOnlineServiceImpl extends AbstractBaseEntityOperation<UploadFile> implements ReadOnlineService {
+public class BaseUploadServiceImpl extends AbstractBaseEntityOperation<UploadFile> implements BaseUploadService {
 
     @Resource
-    private ReadOnlineDao dao;
+    private BaseUploadDao dao;
 
     //@formatter:off
     /* (非 Javadoc)
@@ -54,7 +54,7 @@ public class ReadOnlineServiceImpl extends AbstractBaseEntityOperation<UploadFil
      * Title: saveFile
      * Description:
      * @param uploadFile
-     * @see cn.mypandora.system.service.ReadOnlineService#upload(cn.mypandora.system.po.UploadFile)
+     * @see cn.mypandora.system.service.BaseUploadService#upload(cn.mypandora.system.po.UploadFile)
      */
     //@formatter:on
     @Override
@@ -68,7 +68,7 @@ public class ReadOnlineServiceImpl extends AbstractBaseEntityOperation<UploadFil
      * Title: deleteFile
      * Description:
      * @param id
-     * @see cn.mypandora.system.service.ReadOnlineService#deleteFile(java.lang.Long)
+     * @see cn.mypandora.system.service.BaseUploadService#deleteFile(java.lang.Long)
      */
     //@formatter:on
     @Override
@@ -83,7 +83,7 @@ public class ReadOnlineServiceImpl extends AbstractBaseEntityOperation<UploadFil
      * Description:
      * @param id
      * @return
-     * @see cn.mypandora.system.service.ReadOnlineService#findFileById(java.lang.Long)
+     * @see cn.mypandora.system.service.BaseUploadService#findFileById(java.lang.Long)
      */
     //@formatter:on
     @Override
@@ -99,7 +99,7 @@ public class ReadOnlineServiceImpl extends AbstractBaseEntityOperation<UploadFil
      * @param object
      * @param page
      * @return
-     * @see cn.mypandora.system.service.ReadOnlineService#findPageFileByCondition(java.lang.String, java.lang.Object, cn.mypandora.orm.Page)
+     * @see cn.mypandora.system.service.BaseUploadService#findPageFileByCondition(java.lang.String, java.lang.Object, cn.mypandora.orm.Page)
      */
     //@formatter:on
     @Override

@@ -9,6 +9,9 @@
  */
 package cn.mypandora.system.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
@@ -67,6 +70,21 @@ public class BaseLogController {
     public String del(@PathVariable Long id) {
         baseLogService.deleteLog(id);
         return "redirect:/log/logs";
+    }
+
+    /************* 进入我的日志 **************/
+    @RequestMapping(value = "/me", method = RequestMethod.GET)
+    public String myLog(ModelMap model,
+            @RequestParam(value = "currentPage", required = true, defaultValue = "1") int currentPage) {
+        Map<String, Object> params = new HashMap<String, Object>();
+        //从session中获取用户的ID。
+        params.put("id", 5);
+        Page<BaseLog> page = new Page<>();
+        page.setCurrentPage(currentPage);
+        page = baseLogService.findLogByCondition("pageLogs", null, page);
+        model.put("logs", page.getResultList());
+        model.put("page", page);
+        return "log/mylog";
     }
 
 }

@@ -4,12 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet" href="${ctx}/resources/js/jqueryui/css/ui-lightness/jquery-ui-1.10.4.custom.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link type="text/css" rel="stylesheet" href="${ctx}/resources/css/bootstrap.min.css" />
-<script type="text/javascript" src="${ctx}/resources/js/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/jqueryui/jquery-ui-1.10.4.custom.js"></script>
+<link type="text/css" rel="stylesheet" href="${ctx}/resources/js/jqueryui/css/ui-lightness/jquery-ui-1.10.4.custom.css">
+<%@ include file="header.jsp" %>
 <title>论坛</title>
 <script>
     /*手风琴*/
@@ -53,8 +51,15 @@
                             <li><a href="javascript:void(0)" onclick="openRight('${ctx}/user/users')">用户管理</a></li>
                             <li><a href="javascript:void(0)" onclick="openRight('${ctx}/dept/depts')">部门管理</a></li>
                             <li><a href="javascript:void(0)" onclick="openRight('${ctx}/log/logs')">日志管理</a></li>
-                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/readonline/flashs')">在线阅读</a></li>
-                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/article/articles')">文章管理</a></li>
+                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/log/logs')">资源管理</a></li>
+                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/article/articles')">权限管理</a></li>
+                        </ul>
+                    </div>
+                    <h3>个人中心</h3>
+                    <div>
+                        <ul class="list-unstyled">
+                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/user/me')">我的信息</a></li>
+                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/log/me')">我的记录</a></li>
                         </ul>
                     </div>
                 </div>

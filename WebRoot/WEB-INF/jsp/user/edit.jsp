@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="${ctx}/resources/css/bootstrap.min.css" />
+<%@ include file="./../header.jsp" %>
 <title>用户修改</title>
 </head>
 <body>

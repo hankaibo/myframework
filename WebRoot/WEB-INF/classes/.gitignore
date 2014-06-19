@@ -1,9 +1,2 @@
-/applicationContext-shiro.xml
-/applicationContext.xml
 /cn
-/db.properties
-/ehcache
-/logback.xml
 /mapping
-/mybatis-config.xml
-/upload.properties

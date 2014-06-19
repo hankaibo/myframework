@@ -1,7 +1,7 @@
 /**   
  * @ProjectName: myframework
  * @Package: cn.mypandora.system.service 
- * @ClassName: ReadOnlineService 
+ * @ClassName: BaseUploadService 
  * Copyright © hankaibo. All rights reserved.
  * @Author: kaibo
  * @CreateDate: 2014-5-7 下午12:35:15 
@@ -13,15 +13,15 @@ import cn.mypandora.orm.Page;
 import cn.mypandora.system.po.UploadFile;
 
 /**
- * @ClassName: ReadOnlineService
- * @Description: 在线管理Service。
+ * @ClassName: BaseUploadService
+ * @Description: 上传文件Service。
  * @Author: kaibo
  * @date: 2014-5-7
  * @UpdateUser: kaibo
  * @UpdateDate: 2014-5-7 下午12:35:15
  * @UpdateRemark: What is modified?
  */
-public interface ReadOnlineService {
+public interface BaseUploadService {
     /**
      * @Title: saveFile
      * @Description: 上传文件。

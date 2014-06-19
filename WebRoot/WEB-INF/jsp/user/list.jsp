@@ -6,10 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="${ctx}/resources/css/bootstrap.min.css" />
-<script type="text/javascript" src="${ctx}/resources/js/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/jqpagination/jquery.jqpagination.js"></script>
-<link type="text/css" rel="stylesheet" href="${ctx}/resources/js/jqpagination/css/jqpagination.css" />
+<%@ include file="./../header.jsp" %>
 <title>用户列表</title>
 <script type="text/javascript">
     $(function(){
