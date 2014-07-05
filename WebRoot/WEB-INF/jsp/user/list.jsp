@@ -27,9 +27,13 @@
 <body>
 <div class="container" style="margin: 0;width:100%">
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#">用户列表</a></li>
-      <li><a href="<c:url value="/user"/>">添加</a></li>
+        <li class="active"><a href="#">用户列表</a></li>
+        <li><a href="<c:url value="/user"/>">添加</a></li>
+        <a href="${ctx}/user/down/${page.currentPage}" class="btn btn-default" role="button">
+            <span class="glyphicon glyphicon-download-alt"></span> Down
+        </a>
     </ul>
+    
     <table class="table table-striped table-bordered table-hover table-condensed">
         <tbody>
             <tr>

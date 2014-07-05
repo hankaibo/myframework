@@ -1,405 +1,443 @@
-//import java.io.IOException;
-//import java.io.OutputStream;
-//import java.lang.reflect.Field;
-//import java.lang.reflect.InvocationTargetException;
-//import java.lang.reflect.Method;
-//import java.text.SimpleDateFormat;
-//import java.util.Collection;
-//import java.util.Date;
-//import java.util.Iterator;
-//import java.util.regex.Matcher;
-//import java.util.regex.Pattern;
-//
-//import org.apache.poi.hssf.usermodel.HSSFCell;
-//import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-//import org.apache.poi.hssf.usermodel.HSSFFont;
-//import org.apache.poi.hssf.usermodel.HSSFRichTextString;
-//import org.apache.poi.hssf.usermodel.HSSFRow;
-//import org.apache.poi.hssf.usermodel.HSSFSheet;
-//import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-//import org.apache.poi.hssf.util.HSSFColor;
-//
-///**
-// * <p>
-// * Excel 导出工具类 
-// * </p>
-// * 
-// * @author panyong Exp
-// * @version $FileName: ExportExcelUtil.java $Date: 2013-6-25
-// * @since 1.0
-// * 
-// */
-//
-//public class MyExcelUtil<T>{
-//	
-//	// 2007 版本以上 最大支持1048576行
-//	public  final static String  EXCEl_FILE_2007 = "2007";
-//	// 2003 版本 最大支持65536 行
-//	public  final static String  EXCEL_FILE_2003 = "2003";
-//	
-//	/**
-//	 * <p>
-//	 * 导出无头部标题行Excel <br>
-//	 * 时间格式默认：yyyy-MM-dd hh:mm:ss <br>
-//	 * </p>
-//	 * 
-//	 * @param title 表格标题
-//	 * @param dataset 数据集合
-//	 * @param out 输出流
-//	 * @param version 2003 或者 2007，不传时默认生成2003版本
-//	 */
-//	public void exportExcel(String title,Collection<T> dataset, OutputStream out,String version) {
-//		if(StringUtils.isBlank(version) || EXCEL_FILE_2003.equals(version.trim())){
-//			exportExcel2003(title, null, dataset, out, "yyyy-MM-dd hh:mm:ss");
-//		}else{
-//			exportExcel2007(title, null, dataset, out, "yyyy-MM-dd hh:mm:ss");
-//		}
-//	}
-//
-//	/**
-//	 * <p>
-//	 * 导出带有头部标题行的Excel <br>
-//	 * 时间格式默认：yyyy-MM-dd hh:mm:ss <br>
-//	 * </p>
-//	 * 
-//	 * @param title 表格标题
-//	 * @param headers 头部标题集合
-//	 * @param dataset 数据集合
-//	 * @param out 输出流
-//	 * @param version 2003 或者 2007，不传时默认生成2003版本
-//	 */
-//	public void exportExcel(String title,String[] headers, Collection<T> dataset,
-//			OutputStream out,String version) {
-//		if(StringUtils.isBlank(version) || EXCEL_FILE_2003.equals(version.trim())){
-//			exportExcel2003(title, headers, dataset, out, "yyyy-MM-dd hh:mm:ss");
-//		}else{
-//			exportExcel2007(title, headers, dataset, out, "yyyy-MM-dd hh:mm:ss");
-//		}
-//	}
-//
-//	/**
-//	 * <p>
-//	 * 通用Excel导出方法,利用反射机制遍历对象的所有字段，将数据写入Excel文件中 <br>
-//	 * 此版本生成2007以上版本的文件 (文件后缀：xlsx)
-//	 * </p>
-//	 * 
-//	 * @param title
-//	 *            表格标题名
-//	 * @param headers
-//	 *            表格头部标题集合
-//	 * @param dataset
-//	 *            需要显示的数据集合,集合中一定要放置符合JavaBean风格的类的对象。此方法支持的
-//	 *            JavaBean属性的数据类型有基本数据类型及String,Date
-//	 * @param out
-//	 *            与输出设备关联的流对象，可以将EXCEL文档导出到本地文件或者网络中
-//	 * @param pattern
-//	 *            如果有时间数据，设定输出格式。默认为"yyyy-MM-dd hh:mm:ss"
-//	 */
-//	@SuppressWarnings({ "unchecked", "rawtypes" })
-//	public void exportExcel2007(String title, String[] headers,
-//			Collection<T> dataset, OutputStream out, String pattern) {
-//		// 声明一个工作薄
-//		XSSFWorkbook workbook = new XSSFWorkbook();
-//		// 生成一个表格
-//		XSSFSheet sheet = workbook.createSheet(title);
-//		// 设置表格默认列宽度为15个字节
-//		sheet.setDefaultColumnWidth(20);
-//		// 生成一个样式
-//		XSSFCellStyle style = workbook.createCellStyle();
-//		// 设置这些样式
-//		style.setFillForegroundColor(new XSSFColor(java.awt.Color.BLUE));
-//		style.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-//		style.setBorderBottom(XSSFCellStyle.BORDER_THIN);
-//		style.setBorderLeft(XSSFCellStyle.BORDER_THIN);
-//		style.setBorderRight(XSSFCellStyle.BORDER_THIN);
-//		style.setBorderTop(XSSFCellStyle.BORDER_THIN);
-//		style.setAlignment(XSSFCellStyle.ALIGN_CENTER);
-//		// 生成一个字体
-//		XSSFFont font = workbook.createFont();
-//		font.setBoldweight(XSSFFont.BOLDWEIGHT_BOLD);
-//		font.setFontName("宋体"); 
-//		font.setColor(new XSSFColor(java.awt.Color.BLACK));
-//		font.setFontHeightInPoints((short) 11);
-//		// 把字体应用到当前的样式
-//		style.setFont(font);
-//		// 生成并设置另一个样式
-//		XSSFCellStyle style2 = workbook.createCellStyle();
-//		style2.setFillForegroundColor(new XSSFColor(java.awt.Color.WHITE));
-//		style2.setFillPattern(XSSFCellStyle.SOLID_FOREGROUND);
-//		style2.setBorderBottom(XSSFCellStyle.BORDER_THIN);
-//		style2.setBorderLeft(XSSFCellStyle.BORDER_THIN);
-//		style2.setBorderRight(XSSFCellStyle.BORDER_THIN);
-//		style2.setBorderTop(XSSFCellStyle.BORDER_THIN);
-//		style2.setAlignment(XSSFCellStyle.ALIGN_CENTER);
-//		style2.setVerticalAlignment(XSSFCellStyle.VERTICAL_CENTER);
-//		// 生成另一个字体
-//		XSSFFont font2 = workbook.createFont();
-//		font2.setBoldweight(XSSFFont.BOLDWEIGHT_NORMAL);
-//		// 把字体应用到当前的样式
-//		style2.setFont(font2);
-//
-//		// 产生表格标题行
-//		XSSFRow row = sheet.createRow(0);
-//		XSSFCell cellHeader;
-//		for (int i = 0; i < headers.length; i++) {
-//			cellHeader = row.createCell(i);
-//			cellHeader.setCellStyle(style);
-//			cellHeader.setCellValue(new XSSFRichTextString(headers[i]));
-//		}
-//
-//		// 遍历集合数据，产生数据行
-//		Iterator<T> it = dataset.iterator();
-//		int index = 0;
-//		T t;
-//		Field[] fields;
-//		Field field;
-//		XSSFRichTextString richString;
-//		Pattern p = Pattern.compile("^//d+(//.//d+)?$");
-//		Matcher matcher;
-//		String fieldName;
-//		String getMethodName;
-//		XSSFCell cell;
-//		Class tCls;
-//		Method getMethod;
-//		Object value;
-//		String textValue;
-//		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-//		while (it.hasNext()) {
-//			index++;
-//			row = sheet.createRow(index);
-//			t = (T) it.next();
-//			// 利用反射，根据JavaBean属性的先后顺序，动态调用getXxx()方法得到属性值
-//			fields = t.getClass().getDeclaredFields();
-//			for (int i = 0; i < fields.length; i++) {
-//				cell = row.createCell(i);
-//				cell.setCellStyle(style2);
-//				field = fields[i];
-//				fieldName = field.getName();
-//				getMethodName = "get" + fieldName.substring(0, 1).toUpperCase()
-//						+ fieldName.substring(1);
-//				try {
-//					tCls = t.getClass();
-//					getMethod = tCls.getMethod(getMethodName, new Class[] {});
-//					value = getMethod.invoke(t, new Object[] {});
-//					// 判断值的类型后进行强制类型转换
-//					textValue = null;
-//					if (value instanceof Integer) {
-//						cell.setCellValue((Integer) value);
-//					} else if (value instanceof Float) {
-//						textValue = String.valueOf((Float) value);
-//						cell.setCellValue(textValue);
-//					} else if (value instanceof Double) {
-//						textValue = String.valueOf((Double) value);
-//						cell.setCellValue(textValue);
-//					} else if (value instanceof Long) {
-//						cell.setCellValue((Long) value);
-//					}
-//					if (value instanceof Boolean) {
-//						textValue = "是";
-//						if (!(Boolean) value) {
-//							textValue = "否";
-//						}
-//					} else if (value instanceof Date) {
-//						textValue = sdf.format((Date) value);
-//					} else {
-//						// 其它数据类型都当作字符串简单处理
-//						if (value != null) {
-//							textValue = value.toString();
-//						}
-//					}
-//					if (textValue != null) {
-//						matcher = p.matcher(textValue);
-//						if (matcher.matches()) {
-//							// 是数字当作double处理
-//							cell.setCellValue(Double.parseDouble(textValue));
-//						} else {
-//							richString = new XSSFRichTextString(textValue);
-//							cell.setCellValue(richString);
-//						}
-//					}
-//				} catch (SecurityException e) {
-//					e.printStackTrace();
-//				} catch (NoSuchMethodException e) {
-//					e.printStackTrace();
-//				} catch (IllegalArgumentException e) {
-//					e.printStackTrace();
-//				} catch (IllegalAccessException e) {
-//					e.printStackTrace();
-//				} catch (InvocationTargetException e) {
-//					e.printStackTrace();
-//				} finally {
-//					// 清理资源
-//				}
-//			}
-//		}
-//		try {
-//			workbook.write(out);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-//	
-//	
-//	
-//	/**
-//	 * <p>
-//	 * 通用Excel导出方法,利用反射机制遍历对象的所有字段，将数据写入Excel文件中 <br>
-//	 * 此方法生成2003版本的excel,文件名后缀：xls <br>
-//	 * </p>
-//	 * 
-//	 * @param title
-//	 *            表格标题名
-//	 * @param headers
-//	 *            表格头部标题集合
-//	 * @param dataset
-//	 *            需要显示的数据集合,集合中一定要放置符合JavaBean风格的类的对象。此方法支持的
-//	 *            JavaBean属性的数据类型有基本数据类型及String,Date
-//	 * @param out
-//	 *            与输出设备关联的流对象，可以将EXCEL文档导出到本地文件或者网络中
-//	 * @param pattern
-//	 *            如果有时间数据，设定输出格式。默认为"yyyy-MM-dd hh:mm:ss"
-//	 */
-//	@SuppressWarnings({ "unchecked", "rawtypes" })
-//	public void exportExcel2003(String title, String[] headers,
-//			Collection<T> dataset, OutputStream out, String pattern) {
-//		// 声明一个工作薄
-//		HSSFWorkbook workbook = new HSSFWorkbook();
-//		// 生成一个表格
-//		HSSFSheet sheet = workbook.createSheet(title);
-//		// 设置表格默认列宽度为15个字节
-//		sheet.setDefaultColumnWidth(20);
-//		// 生成一个样式
-//		HSSFCellStyle style = workbook.createCellStyle();
-//		// 设置这些样式
-//		style.setFillForegroundColor(HSSFColor.BLUE.index);
-//		style.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-//		style.setBorderBottom(HSSFCellStyle.BORDER_THIN);
-//		style.setBorderLeft(HSSFCellStyle.BORDER_THIN);
-//		style.setBorderRight(HSSFCellStyle.BORDER_THIN);
-//		style.setBorderTop(HSSFCellStyle.BORDER_THIN);
-//		style.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-//		// 生成一个字体
-//		HSSFFont font = workbook.createFont();
-//		font.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
-//		font.setFontName("宋体"); 
-//		font.setColor(HSSFColor.WHITE.index);
-//		font.setFontHeightInPoints((short) 11);
-//		// 把字体应用到当前的样式
-//		style.setFont(font);
-//		// 生成并设置另一个样式
-//		HSSFCellStyle style2 = workbook.createCellStyle();
-//		style2.setFillForegroundColor(HSSFColor.WHITE.index);
-//		style2.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-//		style2.setBorderBottom(HSSFCellStyle.BORDER_THIN);
-//		style2.setBorderLeft(HSSFCellStyle.BORDER_THIN);
-//		style2.setBorderRight(HSSFCellStyle.BORDER_THIN);
-//		style2.setBorderTop(HSSFCellStyle.BORDER_THIN);
-//		style2.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-//		style2.setVerticalAlignment(HSSFCellStyle.VERTICAL_CENTER);
-//		// 生成另一个字体
-//		HSSFFont font2 = workbook.createFont();
-//		font2.setBoldweight(HSSFFont.BOLDWEIGHT_NORMAL);
-//		// 把字体应用到当前的样式
-//		style2.setFont(font2);
-//
-//		// 产生表格标题行
-//		HSSFRow row = sheet.createRow(0);
-//		HSSFCell cellHeader;
-//		for (int i = 0; i < headers.length; i++) {
-//			cellHeader = row.createCell(i);
-//			cellHeader.setCellStyle(style);
-//			cellHeader.setCellValue(new HSSFRichTextString(headers[i]));
-//		}
-//
-//		// 遍历集合数据，产生数据行
-//		Iterator<T> it = dataset.iterator();
-//		int index = 0;
-//		T t;
-//		Field[] fields;
-//		Field field;
-//		HSSFRichTextString richString;
-//		Pattern p = Pattern.compile("^//d+(//.//d+)?$");
-//		Matcher matcher;
-//		String fieldName;
-//		String getMethodName;
-//		HSSFCell cell;
-//		Class tCls;
-//		Method getMethod;
-//		Object value;
-//		String textValue;
-//		SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-//		while (it.hasNext()) {
-//			index++;
-//			row = sheet.createRow(index);
-//			t = (T) it.next();
-//			// 利用反射，根据JavaBean属性的先后顺序，动态调用getXxx()方法得到属性值
-//			fields = t.getClass().getDeclaredFields();
-//			for (int i = 0; i < fields.length; i++) {
-//				cell = row.createCell(i);
-//				cell.setCellStyle(style2);
-//				field = fields[i];
-//				fieldName = field.getName();
-//				getMethodName = "get" + fieldName.substring(0, 1).toUpperCase()
-//						+ fieldName.substring(1);
-//				try {
-//					tCls = t.getClass();
-//					getMethod = tCls.getMethod(getMethodName, new Class[] {});
-//					value = getMethod.invoke(t, new Object[] {});
-//					// 判断值的类型后进行强制类型转换
-//					textValue = null;
-//					if (value instanceof Integer) {
-//						cell.setCellValue((Integer) value);
-//					} else if (value instanceof Float) {
-//						textValue = String.valueOf((Float) value);
-//						cell.setCellValue(textValue);
-//					} else if (value instanceof Double) {
-//						textValue = String.valueOf((Double) value);
-//						cell.setCellValue(textValue);
-//					} else if (value instanceof Long) {
-//						cell.setCellValue((Long) value);
-//					}
-//					if (value instanceof Boolean) {
-//						textValue = "是";
-//						if (!(Boolean) value) {
-//							textValue = "否";
-//						}
-//					} else if (value instanceof Date) {
-//						textValue = sdf.format((Date) value);
-//					} else {
-//						// 其它数据类型都当作字符串简单处理
-//						if (value != null) {
-//							textValue = value.toString();
-//						}
-//					}
-//					if (textValue != null) {
-//						matcher = p.matcher(textValue);
-//						if (matcher.matches()) {
-//							// 是数字当作double处理
-//							cell.setCellValue(Double.parseDouble(textValue));
-//						} else {
-//							richString = new HSSFRichTextString(textValue);
-//							cell.setCellValue(richString);
-//						}
-//					}
-//				} catch (SecurityException e) {
-//					e.printStackTrace();
-//				} catch (NoSuchMethodException e) {
-//					e.printStackTrace();
-//				} catch (IllegalArgumentException e) {
-//					e.printStackTrace();
-//				} catch (IllegalAccessException e) {
-//					e.printStackTrace();
-//				} catch (InvocationTargetException e) {
-//					e.printStackTrace();
-//				} finally {
-//					// 清理资源
-//				}
-//			}
-//		}
-//		try {
-//			workbook.write(out);
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
-//	}
-//}
+/**   
+ * @ProjectName: myframework
+ * @Package: cn.mypandora.util 
+ * @ClassName: MyExcelUtil 
+ * Copyright © hankaibo. All rights reserved.
+ * @Author: kaibo
+ * @CreateDate: 2014-7-5 下午6:34:35 
+ *
+ */
+package cn.mypandora.util;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.lang.reflect.Method;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.poi.hssf.usermodel.HSSFCell;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.DateUtil;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * @ClassName: MyExcelUtil
+ * @Description: Excel工具类
+ * @Author: kaibo
+ * @date: 2014-7-5
+ * @UpdateUser: kaibo
+ * @UpdateDate: 2014-7-5 下午7:41:21
+ * @UpdateRemark: What is modified?
+ */
+public class MyExcelUtil {
+    private static final Logger logger = LoggerFactory.getLogger(MyExcelUtil.class);
+    // 2007 版本以上 最大支持1048576行
+    public final static String EXCEl_FILE_2007 = ".xlsx";
+    // 2003 版本 最大支持65536 行
+    public final static String EXCEL_FILE_2003 = ".xls";
+
+    /**
+     * @Title: scanExcelTitles
+     * @Description: 扫描Excel第一行的Title
+     * @param excelFile
+     * @param sheetName
+     *            指定的sheet名称，没有时默认取第一个。
+     * @return
+     * @return List<String>
+     */
+    public static List<String> scanExcelTitles(File excelFile, String... sheetName) {
+        List<String> titles = new ArrayList<String>();
+        try {
+            String fileName = excelFile.getName();
+            Workbook workbook;
+            if (fileName.substring(fileName.lastIndexOf(".")).equalsIgnoreCase(EXCEl_FILE_2007)) {
+                workbook = new XSSFWorkbook(new FileInputStream(excelFile));
+            } else {
+                workbook = new HSSFWorkbook(new FileInputStream(excelFile));
+            }
+            Sheet sheet;
+            if (sheetName.length == 0) {
+                sheet = workbook.getSheetAt(0);
+            } else {
+                sheet = workbook.getSheet(sheetName[0]);
+            }
+            Row row = sheet.getRow(0);
+            if (row != null) {
+                int i = 0;
+                while (true) {
+                    Cell cell = row.getCell(i);
+                    if (cell == null) {
+                        break;
+                    }
+                    titles.add(cell.getStringCellValue());
+                    i++;
+                }
+            }
+        } catch (Exception e) {
+            logger.debug("Scan Excel [" + excelFile.getPath() + excelFile.getName() + "] Error");
+            throw new RuntimeException(e);
+        }
+        return titles;
+    }
+
+    /**
+     * @Title: importExcelToMap
+     * @Description: 导入Excel文件 内容以List<Map<String K,String V>>的方式存放
+     * @param excelFile
+     *            Excel文件对象
+     * @param fieldNames
+     *            Map的Key列表，Value为相应的sheet一行中各列的值
+     * @param sheetName
+     *            用于指定所需读取数据的表
+     * @return
+     * @return List<Map<String,String>>
+     */
+    public static List<Map<String, String>> importExcelToMap(File excelFile, String fieldNames, String... sheetName) {
+        String[] strKey = fieldNames.split(",");
+        List<Map<String, String>> listMap = new ArrayList<Map<String, String>>();
+        int i = 1;
+        try {
+            String fileName = excelFile.getName();
+            Workbook workbook;
+            if (fileName.substring(fileName.lastIndexOf(".")).equalsIgnoreCase(EXCEl_FILE_2007)) {
+                workbook = new XSSFWorkbook(new FileInputStream(excelFile));
+            } else {
+                workbook = new HSSFWorkbook(new FileInputStream(excelFile));
+            }
+            Sheet sheet;
+            if (sheetName.length == 0) {
+                sheet = workbook.getSheetAt(0);
+            } else {
+                sheet = workbook.getSheet(sheetName[0]);
+            }
+            while (true) {
+                Row row = sheet.getRow(i);
+                if (row == null) {
+                    break;
+                }
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("rowid", String.valueOf(row.getRowNum()));
+                for (int keyIndex = 0; keyIndex < strKey.length; keyIndex++) {
+                    Cell cell = null;
+                    cell = row.getCell(keyIndex);
+                    String cellvalue = "";
+                    if (cell != null) {
+                        switch (cell.getCellType()) {
+                        // 如果当前Cell的Type为NUMERIC
+                        case Cell.CELL_TYPE_NUMERIC: {
+                            // 判断当前的cell是否为Date
+                            if (DateUtil.isCellDateFormatted(cell)) {
+                                // 如果是Date类型则，取得该Cell的Date值
+                                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                                cellvalue = sdf.format(DateUtil.getJavaDate(cell.getNumericCellValue()));
+                            }
+                            // 如果是纯数字
+                            else {
+                                // 取得当前Cell的数值
+                                Integer num = new Integer((int) cell.getNumericCellValue());
+                                cellvalue = String.valueOf(num);
+                            }
+                            break;
+                        }
+                        // 如果当前Cell的Type为STRIN
+                        case Cell.CELL_TYPE_STRING:
+                            // 取得当前的Cell字符串
+                            cellvalue = cell.getRichStringCellValue().getString();
+                            break;
+                        case Cell.CELL_TYPE_BOOLEAN:
+                            System.out.println(cell.getBooleanCellValue());
+                            break;
+                        case Cell.CELL_TYPE_FORMULA:
+                            System.out.println(cell.getCellFormula());
+                            break;
+                        // 默认的Cell值
+                        default:
+                            cellvalue = " ";
+                        }
+                    }
+                    map.put(strKey[keyIndex], cellvalue);
+                }
+                listMap.add(map);
+                i++;
+            }
+        } catch (Exception e) {
+            logger.debug("导入中断，错误位置：第" + i + "行数据！");
+            throw new RuntimeException(e);
+        }
+        return listMap;
+    }
+
+    /**
+     * @Title: exportExcel
+     * @Description: 导出Excel表格,该表格只有第一行标题有内容，其它为空。
+     * @param filepath
+     *            文档保存路径
+     * @param sheetTitle
+     *            Sheet的名称
+     * @param fieldTitles
+     *            Sheet各列的标题（第一行各列的名称）
+     * @return void
+     */
+    public static void exportExcel(String filepath, String sheetTitle, String fieldTitles) {
+        // 创建工作簿（Excel文件）
+        Workbook workbook;
+        if (filepath.substring(filepath.lastIndexOf(".")).equalsIgnoreCase(EXCEl_FILE_2007)) {
+            workbook = new XSSFWorkbook();
+        } else {
+            workbook = new HSSFWorkbook();
+        }
+
+        // 创建Excel工作簿的第一个Sheet页
+        Sheet sheet = workbook.createSheet();
+        workbook.setSheetName(0, sheetTitle);
+
+        // 创建Sheet页的文件头（第一行）
+        createTitle(sheet, fieldTitles);
+
+        // 保存Excel文件
+        saveExcelFile(workbook, filepath);
+    }
+
+    /**
+     * @Title: exportExcel
+     * @Description: 导出Excel文件 数据源的数据格式为List<Map<String K,String V>>
+     * 
+     * @param filepath
+     *            文档保存路径
+     * @param sheetTitle
+     *            Sheet的名称
+     * @param fieldTitles
+     *            Sheet各列的标题（第一行各列的名称）
+     * @param objList
+     *            数据源
+     * @return void
+     */
+    public static void exportExcel(String filepath, String sheetTitle, String fieldTitles,
+            List<Map<String, String>> objList) {
+        Workbook workbook;
+        if (filepath.substring(filepath.lastIndexOf(".")).equalsIgnoreCase(EXCEl_FILE_2007)) {
+            workbook = new XSSFWorkbook();
+        } else {
+            workbook = new HSSFWorkbook();
+        }
+
+        // 创建Excel工作簿的第一个Sheet页
+        Sheet sheet = workbook.createSheet(sheetTitle);
+        workbook.setSheetName(0, sheetTitle);
+
+        // 创建Sheet页的文件头（第一行）
+        createTitle(sheet, fieldTitles);
+
+        // 创建Sheet页的文件体（后续行）
+        String[] strArray = fieldTitles.split(",");
+        for (int objIndex = 0; objIndex < objList.size(); objIndex++) {
+            Map<String, String> map = objList.get(objIndex);
+            Row row = sheet.createRow(objIndex + 1);
+            for (int i = 0; i < strArray.length; i++) {
+                Cell cell = row.createCell(i);
+                cell.setCellType(Cell.CELL_TYPE_STRING);
+                if (map.get(strArray[i]) != null)
+                    cell.setCellValue(map.get(strArray[i]).toString());
+                else {
+                    cell.setCellValue("");
+                }
+            }
+        }
+
+        // 保存Excel文件
+        saveExcelFile(workbook, filepath);
+    }
+
+    /**
+     * @Title: exportExcel
+     * @Description: 导出Excle文档
+     * @param filepath
+     *            文档保存路径
+     * @param sheetTitle
+     *            Sheet的名称
+     * @param fieldTitles
+     *            Sheet各列的标题（第一行各列的名称）
+     * @param objList
+     *            数据源
+     * @param objClass
+     *            数据源中的数据类型
+     * @param fieldNames
+     *            各列对应objClass中field的名称
+     * @return void
+     */
+    public static void exportExcel(String filepath, String sheetTitle, String fieldTitles, List<?> objList,
+            Class<?> objClass, String fieldNames) {
+        // 初始化工作簿
+        Workbook workbook;
+        if (filepath.substring(filepath.lastIndexOf(".")).equalsIgnoreCase(EXCEl_FILE_2007)) {
+            workbook = new XSSFWorkbook();
+        } else {
+            workbook = new HSSFWorkbook();
+        }
+
+        Sheet sheet = workbook.createSheet();// 创建Excel工作簿的第一个Sheet页
+        workbook.setSheetName(0, sheetTitle);
+
+        createTitle(sheet, fieldTitles);// 创建Sheet页的文件头（第一行）
+        createBody(sheet, objList, objClass, fieldNames);// 创建Sheet页的文件体（后续行）
+        // 保存Excel文件
+        saveExcelFile(workbook, filepath);
+    }
+
+    /**
+     * @Title: createTitle
+     * @Description: 创建Excel当前sheet页的头信息
+     * @param sheet
+     *            Excel工作簿的一个sheet
+     * @param fieldTitles
+     *            sheet头信息列表(sheet第一行各列值)
+     * @return void
+     */
+    private static void createTitle(Sheet sheet, String fieldTitles) {
+        Row row = sheet.createRow(0); // 创建该页的一行
+        Cell cell = null;
+
+        String[] strArray = fieldTitles.split(",");
+        for (int i = 0; i < strArray.length; i++) {
+            cell = row.createCell(i); // 创建该行的一列
+            cell.setCellType(Cell.CELL_TYPE_STRING);
+            cell.setCellValue(strArray[i]);
+        }
+    }
+
+    /**
+     * @Title: createBody
+     * @Description: 创建Excel当前sheet页的内容
+     * @param sheet
+     *            工作簿的sheet页
+     * @param objList
+     *            数据源
+     * @param objClass
+     *            数据源中的数据类型
+     * @param fieldNames
+     *            各列对应objClass中field的名称
+     * @return void
+     */
+    private static void createBody(Sheet sheet, List<?> objList, Class<?> objClass, String fieldNames) {
+        String[] targetMethod = fieldNames.split(",");
+        Method[] ms = objClass.getMethods();
+
+        // 循环objList对象列表（生成sheet的行）
+        for (int objIndex = 0; objIndex < objList.size(); objIndex++) {
+            Object obj = objList.get(objIndex);
+            Row row = sheet.createRow(objIndex + 1);
+            // 循环strBody目标方法数组（生成sheet的列）
+            for (int strIndex = 0; strIndex < targetMethod.length; strIndex++) {
+                String targetMethodName = targetMethod[strIndex];
+                // 循环ms方法数组，找到目标方法（strBody中指定的方法）并调用
+                for (int i = 0; i < ms.length; i++) {
+                    Method srcMethod = ms[i];
+                    int len = targetMethodName.indexOf(".") < 0 ? targetMethodName.length() : targetMethodName
+                            .indexOf(".");
+                    if (srcMethod
+                            .getName()
+                            .equals(("get" + String.valueOf(targetMethodName.substring(0, len).charAt(0)).toUpperCase() + targetMethodName
+                                    .substring(0, len).substring(1)))) {
+                        Cell cell = row.createCell(strIndex);
+                        cell.setCellType(HSSFCell.CELL_TYPE_STRING);
+                        try {
+                            // 如果方法返回一个引用类型的值
+                            if (targetMethodName.contains(".")) {
+                                cell.setCellValue(referenceInvoke(targetMethodName, obj));
+                                // 如果方法返回一个普通属性
+                            } else {
+                                cell.setCellValue((srcMethod.invoke(obj)).toString());
+                            }
+                        } catch (Exception e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+
+    /**
+     * @Title: referenceInvoke
+     * @Description: 方法返回的是一个对象的引用（如：getHomeplace.getName类型的方法序列）
+     *               按方法序列逐层调用直到最后放回基本类型的值
+     * 
+     * @param targetMethod
+     *            对象所包含的方法列
+     * @param obj
+     *            待处理的对象
+     * @return
+     * @return String
+     */
+    private static String referenceInvoke(String targetMethod, Object obj) {
+        // 截取方法序列的第一个方法(即截取属于obj对象的方法：getHomeplace())
+        String refMethod = targetMethod.substring(0, targetMethod.indexOf("."));
+        // 获得后续方法序列(getName())
+        targetMethod = targetMethod.substring(targetMethod.indexOf(".") + 1);
+        try {
+            // 获得第一个方法的执行结果(即obj方法执行的结果：obj.getHomeplace())
+            obj = obj.getClass()
+                    .getMethod("get" + String.valueOf(refMethod.charAt(0)).toUpperCase() + refMethod.substring(1))
+                    .invoke(obj);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // 如果方法序列没到最后一节
+        if (targetMethod.contains(".")) {
+            return referenceInvoke(targetMethod, obj);
+            // 如果方法序列到达最后一节
+        } else {
+            try {
+                // 通过obj对象获得该方法链的最后一个方法并调用
+                Method tarMethod = obj.getClass().getMethod(
+                        "get" + String.valueOf(targetMethod.charAt(0)).toUpperCase() + targetMethod.substring(1));
+                return tarMethod.invoke(obj).toString();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    /**
+     * @Title: saveExcelFile
+     * @Description: 保存Excel文件
+     * @param workbook
+     *            Excel工作簿
+     * @param outputPath
+     *            文件保存路径
+     * @return void
+     */
+    private static void saveExcelFile(Workbook workbook, String outputPath) {
+        try {
+            FileOutputStream fos = new FileOutputStream(outputPath);
+            workbook.write(fos);
+
+            fos.flush();
+            fos.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void main(String[] args) {
+        // scanExcelTitles(new File("石油管道.xls"), "08级");
+        List<Map<String, String>> listMap = importExcelToMap(new File("石油管道.xlsx"),
+                "姓名, 性别, 身份证号, 学号, 年级, 系部代码, 系部, 专业", "06、07级B");
+        // exportExcel("石油管道_bak.xlsx", "08级",
+        // "姓名, 性别, 身份证号, 学号, 年级, 系部代码, 系部, 专业");
+        exportExcel("石油管道_bak.xlsx", "085级", "姓名, 性别, 身份证号, 学号, 年级, 系部代码, 系部, 专业", listMap);
+    }
+}

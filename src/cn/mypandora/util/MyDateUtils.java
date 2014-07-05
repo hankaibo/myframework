@@ -20,12 +20,12 @@ import org.apache.commons.lang3.time.DateUtils;
  * @UpdateRemark:What is modified?
  */
 public class MyDateUtils {
-    private final static String DATE_FORMAT = "yyyy-MM-dd";
-    private final static String DATE_FORMAT_CN = "yyyy年MM月dd日";
-    private final static String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
-    private final static String TIME_FORMAT_CN = "yyyy年MM月dd日 HH:mm:ss";
-    private final static String MONTH_FORMAT = "yyyy-MM";
-    private final static String DAY_FORMAT = "yyyyMMdd";
+    public final static String DATE_FORMAT = "yyyy-MM-dd";
+    public final static String DATE_FORMAT_CN = "yyyy年MM月dd日";
+    public final static String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
+    public final static String TIME_FORMAT_CN = "yyyy年MM月dd日 HH:mm:ss";
+    public final static String MONTH_FORMAT = "yyyy-MM";
+    public final static String DAY_FORMAT = "yyyyMMdd";
 
     /**
      * @Title:getMonthFirstDay
@@ -447,6 +447,6 @@ public class MyDateUtils {
         System.out.println(getOffsetDateTime("2012-09-09", 12));
         System.out.println(getOffsetDateTime("2012-09-09 12:12:12", 12));
         System.out.println(long2Time("1234567890"));
-
+        
     }
 }

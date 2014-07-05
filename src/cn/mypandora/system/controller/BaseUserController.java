@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cn.mypandora.orm.Page;
 import cn.mypandora.system.po.BaseUser;
 import cn.mypandora.system.service.BaseUserService;
+import cn.mypandora.util.MyExcelUtil;
 
 /**
  * @ClassName: BaseUserController
@@ -118,9 +119,24 @@ public class BaseUserController {
         baseUserService.updateUser(baseUser);
         return "redirect:/user/users";
     }
-    
-    /***********************个人信息**********************/
-    /** 
+
+    /**
+     * @Title: down
+     * @Description: 下载。
+     * @param page
+     * @return void
+     */
+    @RequestMapping(value = "/down/{currentPage}", method = RequestMethod.GET)
+    public void down(@PathVariable int currentPage) {
+        Page<BaseUser> page = new Page<>();
+        page.setCurrentPage(currentPage);
+        page = baseUserService.findPageUserByCondition("pageUsers", null, page);
+        
+        MyExcelUtil.exportExcel("test.xlsx", "sheet1", "ID,用户名,性别,生日,积分,操作", page.getResultList(), BaseUser.class, "ID,用户名,性别,生日,积分,操作");
+    }
+
+    /*********************** 个人信息 **********************/
+    /**
      * @Title: myInfo
      * @Description: 显示我的个人信息。
      * @param model
@@ -129,14 +145,14 @@ public class BaseUserController {
      */
     @RequestMapping(value = "/me", method = RequestMethod.GET)
     public String myInfo(ModelMap model) {
-        BaseUser userself=new BaseUser();
+        BaseUser userself = new BaseUser();
         // TODO 用户ID应从session中获取。
-        userself=baseUserService.findUserById(5L);
+        userself = baseUserService.findUserById(5L);
         model.put("userself", userself);
         return "user/myinfo";
     }
-    
-    /** 
+
+    /**
      * @Title: updateMe
      * @Description: 跳转到修改我的信息页面。
      * @param id
@@ -150,8 +166,8 @@ public class BaseUserController {
         model.put("user", baseUser);
         return "user/myedit";
     }
-    
-    /** 
+
+    /**
      * @Title: updateMe
      * @Description: 修改我的个人信息。
      * @param baseUser
