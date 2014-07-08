@@ -9,8 +9,17 @@
  */
 package cn.mypandora.system.controller;
 
-import javax.annotation.Resource;
+import java.io.File;
+import java.io.IOException;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.io.FileUtils;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import cn.mypandora.orm.Page;
 import cn.mypandora.system.po.BaseUser;
 import cn.mypandora.system.service.BaseUserService;
+import cn.mypandora.util.MyDateUtils;
 import cn.mypandora.util.MyExcelUtil;
 
 /**
@@ -125,14 +135,25 @@ public class BaseUserController {
      * @Description: 下载。
      * @param page
      * @return void
+     * @throws IOException
      */
     @RequestMapping(value = "/down/{currentPage}", method = RequestMethod.GET)
-    public void down(@PathVariable int currentPage) {
+    public ResponseEntity<byte[]> down(@PathVariable int currentPage, HttpServletRequest request) throws IOException {
+        // 获取要生成的Excel表格数据
         Page<BaseUser> page = new Page<>();
         page.setCurrentPage(currentPage);
         page = baseUserService.findPageUserByCondition("pageUsers", null, page);
-        
-        MyExcelUtil.exportExcel("test.xlsx", "sheet1", "ID,用户名,性别,生日,积分,操作", page.getResultList(), BaseUser.class, "ID,用户名,性别,生日,积分,操作");
+        // 获取项目根路径并用查询数据生成表格
+        String rootpath = request.getSession().getServletContext().getRealPath("/");
+        String fileName = MyDateUtils.getCurrentDate() + ".xlsx";
+        MyExcelUtil.exportExcel(rootpath + "download" + fileName, "sheet1", "ID,用户名,性别,生日,积分,操作", page.getResultList(),
+                BaseUser.class, "ID,用户名,性别,生日,积分,操作");
+        // 下载
+        File file = new File(rootpath + "download" + fileName);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
+        headers.setContentDispositionFormData("attachment", fileName);
+        return new ResponseEntity<byte[]>(FileUtils.readFileToByteArray(file), headers, HttpStatus.CREATED);
     }
 
     /*********************** 个人信息 **********************/
