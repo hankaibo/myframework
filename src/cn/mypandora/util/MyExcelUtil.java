@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Pattern;
 
-import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.DateUtil;
@@ -221,10 +221,11 @@ public class MyExcelUtil {
      *            Sheet各列的标题（第一行各列的名称）
      * @param objList
      *            数据源
+     * @param fieldNames
+     *            各列对应objClass中field的名称
      * @return void
      */
-    public static void exportExcel(String filepath, String sheetTitle, String fieldTitles,
-            List<Map<String, String>> objList) {
+    public static void exportExcel(String filepath, String sheetTitle, String fieldTitles, List<Map<String, String>> objList, String fieldNames) {
         Workbook workbook;
         if (filepath.substring(filepath.lastIndexOf(".")).equalsIgnoreCase(EXCEl_FILE_2007)) {
             workbook = new XSSFWorkbook();
@@ -240,7 +241,7 @@ public class MyExcelUtil {
         createTitle(sheet, fieldTitles);
 
         // 创建Sheet页的文件体（后续行）
-        String[] strArray = fieldTitles.split(",");
+        String[] strArray = fieldNames.split(",");
         for (int objIndex = 0; objIndex < objList.size(); objIndex++) {
             Map<String, String> map = objList.get(objIndex);
             Row row = sheet.createRow(objIndex + 1);
@@ -276,8 +277,7 @@ public class MyExcelUtil {
      *            各列对应objClass中field的名称
      * @return void
      */
-    public static void exportExcel(String filepath, String sheetTitle, String fieldTitles, List<?> objList,
-            Class<?> objClass, String fieldNames) {
+    public static void exportExcel(String filepath, String sheetTitle, String fieldTitles, List<?> objList, Class<?> objClass, String fieldNames) {
         // 初始化工作簿
         Workbook workbook;
         if (filepath.substring(filepath.lastIndexOf(".")).equalsIgnoreCase(EXCEl_FILE_2007)) {
@@ -332,7 +332,8 @@ public class MyExcelUtil {
     private static void createBody(Sheet sheet, List<?> objList, Class<?> objClass, String fieldNames) {
         String[] targetMethod = fieldNames.split(",");
         Method[] ms = objClass.getMethods();
-
+        Pattern pattern = Pattern.compile("^get.*");
+        
         // 循环objList对象列表（生成sheet的行）
         for (int objIndex = 0; objIndex < objList.size(); objIndex++) {
             Object obj = objList.get(objIndex);
@@ -343,24 +344,22 @@ public class MyExcelUtil {
                 // 循环ms方法数组，找到目标方法（strBody中指定的方法）并调用
                 for (int i = 0; i < ms.length; i++) {
                     Method srcMethod = ms[i];
-                    int len = targetMethodName.indexOf(".") < 0 ? targetMethodName.length() : targetMethodName
-                            .indexOf(".");
-                    if (srcMethod
-                            .getName()
-                            .equals(("get" + String.valueOf(targetMethodName.substring(0, len).charAt(0)).toUpperCase() + targetMethodName
-                                    .substring(0, len).substring(1)))) {
-                        Cell cell = row.createCell(strIndex);
-                        cell.setCellType(HSSFCell.CELL_TYPE_STRING);
-                        try {
-                            // 如果方法返回一个引用类型的值
-                            if (targetMethodName.contains(".")) {
-                                cell.setCellValue(referenceInvoke(targetMethodName, obj));
-                                // 如果方法返回一个普通属性
-                            } else {
-                                cell.setCellValue((srcMethod.invoke(obj)).toString());
+                    if(pattern.matcher(srcMethod.getName()).matches()){
+                        int len = targetMethodName.indexOf(".") < 0 ? targetMethodName.length() : targetMethodName.indexOf(".");
+                        if (srcMethod.getName().equals(("get" + String.valueOf(targetMethodName.substring(0, len).charAt(0)).toUpperCase() + targetMethodName.substring(1, len)))) {
+                            Cell cell = row.createCell(strIndex);
+                            cell.setCellType(Cell.CELL_TYPE_STRING);
+                            try {
+                                // 如果方法返回一个引用类型的值
+                                if (targetMethodName.contains(".")) {
+                                    cell.setCellValue(referenceInvoke(targetMethodName, obj));
+                                    // 如果方法返回一个普通属性
+                                } else {
+                                    cell.setCellValue((srcMethod.invoke(obj)).toString());
+                                }
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
                             }
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
                         }
                     }
                 }
@@ -388,9 +387,7 @@ public class MyExcelUtil {
         targetMethod = targetMethod.substring(targetMethod.indexOf(".") + 1);
         try {
             // 获得第一个方法的执行结果(即obj方法执行的结果：obj.getHomeplace())
-            obj = obj.getClass()
-                    .getMethod("get" + String.valueOf(refMethod.charAt(0)).toUpperCase() + refMethod.substring(1))
-                    .invoke(obj);
+            obj = obj.getClass().getMethod("get" + String.valueOf(refMethod.charAt(0)).toUpperCase() + refMethod.substring(1)).invoke(obj);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -402,8 +399,7 @@ public class MyExcelUtil {
         } else {
             try {
                 // 通过obj对象获得该方法链的最后一个方法并调用
-                Method tarMethod = obj.getClass().getMethod(
-                        "get" + String.valueOf(targetMethod.charAt(0)).toUpperCase() + targetMethod.substring(1));
+                Method tarMethod = obj.getClass().getMethod("get" + String.valueOf(targetMethod.charAt(0)).toUpperCase() + targetMethod.substring(1));
                 return tarMethod.invoke(obj).toString();
             } catch (Exception e) {
                 throw new RuntimeException(e);
@@ -434,10 +430,8 @@ public class MyExcelUtil {
 
     public static void main(String[] args) {
         // scanExcelTitles(new File("石油管道.xls"), "08级");
-        List<Map<String, String>> listMap = importExcelToMap(new File("石油管道.xlsx"),
-                "姓名, 性别, 身份证号, 学号, 年级, 系部代码, 系部, 专业", "06、07级B");
+        List<Map<String, String>> listMap = importExcelToMap(new File("石油管道.xlsx"), "姓名, 性别, 身份证号, 学号, 年级, 系部代码, 系部, 专业", "06、07级B");
         // exportExcel("石油管道_bak.xlsx", "08级",
         // "姓名, 性别, 身份证号, 学号, 年级, 系部代码, 系部, 专业");
-        exportExcel("石油管道_bak.xlsx", "085级", "姓名, 性别, 身份证号, 学号, 年级, 系部代码, 系部, 专业", listMap);
     }
 }
