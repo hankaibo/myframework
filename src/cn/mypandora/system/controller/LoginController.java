@@ -1,7 +1,15 @@
 package cn.mypandora.system.controller;
 
-import java.awt.image.BufferedImage;
-import java.util.Date;
+import cn.mypandora.system.po.BaseUser;
+import cn.mypandora.system.service.BaseUserService;
+import cn.mypandora.system.vo.LoginCommand;
+import com.google.code.kaptcha.Constants;
+import com.google.code.kaptcha.Producer;
+import org.apache.shiro.authc.AuthenticationException;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
@@ -9,19 +17,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.apache.shiro.authc.AuthenticationException;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
-
-import cn.mypandora.system.po.BaseUser;
-import cn.mypandora.system.service.BaseUserService;
-import cn.mypandora.system.vo.LoginCommand;
-
-import com.google.code.kaptcha.Constants;
-import com.google.code.kaptcha.Producer;
+import java.awt.image.BufferedImage;
+import java.util.Date;
 
 /**
  * @ClassName:LoginController
@@ -72,7 +69,7 @@ public class LoginController {
 //        token.setRememberMe(true);
         try {
 //            subject.login(token);
-         // 如果“记住我的登录状态”的复选框被选中
+            // 如果“记住我的登录状态”的复选框被选中
 //          if (loginCommand.isRememberMe()) {
 //              String cookieValue = loginCommand.getUserName() + "," + loginCommand.getPassword();
 //              Cookie cookie = new Cookie(MyCookieUtil.COOKIE_KEY, cookieValue);
@@ -89,7 +86,7 @@ public class LoginController {
             request.getSession().setAttribute("user", user);
             return new ModelAndView("main");
         } catch (AuthenticationException e) {
-//            e.printStackTrace();
+            e.printStackTrace();
 //            token.clear();
             return new ModelAndView("login", "error", "用户名或密码错误.");
         }
@@ -110,14 +107,14 @@ public class LoginController {
     }
 
     /**
-     * @Title: getKaptchaImage
-     * @Description: 生成验证码。
      * @param request
      * @param response
-     * @throws Exception
      * @return void
+     * @throws Exception
+     * @Title: getKaptchaImage
+     * @Description: 生成验证码。
      */
-    @RequestMapping(value = "/captcha-image",method=RequestMethod.GET)
+    @RequestMapping(value = "/captcha-image", method = RequestMethod.GET)
     public void getKaptchaImage(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setDateHeader("Expires", 0);
         // Set standard HTTP/1.1 no-cache headers.

@@ -1,14 +1,5 @@
 package cn.mypandora.system.service.impl;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import cn.mypandora.log.MyMethodAnno;
 import cn.mypandora.orm.Page;
 import cn.mypandora.orm.dao.IBaseEntityDao;
@@ -16,6 +7,13 @@ import cn.mypandora.orm.service.AbstractBaseEntityOperation;
 import cn.mypandora.system.dao.BaseUserDao;
 import cn.mypandora.system.po.BaseUser;
 import cn.mypandora.system.service.BaseUserService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName:UserService
@@ -164,5 +162,12 @@ public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> i
     @Override
     public Page<BaseUser> findPageUserByCondition(String string, Object object, Page<BaseUser> page) {
         return dao.findByCondition(string, object, page);
+    }
+
+    @Override
+    public List<Map<String, Object>> findUserCount(String month){
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("month", month);
+        return dao.findMapByCondition("findUserByDate",params);
     }
 }

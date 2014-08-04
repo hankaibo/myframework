@@ -9,10 +9,11 @@
  */
 package cn.mypandora.system.dao;
 
-import java.util.List;
-
 import cn.mypandora.orm.dao.IBaseEntityDao;
 import cn.mypandora.system.po.BaseUser;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName: BaseUserDao
@@ -43,4 +44,12 @@ public interface BaseUserDao extends IBaseEntityDao<BaseUser> {
      * @return BaseUser
      */
     BaseUser findEntityByCondition(String sqlKey, Object params);
+
+    /**
+     *
+     * @param sqlKey
+     * @param params
+     * @return
+     */
+    List<Map<String, Object>> findMapByCondition(String sqlKey, Object params);
 }

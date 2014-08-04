@@ -9,12 +9,11 @@
  */
 package cn.mypandora.system.controller;
 
-import java.io.File;
-import java.io.IOException;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-
+import cn.mypandora.orm.Page;
+import cn.mypandora.system.po.BaseUser;
+import cn.mypandora.system.service.BaseUserService;
+import cn.mypandora.util.MyDateUtils;
+import cn.mypandora.util.MyExcelUtil;
 import org.apache.commons.io.FileUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,11 +26,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import cn.mypandora.orm.Page;
-import cn.mypandora.system.po.BaseUser;
-import cn.mypandora.system.service.BaseUserService;
-import cn.mypandora.util.MyDateUtils;
-import cn.mypandora.util.MyExcelUtil;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 
 /**
  * @ClassName: BaseUserController
@@ -96,6 +94,7 @@ public class BaseUserController {
      * @return
      * @return String
      */
+
     @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
     public String delete(@PathVariable Long id) {
         baseUserService.deleteUser(id);
@@ -198,4 +197,24 @@ public class BaseUserController {
         baseUserService.updateUser(baseUser);
         return "redirect:/user/me";
     }
+
+    /*********************** 用户分析 **********************/
+    /**
+     * @Title: userAnalysis
+     * @Description: 用户分析。
+     * @param model
+     * @return
+     * @return String
+     */
+    @RequestMapping(value = "/analysis", method = RequestMethod.GET)
+    public String userAnalysis(ModelMap model) {
+        //获取当前月份
+//        String curMonth=MyDateUtils.getCurrentMonth();
+//        List<Map<String,Object>> userCount=baseUserService.findUserCount(curMonth);
+//        model.put("userCount", userCount);
+//        return "user/useranalysis";
+        return "baidumap";
+        //54ee741e32573451bfe237956bf9bfd3
+    }
+
 }

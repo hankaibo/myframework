@@ -1,14 +1,10 @@
 package cn.mypandora.util;
 
-import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
-
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
+
+import java.text.ParseException;
+import java.util.*;
 
 /**
  * @ClassName:MyDateUtils
@@ -211,6 +207,18 @@ public class MyDateUtils {
 
     /**
      * @Title:getCurrentDate
+     * @Description: 得到当前月份
+     * @return
+     * @return String
+     */
+    public static String getCurrentMonth() {
+        Calendar cal = Calendar.getInstance();
+        String currentMonth = DateFormatUtils.format(cal, MONTH_FORMAT);
+        return currentMonth;
+    }
+
+    /**
+     * @Title:getCurrentDate
      * @Description: 得到当前日期
      * @return
      * @return String
@@ -265,8 +273,8 @@ public class MyDateUtils {
     /**
      * @Title:getSpecifiedOffsetDate
      * @Description: 得到与指定日期偏移量为X的日期。
-     * @param specifiedDate指定的日期
-     *            ,格式为YYYY-MM-DD
+     * @param specifiedDate
+     *          指定的日期,格式为YYYY-MM-DD
      * @param offset
      * @return 返回yyyy-MM-dd格式的字符串日期
      * @return String
@@ -437,6 +445,7 @@ public class MyDateUtils {
         System.out.println(getNextMonthEnd());
         System.out.println(getCurrentMonthDays());
         System.out.println(getSpecifiedMonthDays("1900-02"));
+        System.out.println(getCurrentMonth());
         System.out.println(getCurrentDate());
         System.out.println(getOffsetDate(-4));
         System.out.println(isLeapYear(1900));

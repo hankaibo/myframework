@@ -12,6 +12,9 @@ package cn.mypandora.system.service;
 import cn.mypandora.orm.Page;
 import cn.mypandora.system.po.BaseUser;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @ClassName: BaseUserService
  * @Description: 用户管理Service。
@@ -94,5 +97,12 @@ public interface BaseUserService {
      * @return Page<BaseUser>
      */
     Page<BaseUser> findPageUserByCondition(String string, Object object, Page<BaseUser> page);
+
+    /**
+     * 查询某个月份用户的使用情况
+     * @param month
+     * @return
+     */
+    List<Map<String, Object>> findUserCount(String month);
     
 }

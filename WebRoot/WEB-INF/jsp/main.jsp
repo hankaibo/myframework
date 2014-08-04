@@ -45,7 +45,7 @@
         <div class="row">
             <div class="col-lg-2" style="padding-right: 5px;">
                 <div id="accordion">
-                    <h3>系统管理</h3>
+                    <h3>管理</h3>
                     <div>
                         <ul class="list-unstyled">
                             <li><a href="javascript:void(0)" onclick="openRight('${ctx}/user/users')">用户管理</a></li>
@@ -55,7 +55,13 @@
                             <li><a href="javascript:void(0)" onclick="openRight('${ctx}/article/articles')">权限管理</a></li>
                         </ul>
                     </div>
-                    <h3>个人中心</h3>
+                    <h3>统计</h3>
+                    <div>
+                        <ul class="list-unstyled">
+                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/user/analysis')">用户分析</a></li>
+                        </ul>
+                    </div>
+                    <h3>个人</h3>
                     <div>
                         <ul class="list-unstyled">
                             <li><a href="javascript:void(0)" onclick="openRight('${ctx}/user/me')">我的信息</a></li>

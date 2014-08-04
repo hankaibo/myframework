@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.mypandora.system.UserEntity">
     <resultMap type="cn.mypandora.system.po.BaseUser" id="BaseUserMap">
@@ -43,6 +43,8 @@
 
     <update id="update">
         <![CDATA[
+
+
             update  t_base_user 
             set     user_name=#{username, jdbcType=VARCHAR},
                     real_name=#{realName, jdbcType=VARCHAR},
@@ -55,16 +57,19 @@
                     last_ip=#{lastIp, jdbcType=VARCHAR},
                     credits=#{credits, jdbcType=NUMERIC} 
             WHERE   id = #{id, jdbcType=NUMERIC}
+
+
         ]]>
     </update>
 
     <select id="findAll" resultMap="BaseUserMap">
         select * from t_base_user
     </select>
-    
+
     <select id="pageUsers" resultMap="BaseUserMap">
         select * from t_base_user
     </select>
+
     <insert id="add" parameterType="cn.mypandora.system.po.BaseUser">
         <![CDATA[
             INSERT INTO t_base_user (
@@ -81,16 +86,27 @@
             SELECT LAST_INSERT_ID() AS ID
         </selectKey>
     </insert>
-    
+
     <delete id="delete">
         <![CDATA[
+
+
             DELETE from t_base_user 
             WHERE id = #{id}
-        ]]> 
+
+
+        ]]>
     </delete>
-    
+
     <select id="findById" resultMap="BaseUserMap" parameterType="java.lang.Long">
         select * from t_base_user
         where id = #{id}
+    </select>
+
+    <select id="findUserByDate" resultMap="java.util.HashMap" parameterType="java.util.HashMap">
+        select count(*),substr(create_time,1,10)
+        from t_base_log
+        where substr(create_time,1,7)='2014-05'
+        group by substr(create_time,1,10)
     </select>
 </mapper>
