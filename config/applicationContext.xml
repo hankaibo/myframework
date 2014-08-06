@@ -27,10 +27,10 @@
     </bean>
 
     <!-- *****************************数据库连接***************************** -->
-    <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-        <property name="driverClassName" value="${center.jdbc.driverClass}" />
-        <property name="url" value="${center.jdbc.url}" />
-        <property name="username" value="${center.jdbc.username}" />
+    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+        <property name="driverClass" value="${center.jdbc.driverClass}" />
+        <property name="jdbcUrl" value="${center.jdbc.jdbcUrl}" />
+        <property name="user" value="${center.jdbc.user}" />
         <property name="password" value="${center.jdbc.password}" />
     </bean>
 

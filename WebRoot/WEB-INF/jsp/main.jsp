@@ -51,8 +51,8 @@
                             <li><a href="javascript:void(0)" onclick="openRight('${ctx}/user/users')">用户管理</a></li>
                             <li><a href="javascript:void(0)" onclick="openRight('${ctx}/dept/depts')">部门管理</a></li>
                             <li><a href="javascript:void(0)" onclick="openRight('${ctx}/log/logs')">日志管理</a></li>
-                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/log/logs')">资源管理</a></li>
-                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/article/articles')">权限管理</a></li>
+                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/res/resources')">资源管理</a></li>
+                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/log/logs')">权限管理</a></li>
                         </ul>
                     </div>
                     <h3>统计</h3>

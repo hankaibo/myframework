@@ -10,7 +10,6 @@ import java.sql.Timestamp;
  * @date:2014-1-1
  * @UpdateUser:hankaibo
  * @UpdateDate:2014-1-1 上午11:53:48
- * @UpdateRemark:创建时间与修改时间和微信中相关实体类冲突，故注掉。
  */
 public class BaseEntity implements Serializable {
 
