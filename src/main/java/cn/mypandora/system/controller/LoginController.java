@@ -7,6 +7,7 @@ import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import org.apache.shiro.authc.AuthenticationException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 /**
  * @ClassName:LoginController
@@ -38,7 +40,12 @@ public class LoginController {
     private BaseUserService baseUserService;
 
     @RequestMapping(method = RequestMethod.GET)
-    public String loginPage() {
+    public String loginPage(ModelMap model) {
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("captcha");
+        String isCaptcha=resourceBundle.getString("isCaptcha");
+        if(isCaptcha.equalsIgnoreCase("true")){
+            model.put("isCaptcha", true);
+        }
         return "login";
     }
 
@@ -59,10 +66,14 @@ public class LoginController {
 //            }
 //        }
         // 获取后台生成的验证码
-//        String code = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
-//        if (loginCommand.getKaptcha().equals(code)) {
-//            System.out.println("---------------------------------");
-//        }
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("captcha");
+        String isCaptcha=resourceBundle.getString("isCaptcha");
+        if(isCaptcha.equalsIgnoreCase("true")){
+            String code = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
+            if (loginCommand.getKaptcha().equals(code)) {
+                System.out.println("-----------todo-----------");
+            }
+        }
         // cookie无效之后
 //        Subject subject=SecurityUtils.getSubject();
 //        UsernamePasswordToken token=new UsernamePasswordToken(loginCommand.getUserName(),loginCommand.getPassword());

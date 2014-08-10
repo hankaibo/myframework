@@ -28,10 +28,12 @@
             <h2 class="form-signin-heading">请登录</h2>
             <input class="form-control" autofocus="" required="" type="text" placeholder="用户名" name="userName">
             <input class="form-control" required="" type="password" placeholder="密码" name="password">
-<!--             <input class="form-control" required="" type="text" placeholder="验证码" name="kaptcha"> -->
-<%--             <img src="${ctx}/login/captcha-image" id="kaptchaImage" /> --%>
-            
-            <label class="checkbox"> <input type="checkbox" name="rememberMe" value="true"></input>一天内记住我的登录状态</label>
+            <c:if test="${isCaptcha}">
+                <input class="form-control" required="" type="text" placeholder="验证码" name="kaptcha">
+                <img src="${ctx}/login/captcha-image" id="kaptchaImage" />
+            </c:if>
+
+            <label class="checkbox"> <input type="checkbox" name="rememberMe" value="true"/>一天内记住我的登录状态</label>
             <button class="btn btn-primary btn-lg btn-block" type="submit">登陆</button>
         </form>
     </div>
