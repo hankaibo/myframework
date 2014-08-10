@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 引入命名空间所对应的Schema文件 -->
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
-    xmlns:task="http://www.springframework.org/schema/task"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.2.xsd
@@ -15,7 +14,7 @@
         http://www.springframework.org/schema/task
         http://www.springframework.org/schema/task/spring-task-3.2.xsd">
     <!-- 扫描类包，将标注Spring注解的类自动转化Bean,同时完成Bean的注入 -->
-    <context:component-scan base-package="cn.mypandora.*" />
+    <context:component-scan base-package="cn.mypandora.*"/>
 
     <!-- *****************************数据库配置文件***************************** -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
@@ -28,33 +27,33 @@
 
     <!-- *****************************数据库连接***************************** -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <property name="driverClass" value="${center.jdbc.driverClass}" />
-        <property name="jdbcUrl" value="${center.jdbc.jdbcUrl}" />
-        <property name="user" value="${center.jdbc.user}" />
-        <property name="password" value="${center.jdbc.password}" />
+        <property name="driverClass" value="${center.jdbc.driverClass}"/>
+        <property name="jdbcUrl" value="${center.jdbc.jdbcUrl}"/>
+        <property name="user" value="${center.jdbc.user}"/>
+        <property name="password" value="${center.jdbc.password}"/>
     </bean>
 
     <!-- *****************************myBatis文件***************************** -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-        <property name="dataSource" ref="dataSource" />
-        <property name="configLocation" value="classpath:mybatis-config.xml" />
-        <property name="mapperLocations" value="classpath:mapping/**/*.xml" />
+        <property name="dataSource" ref="dataSource"/>
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <!--<property name="mapperLocations" value="classpath*:mapping/**/*.xml"/>-->
     </bean>
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
-        <constructor-arg index="0" ref="sqlSessionFactory" />
-        <constructor-arg index="1" value="BATCH" />
+        <constructor-arg index="0" ref="sqlSessionFactory"/>
+        <constructor-arg index="1" value="BATCH"/>
     </bean>
 
     <!-- *****************************事务管理***************************** -->
     <!-- 启动AOP -->
-    <aop:aspectj-autoproxy proxy-target-class="false" />
+    <aop:aspectj-autoproxy proxy-target-class="false"/>
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-        <property name="dataSource" ref="dataSource" />
+        <property name="dataSource" ref="dataSource"/>
     </bean>
     <!-- 可通过注解控制事务 -->
-    <tx:annotation-driven />
+    <tx:annotation-driven/>
     <!-- *****************************日志***************************** -->
-    <bean class="cn.mypandora.log.MyLogAspect" />
+    <bean class="cn.mypandora.log.MyLogAspect"/>
     <!-- *****************************验证码***************************** -->
     <bean id="captchaProducer" class="com.google.code.kaptcha.impl.DefaultKaptcha">
         <property name="config">
@@ -93,5 +92,5 @@
     </bean>
 
     <!-- *****************************spring-task定时任务***************************** -->
-    <task:annotation-driven />
+    <task:annotation-driven/>
 </beans>

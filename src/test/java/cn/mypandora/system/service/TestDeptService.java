@@ -9,16 +9,14 @@
  */
 package cn.mypandora.system.service;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
+import cn.mypandora.system.po.BaseDept;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import cn.mypandora.system.po.BaseDept;
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @ClassName: TestDeptService
@@ -30,7 +28,7 @@ import cn.mypandora.system.po.BaseDept;
  * @UpdateRemark: What is modified?
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "/applicationContext.xml" })
+@ContextConfiguration(locations = {"/applicationContext.xml"})
 public class TestDeptService {
     @Resource
     private BaseDeptService deptService;
