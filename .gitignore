@@ -1,9 +1,0 @@
-*.classpath
-*.project
-*.settings
-*.class
-*.iml
-
-/bin
-/LICENSE
-/.idea
