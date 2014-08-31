@@ -33,10 +33,4 @@
         <plugin interceptor="cn.mypandora.orm.OffsetLimitInterceptor"/>
     </plugins>
 
-    <!-- myBatis映射文件 -->
-    <mappers>
-        <mapper resource="mapping/base/base.mybatis.xml"/>
-        <mapper resource="mapping/base/BaseUser.mybatis.xml"/>
-    </mappers>
-
 </configuration>
