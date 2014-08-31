@@ -1,9 +1,12 @@
-*.classpath
-*.project
-*.settings
-*.class
-*.iml
+# Eclipse project files
+.classpath
+.project
+.settings/
 
-/bin
-/LICENSE
-/.idea
+# Intellij project files
+*.iml
+.idea/
+
+# Others
+target/
+logs/
