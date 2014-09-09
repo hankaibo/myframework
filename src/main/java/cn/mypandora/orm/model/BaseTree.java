@@ -1,7 +1,7 @@
-/**   
+/**
  * @ProjectName: MyFramework
- * @Package: cn.mypandora.orm.model 
- * @ClassName: BaseTree 
+ * @Package: cn.mypandora.orm.model
+ * @ClassName: BaseTree
  * Copyright © hankaibo. All rights reserved.
  * @Author: kaibo
  * @CreateDate: 2014-3-11 上午12:21:30 
@@ -11,7 +11,7 @@ package cn.mypandora.orm.model;
 
 /**
  * @ClassName: BaseTree
- * @Description: 左右树基础类。
+ * @Description: 实体域对象左右树基础类。
  * @Author: kaibo
  * @date: 2014-3-11
  * @UpdateUser: kaibo
@@ -21,10 +21,15 @@ package cn.mypandora.orm.model;
 public class BaseTree extends BaseEntity {
 
     private static final long serialVersionUID = 5603244638320710647L;
+    /*节点名称*/
     private String name;
+    /*节点ID*/
     private int nodeId;
+    /*节点左值*/
     private int lft;
+    /*节点右值*/
     private int rgt;
+    /*父节点ID*/
     private int parentId;
 
     /**
@@ -35,8 +40,7 @@ public class BaseTree extends BaseEntity {
     }
 
     /**
-     * @param name
-     *            the name to set
+     * @param name the name to set
      */
     public void setName(String name) {
         this.name = name;
@@ -50,8 +54,7 @@ public class BaseTree extends BaseEntity {
     }
 
     /**
-     * @param nodeId
-     *            the nodeId to set
+     * @param nodeId the nodeId to set
      */
     public void setNodeId(int nodeId) {
         this.nodeId = nodeId;
@@ -65,8 +68,7 @@ public class BaseTree extends BaseEntity {
     }
 
     /**
-     * @param lft
-     *            the lft to set
+     * @param lft the lft to set
      */
     public void setLft(int lft) {
         this.lft = lft;
@@ -80,8 +82,7 @@ public class BaseTree extends BaseEntity {
     }
 
     /**
-     * @param rgt
-     *            the rgt to set
+     * @param rgt the rgt to set
      */
     public void setRgt(int rgt) {
         this.rgt = rgt;
@@ -95,8 +96,7 @@ public class BaseTree extends BaseEntity {
     }
 
     /**
-     * @param parentId
-     *            the parentId to set
+     * @param parentId the parentId to set
      */
     public void setParentId(int parentId) {
         this.parentId = parentId;

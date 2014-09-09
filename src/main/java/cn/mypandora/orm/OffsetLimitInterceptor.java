@@ -1,17 +1,12 @@
 package cn.mypandora.orm;
 
-import java.sql.Connection;
-import java.util.Properties;
-
+import cn.mypandora.orm.dialect.Dialect;
+import cn.mypandora.orm.dialect.MySQLDialect;
+import cn.mypandora.orm.dialect.OracleDialect;
+import cn.mypandora.orm.dialect.SQLServerDialect;
 import org.apache.ibatis.executor.statement.StatementHandler;
-import org.apache.ibatis.logging.Log;
-import org.apache.ibatis.logging.LogFactory;
 import org.apache.ibatis.mapping.BoundSql;
-import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.plugin.Intercepts;
-import org.apache.ibatis.plugin.Invocation;
-import org.apache.ibatis.plugin.Plugin;
-import org.apache.ibatis.plugin.Signature;
+import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 import org.apache.ibatis.reflection.factory.ObjectFactory;
@@ -19,11 +14,11 @@ import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
 import org.apache.ibatis.reflection.wrapper.ObjectWrapperFactory;
 import org.apache.ibatis.session.Configuration;
 import org.apache.ibatis.session.RowBounds;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
-import cn.mypandora.orm.dialect.Dialect;
-import cn.mypandora.orm.dialect.MySQLDialect;
-import cn.mypandora.orm.dialect.OracleDialect;
-import cn.mypandora.orm.dialect.SQLServerDialect;
+import java.sql.Connection;
+import java.util.Properties;
 
 /**
  * @ClassName: OffsetLimitInterceptor
@@ -38,7 +33,7 @@ import cn.mypandora.orm.dialect.SQLServerDialect;
 @Intercepts({ @Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class }) })
 public class OffsetLimitInterceptor implements Interceptor {
 
-    private static final Log logger = LogFactory.getLog(OffsetLimitInterceptor.class);
+    private static final Logger logger = LoggerFactory.getLogger(OffsetLimitInterceptor.class);
 
     private static final ObjectFactory DEFAULT_OBJECT_FACTORY = new DefaultObjectFactory();
     private static final ObjectWrapperFactory DEFAULT_OBJECT_WRAPPER_FACTORY = new DefaultObjectWrapperFactory();

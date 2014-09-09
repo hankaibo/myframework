@@ -14,7 +14,6 @@
     $(function() {
         $('#kaptchaImage').click(function() {
             $(this).attr('src', '${ctx}/login/captcha-image?' + Math.floor(Math.random() * 100));
-            event.cancelBubble=true; 
         });
     });
 </script>
@@ -33,7 +32,7 @@
                 <img src="${ctx}/login/captcha-image" id="kaptchaImage" />
             </c:if>
 
-            <label class="checkbox"> <input type="checkbox" name="rememberMe" value="true"/>一天内记住我的登录状态</label>
+            <%--<label class="checkbox"> <input type="checkbox" name="rememberMe" value="true"/>一天内记住我的登录状态</label>--%>
             <button class="btn btn-primary btn-lg btn-block" type="submit">登陆</button>
         </form>
     </div>

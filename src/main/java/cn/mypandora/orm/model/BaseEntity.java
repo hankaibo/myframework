@@ -5,7 +5,7 @@ import java.sql.Timestamp;
 
 /**
  * @ClassName:BaseEntity
- * @Description:基础类。
+ * @Description:实体域对象基础类。
  * @Author:hankaibo
  * @date:2014-1-1
  * @UpdateUser:hankaibo

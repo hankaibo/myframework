@@ -9,14 +9,13 @@
  */
 package cn.mypandora.system.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import cn.mypandora.util.MyCookieUtil;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.util.ResourceBundle;
 
 /**
  * @ClassName: LogoutController
@@ -33,7 +32,7 @@ public class LogoutController {
 
     /**
      * @Title: loginPage
-     * @Description: 删除cookie中的值以及session中的值，并跳转到登录页面。
+     * @Description: 跳转到登录页面。
      * @param request
      * @param response
      * @return
@@ -41,8 +40,11 @@ public class LogoutController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public String loginPage(HttpServletRequest request, HttpServletResponse response) {
-        MyCookieUtil.removeCookie(MyCookieUtil.COOKIE_KEY, request, response);
-        request.getSession().removeAttribute("loginId");
+        ResourceBundle resourceBundle = ResourceBundle.getBundle("captcha");
+        String isCaptcha=resourceBundle.getString("isCaptcha");
+        if(isCaptcha.equalsIgnoreCase("true")){
+            request.setAttribute("isCaptcha", true);
+        }
         return "login";
     }
 

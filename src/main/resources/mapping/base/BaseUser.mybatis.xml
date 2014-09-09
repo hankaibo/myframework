@@ -103,10 +103,4 @@
         where id = #{id}
     </select>
 
-    <select id="findUserByDate" resultMap="java.util.HashMap" parameterType="java.util.HashMap">
-        select count(*),substr(create_time,1,10)
-        from t_base_log
-        where substr(create_time,1,7)='2014-05'
-        group by substr(create_time,1,10)
-    </select>
 </mapper>

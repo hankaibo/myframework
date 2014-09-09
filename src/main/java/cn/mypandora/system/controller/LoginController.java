@@ -6,6 +6,8 @@ import cn.mypandora.system.vo.LoginCommand;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import org.apache.shiro.authc.AuthenticationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,7 +17,6 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
@@ -34,6 +35,8 @@ import java.util.ResourceBundle;
 @Controller
 @RequestMapping(value = "/login")
 public class LoginController {
+    private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+
     @Resource
     private Producer captchaProducer;
     @Resource
@@ -42,8 +45,8 @@ public class LoginController {
     @RequestMapping(method = RequestMethod.GET)
     public String loginPage(ModelMap model) {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("captcha");
-        String isCaptcha=resourceBundle.getString("isCaptcha");
-        if(isCaptcha.equalsIgnoreCase("true")){
+        String isCaptcha = resourceBundle.getString("isCaptcha");
+        if (isCaptcha.equalsIgnoreCase("true")) {
             model.put("isCaptcha", true);
         }
         return "login";
@@ -51,70 +54,23 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView loginCheck(HttpServletRequest request, HttpServletResponse response, LoginCommand loginCommand) {
-        // 首先判断cookie是否有效，是否能自动登录
-//        Cookie autoCookie = MyCookieUtil.isCookieExist(MyCookieUtil.COOKIE_KEY, request);
-//        if (autoCookie != null) {
-//            String loginId = validateCookie(autoCookie);
-//            if (loginId != null) {
-//                BaseUser user = baseUserService.findUserByUsername(loginId);
-//                user.setLastIp(request.getRemoteAddr());
-//                user.setLastVisit(new Date());
-//                baseUserService.loginSuccess(user);
-//                // 记录session的值
-//                request.getSession().setAttribute("user", user);
-//                return new ModelAndView("main");
-//            }
-//        }
-        // 获取后台生成的验证码
+        // 判断是否生成验证码
         ResourceBundle resourceBundle = ResourceBundle.getBundle("captcha");
-        String isCaptcha=resourceBundle.getString("isCaptcha");
-        if(isCaptcha.equalsIgnoreCase("true")){
+        String isCaptcha = resourceBundle.getString("isCaptcha");
+
+        if (isCaptcha.equalsIgnoreCase("true")) {
             String code = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
             if (loginCommand.getKaptcha().equals(code)) {
-                System.out.println("-----------todo-----------");
+                logger.debug("验证码成功。");
+                //用户名/密码判断
+                return actualLoginCheck(request, response, loginCommand,true);
+            } else {
+                return new ModelAndView("login", "error", "验证码错误.").addObject("isCaptcha", true);
             }
+        } else {
+            //用户名/密码判断
+            return actualLoginCheck(request, response, loginCommand,false);
         }
-        // cookie无效之后
-//        Subject subject=SecurityUtils.getSubject();
-//        UsernamePasswordToken token=new UsernamePasswordToken(loginCommand.getUserName(),loginCommand.getPassword());
-//        token.setRememberMe(true);
-        try {
-//            subject.login(token);
-            // 如果“记住我的登录状态”的复选框被选中
-//          if (loginCommand.isRememberMe()) {
-//              String cookieValue = loginCommand.getUserName() + "," + loginCommand.getPassword();
-//              Cookie cookie = new Cookie(MyCookieUtil.COOKIE_KEY, cookieValue);
-//              // cookie.setDomain("localhost");
-//              cookie.setMaxAge(86400);// 一天
-//              cookie.setPath(request.getContextPath());
-//              response.addCookie(cookie);
-//          }
-            BaseUser user = baseUserService.findUserByUsername(loginCommand.getUserName());
-            user.setLastIp(request.getRemoteAddr());
-            user.setLastVisit(new Date());
-            baseUserService.loginSuccess(user);
-            // 记录session的值
-            request.getSession().setAttribute("user", user);
-            return new ModelAndView("main");
-        } catch (AuthenticationException e) {
-            e.printStackTrace();
-//            token.clear();
-            return new ModelAndView("login", "error", "用户名或密码错误.");
-        }
-    }
-
-    private String validateCookie(Cookie cookie) {
-        String cookieStr = cookie.getValue();
-        if (cookieStr != null) {
-            String[] values = cookieStr.split(",");
-            if (values.length == 2) {
-                boolean isValidUser = baseUserService.hasMatchUser(values[0], values[1]);
-                if (isValidUser == true) {
-                    return values[0];
-                }
-            }
-        }
-        return null;
     }
 
     /**
@@ -153,4 +109,22 @@ public class LoginController {
         }
     }
 
+    private ModelAndView actualLoginCheck(HttpServletRequest request, HttpServletResponse response, LoginCommand loginCommand, boolean isCaptcha) {
+        try {
+            boolean isLogin = baseUserService.hasMatchUser(loginCommand.getUserName(), loginCommand.getPassword());
+            if (isLogin) {
+                BaseUser user = baseUserService.findUserByUsername(loginCommand.getUserName());
+                user.setLastIp(request.getRemoteAddr());
+                user.setLastVisit(new Date());
+                baseUserService.loginSuccess(user);
+                // 记录session的值
+                request.getSession().setAttribute("user", user);
+                return new ModelAndView("main");
+            }
+            return isCaptcha ? new ModelAndView("login", "error", "用户名或密码错误.").addObject("isCaptcha", true) : new ModelAndView("login", "error", "用户名或密码错误.");
+        } catch (AuthenticationException e) {
+            e.printStackTrace();
+            return isCaptcha ? new ModelAndView("login", "error", "用户名或密码错误.").addObject("isCaptcha", true) : new ModelAndView("login", "error", "用户名或密码错误.");
+        }
+    }
 }
