@@ -24,19 +24,19 @@ $(function() {
     </ul>
     <form class="form-horizontal" role="form" action="${ctx}/user" method="post">
         <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+            <label for="inputUsername" class="col-sm-2 control-label">用户名</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" id="inputUsername" placeholder="用户名" name="username">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">密码</label>
+            <label for="inputPassword" class="col-sm-2 control-label">密码</label>
             <div class="col-sm-4">
                 <input type="password" class="form-control" id="inputPassword" placeholder="密码" name="password">
             </div>
         </div>
         <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">性别</label>
+            <label class="col-sm-2 control-label">性别</label>
             <div class="col-sm-4">
                 <label class="radio-inline">
                     <input type="radio" name="sex" id="inlineCheckbox1" value="1"> 男
@@ -50,7 +50,7 @@ $(function() {
             </div>
         </div>
         <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">生日</label>
+            <label for="inputBirthday" class="col-sm-2 control-label">生日</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" id="inputBirthday" placeholder="生日" name="birthday">
             </div>

@@ -7,6 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="${ctx}/resources/js/jqueryui/css/jquery-ui-1.10.0.custom.css" />
 <link href="${ctx}/resources/js/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
 <%@ include file="./../header.jsp" %>
 <script type="text/javascript" src="${ctx}/resources/js/uploadify/jquery.uploadify.js"></script>
@@ -17,19 +18,25 @@
     background-color: #FFF;
     border-radius: 3px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
-    height: 300px;
+    height: 330px;
     margin-bottom: 10px;
     overflow: auto;
     padding: 5px 10px;
-    width: 300px;
+    width: 350px;
 }
 </style>
 <script type="text/javascript">
 var contentPath="${ctx}";
 var sessionId="${sessionId}";
-    $(function(){
-        myUploadify(false,'1024kb','照片',"*.png;*.jpeg;*.jpg;*.gif","picturePath",false,10);
+$(function(){
+    myUploadify(false,'1024kb','照片',"*.png;*.jpeg;*.jpg;*.gif","picturePath",false,10);
+});
+
+$(function() {
+    $( "#inputBirthday" ).datepicker({
+        maxDate: new Date()
     });
+});
 </script>
 </head>
 <body>
@@ -38,56 +45,56 @@ var sessionId="${sessionId}";
         <li><a href="${ctx}/user/me">我的信息</a></li>
         <li class="active"><a href="#">修改</a></li>
     </ul>
-    <form class="form-horizontal" role="form" action="${ctx }/user" method="post">
+    <form class="form-horizontal" role="form" action="${ctx }/user/me" method="post">
         <input type="hidden" name="_method" value="put"/>
         <input type="hidden" value="${userself.id }" name="id"/>
         <input type="hidden" value="${userself.credits }" name="credits"/>
         <div class="row">
             <div class="col-md-6">
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-4 control-label">昵称</label>
+                    <label for="inputUsername" class="col-sm-4 control-label">昵称</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="inputUsername" placeholder="昵称" name="username" value="${userself.username }"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-4 control-label">真实姓名</label>
+                    <label for="inputRealName" class="col-sm-4 control-label">真实姓名</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="inputRealName" placeholder="真实姓名" name="realName" value="${userself.realName }"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-4 control-label">密码</label>
+                    <label for="inputPassword" class="col-sm-4 control-label">密码</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="inputPassword" placeholder="密码" name="password" value="${userself.password }"/>
+                        <input type="password" class="form-control" id="inputPassword" placeholder="密码" name="password" value="${userself.password }"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-4 control-label">确认密码</label>
+                    <label for="inputEqualPassword" class="col-sm-4 control-label">确认密码</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="inputEqualPassword" placeholder="确认密码" />
+                        <input type="password" class="form-control" id="inputEqualPassword" placeholder="确认密码" />
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-4 control-label">邮箱</label>
+                    <label for="inputEmail" class="col-sm-4 control-label">邮箱</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="inputEmail" placeholder="邮箱" name="email" value="${userself.email }"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-4 control-label">手机</label>
+                    <label for="inputMobile" class="col-sm-4 control-label">手机</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="inputMobile" placeholder="手机" name="mobile" value="${userself.mobile }"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-4 control-label">电话</label>
+                    <label for="inputPhone" class="col-sm-4 control-label">电话</label>
                     <div class="col-sm-8">
                         <input type="text" class="form-control" id="inputPhone" placeholder="电话" name="phone" value="${userself.phone }"/>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-4 control-label">性别</label>
+                    <label class="col-sm-4 control-label">性别</label>
                     <div class="col-sm-8">
                         <label class="radio-inline">
                             <input type="radio" name="sex" id="inlineCheckbox1" value="1" <c:if test="${userself.sex eq 1 }" >checked</c:if>> 男
@@ -101,9 +108,9 @@ var sessionId="${sessionId}";
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-4 control-label">生日</label>
+                    <label for="inputBirthday" class="col-sm-4 control-label">生日</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="inputBirthday" placeholder="生日" name="birthday" value="<fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd" />"/>
+                        <input type="text" class="form-control" id="inputBirthday" placeholder="生日" name="birthday" value="<fmt:formatDate value="${userself.birthday}" pattern="yyyy-MM-dd" />"/>
                     </div>
                 </div>
             </div>
@@ -123,6 +130,11 @@ var sessionId="${sessionId}";
                     <div id='progress'></div> -->
                 </div>
                 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-4">
+                <button type="submit" class="btn btn-primary active">修改</button>
             </div>
         </div>
     </form>

@@ -1,34 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 引入命名空间所对应的Schema文件 -->
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
-    xmlns:p="http://www.springframework.org/schema/p"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context-3.2.xsd
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
     <!-- 扫描类包，将标注Spring注解的类自动转化Bean,同时完成Bean的注入 -->
-    <context:component-scan base-package="cn.mypandora.system.controller" />
+    <context:component-scan base-package="cn.mypandora.system.controller"/>
 
     <!-- 解决restful风格时静态资源无法访问问题 -->
-    <mvc:resources mapping="/resources/**" location="/resources/" cache-period="31556926"/> 
-    <mvc:annotation-driven />
-    
+    <mvc:resources mapping="/resources/**" location="/resources/" cache-period="31556926"/>
+    <mvc:annotation-driven/>
+
     <!-- 配置视图解析器，将ModelAndView及字符串解析为具体的页面 -->
-    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" p:viewClass="org.springframework.web.servlet.view.JstlView"
-        p:prefix="/WEB-INF/jsp/" p:suffix=".jsp" />
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+          p:viewClass="org.springframework.web.servlet.view.JstlView"
+          p:prefix="/WEB-INF/jsp/" p:suffix=".jsp"/>
 
     <!-- 将Controller抛出的异常转到特定View, 保持SiteMesh的装饰效果 -->
-    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
-        <property name="exceptionMappings">  
-            <props>  
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
                 <prop key="java.lang.Throwable">error/500</prop>
-            </props>  
-        </property>  
+            </props>
+        </property>
     </bean>
-    
+
     <!-- 基于servlet3.x的附件上传 -->
     <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
 </beans>

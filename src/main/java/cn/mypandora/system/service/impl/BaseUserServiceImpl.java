@@ -54,7 +54,7 @@ public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> i
     //@formatter:on
     @Override
     public boolean hasMatchUser(String username, String password) {
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("username", username);
         params.put("password", password);
 
@@ -166,7 +166,7 @@ public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> i
 
     @Override
     public List<Map<String, Object>> findUserCount(String month){
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("month", month);
         return dao.findMapByCondition("findUserByDate",params);
     }

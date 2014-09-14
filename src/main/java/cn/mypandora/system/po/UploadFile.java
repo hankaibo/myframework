@@ -10,6 +10,7 @@
 package cn.mypandora.system.po;
 
 import cn.mypandora.orm.model.BaseEntity;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 /**
  * @ClassName: UploadFile
@@ -18,8 +19,9 @@ import cn.mypandora.orm.model.BaseEntity;
  * @date: 2014-5-7
  * @UpdateUser: kaibo
  * @UpdateDate: 2014-5-7 下午12:36:16
- * @UpdateRemark: What is modified?
+ * @UpdateRemark: 添加JsonSerialize注解，过滤掉null值。
  */
+@JsonSerialize(include=JsonSerialize.Inclusion.NON_NULL)
 public class UploadFile extends BaseEntity {
 
     private static final long serialVersionUID = 9138179297461260717L;

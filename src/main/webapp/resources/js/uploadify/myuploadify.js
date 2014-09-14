@@ -17,7 +17,7 @@ function myUploadify(isAuto, fileSize, fileDesc,fileType,filePath,isMulti,sumUpl
         'auto'              : isAuto, // 当文件被添加到队列中是否文件自动上传，默认为true即自动上传，可以设置auto为false阻止自动上传。
         'buttonClass'       : '', // 添加到uploadify按钮的类名，默认为空。
         'buttonCursor'      : 'hand', // 鼠当鼠标移动到浏览按钮上时，光变的样式，这个属性有两个可选值：'hand（默认）'，'arrow（箭头）'
-//        'buttonImage'       : null, // 设置“文件选择按钮”的背景图片地址，3.2版本的默认按钮在uploadify.css样式中，引用时需要修改路劲或者对buttonImage属性指定路劲。
+        'buttonImage'       : null, // 设置“文件选择按钮”的背景图片地址，3.2版本的默认按钮在uploadify.css样式中，引用时需要修改路劲或者对buttonImage属性指定路劲。
         'buttonText'        : '浏览文件', // 设置“文件选择按钮”的文本文字，默认为“SELECT FILES”
         'checkExisting'     : false, // 检查现在上传的文件是否已存在于目标文件夹（以名称辨别），存在返回1，不存在返回0
         'debug'             : false, // 是否设置为调试模式，默认为false
@@ -25,8 +25,7 @@ function myUploadify(isAuto, fileSize, fileDesc,fileType,filePath,isMulti,sumUpl
         'fileSizeLimit'     : fileSize, // 单文件上传的最大文件大小，可以使用数字或字符串，字符串是包含单位（B, KB, MB,GB）的字符串， 使用数字， 则默认为KB,0为无限制
         'fileTypeDesc'      : fileDesc, // 选择的文件的描述。这个字符串出现在浏览文件对话框中文件类型下拉框处。默认：All Files
         'fileTypeExts'      : fileType, // 允许上传的文件类型，默认：'*.*'，可以设置多种类型('*.doc; *.docx')，官方文档说可以使用手动键入文件名（包含后缀）的方式来绕过这个设置，建议在服务器断对文件类型再次进行判断。
-        'formData'          : {'session' : sessionId}, //(在这里利用它来确定上传文件的位置)设置提交到服务器端的动态数据，服务器端可以获取这些提交的值，同获取form表单提交的值一样。直接在此处添加数据，只能添加静态数据， 如果想添加动态数据，需要使用onUploadStart事件.传输数据JSON格式
-//        'formData'          : {'choosePath' : filePath}, //(在这里利用它来确定上传文件的位置)设置提交到服务器端的动态数据，服务器端可以获取这些提交的值，同获取form表单提交的值一样。直接在此处添加数据，只能添加静态数据， 如果想添加动态数据，需要使用onUploadStart事件.传输数据JSON格式
+        'formData'          : {'session' : sessionId,'choosePath' : filePath}, //(在这里利用它来确定上传文件的位置)设置提交到服务器端的动态数据，服务器端可以获取这些提交的值，同获取form表单提交的值一样。直接在此处添加数据，只能添加静态数据， 如果想添加动态数据，需要使用onUploadStart事件.传输数据JSON格式
         'height'            : 30, // 设置浏览按钮的高度，单位像素（px）
         'itemTemplate'      : false, // 自定义一个模板添加到队列的每个项目中，有4个可用的标签：instanceId（uploadify的实例id），fileId(标示文件的唯一Id)，fileName(添加到队列中文件的名称)，fileSize（文件大小）；使用方法：${fileID}
         'method'            : 'post',// 提交文件的方式是以post还是get
@@ -126,30 +125,29 @@ function myUploadify(isAuto, fileSize, fileDesc,fileType,filePath,isMulti,sumUpl
 //        },
         // 上传某个文件出错时触发，该事件获取三个参数：file:出错文件对象的实例；errorCode:错误码，是否与onSelectError的errorCode相同，未知；errorMsg:错误信息
         'onUploadError' : function(file, errorCode, errorMsg) {
-             alert('The file ' + file.name + ' could not be uploaded: ' + errorMsg);
+//             alert('The file ' + file.name + ' could not be uploaded: ' + errorMsg);
              alert("文件:" + file.name + " 上传失败!错误原因："+ errorMsg);
         },
         // 每更新一个文件的上传进度的时候触发，该事件获取三个参数：file:更新进度的文件实例；
 //        'onUploadProgress' : function(file, fileBytesLoaded, fileTotalBytes) {
 //            $('#progress').html(totalBytesUploaded + ' bytes uploaded of ' + totalBytesTotal + ' bytes.');
 //        },
-        // 每个文件开始上传时触发，该事件获取一个参数file：开始上传的文件实例 
-        'onUploadStart' : function(file) {
-             $("#file_upload").uploadify("settings", "someOtherKey", 2);
-        },
+        // 每个文件开始上传时触发，该事件获取一个参数file：开始上传的文件实例
+        //在onUploadStart事件中，也就是上传之前，把参数写好传递到后台(动态参数传递)。
+//        'onUploadStart' : function(file) {
+//            $("#file_upload").uploadify("settings", "formData", { 'ctrlid': ctrlid });
+//            $("#file_upload").uploadify("settings", "someOtherKey", 2);
+//        },
         // 每个文件上传成功时触发，该事件获取三个参数：file:上传成功的文件对象实例；data:服务器返回的数据；response:来自服务器的响应，true表示成功，false表示服务器无响应，当超过successTimeout设定的时间，则默认返回true
         'onUploadSuccess' : function(file, data, response) {
-//             alert(file.name + ' | ' + response + ':' + data);
-//             var jsonarray= $.parseJSON(data);
-//             alert(jsonarray.imageName);
-//             $.post(contentPath+'material/manage/ajaxEcho.action?imageName='+jsonarray.imageName,
-//                 function(data){
-//                     var ddd=$('#userGroups').append( $('.ajaxEcho').clone(true)).attr("style","block");
-//                     $("").prepend("<tr class=\"file_item\"><td class=\"table_cell file_content\"><strong class=\"file_name\">"+data.title+"</strong> <span class=\"frm_input_box appended\"> <input class=\"frm_input\" type=\"text\" data-id=\""+data.id+"\"/> <a class=\"js_rename frm_input_append icon16_common enter_gray\" href=\"javascript:void(0);\" data-id=\"1\">确定</a> </span> <div id=\"fileWrp1\" class=\"file_wrp\" data-id=\"1\"> <a class=\"media_img\" href=\"\" target=\"_blank\"> <img class=\"wxmImg Zoomin\" width=\"100\" height=\"55\" src=\"${contentPath}upload/image/${WEIXIN}/"+data.saveName+"\"> </a> </div> </td> <td class=\"table_cell file_info\"> <em class=\"file_size\">"+data.size+"KB</em> </td> <td class=\"table_cell file_opr\"> <a class=\"js_edit\" href=\"javascript:void(0);\" data-id=\"1\" data-type=\"1\"> <i class=\"icon18_common edit_gray\">编辑</i> </a> <a class=\"js_del\" href=\"\" data-id=\"1\" data-type=\"1\"> <i class=\"icon18_common del_gray\">删除</i> </a> </td></tr>");
-//             },'json');
-            
-            
-            window.location.href=contentPath+"material/manage/list.action";
+             alert(file.name + ' | ' + response + ':' + data);
+             var jsonarray= $.parseJSON(data);
+             alert(jsonarray.imageName);
+             $.post(contentPath+'material/manage/ajaxEcho.action?imageName='+jsonarray.imageName,
+                 function(data){
+                     var ddd=$('#userGroups').append( $('.ajaxEcho').clone(true)).attr("style","block");
+                     $("").prepend("<tr class=\"file_item\"><td class=\"table_cell file_content\"><strong class=\"file_name\">"+data.title+"</strong> <span class=\"frm_input_box appended\"> <input class=\"frm_input\" type=\"text\" data-id=\""+data.id+"\"/> <a class=\"js_rename frm_input_append icon16_common enter_gray\" href=\"javascript:void(0);\" data-id=\"1\">确定</a> </span> <div id=\"fileWrp1\" class=\"file_wrp\" data-id=\"1\"> <a class=\"media_img\" href=\"\" target=\"_blank\"> <img class=\"wxmImg Zoomin\" width=\"100\" height=\"55\" src=\"${contentPath}upload/image/${WEIXIN}/"+data.saveName+"\"> </a> </div> </td> <td class=\"table_cell file_info\"> <em class=\"file_size\">"+data.size+"KB</em> </td> <td class=\"table_cell file_opr\"> <a class=\"js_edit\" href=\"javascript:void(0);\" data-id=\"1\" data-type=\"1\"> <i class=\"icon18_common edit_gray\">编辑</i> </a> <a class=\"js_del\" href=\"\" data-id=\"1\" data-type=\"1\"> <i class=\"icon18_common del_gray\">删除</i> </a> </td></tr>");
+             },'json');
         }
     });
 };

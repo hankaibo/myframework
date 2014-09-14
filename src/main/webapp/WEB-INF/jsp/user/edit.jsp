@@ -6,8 +6,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="text/css" rel="stylesheet" href="${ctx}/resources/js/jqueryui/css/jquery-ui-1.10.0.custom.css" />
 <%@ include file="./../header.jsp" %>
 <title>用户修改</title>
+<script type="text/javascript">
+    $(function() {
+        $( "#inputBirthday" ).datepicker({
+            maxDate: new Date()
+        });
+    });
+</script>
 </head>
 <body>
 <div class="container" style="margin: 0;width:100%">
@@ -20,13 +28,19 @@
         <input type="hidden" value="${user.id }" name="id"/>
         <input type="hidden" value="${user.credits }" name="credits"/>
         <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">用户名</label>
+            <label class="col-sm-2 control-label">用户名</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" id="inputUsername" placeholder="用户名" name="username" value="${user.username }"/>
             </div>
         </div>
         <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">性别</label>
+            <label class="col-sm-2 control-label">密码</label>
+            <div class="col-sm-4">
+                <input type="password" class="form-control" id="inputPassword" placeholder="密码" name="password" value="${user.password }">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-sm-2 control-label">性别</label>
             <div class="col-sm-4">
                 <label class="radio-inline">
                     <input type="radio" name="sex" id="inlineCheckbox1" value="1" <c:if test="${user.sex eq 1 }" >checked</c:if>> 男
@@ -40,7 +54,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label">生日</label>
+            <label class="col-sm-2 control-label">生日</label>
             <div class="col-sm-4">
                 <input type="text" class="form-control" id="inputBirthday" placeholder="生日" name="birthday" value="<fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd" />"/>
             </div>

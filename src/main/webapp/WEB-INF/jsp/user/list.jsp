@@ -48,7 +48,11 @@
                 <tr>
                     <td>${user.id }</td>
                     <td>${user.username }</td>
-                    <td>${user.sex }</td>
+                    <td>
+                        <c:if test="${user.sex eq 1}">男</c:if>
+                        <c:if test="${user.sex eq 0}">女</c:if>
+                        <c:if test="${user.sex eq 2}">保密</c:if>
+                    </td>
                     <td><fmt:formatDate value="${user.birthday}" pattern="yyyy-MM-dd" /></td>
                     <td>${user.credits }</td>
                     <td><a href="${ctx}/user/${user.id}">修改</a>|

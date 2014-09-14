@@ -180,7 +180,7 @@ public class BaseUserController {
     @RequestMapping(value = "/me/{id}", method = RequestMethod.GET)
     public String updateMe(@PathVariable Long id, ModelMap model) {
         BaseUser baseUser = baseUserService.findUserById(id);
-        model.put("user", baseUser);
+        model.put("userself", baseUser);
         return "user/myedit";
     }
 

@@ -43,11 +43,10 @@
 
     <update id="update">
         <![CDATA[
-
-
-            update  t_base_user 
+            update  t_base_user
             set     user_name=#{username, jdbcType=VARCHAR},
                     real_name=#{realName, jdbcType=VARCHAR},
+                    password=#{password, jdbcType=VARCHAR},
                     email=#{email, jdbcType=VARCHAR},
                     mobile=#{mobile, jdbcType=VARCHAR},
                     phone=#{phone, jdbcType=VARCHAR},
@@ -57,8 +56,6 @@
                     last_ip=#{lastIp, jdbcType=VARCHAR},
                     credits=#{credits, jdbcType=NUMERIC} 
             WHERE   id = #{id, jdbcType=NUMERIC}
-
-
         ]]>
     </update>
 
@@ -89,12 +86,8 @@
 
     <delete id="delete">
         <![CDATA[
-
-
-            DELETE from t_base_user 
+            DELETE from t_base_user
             WHERE id = #{id}
-
-
         ]]>
     </delete>
 
