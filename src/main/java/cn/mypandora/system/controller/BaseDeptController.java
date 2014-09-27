@@ -9,24 +9,19 @@
  */
 package cn.mypandora.system.controller;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import cn.mypandora.system.po.BaseDept;
 import cn.mypandora.system.service.BaseDeptService;
 import cn.mypandora.system.vo.ParentChildTree;
 import cn.mypandora.util.MyTreeUtil;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName: BaseDeptController
@@ -73,7 +68,7 @@ public class BaseDeptController {
     @ResponseBody
     public Map<String, Object> add(Long id) {
         Map<String, Object> map = new HashMap<>();
-        BaseDept dept = (BaseDept) baseDeptService.findDeptById(id);
+        BaseDept dept = baseDeptService.findDeptById(id);
         map.put("name", "testName");
         map.put("lft", dept.getRgt());
         map.put("rgt", dept.getRgt() + 1);
@@ -91,7 +86,7 @@ public class BaseDeptController {
      */
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody
-    public String edit(BaseDept dept) {
+    public String edit(@RequestBody BaseDept dept) {
         baseDeptService.updateDept(dept);
         return "true";
     }
@@ -144,7 +139,7 @@ public class BaseDeptController {
         Map<String, Object> result = new HashMap<>();
         baseDeptService.moveDownDept(id, downId);
 
-        result.put("result", true);
+        result.put("result", "true");
         return result;
     }
 

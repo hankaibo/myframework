@@ -2,6 +2,7 @@ package cn.mypandora.util;
 
 import cn.mypandora.orm.model.BaseTree;
 import cn.mypandora.system.po.BaseDept;
+import cn.mypandora.system.po.BaseRes;
 import cn.mypandora.system.vo.ParentChildTree;
 
 /**
@@ -21,6 +22,20 @@ public class MyTreeUtil {
      * @return
      * @return ParentChildTree
      */
+    public static ParentChildTree lfNode2pcNode(BaseRes treeNode){
+        ParentChildTree pcTree = new ParentChildTree();
+        //TODO 在这里新添加的节点没有noteId，故暂时用主键id替换，待更好的方法出现。
+        pcTree.setId(Integer.parseInt(String.valueOf(treeNode.getId())));
+        pcTree.setName(treeNode.getName());
+        pcTree.setOpen(true);
+        pcTree.setPid(treeNode.getParentId());
+        pcTree.setParent((treeNode.getRgt() - treeNode.getLft() == 1) ? false : true);
+        pcTree.setURL(treeNode.getURL());
+        pcTree.setChkDisabled(treeNode.isEnable());
+
+        return  pcTree;
+    }
+
     public static ParentChildTree lfNode2pcNode(BaseDept treeNode) {
         ParentChildTree pcTree = new ParentChildTree();
         //TODO 在这里新添加的节点没有noteId，故暂时用主键id替换，待更好的方法出现。

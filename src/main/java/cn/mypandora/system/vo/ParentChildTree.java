@@ -7,7 +7,7 @@ package cn.mypandora.system.vo;
  * @date:2013-8-29
  * @UpdateUser:hankaibo
  * @UpdateDate:2013-8-29 下午4:38:38
- * @UpdateRemark:What is modified?
+ * @UpdateRemark:添加额外的属性URL。
  */
 public class ParentChildTree {
     /**
@@ -46,6 +46,10 @@ public class ParentChildTree {
      * @Fields pid :treeNode节点的父节点唯一标识tid.
      */
     private int pid;
+    /**
+     * @Fields URL :URL
+     */
+    private String URL;
 
     /**
      * @return the id
@@ -182,4 +186,11 @@ public class ParentChildTree {
         this.pid = pid;
     }
 
+    public String getURL() {
+        return URL;
+    }
+
+    public void setURL(String URL) {
+        this.URL = URL;
+    }
 }

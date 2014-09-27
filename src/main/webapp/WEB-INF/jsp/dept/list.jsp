@@ -92,11 +92,12 @@
                 return false;
             }else{
                 var url="${ctx }/dept";
-                var data={"name":newName,"id":treeNode.id};
+                var paramData={"name":newName,"id":treeNode.id};
                 $.ajax({
-                    type:"PUT",
                     url:url,
-                    data:data,
+                    type:"PUT",
+                    contentType:"application/json",
+                    data:JSON.stringify(paramData),
                     dataType:"json",
                     success:function(data){
                         return true;

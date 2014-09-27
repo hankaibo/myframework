@@ -2,18 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.mypandora.system.po.BaseRes">
+<mapper namespace="cn.mypandora.system.BaseRes">
     <resultMap type="cn.mypandora.system.po.BaseRes" id="BaseResMap">
-        <result property="id" column="id"></result>
-        <result property="name" column="name"></result>
-        <result property="URL" column="URL"></result>
-        <result property="nodeId" column="node_id"></result>
-        <result property="lft" column="lft"></result>
-        <result property="rgt" column="rgt"></result>
-        <result property="parentId" column="parent_id"></result>
-        <result property="isEnable" column="is_enable"></result>
-        <result property="createTime" column="create_time"></result>
-        <result property="updateTime" column="update_time"></result>
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="URL" column="URL"/>
+        <result property="nodeId" column="node_id"/>
+        <result property="lft" column="lft"/>
+        <result property="rgt" column="rgt"/>
+        <result property="parentId" column="parent_id"/>
+        <result property="isEnable" column="is_enable"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
     </resultMap>
     
     <select id="findById" resultMap="BaseResMap" parameterType="java.lang.Long">
@@ -58,10 +58,10 @@
     <select id="getParent" resultMap="BaseResMap" parameterType="java.lang.Long">
         <![CDATA[
             SELECT *
-            FROM it_base_res t
+            FROM t_base_res t
             WHERE t.node_id=(
                     SELECT s.parent_id
-                    FROM it_base_res s
+                    FROM t_base_res s
                     WHERE s.id=#{id}
                 )
         ]]>
@@ -70,14 +70,14 @@
     <select id="getAncestry" resultMap="BaseResMap" parameterType="java.lang.Long">
         <![CDATA[
             SELECT *
-            FROM it_base_res t
+            FROM t_base_res t
             WHERE t.lft<(
                     SELECT s.lft
-                    FROM it_base_res s
+                    FROM t_base_res s
                     WHERE s.id=#{id}) 
             AND t.rgt>(
                     SELECT s.lft
-                    FROM it_base_res s
+                    FROM t_base_res s
                     WHERE s.id=#{id})
             ORDER BY t.lft
         ]]>
@@ -85,7 +85,7 @@
     
     <update id="lftPlus2">
         <![CDATA[
-            UPDATE it_base_res t,(SELECT * FROM it_base_res WHERE id=#{id, jdbcType=NUMERIC}) f
+            UPDATE t_base_res t,(SELECT * FROM t_base_res WHERE id=#{id, jdbcType=NUMERIC}) f
             SET t.lft=t.lft+2
             WHERE t.lft>f.rgt
         ]]>
@@ -93,24 +93,30 @@
     
     <update id="rgtPlus2">
         <![CDATA[
-            UPDATE it_base_res t,(SELECT * FROM it_base_res WHERE id=#{id, jdbcType=NUMERIC}) f
+            UPDATE t_base_res t,(SELECT * FROM t_base_res WHERE id=#{id, jdbcType=NUMERIC}) f
             SET t.rgt=t.rgt+2
             WHERE t.rgt>f.rgt
         ]]>
     </update>
     
-    <insert id="insertNode" parameterType="cn.mypandora.system.po.BaseDept">
+    <insert id="insertNode" parameterType="cn.mypandora.system.po.BaseRes">
         <![CDATA[
-            INSERT INTO it_base_res (
+            INSERT INTO t_base_res (
                 name,
+                node_id,
                 lft,
                 rgt,
-                parent_id
+                parent_id,
+                is_enable,
+                URL
             ) VALUES (
                 #{name, jdbcType=VARCHAR},
+                #{nodeId, jdbcType=NUMERIC},
                 #{lft, jdbcType=NUMERIC},
                 #{rgt, jdbcType=NUMERIC},
-                #{parentId, jdbcType=NUMERIC}
+                #{parentId, jdbcType=NUMERIC},
+                #{isenable, jdbcType=NUMERIC},
+                #{url, jdbcType=VARCHAR}
             )
         ]]>
         <selectKey resultType="long" keyProperty="id">
@@ -120,7 +126,7 @@
     
     <update id="parentRgtPlus2">
         <![CDATA[
-            UPDATE it_base_res t
+            UPDATE t_base_res t
             SET t.rgt=t.rgt+2
             WHERE id=#{id, jdbcType=NUMERIC}
         ]]>
@@ -128,7 +134,7 @@
     
     <update id="update">
         <![CDATA[
-            UPDATE it_base_res t
+            UPDATE t_base_res t
             SET name=#{name, jdbcType=VARCHAR}
             WHERE id=#{id, jdbcType=NUMERIC}
         ]]>
@@ -136,7 +142,7 @@
     
     <update id="lftMinus2">
         <![CDATA[
-            UPDATE it_base_res t,(SELECT * FROM it_base_res WHERE id=#{id, jdbcType=NUMERIC}) f
+            UPDATE t_base_res t,(SELECT * FROM t_base_res WHERE id=#{id, jdbcType=NUMERIC}) f
             SET t.lft=t.lft-2
             WHERE t.lft>f.rgt
         ]]>
@@ -144,7 +150,7 @@
     
     <update id="rgtMinus2">
         <![CDATA[
-            UPDATE it_base_res t,(SELECT * FROM it_base_res WHERE id=#{id, jdbcType=NUMERIC}) f
+            UPDATE t_base_res t,(SELECT * FROM t_base_res WHERE id=#{id, jdbcType=NUMERIC}) f
             SET t.rgt=t.rgt-2
             WHERE t.rgt>f.rgt
         ]]>
@@ -152,14 +158,14 @@
     
     <delete id="delete">
         <![CDATA[
-            DELETE from it_base_res
+            DELETE from t_base_res
             WHERE id = #{id}
         ]]> 
     </delete>
     
     <update id="moveUp">
         <![CDATA[
-            UPDATE it_base_res t
+            UPDATE t_base_res t
             SET t.lft=t.lft-2,t.rgt=t.rgt-2
             WHERE id = #{id}
         ]]>
@@ -167,7 +173,7 @@
     
     <update id="moveDown">
         <![CDATA[
-            UPDATE it_base_res t
+            UPDATE t_base_res t
             SET t.lft=t.lft+2,t.rgt=t.rgt+2
             WHERE id = #{id}
         ]]>
@@ -176,11 +182,11 @@
     <select id="firstNode" resultMap="BaseResMap" parameterType="java.lang.Long">
         <![CDATA[
             SELECT *
-            FROM it_base_res t
+            FROM t_base_res t
             WHERE t.id=#{id}
             AND t.lft-1=(
                     SELECT p.lft
-                    FROM it_base_res p
+                    FROM t_base_res p
                     WHERE p.id=t.parent_id
                 )
         ]]>
@@ -189,11 +195,11 @@
     <select id="lastNode" resultMap="BaseResMap" parameterType="java.lang.Long">
         <![CDATA[
             SELECT *
-            FROM it_base_res t
+            FROM t_base_res t
             WHERE t.id=#{id}
             AND t.rgt+1=(
                     SELECT p.rgt
-                    FROM it_base_res p
+                    FROM t_base_res p
                     WHERE p.id=t.parent_id
                 )
         ]]>

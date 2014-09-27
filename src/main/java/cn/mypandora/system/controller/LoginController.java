@@ -1,8 +1,12 @@
 package cn.mypandora.system.controller;
 
+import cn.mypandora.system.po.BaseRes;
 import cn.mypandora.system.po.BaseUser;
+import cn.mypandora.system.service.BaseResService;
 import cn.mypandora.system.service.BaseUserService;
 import cn.mypandora.system.vo.LoginCommand;
+import cn.mypandora.system.vo.ParentChildTree;
+import cn.mypandora.util.MyTreeUtil;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
 import org.apache.shiro.authc.AuthenticationException;
@@ -20,7 +24,9 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 
 /**
@@ -41,6 +47,8 @@ public class LoginController {
     private Producer captchaProducer;
     @Resource
     private BaseUserService baseUserService;
+    @Resource
+    private BaseResService baseResService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String loginPage(ModelMap model) {
@@ -112,6 +120,7 @@ public class LoginController {
     private ModelAndView actualLoginCheck(HttpServletRequest request, HttpServletResponse response, LoginCommand loginCommand, boolean isCaptcha) {
         try {
             boolean isLogin = baseUserService.hasMatchUser(loginCommand.getUserName(), loginCommand.getPassword());
+            //登录成功之后，积分+5；查询对应资源；显示相应页面。
             if (isLogin) {
                 BaseUser user = baseUserService.findUserByUsername(loginCommand.getUserName());
                 user.setLastIp(request.getRemoteAddr());
@@ -119,6 +128,13 @@ public class LoginController {
                 baseUserService.loginSuccess(user);
                 // 记录session的值
                 request.getSession().setAttribute("user", user);
+                List<BaseRes> listResoureces = baseResService.getResDescendants(1L);
+                List<ParentChildTree> listPCTrees = new ArrayList<>();
+                for (BaseRes res : listResoureces) {
+                    listPCTrees.add(MyTreeUtil.lfNode2pcNode(res));
+                }
+                request.getSession().setAttribute("menuTree", listPCTrees);
+
                 return new ModelAndView("main");
             }
             return isCaptcha ? new ModelAndView("login", "error", "用户名或密码错误.").addObject("isCaptcha", true) : new ModelAndView("login", "error", "用户名或密码错误.");

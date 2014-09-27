@@ -29,14 +29,15 @@ public class BaseResController {
 
     /**
      * @Title: list
-     * @Description: 获取整个资源树。
+     * @Description: 获取资源树。
      * @param model
      * @return
      * @return String
      */
     @RequestMapping(value = "/resources", method = RequestMethod.GET)
     public String list(ModelMap model) {
-        List<BaseRes> listResoureces = baseResService.loadFullRes();
+        List<BaseRes> listResoureces = baseResService.getResDescendants(1L);
+//        List<BaseRes> listResoureces = baseResService.getResChilds(1L);
 
         List<ParentChildTree> listPCTrees = new ArrayList<>();
         for (BaseRes res : listResoureces) {
@@ -49,28 +50,29 @@ public class BaseResController {
     /**
      * @Title: add
      * @Description: 添加资源。
-     * @param id
-     * @param BaseRes
+     * @param baseRes
      * @return
-     * @return BaseRes
      */
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
-    public Map<String, Object> add(Long id) {
+    public Map<String, Object> add(BaseRes baseRes) {
         Map<String, Object> map = new HashMap<>();
-        BaseRes res = (BaseRes) baseResService.findResById(id);
-        map.put("name", "testName");
+        Long defaultNode=Long.valueOf(baseRes.getParentId())!=null?Long.valueOf(baseRes.getParentId()):1L;
+        BaseRes res = baseResService.findResById(defaultNode);
+        map.put("name",baseRes.getName());
+        map.put("url",baseRes.getURL());
+        map.put("isenable",baseRes.isEnable());
         map.put("lft", res.getRgt());
         map.put("rgt", res.getRgt() + 1);
         map.put("parentId", res.getId());
-        baseResService.addRes(id, map);
+        baseResService.addRes(defaultNode, map);
         return map;
     }
 
     /**
      * @Title: edit
      * @Description: 编辑资源。
-     * @param dept
+     * @param res
      * @return
      * @return String
      */

@@ -58,6 +58,7 @@ $(function() {
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-4">
                 <button type="submit" class="btn btn-primary active">保存</button>
+                <button type="reset" class="btn btn-primary active">取消</button>
             </div>
         </div>
     </form>

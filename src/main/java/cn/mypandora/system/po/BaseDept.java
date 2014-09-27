@@ -22,6 +22,6 @@ import cn.mypandora.orm.model.BaseTree;
  */
 public class BaseDept extends BaseTree {
 
-    private static final long serialVersionUID = 8343756770401531755L;
+private static final long serialVersionUID = 8343756770401531755L;
 
 }

@@ -6,12 +6,79 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link type="text/css" rel="stylesheet" href="${ctx}/resources/js/jqueryui/css/ui-lightness/jquery-ui-1.10.4.custom.css">
+<link rel="stylesheet" href="${ctx }/resources/js/ztree/css/zTreeStyle.css" type="text/css">
 <%@ include file="header.jsp" %>
+<script type="text/javascript" src="${ctx }/resources/js/ztree/jquery.ztree.core-3.5.js"></script>
 <title>论坛</title>
 <script>
-    /*手风琴*/
+    var curMenu=null,zTree_Menu=null;
+    var setting={
+        view:{
+            showLine:false,
+            selectedMulti:false,
+            dblClickExpand:false
+        },
+        data:{simpleData:{enable:true}},
+        callback:{
+            onNodeCreated:this.onNodeCreated,
+            beforeClick:this.beforeClick,
+            onClick:this.onClick
+        }
+    };
+    var zNodes =[
+        <c:forEach var="res" items="${menuTree}">
+        {id:"${res.id}",name:"${res.name}",pId:"${res.pid}",_url:"${res.URL}" },
+        </c:forEach>
+    ];
+    function beforeClick(treeId, node) {
+        if (node.isParent) {
+            if (node.level === 0) {
+                var pNode = curMenu;
+                while (pNode && pNode.level !==0) {
+                    pNode = pNode.getParentNode();
+                }
+                if (pNode !== node) {
+                    var a = $("#" + pNode.tId + "_a");
+                    a.removeClass("cur");
+                    zTree_Menu.expandNode(pNode, false);
+                }
+                a = $("#" + node.tId + "_a");
+                a.addClass("cur");
+
+                var isOpen = false;
+                for (var i=0,l=node.children.length; i<l; i++) {
+                    if(node.children[i].open) {
+                        isOpen = true;
+                        break;
+                    }
+                }
+                if (isOpen) {
+                    zTree_Menu.expandNode(node, true);
+                    curMenu = node;
+                } else {
+                    zTree_Menu.expandNode(node.children[0].isParent?node.children[0]:node, true);
+                    curMenu = node.children[0];
+                }
+            } else {
+                zTree_Menu.expandNode(node);
+            }
+        }
+        return !node.isParent;
+    }
+    function onClick(e, treeId, node) {
+        openRight('${ctx}'+node._url)
+    }
+
     $(function() {
+        var treeObj = $("#treeDemo");
+        $.fn.zTree.init(treeObj, setting, zNodes);
+        zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo");
+        curMenu = zTree_Menu.getNodes()[0].children[0];
+        zTree_Menu.selectNode(curMenu);
+
+        var a = $("#" + zTree_Menu.getNodes()[0].tId + "_a");
+        a.addClass("cur");
+
         $("#accordion").accordion({
             collapsible : true
         });
@@ -21,6 +88,14 @@
         window.open(url,"rightFrame"); 
     }
 </script>
+    <style type="text/css">
+        .ztree li a.level0 {width:200px;height: 20px; text-align: center; display:block; background-color: #0B61A4; border:1px silver solid;}
+        .ztree li a.level0.cur {background-color: #66A3D2; }
+        .ztree li a.level0 span {display: block; color: white; padding-top:3px; font-size:12px; font-weight: bold;word-spacing: 2px;}
+        .ztree li a.level0 span.button {	float:right; margin-left: 10px; visibility: visible;display:none;}
+        .ztree li span.button.switch.level0 {display:none;}
+    </style>
+
 </head>
 <body>
     <div class="navbar navbar-default navbar-static-top" role="navigation">
@@ -44,31 +119,7 @@
     <div class="container" style="width:95%">
         <div class="row">
             <div class="col-lg-2" style="padding-right: 5px;">
-                <div id="accordion">
-                    <h3>管理</h3>
-                    <div>
-                        <ul class="list-unstyled">
-                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/user/users')">用户管理</a></li>
-                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/dept/depts')">部门管理</a></li>
-                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/log/logs')">日志管理</a></li>
-                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/res/resources')">资源管理</a></li>
-                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/log/logs')">权限管理</a></li>
-                        </ul>
-                    </div>
-                    <h3>统计</h3>
-                    <div>
-                        <ul class="list-unstyled">
-                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/user/analysis')">用户分析</a></li>
-                        </ul>
-                    </div>
-                    <h3>个人</h3>
-                    <div>
-                        <ul class="list-unstyled">
-                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/user/me')">我的信息</a></li>
-                            <li><a href="javascript:void(0)" onclick="openRight('${ctx}/log/me')">我的记录</a></li>
-                        </ul>
-                    </div>
-                </div>
+                <div id="treeDemo"></div>
             </div>
             <div class="col-lg-10" style="padding-left: 5px;">
                 <iframe id="rightFrame" name="rightFrame" src="" width="100%" height="500px;" frameborder="0"></iframe> 
