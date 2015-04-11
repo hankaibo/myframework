@@ -431,11 +431,15 @@ public class MyDateUtils {
      * @return
      * @return String
      */
-    public static String long2Time(String createTime) {
+    public static String timestamp2Time(String createTime) {
         long fooTime = Long.parseLong(createTime) * 1000L;
         return DateFormatUtils.format(fooTime, TIME_FORMAT);
     }
 
+    public static long time2timestamp(String specifiedTime) {
+        return 0;
+        
+    }
     public static void main(String[] args) throws ParseException {
         System.out.println(getMonthFirstDay());
         System.out.println(getMonthLastDay());
@@ -455,7 +459,7 @@ public class MyDateUtils {
         System.out.println(getSpecifiedOffsetTime("2012-09-09 12:12:12", 12));
         System.out.println(getOffsetDateTime("2012-09-09", 12));
         System.out.println(getOffsetDateTime("2012-09-09 12:12:12", 12));
-        System.out.println(long2Time("1234567890"));
+        System.out.println(timestamp2Time("1234567890"));
         
     }
 }
