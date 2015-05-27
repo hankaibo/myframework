@@ -30,7 +30,7 @@ public class MyTreeUtil {
         pcTree.setOpen(true);
         pcTree.setPid(treeNode.getParentId());
         pcTree.setParent((treeNode.getRgt() - treeNode.getLft() == 1) ? false : true);
-        pcTree.setURL(treeNode.getURL());
+        pcTree.setURL(treeNode.getUrl());
         pcTree.setChkDisabled(treeNode.isEnable());
 
         return  pcTree;

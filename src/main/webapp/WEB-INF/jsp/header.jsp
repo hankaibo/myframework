@@ -1,7 +1,7 @@
 <!-- 公共CSS资源 -->
-<link type="text/css" rel="stylesheet" href="${ctx}/resources/css/bootstrap.min.css" />
+<link rel="stylesheet" href="${ctx}/resources/js/jquery-ui-bootstrap-masterbs3/assets/css/bootstrap.css" />
+<link rel="stylesheet" href="${ctx}/resources/js/jquery-ui-bootstrap-masterbs3/css/custom-theme/jquery-ui-1.10.3.custom.css" />
 <!-- 公共JS资源 -->
-<script type="text/javascript" src="${ctx}/resources/js/jquery-1.10.2.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/jqueryui/jquery-ui-1.10.4.custom.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/jqueryui/i18n/jquery.ui.datepicker-zh-CN.js"></script>
-<script type="text/javascript" src="${ctx}/resources/js/jqpagination/jquery.jqpagination.js"></script>
+<script src="${ctx}/resources/js/jquery-ui-bootstrap-masterbs3/assets/js/vendor/jquery-1.9.1.min.js"></script>
+<script src="${ctx}/resources/js/jquery-ui-bootstrap-masterbs3/assets/js/vendor/jquery-ui-1.10.3.custom.min.js"></script>
+<script src="${ctx}/resources/js/jquery-ui-bootstrap-masterbs3/assets/js/vendor/bootstrap.js"></script>

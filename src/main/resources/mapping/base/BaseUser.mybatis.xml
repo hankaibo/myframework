@@ -21,6 +21,11 @@
         <result property="updateTime" column="update_time"></result>
     </resultMap>
 
+    <resultMap type="HashMap" id="sexCount">
+        <result property="key" column="sex"></result>
+        <result property="value" column="sexCount"></result>
+    </resultMap>
+
     <select id="hasMatchUser" resultMap="BaseUserMap" parameterType="java.util.HashMap">
         select *
         from t_base_user
@@ -41,22 +46,41 @@
         and user_name = #{username}
     </select>
 
-    <update id="update">
-        <![CDATA[
-            update  t_base_user
-            set     user_name=#{username, jdbcType=VARCHAR},
-                    real_name=#{realName, jdbcType=VARCHAR},
-                    password=#{password, jdbcType=VARCHAR},
-                    email=#{email, jdbcType=VARCHAR},
-                    mobile=#{mobile, jdbcType=VARCHAR},
-                    phone=#{phone, jdbcType=VARCHAR},
-                    picture_url=#{pictureUrl, jdbcType=VARCHAR},
-                    sex=#{sex, jdbcType=NUMERIC},
-                    birthday=#{birthday, jdbcType=DATE},
-                    last_ip=#{lastIp, jdbcType=VARCHAR},
-                    credits=#{credits, jdbcType=NUMERIC} 
-            WHERE   id = #{id, jdbcType=NUMERIC}
-        ]]>
+    <update id="update" parameterType="cn.mypandora.system.po.BaseUser">
+        update  t_base_user
+        <set>
+            <if test="username!=null and username!=''">
+                user_name=#{username, jdbcType=VARCHAR},
+            </if>
+            <if test="password!=null and password!=''">
+                password=#{password, jdbcType=VARCHAR},
+            </if>
+            <if test="realName!=null and realName!=''">
+                real_name=#{realName, jdbcType=VARCHAR},
+            </if>
+            <if test="email!=null and email!=''">
+                email=#{email, jdbcType=VARCHAR},
+            </if>
+            <if test="pictureUrl!=null and pictureUrl!=''">
+                picture_url=#{pictureUrl, jdbcType=VARCHAR},
+            </if>
+            <if test="credits!=null and credits!=''">
+                credits=#{credits, jdbcType=NUMERIC},
+            </if>
+            <if test="lastIp!=null and lastIp!=''">
+                last_ip=#{lastIp, jdbcType=VARCHAR},
+            </if>
+            <if test="birthday!=null and birthday!=''">
+                birthday=#{birthday, jdbcType=DATE},
+            </if>
+            <if test="sex!=null and sex!=''">
+                sex=#{sex, jdbcType=NUMERIC},
+            </if>
+            <if test="mobile!=null and mobile!=''">
+                mobile=#{mobile, jdbcType=VARCHAR}
+            </if>
+        </set>
+        WHERE   id = #{id, jdbcType=NUMERIC}
     </update>
 
     <select id="findAll" resultMap="BaseUserMap">
@@ -65,6 +89,17 @@
 
     <select id="pageUsers" resultMap="BaseUserMap">
         select * from t_base_user
+        where 1=1
+        <if test="username!=null">
+            and user_name = #{username}
+        </if>
+        <if test="sortName!=null">
+            order by #{sortName} #{orderName}
+        </if>
+        <!--<foreach collection="ids" index="index" item="item" open="" separator="," close="">-->
+             <!--#{item}-->
+        <!--</foreach>-->
+
     </select>
 
     <insert id="add" parameterType="cn.mypandora.system.po.BaseUser">
@@ -94,6 +129,12 @@
     <select id="findById" resultMap="BaseUserMap" parameterType="java.lang.Long">
         select * from t_base_user
         where id = #{id}
+    </select>
+
+    <select id="findUserSexCount" resultType="java.util.HashMap" >
+        SELECT t.sex, COUNT(t.sex) sexCount
+        FROM t_base_user t
+        GROUP BY t.sex
     </select>
 
 </mapper>

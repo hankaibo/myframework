@@ -42,62 +42,62 @@ function myUploadify(isAuto, fileSize, fileDesc,fileType,filePath,isMulti,sumUpl
         'width'             : 80, //   浏览按钮的宽度，单位像素（px）
         
         /*Events 事件*/
-//        'overrideEvents' : [ 'onUploadProgress' ], //设置Uploadify里的哪些事件可以被用户重写。'overrideEvents' :{'onCancel', 'onInit'}表示'onCancel'事件和'onInit'事件可以被用户重写
+       'overrideEvents' : [ 'onUploadProgress' ], //设置Uploadify里的哪些事件可以被用户重写。'overrideEvents' :{'onCancel', 'onInit'}表示'onCancel'事件和'onInit'事件可以被用户重写
         // 取消队列中上传的文件时触发，该事件获取一个参数file，该参数包含被取消的文件的信息
-//        'onCancel' : function(file) {
-//            alert('文件' + file.name + '已经被取消上传了！');
-//        },
+       'onCancel' : function(file) {
+           alert('文件' + file.name + '已经被取消上传了！');
+       },
         // 当执行cancel方法，且方法参数为'*'时触发该事件， 该事件获取一个参数queueItemCount，该参数为被取消的文件的个数
-//        'onClearQueue' : function(queueItemCount) {
-//             alert(queueItemCount + '文件已经从上传队列中移除。');
-//        },
+       'onClearQueue' : function(queueItemCount) {
+            alert(queueItemCount + '文件已经从上传队列中移除。');
+       },
         // 当使用destroy方法时触发
-//        'onDestroy' : function() {
-//             alert('我被销毁了');
-//        },
+       'onDestroy' : function() {
+            alert('我被销毁了');
+       },
         // 关闭文件浏览窗口时触发，该事件获取一个参数queueData，该参数有五个属性：filesSelected:浏览窗口中选中的文件数；filesQueued:添加到队列中的文件数；filesReplaced:被替换的文件个数；filesCancelled:被取消上传到队列的文件数；filesErrored:上传到队列时出错的文件数。该事件可以被重写
-//        'onDialogClose' :function(swfuploadifyQueue) {
-//            if( swfuploadifyQueue.filesErrored > 0 ){
-//                alert('添加至队列时有' +swfuploadifyQueue.filesErrored +'个文件发生错误n'
-//                    +'错误信息:'+swfuploadifyQueue.errorMsg
-//                    +'n选定的文件数:'+swfuploadifyQueue.filesSelected
-//                    +'n成功添加至队列的文件数:'+swfuploadifyQueue.filesQueued
-//                    +'n队列中的总文件数量:'+swfuploadifyQueue.queueLength);
-//            }
-//        },
+       'onDialogClose' :function(swfuploadifyQueue) {
+           if( swfuploadifyQueue.filesErrored > 0 ){
+               alert('添加至队列时有' +swfuploadifyQueue.filesErrored +'个文件发生错误n'
+                   +'错误信息:'+swfuploadifyQueue.errorMsg
+                   +'n选定的文件数:'+swfuploadifyQueue.filesSelected
+                   +'n成功添加至队列的文件数:'+swfuploadifyQueue.filesQueued
+                   +'n队列中的总文件数量:'+swfuploadifyQueue.queueLength);
+           }
+       },
         // 打开文件浏览窗口时触发，该事件里的代码可能会在文件浏览窗口关闭时才执行
-//        'onDialogOpen' :function(){
-//            alert('打开窗口了！');
-//        },
+       'onDialogOpen' :function(){
+           alert('打开窗口了！');
+       },
         // 禁用Uploadify时触发，通过disable方法来禁用Uploadify
-//        'onDisable' :function(){
-//        },
-        // 启用Uploadify时触发，通过disable方法来启用Uploadify
-//        'onEnable' :function(){
-//        },
-        // 在初始化时，若检测不到浏览器有兼容性的flash版本时触发
-//        'onFallback' :function(){
-//            alert("OK!");
-//        },
-        // 在Uploadify初始化时触发，该事件获取一个参数instance，该参数为Uploadify的一个实例
-//        'onInit' : function(instance) {
-//            // alert('The queue ID is ' + instance.settings.queueID);
-//        },
-        // 队列中的文件上传完毕后触发，该事件获取一个参数queueData，该参数有两个属性：uploadsSuccessful:成功上传的文件数量；uploadsErrored:上传失败的文件数量
-//        'onQueueComplete' :function(queueData){
-//            alert( '成功上传的文件数: ' + queueData.uploadsSuccessful);
-//        },
-        // 文件在文件浏览窗口被选择并被添加到文件队列时触发，该事件获取一个参数file，该参数为被添加的文件的一个实例，该事件可以被重写
-//        'onSelect' :function(file){
-//            alert( 'id: ' + file.id
-//                    + ' - 索引: ' + file.index
-//                    + ' - 文件名: ' + file.name
-//                    + ' - 文件大小: ' + file.size
-//                    + ' - 类型: ' + file.type
-//                    + ' - 创建日期: ' + file.creationdate
-//                    + ' - 修改日期: ' + file.modificationdate
-//                    + ' - 文件状态: ' + file.filestatus);
-//        },
+         'onDisable' :function(){
+         },
+       // 启用Uploadify时触发，通过disable方法来启用Uploadify
+         'onEnable' :function(){
+         },
+       // 在初始化时，若检测不到浏览器有兼容性的flash版本时触发
+         'onFallback' :function(){
+             alert("OK!");
+         },
+       // 在Uploadify初始化时触发，该事件获取一个参数instance，该参数为Uploadify的一个实例
+         'onInit' : function(instance) {
+             // alert('The queue ID is ' + instance.settings.queueID);
+         },
+       // 队列中的文件上传完毕后触发，该事件获取一个参数queueData，该参数有两个属性：uploadsSuccessful:成功上传的文件数量；uploadsErrored:上传失败的文件数量
+         'onQueueComplete' :function(queueData){
+             alert( '成功上传的文件数: ' + queueData.uploadsSuccessful);
+         },
+       // 文件在文件浏览窗口被选择并被添加到文件队列时触发，该事件获取一个参数file，该参数为被添加的文件的一个实例，该事件可以被重写
+         'onSelect' :function(file){
+             alert( 'id: ' + file.id
+                     + ' - 索引: ' + file.index
+                     + ' - 文件名: ' + file.name
+                     + ' - 文件大小: ' + file.size
+                     + ' - 类型: ' + file.type
+                     + ' - 创建日期: ' + file.creationdate
+                     + ' - 修改日期: ' + file.modificationdate
+                     + ' - 文件状态: ' + file.filestatus);
+         },
         // 当被选择文件在添加到文件队列出错时触发，该事件获取三个参数file、errorCode、errorMsg，file：发生错误的文件对象实例；errorCode：错误码，用以确定错误的类型，内容可能包含三个常量(QUEUE_LIMIT_EXCEEDED:选择的文件数量超过限定值；FILE_EXCEEDS_SIZE_LIMIT:文件大小超过限定值；ZERO_BYTE_FILE:文件没有大小；INVALID_FILETYPE:文件类型不是规定的类型)
         'onSelectError' :function(file,errorCode,errorMsg){
             switch(errorCode) {
@@ -117,27 +117,27 @@ function myUploadify(isAuto, fileSize, fileDesc,fileType,filePath,isMulti,sumUpl
             alert('对不起，文件'+ file.name + '选择错误！，错误原因：' +QUEUE_LIMIT_EXCEEDED);
         },
         // 在flash文件加载成功并准备好后触发
-//        'onSWFReady' :function(){
-//        },
-        // 队列中每个文件上传完毕后触发，该事件获取一个参数file，该参数为上传完毕的文件的实例，如果想知道上传完毕的文件具体是上传成功还是上传失败，建议使用onUploadSuccess和onUploadError事件。事件可重写
-//        'onUploadComplete' : function(file) {
-//             alert('The file ' + file.name + ' finished processing.');
-//        },
-        // 上传某个文件出错时触发，该事件获取三个参数：file:出错文件对象的实例；errorCode:错误码，是否与onSelectError的errorCode相同，未知；errorMsg:错误信息
-        'onUploadError' : function(file, errorCode, errorMsg) {
-//             alert('The file ' + file.name + ' could not be uploaded: ' + errorMsg);
-             alert("文件:" + file.name + " 上传失败!错误原因："+ errorMsg);
-        },
-        // 每更新一个文件的上传进度的时候触发，该事件获取三个参数：file:更新进度的文件实例；
-//        'onUploadProgress' : function(file, fileBytesLoaded, fileTotalBytes) {
-//            $('#progress').html(totalBytesUploaded + ' bytes uploaded of ' + totalBytesTotal + ' bytes.');
-//        },
-        // 每个文件开始上传时触发，该事件获取一个参数file：开始上传的文件实例
-        //在onUploadStart事件中，也就是上传之前，把参数写好传递到后台(动态参数传递)。
-//        'onUploadStart' : function(file) {
-//            $("#file_upload").uploadify("settings", "formData", { 'ctrlid': ctrlid });
-//            $("#file_upload").uploadify("settings", "someOtherKey", 2);
-//        },
+         'onSWFReady' :function(){
+         },
+       // 队列中每个文件上传完毕后触发，该事件获取一个参数file，该参数为上传完毕的文件的实例，如果想知道上传完毕的文件具体是上传成功还是上传失败，建议使用onUploadSuccess和onUploadError事件。事件可重写
+         'onUploadComplete' : function(file) {
+              alert('The file ' + file.name + ' finished processing.');
+         },
+       // 上传某个文件出错时触发，该事件获取三个参数：file:出错文件对象的实例；errorCode:错误码，是否与onSelectError的errorCode相同，未知；errorMsg:错误信息
+       'onUploadError' : function(file, errorCode, errorMsg) {
+              alert('The file ' + file.name + ' could not be uploaded: ' + errorMsg);
+            alert("文件:" + file.name + " 上传失败!错误原因："+ errorMsg);
+       },
+       // 每更新一个文件的上传进度的时候触发，该事件获取三个参数：file:更新进度的文件实例；
+         'onUploadProgress' : function(file, fileBytesLoaded, fileTotalBytes) {
+             $('#progress').html(totalBytesUploaded + ' bytes uploaded of ' + totalBytesTotal + ' bytes.');
+         },
+       // 每个文件开始上传时触发，该事件获取一个参数file：开始上传的文件实例
+       //在onUploadStart事件中，也就是上传之前，把参数写好传递到后台(动态参数传递)。
+         'onUploadStart' : function(file) {
+             $("#file_upload").uploadify("settings", "formData", { 'ctrlid': ctrlid });
+             $("#file_upload").uploadify("settings", "someOtherKey", 2);
+         },
         // 每个文件上传成功时触发，该事件获取三个参数：file:上传成功的文件对象实例；data:服务器返回的数据；response:来自服务器的响应，true表示成功，false表示服务器无响应，当超过successTimeout设定的时间，则默认返回true
         'onUploadSuccess' : function(file, data, response) {
              alert(file.name + ' | ' + response + ':' + data);

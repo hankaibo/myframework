@@ -52,4 +52,6 @@ public interface BaseUserDao extends IBaseEntityDao<BaseUser> {
      * @return
      */
     List<Map<String, Object>> findMapByCondition(String sqlKey, Object params);
+
+    Map<String,Map<String,Object>> findMapByCondition(String sqlKey,Object params,String mapKey);
 }

@@ -2,7 +2,7 @@ package cn.mypandora.system.vo;
 
 /**
  * @ClassName:ParentChildTree
- * @Description:与zTree数据结构对应，充当VO，封装页面展示数据。
+ * @Description: 与zTree数据结构对应，充当VO，封装页面展示数据。
  * @Author:hankaibo
  * @date:2013-8-29
  * @UpdateUser:hankaibo

@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE HTML>
+<html lang="zh-CN">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="${ctx}/resources/js/jqueryui/css/jquery-ui-1.10.0.custom.css" />
+<meta charset="UTF-8">
 <%@ include file="./../header.jsp" %>
 <script type="text/javascript">
 $(function() {
@@ -17,12 +16,12 @@ $(function() {
 <title>用户新增</title>
 </head>
 <body>
-<div class="container" style="margin: 0;width:100%">
+<div class="container-fluid">
     <ul class="nav nav-tabs">
-        <li><a href="${ctx}/user/users">用户列表</a></li>
+        <li><a href="${ctx}/users/toList">用户列表</a></li>
         <li class="active"><a href="#">添加</a></li>
     </ul>
-    <form class="form-horizontal" role="form" action="${ctx}/user" method="post">
+    <form class="form-horizontal" role="form" action="${ctx}/users" method="post">
         <div class="form-group">
             <label for="inputUsername" class="col-sm-2 control-label">用户名</label>
             <div class="col-sm-4">

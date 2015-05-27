@@ -9,21 +9,16 @@
  */
 package cn.mypandora.system.controller;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-
 import cn.mypandora.orm.Page;
 import cn.mypandora.system.po.BaseLog;
 import cn.mypandora.system.service.BaseLogService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.Resource;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @ClassName: BaseLogController
@@ -35,11 +30,19 @@ import cn.mypandora.system.service.BaseLogService;
  * @UpdateRemark: What is modified?
  */
 @Controller
-@RequestMapping(value = "/log")
+@RequestMapping(value = "/logs")
 public class BaseLogController {
     @Resource
     private BaseLogService baseLogService;
 
+    /**
+     *
+     * @return
+     */
+    @RequestMapping(value = "/toList", method = RequestMethod.GET)
+    public String toList() {
+        return "log/list";
+    }
     /**
      * @Title: list
      * @Description: 查询日志列表。
@@ -48,15 +51,14 @@ public class BaseLogController {
      * @return
      * @return String
      */
-    @RequestMapping(value = "/logs", method = RequestMethod.GET)
-    public String list(ModelMap model,
+    @RequestMapping(method = RequestMethod.GET)
+    public @ResponseBody
+    Page<BaseLog>  list(ModelMap model,
             @RequestParam(value = "currentPage", required = true, defaultValue = "1") int currentPage) {
         Page<BaseLog> page = new Page<>();
         page.setCurrentPage(currentPage);
         page = baseLogService.findLogByCondition("pageLogs", null, page);
-        model.put("logs", page.getResultList());
-        model.put("page", page);
-        return "log/list";
+        return page;
     }
 
     /**
@@ -66,7 +68,7 @@ public class BaseLogController {
      * @return
      * @return String
      */
-    @RequestMapping(value = "/{id}/delete", method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public String del(@PathVariable Long id) {
         baseLogService.deleteLog(id);
         return "redirect:/log/logs";

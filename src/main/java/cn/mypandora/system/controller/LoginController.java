@@ -24,8 +24,8 @@ import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.awt.image.BufferedImage;
+import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -124,7 +124,7 @@ public class LoginController {
             if (isLogin) {
                 BaseUser user = baseUserService.findUserByUsername(loginCommand.getUserName());
                 user.setLastIp(request.getRemoteAddr());
-                user.setLastVisit(new Date());
+                user.setLastVisit(new Timestamp(System.currentTimeMillis()));
                 baseUserService.loginSuccess(user);
                 // 记录session的值
                 request.getSession().setAttribute("user", user);
@@ -139,7 +139,7 @@ public class LoginController {
             }
             return isCaptcha ? new ModelAndView("login", "error", "用户名或密码错误.").addObject("isCaptcha", true) : new ModelAndView("login", "error", "用户名或密码错误.");
         } catch (AuthenticationException e) {
-            e.printStackTrace();
+            logger.error("用户登录错误:"+e);
             return isCaptcha ? new ModelAndView("login", "error", "用户名或密码错误.").addObject("isCaptcha", true) : new ModelAndView("login", "error", "用户名或密码错误.");
         }
     }

@@ -9,11 +9,12 @@
  */
 package cn.mypandora.system.po;
 
-import java.util.Date;
-
+import cn.mypandora.orm.model.BaseEntity;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import cn.mypandora.orm.model.BaseEntity;
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 /**
  * @ClassName: BaseUser
@@ -47,10 +48,19 @@ public class BaseUser extends BaseEntity {
     /** @Fields birthday :生日 */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
+    /**
+     * 字符串生日,该属性值不会存储到数据库中。
+     * 因为前台采用的jqgrid主要是配合PHP的，PHP的Date类型时间戳是10位，而Java是13位，这样就导致了前台转换时出现错误，在不修改源码的情况下，故多加一个属性。
+     */
+    private String strBirthday;
     /** @Fields lastIp :最后登录IP */
     private String lastIp;
     /** @Fields lastVisit :最后登录日期 */
-    private Date lastVisit;
+    private Timestamp lastVisit;
+    /**
+     * 同上。
+     */
+    private String strLastVisit;
     /** @Fields credits :积分 */
     private int credits;
 
@@ -207,7 +217,7 @@ public class BaseUser extends BaseEntity {
     /**
      * @return the lastVisit
      */
-    public Date getLastVisit() {
+    public Timestamp getLastVisit() {
         return lastVisit;
     }
 
@@ -215,7 +225,7 @@ public class BaseUser extends BaseEntity {
      * @param lastVisit
      *            the lastVisit to set
      */
-    public void setLastVisit(Date lastVisit) {
+    public void setLastVisit(Timestamp lastVisit) {
         this.lastVisit = lastVisit;
     }
 
@@ -234,4 +244,13 @@ public class BaseUser extends BaseEntity {
         this.credits = credits;
     }
 
+    public String getStrBirthday() {
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(this.getBirthday()!=null?this.getBirthday():new Date(System.currentTimeMillis()));
+    }
+
+    public String getStrLastVisit() {
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(this.getLastVisit()!=null?this.getLastVisit():new Timestamp(0L));
+    }
 }

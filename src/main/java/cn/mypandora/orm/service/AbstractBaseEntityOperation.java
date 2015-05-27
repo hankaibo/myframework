@@ -3,17 +3,18 @@ package cn.mypandora.orm.service;
 import cn.mypandora.orm.dao.IBaseEntityDao;
 import cn.mypandora.orm.model.BaseEntity;
 
+
 /**
- * @ClassName:AbstractBaseEntityOperation
- * @Description:接口实现抽象类。
- * @Author:hankaibo
- * @date:2014-1-1
- * @UpdateUser:hankaibo
- * @UpdateDate:2014-1-1 上午11:57:48
- * @UpdateRemark:What is modified?
+ * 接口抽象类。
+ *
  * @param <T>
  */
 public abstract class AbstractBaseEntityOperation<T extends BaseEntity> {
 
+    /**
+     * 由继承子类实现真正地实体Dao.
+     *
+     * @return
+     */
     public abstract IBaseEntityDao<T> getDao();
 }

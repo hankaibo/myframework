@@ -11,6 +11,11 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class BaseResDaoImpl extends BaseNestedDaoImpl<BaseRes> implements BaseResDao {
+    /**
+     * 查询sql配置文件命名空间
+     *
+     * @return sql配置文件命名空间名称
+     */
     @Override
     public String getNameSpace() {
         return "cn.mypandora.system.BaseRes";

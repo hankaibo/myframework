@@ -17,6 +17,13 @@ public interface BaseResService {
     List<BaseRes> loadFullRes();
 
     /**
+     * 获取带深度的所有资源。
+     * @param level
+     * @return
+     */
+    List<BaseRes> loadFullResWithLevel(int level);
+
+    /**
      * 获得本资源（节点）及下面的所有资源（节点）。
      *
      * @param id 当前操作资源（节点）id

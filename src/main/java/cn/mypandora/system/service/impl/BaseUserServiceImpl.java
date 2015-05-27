@@ -115,9 +115,23 @@ public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> i
      */
     //@formatter:on
     @Override
+    @Transactional
     @MyMethodAnno(description = "删除用户")
     public void deleteUser(Long id) {
         dao.deleteEntity(id);
+    }
+
+    /**
+     * @param ids
+     * @return void
+     * @Title: deleteBatchUser
+     * @Description: 按主键删除批量用户(物理)。
+     */
+    @Override
+    @Transactional
+    @MyMethodAnno(description = "删除批量用户")
+    public void deleteBatchUser(Long[] ids) {
+        dao.bulkDelete(ids);
     }
 
     //@formatter:off
@@ -165,9 +179,26 @@ public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> i
     }
 
     @Override
-    public List<Map<String, Object>> findUserCount(String month){
+    public List<Map<String, Object>> findUserCount(String month) {
         Map<String, String> params = new HashMap<>();
         params.put("month", month);
-        return dao.findMapByCondition("findUserByDate",params);
+        return dao.findMapByCondition("findUserByDate", params);
+    }
+
+    /**
+     * 查询用户的男女人数
+     *
+     * @return [0](女), [1](男), [2](保密)
+     */
+    @Override
+    public Map<String, Object> findUserSexCount() {
+        Map<String, Object> mapSexCount = new HashMap<>();
+        Map<String, Map<String, Object>> result = dao.findMapByCondition("findUserSexCount", null, "sex");
+
+        mapSexCount.put("女", result.get(0)==null?0:result.get(0).get("sexCount"));
+        mapSexCount.put("男", result.get(1)==null?0:result.get(1).get("sexCount"));
+        mapSexCount.put("保密", result.get(2)==null?0:result.get(2).get("sexCount"));
+
+        return mapSexCount;
     }
 }

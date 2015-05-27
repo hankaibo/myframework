@@ -33,7 +33,7 @@ import java.util.Map;
  * @UpdateRemark: What is modified?
  */
 @Controller
-@RequestMapping(value = "/dept")
+@RequestMapping(value = "/depts")
 public class BaseDeptController {
     @Resource
     private BaseDeptService baseDeptService;
@@ -45,7 +45,7 @@ public class BaseDeptController {
      * @return
      * @return String
      */
-    @RequestMapping(value = "/depts", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public String list(ModelMap model) {
         List<BaseDept> listDepts = baseDeptService.loadFullDept();
 

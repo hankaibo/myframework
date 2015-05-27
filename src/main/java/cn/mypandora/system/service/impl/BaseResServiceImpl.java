@@ -30,6 +30,16 @@ public class BaseResServiceImpl extends AbstractBaseNestedOperation<BaseRes> imp
         return getDao().loadFullTree();
     }
 
+    /**
+     * 获取带深度的所有资源（一次性全部加载，适合数据量少的情况）。
+     *
+     * @return
+     */
+    @Override
+    public List<BaseRes> loadFullResWithLevel(int level) {
+        return getDao().loadTreeWithLevel(level);
+    }
+
     @Override
     public List<BaseRes> getResDescendants(Long id) {
         return getDao().getDescendants(id);
@@ -90,7 +100,7 @@ public class BaseResServiceImpl extends AbstractBaseNestedOperation<BaseRes> imp
 
     @Override
     public BaseRes findResById(Long id) {
-        return (BaseRes)dao.findById(id);
+        return getDao().findById(id);
     }
 
     @Override

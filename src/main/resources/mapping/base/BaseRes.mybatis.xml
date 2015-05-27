@@ -6,7 +6,7 @@
     <resultMap type="cn.mypandora.system.po.BaseRes" id="BaseResMap">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
-        <result property="URL" column="URL"/>
+        <result property="url" column="URL"/>
         <result property="nodeId" column="node_id"/>
         <result property="lft" column="lft"/>
         <result property="rgt" column="rgt"/>
@@ -14,6 +14,7 @@
         <result property="isEnable" column="is_enable"/>
         <result property="createTime" column="create_time"/>
         <result property="updateTime" column="update_time"/>
+        <result property="level" column="level"/>
     </resultMap>
     
     <select id="findById" resultMap="BaseResMap" parameterType="java.lang.Long">
@@ -29,7 +30,18 @@
             ORDER BY t.lft ASC
         ]]>
     </select>
-    
+
+    <select id="loadTreeWithLevel" resultMap="BaseResMap">
+        <![CDATA[
+            SELECT node.*,(COUNT(parent.name)-1) AS LEVEL
+            FROM t_base_res node,t_base_res parent
+            WHERE node.lft BETWEEN parent.lft AND parent.rgt
+            GROUP BY node.name
+            HAVING COUNT(parent.name)-1>0
+            ORDER BY node.lft
+        ]]>
+    </select>
+
     <select id="getDescendants" resultMap="BaseResMap" parameterType="java.lang.Long">
         <![CDATA[
             SELECT *
@@ -123,7 +135,7 @@
             SELECT LAST_INSERT_ID() AS ID
         </selectKey>
     </insert>
-    
+
     <update id="parentRgtPlus2">
         <![CDATA[
             UPDATE t_base_res t
@@ -131,15 +143,20 @@
             WHERE id=#{id, jdbcType=NUMERIC}
         ]]>
     </update>
-    
-    <update id="update">
-        <![CDATA[
+
+    <update id="update" parameterType="cn.mypandora.system.po.BaseRes">
             UPDATE t_base_res t
-            SET name=#{name, jdbcType=VARCHAR}
+            <set>
+                <if test="name!=null and name!=''">
+                    name=#{name, jdbcType=VARCHAR},
+                </if>
+                <if test="url!=null and url!=''">
+                    URL=#{url, jdbcType=VARCHAR}
+                </if>
+            </set>
             WHERE id=#{id, jdbcType=NUMERIC}
-        ]]>
     </update>
-    
+
     <update id="lftMinus2">
         <![CDATA[
             UPDATE t_base_res t,(SELECT * FROM t_base_res WHERE id=#{id, jdbcType=NUMERIC}) f

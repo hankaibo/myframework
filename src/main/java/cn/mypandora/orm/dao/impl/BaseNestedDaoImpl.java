@@ -1,7 +1,7 @@
-/**   
+/**
  * @ProjectName: MyFramework
- * @Package: cn.mypandora.orm.dao 
- * @ClassName: BaseNestedDaoImpl 
+ * @Package: cn.mypandora.orm.dao
+ * @ClassName: BaseNestedDaoImpl
  * Copyright © hankaibo. All rights reserved.
  * @Author: kaibo
  * @CreateDate: 2014-3-11 上午12:40:23 
@@ -9,28 +9,28 @@
  */
 package cn.mypandora.orm.dao.impl;
 
-import java.util.List;
-
+import cn.mypandora.orm.dao.IBaseNestedDao;
+import cn.mypandora.orm.model.BaseTree;
 import org.apache.ibatis.session.SqlSession;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import cn.mypandora.orm.dao.IBaseNestedDao;
-import cn.mypandora.orm.model.BaseTree;
+import java.io.Serializable;
+import java.util.List;
 
 /**
- * @ClassName: BaseNestedDaoImpl
- * @Description: 嵌套DAO实现类。
- * @Author: kaibo
- * @date: 2014-3-11
- * @UpdateUser: kaibo
- * @UpdateDate: 2014-3-11 上午12:40:23
- * @UpdateRemark: What is modified?
+ * DAO通用操作实现。(嵌套类型)
+ *
+ * @param <T>
  */
 @Repository
-public abstract class BaseNestedDaoImpl<T extends BaseTree> extends BaseEntityDaoImpl<BaseTree> implements
-        IBaseNestedDao<T> {
+public abstract class BaseNestedDaoImpl<T extends BaseTree> implements IBaseNestedDao<T> {
+    private static final Logger logger = LoggerFactory.getLogger(BaseNestedDaoImpl.class);
+
     private static final String LOAD_FULL_TREE = "loadFullTree";
+    private static final String LOAD_TREE_LEVEL = "loadTreeWithLevel";
     private static final String GET_DESCENDANTS = "getDescendants";
     private static final String GET_CHILDS = "getChilds";
     private static final String GET_PARENT = "getParent";
@@ -50,210 +50,230 @@ public abstract class BaseNestedDaoImpl<T extends BaseTree> extends BaseEntityDa
     private static final String FIRST_NODE = "firstNode";
     private static final String LAST_NODE = "lastNode";
 
+    private static final String UPDATE = "update";
+    private static final String DELETE = "delete";
+    private static final String FIND_BY_ID = "findById";
+
+    private static final String SQL_KEY = "SQL Key <";
+    private static final String SQL_KEY_END = ">";
+
     @Autowired
     private SqlSession sqlSession;
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: loadFullTree
-     * Description:
-     * @param t
-     * @return
-     * @see cn.mypandora.orm.service.IBaseNestedOperation#loadFullTree(cn.mypandora.orm.model.BaseTree)
+    /**
+     * 构造sql配置文件中的key, 格式 nameSpace+'.'+sqlKey
+     *
+     * @param sqlKey sql语句的名称
+     * @return sql语句的完整名称
      */
-    //@formatter:on
+    String createSqlKeyName(String sqlKey) {
+        String key = getNameSpace() + "." + sqlKey;
+        logger.debug(SQL_KEY + key + SQL_KEY_END);
+        return key;
+    }
+
+    /**
+     * 查询sql配置文件命名空间
+     *
+     * @return sql配置文件命名空间名称
+     */
+    public abstract String getNameSpace();
+
+    /**
+     * 获取整棵树（一次性全部加载，适合数据量少的情况）
+     *
+     * @return 整棵树
+     */
     @Override
     public List<T> loadFullTree() {
         return sqlSession.selectList(createSqlKeyName(LOAD_FULL_TREE));
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: getDescendants
-     * Description:
-     * @param id
+    /**
+     * 获取某一层级节点。
+     *
+     * @param level 节点层级。
      * @return
-     * @see cn.mypandora.orm.dao.IBaseNestedDao#getDescendants(java.lang.Long)
      */
-    //@formatter:on
+    @Override
+    public List<T> loadTreeWithLevel(int level) {
+        return sqlSession.selectList(createSqlKeyName(LOAD_TREE_LEVEL),level);
+    }
+
+    /**
+     * 获得本节点及下面的所有节点
+     *
+     * @param id 当前操作节点id
+     * @return 本节点及下面的所有节点
+     */
     @Override
     public List<T> getDescendants(Long id) {
         return sqlSession.selectList(createSqlKeyName(GET_DESCENDANTS), id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: getChilds
-     * Description:
-     * @param id
-     * @return
-     * @see cn.mypandora.orm.dao.IBaseNestedDao#getChilds(java.lang.Long)
+    /**
+     * 获得本节点的孩子节点
+     *
+     * @param id 当前操作节点id
+     * @return 本节点的孩子节点
      */
-    //@formatter:on
     @Override
     public List<T> getChilds(Long id) {
         return sqlSession.selectList(createSqlKeyName(GET_CHILDS), id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: getParent
-     * Description:
-     * @param id
-     * @return
-     * @see cn.mypandora.orm.dao.IBaseNestedDao#getParent(java.lang.Long)
+    /**
+     * 获得本节点的父节点
+     *
+     * @param id 当前操作节点id
+     * @return 本节点的父节点
      */
-    //@formatter:on
     @Override
     public T getParent(Long id) {
         return sqlSession.selectOne(createSqlKeyName(GET_PARENT), id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: getAncestry
-     * Description:
-     * @param id
-     * @return
-     * @see cn.mypandora.orm.dao.IBaseNestedDao#getAncestry(java.lang.Long)
+    /**
+     * 获得本节点的祖先节点
+     *
+     * @param id 当前操作节点id
+     * @return 本节点的祖先节点
      */
-    //@formatter:on
     @Override
     public List<T> getAncestry(Long id) {
         return sqlSession.selectList(createSqlKeyName(GET_ANCESTRY), id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: lftPlus2
-     * Description:
+    /**
+     * 左节点加2
+     *
      * @param id
-     * @see cn.mypandora.orm.dao.IBaseNestedDao#lftPlus2(java.lang.Long)
      */
-    //@formatter:on
     @Override
     public void lftPlus2(Long id) {
         sqlSession.update(createSqlKeyName(LFT_PLUS2), id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: rgtPlus2
-     * Description:
+    /**
+     * 右节点加2
+     *
      * @param id
-     * @see cn.mypandora.orm.dao.IBaseNestedDao#rgtPlus2(java.lang.Long)
      */
-    //@formatter:on
     @Override
     public void rgtPlus2(Long id) {
         sqlSession.update(createSqlKeyName(RGT_PLUS2), id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: insertNode
-     * Description:
-     * @param params
-     * @see cn.mypandora.orm.dao.IBaseNestedDao#insertNode(java.lang.Object)
+    /**
+     * 添加节点
+     *
+     * @param params 添加节点
      */
-    //@formatter:on
     @Override
     public void insertNode(Object params) {
         sqlSession.insert(createSqlKeyName(INSERT_NODE), params);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: parentRgtPlus2
-     * Description:
-     * @param id
-     * @see cn.mypandora.orm.dao.IBaseNestedDao#parentRgtPlus2(java.lang.Long)
+    /**
+     * 父右节点加2
+     *
+     * @param id 父节点
      */
-    //@formatter:on
     @Override
     public void parentRgtPlus2(Long id) {
         sqlSession.update(createSqlKeyName(PARENT_RGT_PLUS2), id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: lftMinus2
-     * Description:
+    /**
+     * 左节点减2
+     *
      * @param id
-     * @see cn.mypandora.orm.dao.IBaseNestedDao#lftMinus2(java.lang.Long)
      */
-    //@formatter:on
     @Override
     public void lftMinus2(Long id) {
         sqlSession.update(createSqlKeyName(LFT_MINUS2), id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: rgtMinus2
-     * Description:
+    /**
+     * 右节点减2
+     *
      * @param id
-     * @see cn.mypandora.orm.dao.IBaseNestedDao#rgtMinus2(java.lang.Long)
      */
-    //@formatter:on
     @Override
     public void rgtMinus2(Long id) {
         sqlSession.update(createSqlKeyName(RGT_MINUS2), id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: brotherPlus2
-     * Description:
+    /**
+     * 左右节点加2
+     *
      * @param id
-     * @see cn.mypandora.orm.dao.IBaseNestedDao#brotherPlus2(java.lang.Long)
      */
-    //@formatter:on
     @Override
     public void brotherPlus2(Long id) {
         sqlSession.update(createSqlKeyName(MOVE_DOWN), id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: brotherMinus2
-     * Description:
+    /**
+     * 左右节点减2
+     *
      * @param id
-     * @see cn.mypandora.orm.dao.IBaseNestedDao#brotherMinus2(java.lang.Long)
      */
-    //@formatter:on
     @Override
     public void brotherMinus2(Long id) {
         sqlSession.update(createSqlKeyName(MOVE_UP), id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: isFirstNode
-     * Description:
-     * @param id
+    /**
+     * 判断是否是第一个节点
+     *
+     * @param id 节点id
      * @return
-     * @see cn.mypandora.orm.dao.IBaseNestedDao#isFirstNode(java.lang.Long)
      */
-    //@formatter:on
     @Override
     public boolean isFirstNode(Long id) {
         return sqlSession.selectOne(createSqlKeyName(FIRST_NODE), id) == null ? false : true;
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: isLastNode
-     * Description:
-     * @param id
+    /**
+     * 判断是否是最后一个节点
+     *
+     * @param id 节点id
      * @return
-     * @see cn.mypandora.orm.dao.IBaseNestedDao#isLastNode(java.lang.Long)
      */
-    //@formatter:on
     @Override
     public boolean isLastNode(Long id) {
         return sqlSession.selectOne(createSqlKeyName(LAST_NODE), id) == null ? false : true;
-
     }
 
+    /**
+     * 根据id获取实体。
+     *
+     * @param id 实体id
+     * @return 返回单个实体
+     */
+    @Override
+    public T findById(Serializable id) {
+        return sqlSession.selectOne(createSqlKeyName(FIND_BY_ID), id);
+    }
+
+    /**
+     * 修改实体。
+     *
+     * @param t 实体
+     */
+    @Override
+    public void updateEntity(T t) {
+        sqlSession.update(createSqlKeyName(UPDATE), t);
+    }
+
+    /**
+     * 删除实体。
+     *
+     * @param id 实体id
+     */
+    @Override
+    public void deleteEntity(Serializable id) {
+        sqlSession.delete(createSqlKeyName(DELETE), id);
+    }
 }

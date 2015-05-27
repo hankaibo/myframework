@@ -30,10 +30,10 @@ public class TestUserService {
     // 4标注测试方法
     @Test
     public void hasMatchUser() {
-        boolean b1 = userService.hasMatchUser("admin", "123456");
+        boolean b1 = userService.hasMatchUser("admin", "1");
         boolean b2 = userService.hasMatchUser("admin", "1111");
-        assertTrue(!b1);
-        assertTrue(!b2);
+        assertTrue(b1);
+        assertTrue(b2);
     }
 
 //    @Test
@@ -53,9 +53,12 @@ public class TestUserService {
 //
 //    }
 //
-//    @Test
-//    public void delUser() {
-//        userService.deleteUser(23L);
-//    }
+    @Test
+    public void delUser() {
+        userService.deleteUser(9L);
+//        int i=0;
+//        int a=1000/i;
+//        System.out.println(a);
+    }
 
 }

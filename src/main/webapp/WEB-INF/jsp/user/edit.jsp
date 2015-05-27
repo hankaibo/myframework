@@ -5,26 +5,45 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link type="text/css" rel="stylesheet" href="${ctx}/resources/js/jqueryui/css/jquery-ui-1.10.0.custom.css" />
-<%@ include file="./../header.jsp" %>
-<title>用户修改</title>
-<script type="text/javascript">
-    $(function() {
-        $( "#inputBirthday" ).datepicker({
-            maxDate: new Date()
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <%@ include file="./../header.jsp" %>
+    <script src="${ctx}/resources/js/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
+    <script src="${ctx}/resources/js/jquery-validation-1.13.1/dist/localization/messages_zh.min.js"></script>
+    <title>用户修改</title>
+    <script type="text/javascript">
+        $(function() {
+            $( "#inputBirthday" ).datepicker({
+                maxDate: new Date()
+            });
+            $(".form-horizontal").validate({
+                onsubmit:true,
+                onfocusout:false,
+                onkeyup:false,
+                rules: {
+                },
+                submitHandler:function(){
+                    var param = $(".form-horizontal").serialize();
+                    $.ajax({
+                        url:'${ctx}/users/${user.id}',
+                        success:function(data){
+                            alert("用户修改成功！")
+                        },
+                        type:'put',
+                        dataType:'json',
+                        data:param
+                    });
+                }
+            });
         });
-    });
-</script>
+    </script>
 </head>
 <body>
 <div class="container" style="margin: 0;width:100%">
     <ul class="nav nav-tabs">
-        <li><a href="${ctx}/user/users">用户列表</a></li>
+        <li><a href="${ctx}/users/toList">用户列表</a></li>
         <li class="active"><a href="#">修改</a></li>
     </ul>
-    <form class="form-horizontal" role="form" action="${ctx }/user" method="post">
-        <input type="hidden" name="_method" value="put"/>
+    <form class="form-horizontal" role="form" >
         <input type="hidden" value="${user.id }" name="id"/>
         <input type="hidden" value="${user.credits }" name="credits"/>
         <div class="form-group">

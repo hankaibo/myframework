@@ -8,4 +8,5 @@ import cn.mypandora.system.po.BaseRes;
  * desc
  */
 public interface BaseResDao extends IBaseNestedDao<BaseRes> {
+
 }

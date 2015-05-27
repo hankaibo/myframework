@@ -51,6 +51,14 @@ public interface BaseUserService {
      */
     void deleteUser(Long id);
 
+    /**
+     * @Title: deleteBatchUser
+     * @Description: 按主键删除批量用户(物理)。
+     * @param ids
+     * @return void
+     */
+    void deleteBatchUser(Long[] ids);
+
     /** 
      * @Title: updateEntity
      * @Description: 修改用户。
@@ -104,5 +112,10 @@ public interface BaseUserService {
      * @return
      */
     List<Map<String, Object>> findUserCount(String month);
-    
+
+    /**
+     * 查询用户的男女人数
+     * @return
+     */
+    Map<String,Object> findUserSexCount();
 }

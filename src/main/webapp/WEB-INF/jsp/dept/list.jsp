@@ -1,15 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE HTML>
+<html lang="zh-CN">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<%@ include file="./../header.jsp" %>
 <link rel="stylesheet" href="${ctx }/resources/js/ztree/css/zTreeStyle.css" type="text/css">
-<script type="text/javascript" src="${ctx }/resources/js/jquery-1.10.2.js"></script>
+<link rel="stylesheet" href="${ctx}/resources/js/jquery-ui-bootstrap-masterbs3/third-party/jqGrid/jqGrid/css/ui.jqgrid.css" />
+<link rel="stylesheet" href="${ctx}/resources/js/jquery-ui-bootstrap-masterbs3/third-party/jqGrid/jqGrid.overrides.css" />
 <script type="text/javascript" src="${ctx }/resources/js/ztree/jquery.ztree.core-3.5.js"></script>
 <script type="text/javascript" src="${ctx }/resources/js/ztree/jquery.ztree.exedit-3.5.min.js"></script>
 <script type="text/javascript" src="${ctx }/resources/js/ztree/jquery.ztree.excheck-3.5.min.js"></script>
+<!--  jqGrid -->
+<script src="${ctx}/resources/js/jquery-ui-bootstrap-masterbs3/third-party/jqGrid/jqGrid/js/jquery.jqGrid.min.js"></script>
+<script src="${ctx}/resources/js/jquery-ui-bootstrap-masterbs3/third-party/jqGrid/jqGrid/js/i18n/grid.locale-cn.js"></script>
 <title>用户列表</title>
 <script type="text/javascript">
     $(function(){
@@ -200,6 +206,65 @@
                 });
             }
         };
+        $(function(){
+            $("#gridList").jqGrid({
+                url:'${ctx}/users',  //请求数据的url地址
+                datatype: "json",  //请求的数据类型
+                mtype:"get",
+                colNames:['ID','名称','性别','生日','最后访问时间','积分'], //数据列名称（数组）
+                colModel:[ //数据列各参数信息设置
+                    {name:'id',index:'id', editable:false, width:80,align:'center', title:false},
+                    {name:'username',index:'username', width:100, title:false},
+                    {name:'sex',index:'sex', width:40, formatter:'select', editoptions:{value:"0:女;1:男;2:保密"}},
+//                    {name:'birthday',index:'birthday', width:120,formatter:"date",formatoptions: {srcformat:'Y-m-d',newformat:'Y-m-d'}},
+                    {name:'strBirthday',index:'strBirthday', width:120},
+                    {name:'strLastVisit',index:'strLastVisit', width:160},
+                    {name:'credits',index:'credits', width:100,align:'center'}
+                ],
+                rowNum:10, //每页显示记录数
+                rowList:[10,20,30], //分页选项，可以下拉选择每页显示记录数
+                pager: '#pager',  //表格数据关联的分页条，html元素
+                autowidth: true, //自动匹配宽度
+                caption: "用户列表",
+                gridview:true, //加速显示
+                viewrecords: true,  //显示总记录数
+                multiselect: true,  //可多选，出现多选框
+                multiselectWidth: 25, //设置多选列宽度
+                height: '100%',
+                sortable:true,  //可以排序
+                sortname: 'id',  //排序字段名,可以是列名称或者是一个数字，这个参数会被提交到后台.
+                sortorder: "desc", //排序方式：倒序，本例中设置默认按id倒序排序
+                jsonReader:{
+                    root:"resultList",              // 数据行（默认为：rows）
+                    page: "currentPage",            // 当前页
+                    total: "totalPage",             // 总页数
+                    records: "total",               // 总记录数
+                    repeatitems : false             // 设置成false，在后台设置值的时候，可以乱序。且并非每个值都得设
+                },
+                loadComplete:function(data){ //完成服务器请求后，回调函数
+                    if(data.records==0){ //如果没有记录返回，追加提示信息，删除按钮不可用
+                        $("p").appendTo($("#gridList")).addClass("nodata").html('找不到相关数据！');
+                        $("#del_btn").attr("disabled",true);
+                    }else{ //否则，删除提示，删除按钮可用
+                        $("p.nodata").remove();
+                        $("#del_btn").removeAttr("disabled");
+                    }
+                }
+            });
+            $("#gridList").jqGrid('navGrid','#pager',{add:false,del:false,edit:false,search:false});
+            $("#gridList").jqGrid('navButtonAdd','#pager',{caption:"",title:"删除所选记录",buttonicon:'ui-icon-trash',onClickButton:function(){batchDelFormData();}});
+            //查询
+            $("#find_btn").click(function(){
+                var username = $.trim($("#username").val());
+                if(username){
+                    $("#gridList").jqGrid('setGridParam',{
+                        dataType:'json',
+                        postData:{'username':username}
+                    }).trigger("reloadGrid"); //重新载入
+                }
+            });
+
+        });
         /*用于当鼠标移出节点时，隐藏用户自定义控件，显示隐藏状态同 zTree 内部的编辑、删除按钮*/
         function removeHoverDom(treeId, treeNode) {
             $("#addBtn_"+treeNode.tId).unbind().remove();
@@ -223,8 +288,21 @@
 </style>
 </head>
 <body>
-    <div class="zTreeDemoBackground left">
-        <ul id="treeDemo" class="ztree"></ul>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-4">
+            <ul id="treeDemo" class="ztree"></ul>
+        </div>
+        <div class="col-lg-8">
+            <form class="form-inline">
+                <label>名称：</label><input type="text" class="input" id="username" required/>
+                <input type="button" class="btn btn-success" id="find_btn" value="查 询" />
+                <input type="button" class="btn btn-primary pull-right fancybox" id="add_btn" href="#addDiv" value="新 增" />
+            </form>
+            <table id="gridList"></table>
+            <div id="pager"></div>
+        </div>
     </div>
+</div>
 </body>
 </html>

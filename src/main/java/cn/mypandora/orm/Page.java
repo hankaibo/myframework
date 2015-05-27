@@ -1,17 +1,16 @@
 package cn.mypandora.orm;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * @param <T>
  * @ClassName:Page
  * @Description:分页。
  * @Author:hankaibo
  * @date:2014-1-1
  * @UpdateUser:hankaibo
  * @UpdateDate:2014-1-1 上午11:52:31
- * @UpdateRemark:What is modified?
- * @param <T>
+ * @UpdateRemark:因为页面使用jqGrid自带的分页功能，故不需要计算分页导航条。暂时没有找到好的在分页中的排序，故采用原生SQL的办法。
  */
 public class Page<T> {
     /**
@@ -25,14 +24,9 @@ public class Page<T> {
     protected int pageSize = 10;
 
     /**
-     * 排序的规则集
+     * 总页数
      */
-    protected List<Sort> orders = new ArrayList<Sort>();
-
-    /**
-     * 自动计算总记录数
-     */
-    protected boolean autoCount = true;
+    protected long totalPage = -1;
 
     /**
      * 总记录数
@@ -40,41 +34,16 @@ public class Page<T> {
     protected long total = -1;
 
     /**
+     * 自动计算总记录数
+     */
+    protected boolean autoCount = true;
+
+    /**
      * 返回结果集
-     * 
      */
     private List<T> resultList;
 
-    /**
-     * 根据pageNo和pageSize计算当前页第一条记录在总结果集中的位置,序号从1开始.
-     */
-    public int getFirst() {
-        return ((currentPage - 1) * pageSize);
-    }
-
-    /**
-     * 设置排序方式向.
-     * 
-     * @param order
-     * 
-     */
-    public Page<T> addOrder(final Sort order) {
-        orders.add(order);
-
-        return this;
-    }
-
-    /**
-     * 是否已设置排序字段,无默认值.
-     */
-    public boolean isOrderBySetted() {
-        return orders.size() > 0;
-    }
-
-    public int getTotalPage() {
-        return (int) (total % pageSize == 0 ? total / pageSize : total / pageSize + 1);
-    }
-
+    //-----------setter getter--------------
     public int getCurrentPage() {
         return currentPage;
     }
@@ -95,20 +64,8 @@ public class Page<T> {
         }
     }
 
-    public List<Sort> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Sort> orders) {
-        this.orders = orders;
-    }
-
-    public boolean isAutoCount() {
-        return autoCount;
-    }
-
-    public void setAutoCount(boolean autoCount) {
-        this.autoCount = autoCount;
+    public int getTotalPage() {
+        return (int) (total % pageSize == 0 ? total / pageSize : total / pageSize + 1);
     }
 
     public long getTotal() {
@@ -119,6 +76,14 @@ public class Page<T> {
         this.total = total;
     }
 
+    public boolean isAutoCount() {
+        return autoCount;
+    }
+
+    public void setAutoCount(boolean autoCount) {
+        this.autoCount = autoCount;
+    }
+
     public List<T> getResultList() {
         return resultList;
     }
@@ -127,47 +92,11 @@ public class Page<T> {
         this.resultList = resultList;
     }
 
-    public List<T> doPageForList(List<T> totalList) {
-        doSortForList(totalList);
-        List<T> pageList = new ArrayList<T>();
-        if (totalList != null) {
-            int total = totalList.size();
-            int fromIndex = getFirst();
-            int toIndex = fromIndex + getPageSize();
-            if (toIndex > total) {
-                toIndex = total;
-            }
-            if (fromIndex > total) {
-                return pageList;
-            }
-            pageList = totalList.subList(fromIndex, toIndex);
-            setResultList(pageList);
-            setTotal(total);
-        }
-        return pageList;
-    }
-
-    public void nextPage() {
-        currentPage += 1;
-    }
-
-    public boolean hasNextPage() {
-        return this.currentPage <= this.getTotalPage();
-    }
-
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    private void doSortForList(List<T> totalList) {
-        // if (CollectionUtils.isNotEmpty(getOrders())) {
-        // ComparatorChain comparatorChain = new ComparatorChain();
-        // for (Sort sort : getOrders()) {
-        // Comparator comparator = new BeanComparator(sort.getField());
-        // if (sort.getStyle().equals(OrderStyle.DESC)) {
-        // comparator = new ReverseComparator(comparator);
-        // }
-        // comparatorChain.addComparator(comparator);
-        // }
-        // Collections.sort(totalList, comparatorChain);
-        // }
+    /**
+     * 根据currentPage和pageSize计算当前页第一条记录在总结果集中的位置,序号从1开始.
+     */
+    public int getFirst() {
+        return ((currentPage - 1) * pageSize);
     }
 
 }
