@@ -1,5 +1,6 @@
 package cn.mypandora.system.service.impl;
 
+import cn.mypandora.ldap.PersonRepo;
 import cn.mypandora.log.MyMethodAnno;
 import cn.mypandora.orm.Page;
 import cn.mypandora.orm.dao.IBaseEntityDao;
@@ -28,6 +29,8 @@ import java.util.Map;
 public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> implements BaseUserService {
     @Resource
     private BaseUserDao dao;
+    @Resource
+    private PersonRepo personRepo;
 
     //@formatter:off
     /* (非 Javadoc)
@@ -174,7 +177,9 @@ public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> i
      */
     //@formatter:on
     @Override
-    public Page<BaseUser> findPageUserByCondition(String string, Object object, Page<BaseUser> page) {
+     public Page<BaseUser> findPageUserByCondition(String string, Object object, Page<BaseUser> page) {
+        List<BaseUser> listStr=personRepo.getAllPerson();
+        List<String> listName=personRepo.getAllPersonNames();
         return dao.findByCondition(string, object, page);
     }
 

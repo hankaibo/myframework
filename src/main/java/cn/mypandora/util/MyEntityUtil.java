@@ -126,7 +126,7 @@ public class MyEntityUtil {
          * @Title: demo.java
          * @Copyright 2010 -2013 CreativeWise
          * @Package com.oneworld.entity.login
-         * @Description: TODO(用一句话描述该文件做什么)
+         * @Description: (用一句话描述该文件做什么)
          * @author guangchao
          * @date 2013-12-20 上午11:03:56
          * @version V1.0
@@ -159,7 +159,7 @@ public class MyEntityUtil {
         sb.append("\r\n");
         /**
          * @ClassName: demo
-         * @Description: TODO(这里用一句话描述这个类的作用)
+         * @Description: (这里用一句话描述这个类的作用)
          * @author guangchao
          * @date 2013-12-20 上午11:03:56
          * 
@@ -272,7 +272,7 @@ public class MyEntityUtil {
     }
 
     /**
-     * 出口 TODO
+     * 出口
      * 
      * @param args
      */
