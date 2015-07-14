@@ -1,15 +1,13 @@
-/**   
+/**
  * @ProjectName: MyFramework
- * @Package: cn.mypandora.system.po 
- * @ClassName: BaseRole 
+ * @Package: cn.mypandora.system.po
+ * @ClassName: BaseRole
  * Copyright © hankaibo. All rights reserved.
  * @Author: kaibo
  * @CreateDate: 2014-4-22 下午6:37:01 
  *
  */
 package cn.mypandora.system.po;
-
-import java.util.Collection;
 
 import cn.mypandora.orm.model.BaseEntity;
 
@@ -25,69 +23,40 @@ import cn.mypandora.orm.model.BaseEntity;
 public class BaseRole extends BaseEntity {
 
     private static final long serialVersionUID = 6199599081168354432L;
-    private String name;
+    private String role;
     private String description;
-    private Collection<BaseUser> users;
-    private Collection<BasePermission> pmss;
+    private Boolean available = Boolean.FALSE;
 
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
+    public BaseRole() {
     }
 
-    /**
-     * @param name
-     *            the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
+    private BaseRole(String role, String description, Boolean available) {
+        this.role = role;
+        this.description = description;
+        this.available = available;
     }
 
-    /**
-     * @return the description
-     */
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public String getDescription() {
         return description;
     }
 
-    /**
-     * @param description
-     *            the description to set
-     */
     public void setDescription(String description) {
         this.description = description;
     }
 
-    /**
-     * @return the users
-     */
-    public Collection<BaseUser> getUsers() {
-        return users;
+    public Boolean getAvailable() {
+        return available;
     }
 
-    /**
-     * @param users
-     *            the users to set
-     */
-    public void setUsers(Collection<BaseUser> users) {
-        this.users = users;
+    public void setAvailable(Boolean available) {
+        this.available = available;
     }
-
-    /**
-     * @return the pmss
-     */
-    public Collection<BasePermission> getPmss() {
-        return pmss;
-    }
-
-    /**
-     * @param pmss
-     *            the pmss to set
-     */
-    public void setPmss(Collection<BasePermission> pmss) {
-        this.pmss = pmss;
-    }
-
 }

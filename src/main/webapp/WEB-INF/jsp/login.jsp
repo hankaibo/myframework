@@ -11,7 +11,7 @@
     <script type="text/javascript">
         $(function() {
             $('#kaptchaImage').click(function() {
-                $(this).attr('src', '${ctx}/login/captcha-image?' + Math.floor(Math.random() * 100));
+                $(this).attr('src', '${ctx}/login/captchaImage?' + Math.floor(Math.random() * 100));
             });
         });
     </script>
@@ -25,7 +25,7 @@
                 </c:if>
                 <form action="${ctx}/login" method="post">
                     <h1 class="text-center">请登录</h1>
-                    <input class="form-control" type="text" placeholder="用户名" name="userName" required autofocus>
+                    <input class="form-control" type="text" placeholder="用户名" name="username" required autofocus>
                     <input class="form-control" type="password" placeholder="密码" name="password" required>
                     <c:if test="${isCaptcha}">
                         <input class="form-control" type="text" placeholder="验证码" name="kaptcha" required>

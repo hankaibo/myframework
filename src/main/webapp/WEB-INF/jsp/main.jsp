@@ -114,11 +114,11 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-2 col-lg-offset-1" style="padding-right: 0">
+            <div class="col-lg-2 col-lg-offset-1" style="background-color:#e7e7e7;">
                 <div id="treeDemo"></div>
             </div>
-            <div class="col-lg-8" style="padding-left: 0;">
-                <iframe id="rightFrame" name="rightFrame" src="${ctx}/users/toList" frameborder=0 scrolling=no style="margin-left:0px;margin-top:-3px;width:100%;height:530px;"></iframe>
+            <div class="col-lg-9">
+                <iframe id="rightFrame" name="rightFrame" src="${ctx}/users/toList" frameborder=0 scrolling=no style="margin-left:0px;margin-top:-3px;width:100%;height:500px;"></iframe>
             </div>
         </div>
     </div>

@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- 引入命名空间所对应的Schema文件 -->
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:task="http://www.springframework.org/schema/task"
-       xmlns:ldap="http://www.springframework.org/schema/ldap"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
         http://www.springframework.org/schema/context
@@ -14,11 +15,9 @@
         http://www.springframework.org/schema/aop
         http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
         http://www.springframework.org/schema/task
-        http://www.springframework.org/schema/task/spring-task-3.2.xsd
-        http://www.springframework.org/schema/ldap
-        http://www.springframework.org/schema/ldap/spring-ldap.xsd">
+        http://www.springframework.org/schema/task/spring-task-3.2.xsd">
     <!-- 扫描类包，将标注Spring注解的类自动转化Bean,同时完成Bean的注入并在父容器中（applicationContext.xml）将Controller的注解排除掉 -->
-    <context:component-scan base-package="cn.mypandora.*">
+    <context:component-scan base-package="cn.mypandora.*,cn.cpbpbc">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
 
@@ -27,17 +26,34 @@
         <property name="locations">
             <list>
                 <value>classpath:db.properties</value>
-                <value>classpath:ldap.properties</value>
             </list>
         </property>
     </bean>
 
     <!-- *****************************数据库连接***************************** -->
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-        <property name="driverClass" value="${center.jdbc.driverClass}"/>
-        <property name="jdbcUrl" value="${center.jdbc.jdbcUrl}"/>
-        <property name="user" value="${center.jdbc.user}"/>
-        <property name="password" value="${center.jdbc.password}"/>
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+        <property name="url" value="${center.jdbc.jdbcUrl}" />
+        <property name="username" value="${center.jdbc.user}" />
+        <property name="password" value="${center.jdbc.password}" />
+        <!-- 配置初始化大小、最小、最大、配置获取连接等待超时的时间 -->
+        <property name="initialSize" value="1" />
+        <property name="minIdle" value="1" />
+        <property name="maxActive" value="20" />
+        <property name="maxWait" value="60000" />
+        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
+        <property name="timeBetweenEvictionRunsMillis" value="60000" />
+        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
+        <property name="minEvictableIdleTimeMillis" value="300000" />
+
+        <property name="validationQuery" value="SELECT 'x'" />
+        <property name="testWhileIdle" value="true" />
+        <property name="testOnBorrow" value="false" />
+        <property name="testOnReturn" value="false" />
+        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
+        <property name="poolPreparedStatements" value="false" />
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="20" />
+        <!-- 配置监控统计拦截的filters -->
+        <property name="filters" value="stat" />
     </bean>
 
     <!-- *****************************myBatis文件***************************** -->
@@ -49,19 +65,6 @@
     <bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
         <constructor-arg index="0" ref="sqlSessionFactory"/>
         <constructor-arg index="1" value="BATCH"/>
-    </bean>
-
-    <!-- *****************************Spring LDAP***************************** -->
-    <ldap:context-source
-            url="ldap://localhost:389"
-            base="dc=mypandora,dc=org"
-            username="cn=Manager"
-            password="123456"/>
-
-    <ldap:ldap-template id="ldapTemplate" context-source-ref="contextSource"/>
-
-    <bean id="personRepo" class="cn.mypandora.ldap.PersonRepoImpl">
-        <property name="ldapTemplate" ref="ldapTemplate"/>
     </bean>
 
     <!-- *****************************事务管理***************************** -->
@@ -113,4 +116,5 @@
 
     <!-- *****************************spring-task定时任务***************************** -->
     <task:annotation-driven/>
+
 </beans>

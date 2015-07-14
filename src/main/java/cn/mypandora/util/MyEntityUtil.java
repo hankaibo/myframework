@@ -121,27 +121,6 @@ public class MyEntityUtil {
     private String parse(String[] colNames, String[] colTypes, int[] colSizes) {
         StringBuffer sb = new StringBuffer();
 
-<<<<<<< HEAD
-        // 注释部分
-        /**
-         * @Title: demo.java
-         * @Copyright 2010 -2013 CreativeWise
-         * @Package com.oneworld.entity.login
-         * @Description: (用一句话描述该文件做什么)
-         * @author guangchao
-         * @date 2013-12-20 上午11:03:56
-         * @version V1.0
-=======
-        /*
-         * 此为参考例子。
-         * @ProjectName: MyFramework
-         * @Package: cn.mypandora.log
-         * @ClassName: MyLogAspect
-         * @Copyright © hankaibo. All rights reserved.
-         * @Author: kaibo
-         * @CreateDate: 2014-4-27 下午3:02:55
->>>>>>> 98e325091a39f382899375501e7372517e979272
-         */
         sb.append("/**\r\n");
         sb.append(" * @ProjectName: " + PROJCET_NAME + " \r\n");
         sb.append(" * @Package: " + PACKAGE_PATH + " \r\n");
@@ -168,25 +147,6 @@ public class MyEntityUtil {
         sb.append("\r\n");
         sb.append("import java.io.Serializable;\r\n");
         sb.append("\r\n");
-<<<<<<< HEAD
-        /**
-         * @ClassName: demo
-         * @Description: (这里用一句话描述这个类的作用)
-         * @author guangchao
-         * @date 2013-12-20 上午11:03:56
-         * 
-=======
-
-        /*
-         * @ClassName: MyLogAspect
-         * @Description: 增强类。
-         * @Author: kaibo
-         * @date: 2014-4-27
-         * @UpdateUser: kaibo
-         * @UpdateDate: 2014-4-27 下午3:02:55
-         * @UpdateRemark: What is modified?
->>>>>>> 98e325091a39f382899375501e7372517e979272
-         */
         // 实体部分
         sb.append("/**\r\n");
         sb.append(" * @ClassName: " + firstToUpper(camelCase(TABLE_NAME.substring(2))) + " \r\n");
@@ -333,16 +293,10 @@ public class MyEntityUtil {
     }
 
     /**
-<<<<<<< HEAD
-     * 出口
-     * 
-     * @param args
-=======
      * @Title: createFile
      * @Description: 写入文件。
      * @param content
      * @return void
->>>>>>> 98e325091a39f382899375501e7372517e979272
      */
     private void createFile(String content) {
         try {

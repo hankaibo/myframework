@@ -17,6 +17,7 @@
     <listener>
         <listener-class>org.springframework.web.util.WebAppRootListener</listener-class>
     </listener>
+
     <!-- 配置logback -->
     <context-param>
         <param-name>logbackConfigLocation</param-name>
@@ -29,30 +30,26 @@
     <!-- 配置web容器，以便web容器启动时能够自动加载spring容器。 -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:applicationContext.xml</param-value>
+        <param-value>classpath:applicationContext.xml,classpath:applicationContext-shiro.xml</param-value>
     </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <!--配置Shiro过滤器,先让Shiro过滤系统接收到的请求-->
-    <!--这里filter-name必须对应applicationContext.xml中定义的-->
-    <!--<bean id="shiroFilter"/>-->
-    <!--使用[/*]匹配所有请求,保证所有的可控请求都经过Shiro的过滤-->
-    <!--通常会将此filter-mapping放置到最前面(即其他filter-mapping前面),以保证它是过滤器链中第一个起作用的-->
-    <!--<filter>-->
-        <!--<filter-name>shiroFilter</filter-name>-->
-        <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
-        <!--<init-param>-->
+    <!--DelegatingFilterProxy作用是自动到spring容器查找名字为shiroFilter（filter-name）的bean并把所有Filter的操作委托给它-->
+    <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+        <init-param>
             <!--该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理-->
-            <!--<param-name>targetFilterLifecycle</param-name>-->
-            <!--<param-value>true</param-value>-->
-        <!--</init-param>-->
-    <!--</filter>-->
-    <!--<filter-mapping>-->
-        <!--<filter-name>shiroFilter</filter-name>-->
-        <!--<url-pattern>*.html</url-pattern>-->
-    <!--</filter-mapping>-->
+            <param-name>targetFilterLifecycle</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
     <!-- 修改编码 -->
     <filter>

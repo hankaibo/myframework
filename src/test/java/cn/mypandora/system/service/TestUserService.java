@@ -7,7 +7,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
 
 /**
  * @ClassName:TestUserService
@@ -32,8 +32,8 @@ public class TestUserService {
     public void hasMatchUser() {
         boolean b1 = userService.hasMatchUser("admin", "1");
         boolean b2 = userService.hasMatchUser("admin", "1111");
-        assertTrue(b1);
-        assertTrue(b2);
+        assertFalse(b1);
+        assertFalse(b2);
     }
 
 //    @Test

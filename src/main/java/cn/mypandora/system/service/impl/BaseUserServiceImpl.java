@@ -1,6 +1,5 @@
 package cn.mypandora.system.service.impl;
 
-import cn.mypandora.ldap.PersonRepo;
 import cn.mypandora.log.MyMethodAnno;
 import cn.mypandora.orm.Page;
 import cn.mypandora.orm.dao.IBaseEntityDao;
@@ -15,6 +14,7 @@ import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @ClassName:UserService
@@ -29,8 +29,6 @@ import java.util.Map;
 public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> implements BaseUserService {
     @Resource
     private BaseUserDao dao;
-    @Resource
-    private PersonRepo personRepo;
 
     //@formatter:off
     /* (非 Javadoc)
@@ -134,7 +132,7 @@ public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> i
     @Transactional
     @MyMethodAnno(description = "删除批量用户")
     public void deleteBatchUser(Long[] ids) {
-        dao.bulkDelete(ids);
+        dao.deleteBatchEntity(ids);
     }
 
     //@formatter:off
@@ -177,9 +175,7 @@ public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> i
      */
     //@formatter:on
     @Override
-     public Page<BaseUser> findPageUserByCondition(String string, Object object, Page<BaseUser> page) {
-        List<BaseUser> listStr=personRepo.getAllPerson();
-        List<String> listName=personRepo.getAllPersonNames();
+    public Page<BaseUser> findPageUserByCondition(String string, Object object, Page<BaseUser> page) {
         return dao.findByCondition(string, object, page);
     }
 
@@ -200,10 +196,32 @@ public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> i
         Map<String, Object> mapSexCount = new HashMap<>();
         Map<String, Map<String, Object>> result = dao.findMapByCondition("findUserSexCount", null, "sex");
 
-        mapSexCount.put("女", result.get(0)==null?0:result.get(0).get("sexCount"));
-        mapSexCount.put("男", result.get(1)==null?0:result.get(1).get("sexCount"));
-        mapSexCount.put("保密", result.get(2)==null?0:result.get(2).get("sexCount"));
+        mapSexCount.put("女", result.get(0) == null ? 0 : result.get(0).get("sexCount"));
+        mapSexCount.put("男", result.get(1) == null ? 0 : result.get(1).get("sexCount"));
+        mapSexCount.put("保密", result.get(2) == null ? 0 : result.get(2).get("sexCount"));
 
         return mapSexCount;
+    }
+
+    /**
+     * 根据用户名查找其权限
+     *
+     * @param username
+     * @return
+     */
+    @Override
+    public Set<String> findRoles(String username) {
+        return null;
+    }
+
+    /**
+     * 根据用户名查找其权限
+     *
+     * @param username
+     * @return
+     */
+    @Override
+    public Set<String> findPermissions(String username) {
+        return null;
     }
 }

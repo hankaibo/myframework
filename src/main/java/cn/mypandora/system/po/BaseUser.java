@@ -1,7 +1,7 @@
-/**   
+/**
  * @ProjectName: MyFramework
- * @Package: cn.mypandora.system.po 
- * @ClassName: BaseUser 
+ * @Package: cn.mypandora.system.po
+ * @ClassName: BaseUser
  * Copyright © hankaibo. All rights reserved.
  * @Author: kaibo
  * @CreateDate: 2014年3月7日 下午4:18:43 
@@ -29,23 +29,47 @@ public class BaseUser extends BaseEntity {
 
     private static final long serialVersionUID = 1866721052326765131L;
 
-    /** @Fields username :姓名 */
+    /**
+     * @Fields username :姓名
+     */
     private String username;
-    /** @Fields password :密码 */
+    /**
+     * @Fields password :密码
+     */
     private String password;
-    /** @Fields realName :真实姓名 */
+    /**
+     * 盐
+     */
+    private String salt;
+
+    private Boolean locked = Boolean.FALSE;
+    /**
+     * @Fields realName :真实姓名
+     */
     private String realName;
-    /** @Fields email :邮箱 */
+    /**
+     * @Fields email :邮箱
+     */
     private String email;
-    /** @Fields phone :电话 */
+    /**
+     * @Fields phone :电话
+     */
     private String phone;
-    /** @Fields mobile :手机 */
+    /**
+     * @Fields mobile :手机
+     */
     private String mobile;
-    /** @Fields pictureUrl :头像地址 */
+    /**
+     * @Fields pictureUrl :头像地址
+     */
     private String pictureUrl;
-    /** @Fields sex :性别 */
+    /**
+     * @Fields sex :性别
+     */
     private Integer sex;
-    /** @Fields birthday :生日 */
+    /**
+     * @Fields birthday :生日
+     */
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date birthday;
     /**
@@ -53,15 +77,21 @@ public class BaseUser extends BaseEntity {
      * 因为前台采用的jqgrid主要是配合PHP的，PHP的Date类型时间戳是10位，而Java是13位，这样就导致了前台转换时出现错误，在不修改源码的情况下，故多加一个属性。
      */
     private String strBirthday;
-    /** @Fields lastIp :最后登录IP */
+    /**
+     * @Fields lastIp :最后登录IP
+     */
     private String lastIp;
-    /** @Fields lastVisit :最后登录日期 */
+    /**
+     * @Fields lastVisit :最后登录日期
+     */
     private Timestamp lastVisit;
     /**
      * 同上。
      */
     private String strLastVisit;
-    /** @Fields credits :积分 */
+    /**
+     * @Fields credits :积分
+     */
     private int credits;
 
     /**
@@ -72,8 +102,7 @@ public class BaseUser extends BaseEntity {
     }
 
     /**
-     * @param username
-     *            the username to set
+     * @param username the username to set
      */
     public void setUsername(String username) {
         this.username = username;
@@ -87,13 +116,31 @@ public class BaseUser extends BaseEntity {
     }
 
     /**
-     * @param password
-     *            the password to set
+     * @param password the password to set
      */
     public void setPassword(String password) {
         this.password = password;
     }
 
+    public String getSalt() {
+        return salt;
+    }
+
+    public void setSalt(String salt) {
+        this.salt = salt;
+    }
+
+    public Boolean getLocked() {
+        return locked;
+    }
+
+    public void setLocked(Boolean locked) {
+        this.locked = locked;
+    }
+
+    public String getCredentialsSalt() {
+        return username + salt;
+    }
     /**
      * @return the realName
      */
@@ -102,8 +149,7 @@ public class BaseUser extends BaseEntity {
     }
 
     /**
-     * @param realName
-     *            the realName to set
+     * @param realName the realName to set
      */
     public void setRealName(String realName) {
         this.realName = realName;
@@ -117,8 +163,7 @@ public class BaseUser extends BaseEntity {
     }
 
     /**
-     * @param email
-     *            the email to set
+     * @param email the email to set
      */
     public void setEmail(String email) {
         this.email = email;
@@ -132,8 +177,7 @@ public class BaseUser extends BaseEntity {
     }
 
     /**
-     * @param phone
-     *            the phone to set
+     * @param phone the phone to set
      */
     public void setPhone(String phone) {
         this.phone = phone;
@@ -147,8 +191,7 @@ public class BaseUser extends BaseEntity {
     }
 
     /**
-     * @param mobile
-     *            the mobile to set
+     * @param mobile the mobile to set
      */
     public void setMobile(String mobile) {
         this.mobile = mobile;
@@ -162,8 +205,7 @@ public class BaseUser extends BaseEntity {
     }
 
     /**
-     * @param pictureUrl
-     *            the pictureUrl to set
+     * @param pictureUrl the pictureUrl to set
      */
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
@@ -177,8 +219,7 @@ public class BaseUser extends BaseEntity {
     }
 
     /**
-     * @param sex
-     *            the sex to set
+     * @param sex the sex to set
      */
     public void setSex(Integer sex) {
         this.sex = sex;
@@ -192,8 +233,7 @@ public class BaseUser extends BaseEntity {
     }
 
     /**
-     * @param birthday
-     *            the birthday to set
+     * @param birthday the birthday to set
      */
     public void setBirthday(Date birthday) {
         this.birthday = birthday;
@@ -207,8 +247,7 @@ public class BaseUser extends BaseEntity {
     }
 
     /**
-     * @param lastIp
-     *            the lastIp to set
+     * @param lastIp the lastIp to set
      */
     public void setLastIp(String lastIp) {
         this.lastIp = lastIp;
@@ -222,8 +261,7 @@ public class BaseUser extends BaseEntity {
     }
 
     /**
-     * @param lastVisit
-     *            the lastVisit to set
+     * @param lastVisit the lastVisit to set
      */
     public void setLastVisit(Timestamp lastVisit) {
         this.lastVisit = lastVisit;
@@ -237,20 +275,19 @@ public class BaseUser extends BaseEntity {
     }
 
     /**
-     * @param credits
-     *            the credits to set
+     * @param credits the credits to set
      */
     public void setCredits(int credits) {
         this.credits = credits;
     }
 
     public String getStrBirthday() {
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
-        return sdf.format(this.getBirthday()!=null?this.getBirthday():new Date(System.currentTimeMillis()));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(this.getBirthday() != null ? this.getBirthday() : new Date(System.currentTimeMillis()));
     }
 
     public String getStrLastVisit() {
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        return sdf.format(this.getLastVisit()!=null?this.getLastVisit():new Timestamp(0L));
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(this.getLastVisit() != null ? this.getLastVisit() : new Timestamp(0L));
     }
 }

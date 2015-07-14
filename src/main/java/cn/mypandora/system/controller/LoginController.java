@@ -9,7 +9,13 @@ import cn.mypandora.system.vo.ParentChildTree;
 import cn.mypandora.util.MyTreeUtil;
 import com.google.code.kaptcha.Constants;
 import com.google.code.kaptcha.Producer;
-import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.ExcessiveAttemptsException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
+import org.apache.shiro.web.util.WebUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -23,6 +29,7 @@ import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.awt.image.BufferedImage;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -52,6 +59,7 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String loginPage(ModelMap model) {
+
         ResourceBundle resourceBundle = ResourceBundle.getBundle("captcha");
         String isCaptcha = resourceBundle.getString("isCaptcha");
         if (isCaptcha.equalsIgnoreCase("true")) {
@@ -71,13 +79,13 @@ public class LoginController {
             if (loginCommand.getKaptcha().equals(code)) {
                 logger.debug("验证码成功。");
                 //用户名/密码判断
-                return actualLoginCheck(request, response, loginCommand,true);
+                return actualLoginCheck(request, response, loginCommand, true);
             } else {
                 return new ModelAndView("login", "error", "验证码错误.").addObject("isCaptcha", true);
             }
         } else {
             //用户名/密码判断
-            return actualLoginCheck(request, response, loginCommand,false);
+            return actualLoginCheck(request, response, loginCommand, false);
         }
     }
 
@@ -89,7 +97,7 @@ public class LoginController {
      * @Title: getKaptchaImage
      * @Description: 生成验证码。
      */
-    @RequestMapping(value = "/captcha-image", method = RequestMethod.GET)
+    @RequestMapping(value = "/captchaImage", method = RequestMethod.GET)
     public void getKaptchaImage(HttpServletRequest request, HttpServletResponse response) throws Exception {
         response.setDateHeader("Expires", 0);
         // Set standard HTTP/1.1 no-cache headers.
@@ -118,29 +126,44 @@ public class LoginController {
     }
 
     private ModelAndView actualLoginCheck(HttpServletRequest request, HttpServletResponse response, LoginCommand loginCommand, boolean isCaptcha) {
+        boolean rememberMe = WebUtils.isTrue(request, FormAuthenticationFilter.DEFAULT_REMEMBER_ME_PARAM);
+        //构造登陆令牌环
+        UsernamePasswordToken token = new UsernamePasswordToken(loginCommand.getUsername(), loginCommand.getPassword());
         try {
-            boolean isLogin = baseUserService.hasMatchUser(loginCommand.getUserName(), loginCommand.getPassword());
+            //
+            SecurityUtils.getSubject().login(token);
             //登录成功之后，积分+5；查询对应资源；显示相应页面。
-            if (isLogin) {
-                BaseUser user = baseUserService.findUserByUsername(loginCommand.getUserName());
-                user.setLastIp(request.getRemoteAddr());
-                user.setLastVisit(new Timestamp(System.currentTimeMillis()));
-                baseUserService.loginSuccess(user);
-                // 记录session的值
-                request.getSession().setAttribute("user", user);
-                List<BaseRes> listResoureces = baseResService.getResDescendants(1L);
-                List<ParentChildTree> listPCTrees = new ArrayList<>();
-                for (BaseRes res : listResoureces) {
-                    listPCTrees.add(MyTreeUtil.lfNode2pcNode(res));
+            //登陆成功
+            HttpSession session = request.getSession(true);
+            try {
+                BaseUser user = baseUserService.findUserByUsername(loginCommand.getUsername());
+                if (user != null) {
+                    user.setLastIp(request.getRemoteAddr());
+                    user.setLastVisit(new Timestamp(System.currentTimeMillis()));
+                    baseUserService.loginSuccess(user);
+                    // 记录session的值
+                    session.setAttribute("user", user);
+                    List<BaseRes> listResoureces = baseResService.getResDescendants(1L);
+                    List<ParentChildTree> listPCTrees = new ArrayList<>();
+                    for (BaseRes res : listResoureces) {
+                        listPCTrees.add(MyTreeUtil.lfNode2pcNode(res));
+                    }
+                    request.getSession().setAttribute("menuTree", listPCTrees);
+                    return new ModelAndView("main");
                 }
-                request.getSession().setAttribute("menuTree", listPCTrees);
-
-                return new ModelAndView("main");
+            } catch (Exception e) {
+                logger.error(e.getMessage(), e);
             }
             return isCaptcha ? new ModelAndView("login", "error", "用户名或密码错误.").addObject("isCaptcha", true) : new ModelAndView("login", "error", "用户名或密码错误.");
-        } catch (AuthenticationException e) {
-            logger.error("用户登录错误:"+e);
-            return isCaptcha ? new ModelAndView("login", "error", "用户名或密码错误.").addObject("isCaptcha", true) : new ModelAndView("login", "error", "用户名或密码错误.");
+        } catch (UnknownAccountException e) {
+            logger.error("账号不存在!:" + e);
+        } catch (IncorrectCredentialsException e) {
+            logger.error("用户名/密码错误!:" + e);
+        } catch (ExcessiveAttemptsException e) {
+            logger.error("账户错误次数过多,暂时禁止登录!:" + e);
+        } catch (Exception e) {
+            logger.error("用户登录错误:" + e);
         }
+        return isCaptcha ? new ModelAndView("login", "error", "用户名或密码错误.").addObject("isCaptcha", true) : new ModelAndView("login", "error", "用户名或密码错误.");
     }
 }

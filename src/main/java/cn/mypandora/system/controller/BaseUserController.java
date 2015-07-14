@@ -11,23 +11,24 @@ package cn.mypandora.system.controller;
 
 import cn.mypandora.orm.Page;
 import cn.mypandora.system.po.BaseUser;
+import cn.mypandora.system.po.UploadFile;
 import cn.mypandora.system.service.BaseUserService;
 import cn.mypandora.util.MyDateUtils;
 import cn.mypandora.util.MyExcelUtil;
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -83,9 +84,15 @@ public class BaseUserController {
         page.setPageSize(pageSize);
 
         Map<String, Object> params = new HashMap<>();
-        params.put("sortName", sortName);
-        params.put("orderName", orderName);
-        params.put("username", username);
+        if (null != sortName && StringUtils.isNotBlank(sortName)) {
+            params.put("sortName", sortName);
+        }
+        if (null != orderName && StringUtils.isNotBlank(orderName)) {
+            params.put("orderName", orderName);
+        }
+        if (null != username && StringUtils.isNotBlank(username)) {
+            params.put("username", username);
+        }
 
         page = baseUserService.findPageUserByCondition("pageUsers", params, page);
         return page;
@@ -136,6 +143,7 @@ public class BaseUserController {
      * @Title: delete
      * @Description: 删除批量用户。
      */
+    @RequiresRoles("admin")
     @RequestMapping(value = "/batch/{ids}", method = RequestMethod.DELETE)
     public
     @ResponseBody
@@ -170,6 +178,13 @@ public class BaseUserController {
     public String update(BaseUser baseUser) {
         baseUserService.updateUser(baseUser);
         return "user/list";
+    }
+
+    @RequestMapping(value = "/up", method = RequestMethod.POST)
+    public void up(@RequestParam("FileDate") Part part) {
+        UploadFile file = new UploadFile();
+        file.setFileSize(part.getSize());
+
     }
 
     /**

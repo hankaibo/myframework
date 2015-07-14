@@ -22,11 +22,25 @@ public interface IBaseEntityDao<T extends BaseEntity> {
     void addEntity(T t);
 
     /**
+     * 批量添加实体。
+     *
+     * @param list 实体
+     */
+    void addBatchEntity(List<T> list);
+
+    /**
      * 修改实体。
      *
      * @param t 实体
      */
     void updateEntity(T t);
+
+    /**
+     * 批量修改实体。
+     *
+     * @param list 实体
+     */
+    void updateBatchEntity(List<T> list);
 
     /**
      * 删除实体。
@@ -40,7 +54,7 @@ public interface IBaseEntityDao<T extends BaseEntity> {
      *
      * @param ids 实体id数组
      */
-    void bulkDelete(Serializable[] ids);
+    void deleteBatchEntity(Serializable[] ids);
 
     /**
      * 根据id获取实体。

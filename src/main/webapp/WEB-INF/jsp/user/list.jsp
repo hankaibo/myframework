@@ -7,16 +7,22 @@
 <head>
     <meta charset="UTF-8">
     <%@ include file="./../header.jsp" %>
-    <link rel="stylesheet" href="${ctx}/resources/js/jquery-ui-bootstrap-masterbs3/third-party/jqGrid/jqGrid/css/ui.jqgrid.css" />
-    <link rel="stylesheet" href="${ctx}/resources/js/jquery-ui-bootstrap-masterbs3/third-party/jqGrid/jqGrid.overrides.css" />
+    <link rel="stylesheet" href="${ctx}/resources/js/jqGrid-4.8.2/css/ui.jqgrid.css" />
+    <link rel="stylesheet" href="${ctx}/resources/js/jqGrid-4.8.2/css/ui.jqgrid-bootstarp.css" />
     <link rel="stylesheet" href="${ctx}/resources/js/fancyBox/source/jquery.fancybox.css?v=2.1.5" media="screen" />
+    <link rel="stylesheet" href="${ctx}/resources/js/uploadify/uploadify.css" />
+    <%--jquery.uploadify.js--%>
+    <script type="text/javascript" src="${ctx}/resources/js/uploadify/jquery.uploadify.js"></script>
+    <script type="text/javascript" src="${ctx}/resources/js/uploadify/myuploadify.js"></script>
     <!--  jqGrid -->
-    <script src="${ctx}/resources/js/jquery-ui-bootstrap-masterbs3/third-party/jqGrid/jqGrid/js/jquery.jqGrid.min.js"></script>
-    <script src="${ctx}/resources/js/jquery-ui-bootstrap-masterbs3/third-party/jqGrid/jqGrid/js/i18n/grid.locale-cn.js"></script>
+    <script src="${ctx}/resources/js/jqGrid-4.8.2/js/jquery.jqGrid.src.js"></script>
+    <script src="${ctx}/resources/js/jqGrid-4.8.2/js/i18n/grid.locale-en.js"></script>
     <!-- fancyBox -->
     <script src="${ctx}/resources/js/fancyBox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
     <title>用户列表</title>
     <script type="text/javascript">
+        var contentPath="${ctx}";
+        var sessionId="${sessionId}";
         $(function(){
             $("#gridList").jqGrid({
                 url:'${ctx}/users',  //请求数据的url地址
@@ -75,8 +81,10 @@
                     }).trigger("reloadGrid"); //重新载入
                 }
             });
+            //遮盖层
             $(".fancybox").fancybox();
-
+            //导入用户
+            myUploadify("/upload/import",false,'1024kb','表格',"*.xls;*.xlsx","foo",false,10);
         });
         function fancyBoxFormatter ( cellvalue, options, rowObject ){
             var result,link,fancyBoxHTML,fancyBoxContent;
@@ -86,8 +94,8 @@
             return link + fancyBoxHTML;
         }
         function displayButtons(cellvalue,options,rowObject){
-            var edit="<a class='btn' href='${ctx}/users/"+options.rowId+"'>修改</a>";
-            var del="<a class='btn' href='#' onclick='delFormData(\""+options.rowId+"\")'>删除</a>";
+            var edit="<a class='btn btn-default' role='button' href='${ctx}/users/"+options.rowId+"'>修改</a>";
+            var del="<a class='btn btn-default' role='button' href='#' onclick='delFormData(\""+options.rowId+"\")'>删除</a>";
             return edit+del;
         }
         function delFormData(id){
@@ -127,13 +135,36 @@
             }
         }
     </script>
+    <style>
+    #queue {
+    background-color: #FFF;
+    border-radius: 3px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
+    height: 330px;
+    margin-bottom: 10px;
+    overflow: auto;
+    padding: 5px 10px;
+    width: 350px;
+    }
+    </style>
 </head>
 <body>
     <div id="container-fluid" class="container-fluid" style="padding-left: 0">
         <form class="form-inline">
-            <label>名称：</label><input type="text" class="input" id="username" required/>
-            <input type="button" class="btn btn-success" id="find_btn" value="查 询" />
-            <input type="button" class="btn btn-primary pull-right fancybox" id="add_btn" href="#addDiv" value="新 增" />
+            <div class="form-group">
+                <label>名称：</label><input type="text" class="input" placeholder="名称" id="username" required />
+                <input type="button" class="btn btn-success" id="find_btn" value="查 询" />
+            </div>
+            <div class="form-group pull-right">
+                <a class="btn btn-default" role="button" href="javascript:$('#file_upload').uploadify('upload')">导入</a>
+                <input type="button" class="btn btn-default pull-right fancybox" id="add_btn" href="#addDiv" value="新增" />
+            </div>
+            <div class="form-group pull-right">
+                <div>
+                    <div id="finishFile"></div>
+                </div>
+                <input class="btn" id="file_upload" name="file_upload" type="file" multiple="true">
+            </div>
         </form>
         <table id="gridList"></table>
         <div id="pager"></div>

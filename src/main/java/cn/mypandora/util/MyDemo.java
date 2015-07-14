@@ -1,7 +1,6 @@
 package cn.mypandora.util;
 
-import java.util.HashSet;
-import java.util.Set;
+import org.apache.commons.configuration.PropertiesConfiguration;
 
 /**
  * Created by kaibo on 2015/5/26.
@@ -9,25 +8,49 @@ import java.util.Set;
  */
 public class MyDemo {
 
-    public static void main(String[] args) {
-        Set<String> set1=new HashSet<>();
-        Set<String> set2=new HashSet<>();
+    public static void main(String[] args) throws Exception{
+        PropertiesConfiguration  config=new PropertiesConfiguration("D:/captcha.properties");
+        String foo="dc=汉字啊,dc=北京，dc=中国";
+        String bar=foo.replaceAll("，",",");
 
-        set1.add("1");
-        set1.add("2");
-        set1.add("3");
+        config.setProperty("aaa",bar);
+        config.setProperty("bbb","中文啊");
 
-        set2.add("3");
-        set2.add("4");
+        String[] aaaArr=config.getStringArray("aaa");
+        String bbb=config.getString("bbb");
+        String ccc=config.getString("ccc");
 
-        set1.removeAll(set2);
+//        config.setEncoding("UTF-8");
+        config.save();
 
-        for (String foo:set1){
-            System.out.println(foo);
+        System.out.println(bbb);
+        StringBuffer aaa=new StringBuffer();
+        for(String s:aaaArr){
+            aaa.append(s);
+            aaa.append(",");
         }
+        System.out.println(aaa.toString().substring(0, aaa.length() - 1));
+        System.out.println(ccc);
 
-        for (String foo:set2){
-            System.out.println(foo);
-        }
+
+//        Set<String> set1=new HashSet<>();
+//        Set<String> set2=new HashSet<>();
+//
+//        set1.add("1");
+//        set1.add("2");
+//        set1.add("3");
+//
+//        set2.add("3");
+//        set2.add("4");
+//
+//        set1.removeAll(set2);
+//
+//        for (String foo:set1){
+//            System.out.println(foo);
+//        }
+//
+//        for (String foo:set2){
+//            System.out.println(foo);
+//        }
     }
 }

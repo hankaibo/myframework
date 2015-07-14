@@ -33,8 +33,11 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
     private static final Logger logger = LoggerFactory.getLogger(BaseEntityDaoImpl.class);
 
     private static final String ADD = "add";
+    private static final String ADD_BATCH = "addBatch";
     private static final String UPDATE = "update";
+    private static final String UPDATE_BATCH = "updateBatch";
     private static final String DELETE = "delete";
+    private static final String DELETE_BATCH = "deleteBatch";
     private static final String FIND_BY_ID = "findById";
     private static final String FIND_ALL = "findAll";
     private static final String FIND_BY_SQL = "cn.mypandora.dao.base.dynaSql";
@@ -122,6 +125,16 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
     }
 
     /**
+     * 批量添加实体。
+     *
+     * @param list 实体
+     */
+    @Override
+    public void addBatchEntity(List<T> list) {
+        sqlSession.insert(createSqlKeyName(ADD_BATCH), list);
+    }
+
+    /**
      * 添加自定义实体。
      *
      * @param sqlKey sql语句名称
@@ -150,6 +163,16 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
     @Override
     public void updateEntity(T t) {
         sqlSession.update(createSqlKeyName(UPDATE), t);
+    }
+
+    /**
+     * 批量修改实体。
+     *
+     * @param list 实体
+     */
+    @Override
+    public void updateBatchEntity(List<T> list) {
+        sqlSession.update(createSqlKeyName(UPDATE_BATCH), list);
     }
 
     /**
@@ -187,10 +210,8 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param ids 实体id数组
      */
     @Override
-    public void bulkDelete(Serializable[] ids) {
-        for (Serializable id : ids) {
-            deleteEntity(id);
-        }
+    public void deleteBatchEntity(Serializable[] ids) {
+        sqlSession.delete(createSqlKeyName(DELETE_BATCH), ids);
     }
 
     /**
@@ -226,16 +247,6 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
     }
 
     /**
-     * @param sqlKey sql语句名称
-     * @param params 参数
-     * @param mapKey map key的列名
-     * @return Map实体
-     */
-    public Map<String, Map<String, Object>> findMapByCondition(String sqlKey, Object params, String mapKey) {
-        return sqlSession.selectMap(createSqlKeyName(sqlKey), params, mapKey);
-    }
-
-    /**
      * 根据条件返回单个实体（用于自定义实体的转换，如UserVO，而非与数据库对应的实体UserEntity）
      *
      * @param sqlKey sql语句名称
@@ -245,6 +256,16 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      */
     public <O> O findObjectByCondition(String sqlKey, Object params) {
         return sqlSession.selectOne(createSqlKeyName(sqlKey), params);
+    }
+
+    /**
+     * @param sqlKey sql语句名称
+     * @param params 参数
+     * @param mapKey map key的列名
+     * @return Map实体
+     */
+    public Map<String, Map<String, Object>> findMapByCondition(String sqlKey, Object params, String mapKey) {
+        return sqlSession.selectMap(createSqlKeyName(sqlKey), params, mapKey);
     }
 
     /**

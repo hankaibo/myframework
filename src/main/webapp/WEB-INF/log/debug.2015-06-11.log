@@ -1,0 +1,1198 @@
+2015-06-11 21:23:52,694 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 21:23:52,720 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.hasMatchUser>
+2015-06-11 21:23:52,941 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@26cf9f]
+2015-06-11 21:23:52,947 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? and password = ? order by id desc 
+2015-06-11 21:23:52,997 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==> Parameters: 8(String), 8(String)
+2015-06-11 21:23:53,254 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 21:23:53,261 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 21:23:53,261 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.findUserByName>
+2015-06-11 21:23:53,264 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.findUserByName - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@5b3670]
+2015-06-11 21:23:53,264 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? 
+2015-06-11 21:23:53,265 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==> Parameters: 8(String)
+2015-06-11 21:23:53,269 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 21:23:53,286 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 21:23:53,286 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.update>
+2015-06-11 21:23:53,295 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.update - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@b41ff2]
+2015-06-11 21:23:53,295 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.update - ==>  Preparing: update t_base_user SET user_name=?, password=?, credits=?, last_ip=?, sex=? WHERE id = ? 
+2015-06-11 21:23:53,297 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.update - ==> Parameters: 8(String), 8(String), 265(Integer), 127.0.0.1(String), 1(Integer), 30(Long)
+2015-06-11 21:23:53,299 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 21:23:53,300 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 21:23:53,300 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 21:23:53,301 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@b41ff2]
+2015-06-11 21:23:53,301 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 21:23:53,310 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 用户登录成功(String), 稍后获取(String), 2015-06-11 21:23:53.299(Timestamp)
+2015-06-11 21:23:53,311 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 21:23:53,447 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@b41ff2]
+2015-06-11 21:23:53,447 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 21:23:53,447 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 21:23:53,639 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 21:23:53,640 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-11 21:23:53,641 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@863bfb]
+2015-06-11 21:23:53,641 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-06-11 21:23:53,642 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
+2015-06-11 21:23:53,758 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 21:23:55,286 [http-apr-8080-exec-7] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 21:23:55,288 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 21:23:55,290 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@13aa5d4]
+2015-06-11 21:23:55,420 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 21:23:55,420 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 21:23:55,421 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 21:23:55,439 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 21:23:55,485 [http-apr-8080-exec-7] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1aec36c]
+2015-06-11 21:23:55,486 [http-apr-8080-exec-7] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 21:23:55,486 [http-apr-8080-exec-7] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 21:23:55,522 [http-apr-8080-exec-7] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 21:25:18,545 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 21:25:18,546 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseDept.loadFullTree>
+2015-06-11 21:25:18,547 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.BaseDept.loadFullTree - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1344be]
+2015-06-11 21:25:18,548 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.BaseDept.loadFullTree - ==>  Preparing: SELECT * FROM t_base_dept t WHERE 1=1 ORDER BY t.lft ASC 
+2015-06-11 21:25:18,548 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.BaseDept.loadFullTree - ==> Parameters: 
+2015-06-11 21:25:18,632 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 21:25:19,998 [http-apr-8080-exec-4] ERROR 500.jsp - null
+org.apache.catalina.connector.ClientAbortException: null
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:407) ~[catalina.jar:7.0.55]
+	at org.apache.tomcat.util.buf.ByteChunk.flushBuffer(ByteChunk.java:480) ~[tomcat-coyote.jar:7.0.55]
+	at org.apache.tomcat.util.buf.ByteChunk.append(ByteChunk.java:366) ~[tomcat-coyote.jar:7.0.55]
+	at org.apache.catalina.connector.OutputBuffer.writeBytes(OutputBuffer.java:432) ~[catalina.jar:7.0.55]
+	at org.apache.catalina.connector.OutputBuffer.write(OutputBuffer.java:420) ~[catalina.jar:7.0.55]
+	at org.apache.catalina.connector.CoyoteOutputStream.write(CoyoteOutputStream.java:91) ~[catalina.jar:7.0.55]
+	at org.springframework.util.StreamUtils.copy(StreamUtils.java:125) ~[spring-core-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.writeContent(ResourceHttpRequestHandler.java:385) ~[spring-webmvc-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.web.servlet.resource.ResourceHttpRequestHandler.handleRequest(ResourceHttpRequestHandler.java:158) ~[spring-webmvc-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.web.servlet.mvc.HttpRequestHandlerAdapter.handle(HttpRequestHandlerAdapter.java:49) ~[spring-webmvc-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:919) [spring-webmvc-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:851) [spring-webmvc-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:953) ~[spring-webmvc-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.web.servlet.FrameworkServlet.doGet(FrameworkServlet.java:844) ~[spring-webmvc-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:620) ~[servlet-api.jar:na]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:829) ~[spring-webmvc-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:727) ~[servlet-api.jar:na]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:303) ~[catalina.jar:7.0.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208) ~[catalina.jar:7.0.55]
+	at org.springframework.web.filter.HttpPutFormContentFilter.doFilterInternal(HttpPutFormContentFilter.java:88) ~[spring-web-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:106) ~[spring-web-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241) ~[catalina.jar:7.0.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208) ~[catalina.jar:7.0.55]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:52) ~[tomcat7-websocket.jar:7.0.55]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241) ~[catalina.jar:7.0.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208) ~[catalina.jar:7.0.55]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:88) ~[spring-web-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:106) ~[spring-web-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:241) ~[catalina.jar:7.0.55]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:208) ~[catalina.jar:7.0.55]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:220) ~[catalina.jar:7.0.55]
+	at org.apache.catalina.core.StandardContextValve.__invoke(StandardContextValve.java:122) ~[catalina.jar:7.0.55]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java) ~[catalina.jar:7.0.55]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:501) ~[catalina.jar:7.0.55]
+	at org.apache.catalina.core.StandardHostValve.__invoke(StandardHostValve.java:171) ~[catalina.jar:7.0.55]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java) ~[catalina.jar:7.0.55]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:103) ~[catalina.jar:7.0.55]
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:950) ~[catalina.jar:7.0.55]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:116) ~[catalina.jar:7.0.55]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:408) ~[catalina.jar:7.0.55]
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1070) ~[tomcat-coyote.jar:7.0.55]
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:611) ~[tomcat-coyote.jar:7.0.55]
+	at org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.doRun(AprEndpoint.java:2440) ~[tomcat-coyote.jar:7.0.55]
+	at org.apache.tomcat.util.net.AprEndpoint$SocketProcessor.run(AprEndpoint.java:2429) ~[tomcat-coyote.jar:7.0.55]
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1145) ~[na:1.7.0_51]
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615) ~[na:1.7.0_51]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-coyote.jar:7.0.55]
+	at java.lang.Thread.run(Thread.java:744) ~[na:1.7.0_51]
+Caused by: java.io.IOException: null
+	at org.apache.coyote.http11.InternalAprOutputBuffer.flushBuffer(InternalAprOutputBuffer.java:205) ~[tomcat-coyote.jar:7.0.55]
+	at org.apache.coyote.http11.InternalAprOutputBuffer.access$100(InternalAprOutputBuffer.java:37) ~[tomcat-coyote.jar:7.0.55]
+	at org.apache.coyote.http11.InternalAprOutputBuffer$SocketOutputBuffer.doWrite(InternalAprOutputBuffer.java:235) ~[tomcat-coyote.jar:7.0.55]
+	at org.apache.coyote.http11.filters.IdentityOutputFilter.doWrite(IdentityOutputFilter.java:84) ~[tomcat-coyote.jar:7.0.55]
+	at org.apache.coyote.http11.AbstractOutputBuffer.doWrite(AbstractOutputBuffer.java:192) ~[tomcat-coyote.jar:7.0.55]
+	at org.apache.coyote.Response.doWrite(Response.java:499) ~[tomcat-coyote.jar:7.0.55]
+	at org.apache.catalina.connector.OutputBuffer.realWriteBytes(OutputBuffer.java:402) ~[catalina.jar:7.0.55]
+	... 47 common frames omitted
+2015-06-11 21:25:20,151 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 21:25:20,152 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.pageLogs>
+2015-06-11 21:25:20,155 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.pageLogs - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@192c524]
+2015-06-11 21:25:20,156 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_log where 1=1 order by create_time desc limit 0 ,10
+2015-06-11 21:25:20,157 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.pageLogs - ==>  Preparing: select * from t_base_log where 1=1 order by create_time desc limit 0 ,10 
+2015-06-11 21:25:20,157 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.pageLogs - ==> Parameters: 
+2015-06-11 21:25:20,529 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.pageLogs>
+2015-06-11 21:25:20,530 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@90c1bf]
+2015-06-11 21:25:20,531 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_log where 1=1 ) count_sql_alias 
+2015-06-11 21:25:20,531 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 21:25:20,538 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 21:25:22,328 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 21:25:22,329 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.loadTreeWithLevel>
+2015-06-11 21:25:22,330 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.BaseRes.loadTreeWithLevel - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@fbfd8f]
+2015-06-11 21:25:22,330 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.BaseRes.loadTreeWithLevel - ==>  Preparing: SELECT node.*,(COUNT(parent.name)-1) AS LEVEL FROM t_base_res node,t_base_res parent WHERE node.lft BETWEEN parent.lft AND parent.rgt GROUP BY node.name HAVING COUNT(parent.name)-1>0 ORDER BY node.lft 
+2015-06-11 21:25:22,330 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.BaseRes.loadTreeWithLevel - ==> Parameters: 
+2015-06-11 21:25:22,458 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 21:25:23,221 [http-apr-8080-exec-5] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 21:25:23,222 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.pageLogs>
+2015-06-11 21:25:23,223 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.LogEntity.pageLogs - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@150f959]
+2015-06-11 21:25:23,224 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_log where 1=1 order by create_time desc limit 0 ,10
+2015-06-11 21:25:23,224 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.LogEntity.pageLogs - ==>  Preparing: select * from t_base_log where 1=1 order by create_time desc limit 0 ,10 
+2015-06-11 21:25:23,225 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.LogEntity.pageLogs - ==> Parameters: 
+2015-06-11 21:25:23,246 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.pageLogs>
+2015-06-11 21:25:23,247 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@170630d]
+2015-06-11 21:25:23,248 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_log where 1=1 ) count_sql_alias 
+2015-06-11 21:25:23,248 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 21:25:23,256 [http-apr-8080-exec-5] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 21:25:26,158 [http-apr-8080-exec-5] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 21:25:26,158 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.pageLogs>
+2015-06-11 21:25:26,159 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.LogEntity.pageLogs - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@c6bae9]
+2015-06-11 21:25:26,159 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_log where 1=1 order by create_time desc limit 0 ,10
+2015-06-11 21:25:26,160 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.LogEntity.pageLogs - ==>  Preparing: select * from t_base_log where 1=1 order by create_time desc limit 0 ,10 
+2015-06-11 21:25:26,160 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.LogEntity.pageLogs - ==> Parameters: 
+2015-06-11 21:25:26,179 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.pageLogs>
+2015-06-11 21:25:26,207 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@7b3efe]
+2015-06-11 21:25:26,209 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_log where 1=1 ) count_sql_alias 
+2015-06-11 21:25:26,211 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 21:25:26,219 [http-apr-8080-exec-5] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 21:25:29,305 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 21:25:29,306 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 21:25:29,307 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 21:25:29,309 [http-apr-8080-exec-10] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@dc6183]
+2015-06-11 21:25:29,309 [http-apr-8080-exec-10] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 21:25:29,309 [http-apr-8080-exec-10] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 21:25:29,311 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 22:21:31,256 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 22:21:31,297 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.hasMatchUser>
+2015-06-11 22:21:31,711 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@10b0a36]
+2015-06-11 22:21:31,717 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? and password = ? order by id desc 
+2015-06-11 22:21:31,758 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==> Parameters: 8(String), 8(String)
+2015-06-11 22:21:31,805 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 22:21:31,815 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 22:21:31,815 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.findUserByName>
+2015-06-11 22:21:31,817 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.findUserByName - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@102ff7c]
+2015-06-11 22:21:31,818 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? 
+2015-06-11 22:21:31,818 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==> Parameters: 8(String)
+2015-06-11 22:21:31,822 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 22:21:31,840 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 22:21:31,840 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.update>
+2015-06-11 22:21:31,849 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.update - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@12038e1]
+2015-06-11 22:21:31,849 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.update - ==>  Preparing: update t_base_user SET user_name=?, password=?, credits=?, last_ip=?, sex=? WHERE id = ? 
+2015-06-11 22:21:31,851 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.update - ==> Parameters: 8(String), 8(String), 270(Integer), 127.0.0.1(String), 1(Integer), 30(Long)
+2015-06-11 22:21:31,853 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 22:21:31,854 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 22:21:31,855 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 22:21:31,855 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@12038e1]
+2015-06-11 22:21:31,855 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 22:21:31,866 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 用户登录成功(String), 稍后获取(String), 2015-06-11 22:21:31.853(Timestamp)
+2015-06-11 22:21:31,867 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 22:21:31,943 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@12038e1]
+2015-06-11 22:21:31,943 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 22:21:31,944 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 22:21:32,053 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 22:21:32,054 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-11 22:21:32,055 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@101436b]
+2015-06-11 22:21:32,056 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-06-11 22:21:32,056 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
+2015-06-11 22:21:32,067 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 22:21:34,308 [http-apr-8080-exec-5] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 22:21:34,309 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 22:21:34,311 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@a3cb25]
+2015-06-11 22:21:34,423 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 22:21:34,424 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 22:21:34,424 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 22:21:34,427 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 22:21:34,437 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@168bd68]
+2015-06-11 22:21:34,437 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 22:21:34,438 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 22:21:34,440 [http-apr-8080-exec-5] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 22:24:32,161 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 22:24:32,161 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.hasMatchUser>
+2015-06-11 22:24:32,163 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1bf2d1f]
+2015-06-11 22:24:32,163 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? and password = ? order by id desc 
+2015-06-11 22:24:32,164 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==> Parameters: 8(String), 8(String)
+2015-06-11 22:24:32,169 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 22:24:32,169 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 22:24:32,170 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.findUserByName>
+2015-06-11 22:24:32,171 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.findUserByName - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1342a8d]
+2015-06-11 22:24:32,171 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? 
+2015-06-11 22:24:32,172 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==> Parameters: 8(String)
+2015-06-11 22:24:32,175 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 22:24:32,180 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 22:24:32,181 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.update>
+2015-06-11 22:24:32,182 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.update - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@3cb038]
+2015-06-11 22:24:32,182 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.update - ==>  Preparing: update t_base_user SET user_name=?, password=?, credits=?, last_ip=?, sex=? WHERE id = ? 
+2015-06-11 22:24:32,184 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.update - ==> Parameters: 8(String), 8(String), 275(Integer), 127.0.0.1(String), 1(Integer), 30(Long)
+2015-06-11 22:24:32,184 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 22:24:32,185 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 22:24:32,186 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 22:24:32,187 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@3cb038]
+2015-06-11 22:24:32,188 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 22:24:32,189 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 用户登录成功(String), 稍后获取(String), 2015-06-11 22:24:32.185(Timestamp)
+2015-06-11 22:24:32,190 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 22:24:32,425 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@3cb038]
+2015-06-11 22:24:32,425 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 22:24:32,426 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 22:24:32,819 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 22:24:32,822 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-11 22:24:32,823 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@dde2ac]
+2015-06-11 22:24:32,824 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-06-11 22:24:32,826 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
+2015-06-11 22:24:32,849 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 22:24:38,575 [http-apr-8080-exec-5] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 22:24:38,575 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 22:24:38,577 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@3a5bcd]
+2015-06-11 22:24:38,578 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 22:24:38,578 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 22:24:38,579 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 22:24:38,583 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 22:24:38,613 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@d6012]
+2015-06-11 22:24:38,615 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 22:24:38,618 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 22:24:38,621 [http-apr-8080-exec-5] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:09:30,170 [http-apr-8080-exec-7] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:09:30,170 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:09:30,172 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:09:30,174 [http-apr-8080-exec-7] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@15f3f8f]
+2015-06-11 23:09:30,174 [http-apr-8080-exec-7] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:09:30,175 [http-apr-8080-exec-7] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:09:30,177 [http-apr-8080-exec-7] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:10:52,270 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:10:52,270 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.hasMatchUser>
+2015-06-11 23:10:52,273 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@c82129]
+2015-06-11 23:10:52,273 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? and password = ? order by id desc 
+2015-06-11 23:10:52,274 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==> Parameters: 8(String), 8(String)
+2015-06-11 23:10:52,279 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:10:52,280 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:10:52,280 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.findUserByName>
+2015-06-11 23:10:52,281 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.findUserByName - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1412e73]
+2015-06-11 23:10:52,281 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? 
+2015-06-11 23:10:52,282 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==> Parameters: 8(String)
+2015-06-11 23:10:52,287 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:10:52,290 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:10:52,291 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.update>
+2015-06-11 23:10:52,293 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.update - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1bb96d2]
+2015-06-11 23:10:52,293 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.update - ==>  Preparing: update t_base_user SET user_name=?, password=?, credits=?, last_ip=?, sex=? WHERE id = ? 
+2015-06-11 23:10:52,294 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.update - ==> Parameters: 8(String), 8(String), 280(Integer), 127.0.0.1(String), 1(Integer), 30(Long)
+2015-06-11 23:10:52,294 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:10:52,295 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:10:52,296 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:10:52,297 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1bb96d2]
+2015-06-11 23:10:52,298 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:10:52,299 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 用户登录成功(String), 稍后获取(String), 2015-06-11 23:10:52.295(Timestamp)
+2015-06-11 23:10:52,299 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:10:52,327 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1bb96d2]
+2015-06-11 23:10:52,327 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:10:52,328 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:10:52,451 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:10:52,452 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-11 23:10:52,453 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1c98f4e]
+2015-06-11 23:10:52,453 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-06-11 23:10:52,453 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
+2015-06-11 23:10:52,460 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:10:55,585 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:10:55,586 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:10:55,587 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@115c40a]
+2015-06-11 23:10:55,588 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:10:55,589 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:10:55,589 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:10:55,593 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:10:55,594 [http-apr-8080-exec-3] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@165434f]
+2015-06-11 23:10:55,595 [http-apr-8080-exec-3] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:10:55,595 [http-apr-8080-exec-3] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:10:55,596 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:13:31,924 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:13:31,924 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.hasMatchUser>
+2015-06-11 23:13:31,927 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@157ab17]
+2015-06-11 23:13:31,928 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? and password = ? order by id desc 
+2015-06-11 23:13:31,928 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==> Parameters: 8(String), 8(String)
+2015-06-11 23:13:31,935 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:13:31,935 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:13:31,935 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.findUserByName>
+2015-06-11 23:13:31,936 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.findUserByName - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@382dab]
+2015-06-11 23:13:31,936 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? 
+2015-06-11 23:13:31,937 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==> Parameters: 8(String)
+2015-06-11 23:13:31,940 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:13:31,941 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:13:31,941 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.update>
+2015-06-11 23:13:31,942 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.update - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@311d45]
+2015-06-11 23:13:31,943 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.update - ==>  Preparing: update t_base_user SET user_name=?, password=?, credits=?, last_ip=?, sex=? WHERE id = ? 
+2015-06-11 23:13:31,944 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.update - ==> Parameters: 8(String), 8(String), 285(Integer), 127.0.0.1(String), 1(Integer), 30(Long)
+2015-06-11 23:13:31,944 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:13:31,945 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:13:31,945 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:13:31,946 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@311d45]
+2015-06-11 23:13:31,946 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:13:31,947 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 用户登录成功(String), 稍后获取(String), 2015-06-11 23:13:31.944(Timestamp)
+2015-06-11 23:13:31,947 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:13:31,989 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@311d45]
+2015-06-11 23:13:31,990 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:13:31,990 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:13:32,133 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:13:32,134 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-11 23:13:32,134 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1341b70]
+2015-06-11 23:13:32,135 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-06-11 23:13:32,135 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
+2015-06-11 23:13:32,142 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:13:33,597 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:13:33,597 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:13:33,598 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1e0c402]
+2015-06-11 23:13:33,599 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:13:33,599 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:13:33,599 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:13:33,605 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:13:33,606 [http-apr-8080-exec-6] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@be1440]
+2015-06-11 23:13:33,606 [http-apr-8080-exec-6] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:13:33,607 [http-apr-8080-exec-6] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:13:33,608 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:16:45,799 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:16:45,800 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.hasMatchUser>
+2015-06-11 23:16:45,802 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1427cb]
+2015-06-11 23:16:45,803 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? and password = ? order by id desc 
+2015-06-11 23:16:45,803 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==> Parameters: 8(String), 8(String)
+2015-06-11 23:16:45,807 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:16:45,807 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:16:45,807 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.findUserByName>
+2015-06-11 23:16:45,808 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.findUserByName - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1a46cda]
+2015-06-11 23:16:45,809 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? 
+2015-06-11 23:16:45,809 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==> Parameters: 8(String)
+2015-06-11 23:16:45,812 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:16:45,813 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:16:45,813 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.update>
+2015-06-11 23:16:45,814 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.update - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@21dc71]
+2015-06-11 23:16:45,815 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.update - ==>  Preparing: update t_base_user SET user_name=?, password=?, credits=?, last_ip=?, sex=? WHERE id = ? 
+2015-06-11 23:16:45,816 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.update - ==> Parameters: 8(String), 8(String), 290(Integer), 127.0.0.1(String), 1(Integer), 30(Long)
+2015-06-11 23:16:45,816 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:16:45,816 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:16:45,817 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:16:45,818 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@21dc71]
+2015-06-11 23:16:45,818 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:16:45,819 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 用户登录成功(String), 稍后获取(String), 2015-06-11 23:16:45.816(Timestamp)
+2015-06-11 23:16:45,820 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:16:45,870 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@21dc71]
+2015-06-11 23:16:45,871 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:16:45,872 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:16:45,973 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:16:45,974 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-11 23:16:45,975 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@d835c9]
+2015-06-11 23:16:45,975 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-06-11 23:16:45,975 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
+2015-06-11 23:16:46,003 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:16:47,554 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:16:47,554 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:16:47,555 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@bf23d]
+2015-06-11 23:16:47,556 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:16:47,556 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:16:47,557 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:16:47,559 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:16:47,561 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1b6af0d]
+2015-06-11 23:16:47,561 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:16:47,561 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:16:47,562 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:19:05,852 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:19:05,853 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.hasMatchUser>
+2015-06-11 23:19:05,855 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1659e55]
+2015-06-11 23:19:05,855 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? and password = ? order by id desc 
+2015-06-11 23:19:05,855 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==> Parameters: 8(String), 8(String)
+2015-06-11 23:19:05,860 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:19:05,861 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:19:05,861 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.findUserByName>
+2015-06-11 23:19:05,862 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.findUserByName - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@d3ceff]
+2015-06-11 23:19:05,862 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? 
+2015-06-11 23:19:05,863 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==> Parameters: 8(String)
+2015-06-11 23:19:05,867 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:19:05,867 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:19:05,868 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.update>
+2015-06-11 23:19:05,869 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.update - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@178a250]
+2015-06-11 23:19:05,869 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.update - ==>  Preparing: update t_base_user SET user_name=?, password=?, credits=?, last_ip=?, sex=? WHERE id = ? 
+2015-06-11 23:19:05,871 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.update - ==> Parameters: 8(String), 8(String), 295(Integer), 127.0.0.1(String), 1(Integer), 30(Long)
+2015-06-11 23:19:05,871 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:19:05,872 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:19:05,872 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:19:05,873 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@178a250]
+2015-06-11 23:19:05,873 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:19:05,874 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 用户登录成功(String), 稍后获取(String), 2015-06-11 23:19:05.871(Timestamp)
+2015-06-11 23:19:05,874 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:19:05,908 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@178a250]
+2015-06-11 23:19:05,908 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:19:05,908 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:19:05,997 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:19:05,998 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-11 23:19:05,998 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@107e09e]
+2015-06-11 23:19:05,998 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-06-11 23:19:05,999 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
+2015-06-11 23:19:06,048 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:19:07,614 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:19:07,615 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:19:07,616 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1d61c83]
+2015-06-11 23:19:07,616 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:19:07,617 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:19:07,617 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:19:07,620 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:19:07,621 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@6964c4]
+2015-06-11 23:19:07,622 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:19:07,622 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:19:07,651 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:20:33,714 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:20:33,714 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.hasMatchUser>
+2015-06-11 23:20:33,716 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1a01ce6]
+2015-06-11 23:20:33,716 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? and password = ? order by id desc 
+2015-06-11 23:20:33,717 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==> Parameters: 8(String), 8(String)
+2015-06-11 23:20:33,730 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:20:33,731 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:20:33,731 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.findUserByName>
+2015-06-11 23:20:33,732 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.findUserByName - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@328801]
+2015-06-11 23:20:33,732 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? 
+2015-06-11 23:20:33,733 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==> Parameters: 8(String)
+2015-06-11 23:20:33,736 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:20:33,736 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:20:33,737 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.update>
+2015-06-11 23:20:33,738 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.update - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@18baa1f]
+2015-06-11 23:20:33,738 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.update - ==>  Preparing: update t_base_user SET user_name=?, password=?, credits=?, last_ip=?, sex=? WHERE id = ? 
+2015-06-11 23:20:33,739 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.UserEntity.update - ==> Parameters: 8(String), 8(String), 300(Integer), 127.0.0.1(String), 1(Integer), 30(Long)
+2015-06-11 23:20:33,739 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:20:33,739 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:20:33,740 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:20:33,740 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@18baa1f]
+2015-06-11 23:20:33,740 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:20:33,741 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 用户登录成功(String), 稍后获取(String), 2015-06-11 23:20:33.739(Timestamp)
+2015-06-11 23:20:33,741 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:20:33,761 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@18baa1f]
+2015-06-11 23:20:33,761 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:20:33,762 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:20:33,854 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:20:33,855 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-11 23:20:33,855 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@ec3f0f]
+2015-06-11 23:20:33,856 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-06-11 23:20:33,856 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
+2015-06-11 23:20:33,861 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:20:34,969 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:20:34,970 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:20:34,972 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@8abfe9]
+2015-06-11 23:20:34,973 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:20:34,973 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:20:34,973 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:20:34,976 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:20:34,977 [http-apr-8080-exec-2] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@4ae72b]
+2015-06-11 23:20:34,978 [http-apr-8080-exec-2] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:20:34,978 [http-apr-8080-exec-2] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:20:34,979 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:21:04,968 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:21:04,969 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:21:04,970 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:21:04,972 [http-apr-8080-exec-10] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@12c298a]
+2015-06-11 23:21:04,973 [http-apr-8080-exec-10] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:21:04,973 [http-apr-8080-exec-10] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:21:04,975 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:21:34,866 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:21:34,866 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.hasMatchUser>
+2015-06-11 23:21:34,867 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@55c380]
+2015-06-11 23:21:34,868 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? and password = ? order by id desc 
+2015-06-11 23:21:34,868 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==> Parameters: 8(String), 8(String)
+2015-06-11 23:21:34,872 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:21:34,872 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:21:34,872 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.findUserByName>
+2015-06-11 23:21:34,873 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.findUserByName - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@c356b2]
+2015-06-11 23:21:34,873 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? 
+2015-06-11 23:21:34,873 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==> Parameters: 8(String)
+2015-06-11 23:21:34,876 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:21:34,877 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:21:34,878 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.update>
+2015-06-11 23:21:34,879 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.update - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@d2e234]
+2015-06-11 23:21:34,879 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.update - ==>  Preparing: update t_base_user SET user_name=?, password=?, credits=?, last_ip=?, sex=? WHERE id = ? 
+2015-06-11 23:21:34,881 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.update - ==> Parameters: 8(String), 8(String), 305(Integer), 127.0.0.1(String), 1(Integer), 30(Long)
+2015-06-11 23:21:34,881 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:21:34,882 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:21:34,882 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:21:34,883 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@d2e234]
+2015-06-11 23:21:34,883 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:21:34,884 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 用户登录成功(String), 稍后获取(String), 2015-06-11 23:21:34.881(Timestamp)
+2015-06-11 23:21:34,885 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:21:34,912 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@d2e234]
+2015-06-11 23:21:34,912 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:21:34,912 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:21:35,015 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:21:35,015 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-11 23:21:35,016 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@19156a3]
+2015-06-11 23:21:35,016 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-06-11 23:21:35,017 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
+2015-06-11 23:21:35,022 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:21:36,069 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:21:36,070 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:21:36,070 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@963028]
+2015-06-11 23:21:36,072 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:21:36,072 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:21:36,072 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:21:36,075 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:21:36,076 [http-apr-8080-exec-10] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@190f2c6]
+2015-06-11 23:21:36,076 [http-apr-8080-exec-10] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:21:36,077 [http-apr-8080-exec-10] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:21:36,078 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:21:39,844 [http-apr-8080-exec-7] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:21:39,844 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:21:39,845 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:21:39,846 [http-apr-8080-exec-7] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@8fc5fc]
+2015-06-11 23:21:39,846 [http-apr-8080-exec-7] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:21:39,846 [http-apr-8080-exec-7] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:21:39,848 [http-apr-8080-exec-7] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:27:19,822 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:27:19,823 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:27:19,825 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:27:19,826 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@2bbc71]
+2015-06-11 23:27:19,826 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:27:19,827 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:27:19,828 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:41:03,857 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:41:03,857 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.hasMatchUser>
+2015-06-11 23:41:03,858 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1867e47]
+2015-06-11 23:41:03,858 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? and password = ? order by id desc 
+2015-06-11 23:41:03,859 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==> Parameters: 8(String), 8(String)
+2015-06-11 23:41:03,862 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:41:03,863 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:41:03,863 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.findUserByName>
+2015-06-11 23:41:03,864 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.findUserByName - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@92613]
+2015-06-11 23:41:03,864 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? 
+2015-06-11 23:41:03,864 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==> Parameters: 8(String)
+2015-06-11 23:41:03,867 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:41:03,868 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:41:03,868 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.update>
+2015-06-11 23:41:03,869 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.update - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@b64242]
+2015-06-11 23:41:03,870 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.update - ==>  Preparing: update t_base_user SET user_name=?, password=?, credits=?, last_ip=?, sex=? WHERE id = ? 
+2015-06-11 23:41:03,870 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.update - ==> Parameters: 8(String), 8(String), 310(Integer), 127.0.0.1(String), 1(Integer), 30(Long)
+2015-06-11 23:41:03,871 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:41:03,871 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:41:03,871 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:41:03,872 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@b64242]
+2015-06-11 23:41:03,872 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:41:03,873 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 用户登录成功(String), 稍后获取(String), 2015-06-11 23:41:03.871(Timestamp)
+2015-06-11 23:41:03,873 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:41:03,885 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@b64242]
+2015-06-11 23:41:03,885 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:41:03,885 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:41:04,003 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:41:04,003 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-11 23:41:04,003 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1783e72]
+2015-06-11 23:41:04,004 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-06-11 23:41:04,004 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
+2015-06-11 23:41:04,052 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:41:06,095 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:41:06,095 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:41:06,096 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1f66ec1]
+2015-06-11 23:41:06,097 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:41:06,097 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:41:06,098 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:41:06,100 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:41:06,101 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@2fe490]
+2015-06-11 23:41:06,102 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:41:06,102 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:41:06,140 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:41:12,449 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:41:12,450 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:41:12,450 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:41:12,451 [http-apr-8080-exec-2] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@142241c]
+2015-06-11 23:41:12,452 [http-apr-8080-exec-2] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:41:12,452 [http-apr-8080-exec-2] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:41:12,454 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:41:33,436 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:41:33,437 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.hasMatchUser>
+2015-06-11 23:41:33,438 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@c8bbc6]
+2015-06-11 23:41:33,439 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? and password = ? order by id desc 
+2015-06-11 23:41:33,439 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==> Parameters: 8(String), 8(String)
+2015-06-11 23:41:33,441 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:41:33,442 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:41:33,442 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.findUserByName>
+2015-06-11 23:41:33,443 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.findUserByName - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1f9a721]
+2015-06-11 23:41:33,443 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? 
+2015-06-11 23:41:33,443 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==> Parameters: 8(String)
+2015-06-11 23:41:33,446 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:41:33,447 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:41:33,447 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.update>
+2015-06-11 23:41:33,448 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.update - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1f3f592]
+2015-06-11 23:41:33,449 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.update - ==>  Preparing: update t_base_user SET user_name=?, password=?, credits=?, last_ip=?, sex=? WHERE id = ? 
+2015-06-11 23:41:33,449 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.update - ==> Parameters: 8(String), 8(String), 315(Integer), 127.0.0.1(String), 1(Integer), 30(Long)
+2015-06-11 23:41:33,450 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:41:33,450 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:41:33,451 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:41:33,451 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1f3f592]
+2015-06-11 23:41:33,451 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:41:33,452 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 用户登录成功(String), 稍后获取(String), 2015-06-11 23:41:33.45(Timestamp)
+2015-06-11 23:41:33,452 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:41:33,464 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1f3f592]
+2015-06-11 23:41:33,465 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:41:33,465 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:41:33,649 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:41:33,649 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-11 23:41:33,650 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@75134e]
+2015-06-11 23:41:33,650 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-06-11 23:41:33,651 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
+2015-06-11 23:41:33,656 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:41:35,704 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:41:35,704 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:41:35,706 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1426bb4]
+2015-06-11 23:41:35,707 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:41:35,707 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:41:35,707 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:41:35,710 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:41:35,712 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@126926a]
+2015-06-11 23:41:35,712 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:41:35,712 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:41:35,731 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:43:18,711 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:43:18,711 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.hasMatchUser>
+2015-06-11 23:43:18,712 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@194aaf6]
+2015-06-11 23:43:18,713 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? and password = ? order by id desc 
+2015-06-11 23:43:18,713 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==> Parameters: 8(String), 8(String)
+2015-06-11 23:43:18,716 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:43:18,717 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:43:18,717 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.findUserByName>
+2015-06-11 23:43:18,717 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.findUserByName - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@398462]
+2015-06-11 23:43:18,718 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? 
+2015-06-11 23:43:18,718 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==> Parameters: 8(String)
+2015-06-11 23:43:18,720 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:43:18,721 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:43:18,721 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.update>
+2015-06-11 23:43:18,723 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.update - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1c8b35d]
+2015-06-11 23:43:18,723 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.update - ==>  Preparing: update t_base_user SET user_name=?, password=?, credits=?, last_ip=?, sex=? WHERE id = ? 
+2015-06-11 23:43:18,724 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.update - ==> Parameters: 8(String), 8(String), 320(Integer), 127.0.0.1(String), 1(Integer), 30(Long)
+2015-06-11 23:43:18,724 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:43:18,724 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:43:18,725 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:43:18,725 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1c8b35d]
+2015-06-11 23:43:18,726 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:43:18,727 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 用户登录成功(String), 稍后获取(String), 2015-06-11 23:43:18.724(Timestamp)
+2015-06-11 23:43:18,727 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:43:18,761 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1c8b35d]
+2015-06-11 23:43:18,761 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:43:18,761 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:43:18,856 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:43:18,856 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-11 23:43:18,856 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@190f1d2]
+2015-06-11 23:43:18,857 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-06-11 23:43:18,857 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
+2015-06-11 23:43:18,863 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:43:21,128 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:43:21,129 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:43:21,130 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@18ea7ad]
+2015-06-11 23:43:21,131 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:43:21,131 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:43:21,131 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:43:21,133 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:43:21,134 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1978a7b]
+2015-06-11 23:43:21,134 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:43:21,134 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:43:21,135 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:45:53,651 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:45:53,652 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.hasMatchUser>
+2015-06-11 23:45:53,654 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@fa20eb]
+2015-06-11 23:45:53,654 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? and password = ? order by id desc 
+2015-06-11 23:45:53,655 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==> Parameters: 8(String), 8(String)
+2015-06-11 23:45:53,659 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:45:53,660 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:45:53,660 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.findUserByName>
+2015-06-11 23:45:53,661 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.findUserByName - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@d2ca9b]
+2015-06-11 23:45:53,661 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? 
+2015-06-11 23:45:53,662 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==> Parameters: 8(String)
+2015-06-11 23:45:53,664 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:45:53,665 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:45:53,665 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.update>
+2015-06-11 23:45:53,666 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.update - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@e80979]
+2015-06-11 23:45:53,667 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.update - ==>  Preparing: update t_base_user SET user_name=?, password=?, credits=?, last_ip=?, sex=? WHERE id = ? 
+2015-06-11 23:45:53,667 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.update - ==> Parameters: 8(String), 8(String), 325(Integer), 127.0.0.1(String), 1(Integer), 30(Long)
+2015-06-11 23:45:53,667 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:45:53,668 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:45:53,668 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:45:53,669 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@e80979]
+2015-06-11 23:45:53,669 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:45:53,670 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 用户登录成功(String), 稍后获取(String), 2015-06-11 23:45:53.668(Timestamp)
+2015-06-11 23:45:53,670 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:45:53,683 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@e80979]
+2015-06-11 23:45:53,683 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:45:53,683 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:45:53,788 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:45:53,789 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-11 23:45:53,790 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@153075a]
+2015-06-11 23:45:53,790 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-06-11 23:45:53,791 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
+2015-06-11 23:45:53,795 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:45:56,661 [http-apr-8080-exec-5] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:45:56,662 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:45:56,663 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@71a091]
+2015-06-11 23:45:56,670 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:45:56,670 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:45:56,671 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:45:56,674 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:45:56,675 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@afa0b4]
+2015-06-11 23:45:56,675 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:45:56,675 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:45:56,677 [http-apr-8080-exec-5] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:47:38,918 [http-apr-8080-exec-7] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:47:38,919 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:47:38,920 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:47:38,921 [http-apr-8080-exec-7] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@f9ca9e]
+2015-06-11 23:47:38,921 [http-apr-8080-exec-7] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:47:38,921 [http-apr-8080-exec-7] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:47:38,923 [http-apr-8080-exec-7] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:48:09,969 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:48:09,970 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:48:09,971 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:48:09,972 [http-apr-8080-exec-6] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@4b4b51]
+2015-06-11 23:48:09,972 [http-apr-8080-exec-6] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:48:09,973 [http-apr-8080-exec-6] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:48:09,976 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:50:10,925 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:50:10,926 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.hasMatchUser>
+2015-06-11 23:50:10,927 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@a5906d]
+2015-06-11 23:50:10,927 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? and password = ? order by id desc 
+2015-06-11 23:50:10,928 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==> Parameters: 8(String), 8(String)
+2015-06-11 23:50:10,931 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:50:10,931 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:50:10,931 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.findUserByName>
+2015-06-11 23:50:10,932 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.findUserByName - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@18055f]
+2015-06-11 23:50:10,932 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? 
+2015-06-11 23:50:10,932 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==> Parameters: 8(String)
+2015-06-11 23:50:10,935 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:50:10,936 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:50:10,936 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.update>
+2015-06-11 23:50:10,937 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.update - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@8c8309]
+2015-06-11 23:50:10,938 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.update - ==>  Preparing: update t_base_user SET user_name=?, password=?, credits=?, last_ip=?, sex=? WHERE id = ? 
+2015-06-11 23:50:10,938 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.update - ==> Parameters: 8(String), 8(String), 330(Integer), 127.0.0.1(String), 1(Integer), 30(Long)
+2015-06-11 23:50:10,938 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:50:10,939 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:50:10,939 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:50:10,940 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@8c8309]
+2015-06-11 23:50:10,940 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:50:10,941 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 用户登录成功(String), 稍后获取(String), 2015-06-11 23:50:10.939(Timestamp)
+2015-06-11 23:50:10,941 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:50:11,073 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@8c8309]
+2015-06-11 23:50:11,074 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:50:11,074 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:50:11,185 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:50:11,185 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-11 23:50:11,186 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1bf7bd8]
+2015-06-11 23:50:11,186 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-06-11 23:50:11,186 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
+2015-06-11 23:50:11,191 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:50:14,465 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:50:14,466 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:50:14,467 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1cfd6fb]
+2015-06-11 23:50:14,468 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:50:14,468 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:50:14,468 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:50:14,471 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:50:14,472 [http-apr-8080-exec-10] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@288780]
+2015-06-11 23:50:14,472 [http-apr-8080-exec-10] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:50:14,473 [http-apr-8080-exec-10] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:50:14,474 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:50:20,369 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:50:20,370 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:50:20,370 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:50:20,371 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@5dd669]
+2015-06-11 23:50:20,372 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:50:20,372 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:50:20,373 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:50:40,634 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:50:40,635 [http-apr-8080-exec-9] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.hasMatchUser>
+2015-06-11 23:50:40,636 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1f8e69a]
+2015-06-11 23:50:40,637 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? and password = ? order by id desc 
+2015-06-11 23:50:40,637 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==> Parameters: 8(String), 8(String)
+2015-06-11 23:50:40,639 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:50:40,640 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:50:40,640 [http-apr-8080-exec-9] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.findUserByName>
+2015-06-11 23:50:40,642 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.UserEntity.findUserByName - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@15c593f]
+2015-06-11 23:50:40,642 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? 
+2015-06-11 23:50:40,643 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==> Parameters: 8(String)
+2015-06-11 23:50:40,645 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:50:40,646 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:50:40,646 [http-apr-8080-exec-9] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.update>
+2015-06-11 23:50:40,648 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.UserEntity.update - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@4f7786]
+2015-06-11 23:50:40,648 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.UserEntity.update - ==>  Preparing: update t_base_user SET user_name=?, password=?, credits=?, last_ip=?, sex=? WHERE id = ? 
+2015-06-11 23:50:40,648 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.UserEntity.update - ==> Parameters: 8(String), 8(String), 335(Integer), 127.0.0.1(String), 1(Integer), 30(Long)
+2015-06-11 23:50:40,649 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:50:40,649 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:50:40,650 [http-apr-8080-exec-9] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:50:40,650 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@4f7786]
+2015-06-11 23:50:40,651 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:50:40,651 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 用户登录成功(String), 稍后获取(String), 2015-06-11 23:50:40.649(Timestamp)
+2015-06-11 23:50:40,652 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:50:40,682 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@4f7786]
+2015-06-11 23:50:40,682 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:50:40,683 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:50:40,777 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:50:40,778 [http-apr-8080-exec-9] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-11 23:50:40,778 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@17c4f45]
+2015-06-11 23:50:40,779 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-06-11 23:50:40,779 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
+2015-06-11 23:50:40,783 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:50:43,629 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:50:43,630 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:50:43,631 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@8dc9c7]
+2015-06-11 23:50:43,632 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:50:43,632 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:50:43,632 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:50:43,635 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:50:43,636 [http-apr-8080-exec-2] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1719a1e]
+2015-06-11 23:50:43,636 [http-apr-8080-exec-2] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:50:43,637 [http-apr-8080-exec-2] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:50:43,638 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:52:47,963 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:52:47,963 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:52:47,964 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:52:47,966 [http-apr-8080-exec-3] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@a48f14]
+2015-06-11 23:52:47,966 [http-apr-8080-exec-3] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:52:47,966 [http-apr-8080-exec-3] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:52:47,967 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:53:15,739 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:53:15,739 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:53:15,740 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:53:15,741 [http-apr-8080-exec-10] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@6a63e]
+2015-06-11 23:53:15,741 [http-apr-8080-exec-10] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:53:15,741 [http-apr-8080-exec-10] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:53:15,742 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:53:30,782 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:53:30,782 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.findById>
+2015-06-11 23:53:30,785 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.findById - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1e0e67e]
+2015-06-11 23:53:30,785 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.findById - ==>  Preparing: select * from t_base_user where id = ? 
+2015-06-11 23:53:30,786 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.findById - ==> Parameters: 30(Long)
+2015-06-11 23:53:30,817 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:53:36,623 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:53:36,623 [http-apr-8080-exec-9] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:53:36,624 [http-apr-8080-exec-9] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:53:36,624 [http-apr-8080-exec-9] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1717b56]
+2015-06-11 23:53:36,625 [http-apr-8080-exec-9] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:53:36,625 [http-apr-8080-exec-9] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:53:36,627 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:56:12,066 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:56:12,067 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.hasMatchUser>
+2015-06-11 23:56:12,068 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@15000a4]
+2015-06-11 23:56:12,069 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? and password = ? order by id desc 
+2015-06-11 23:56:12,069 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.hasMatchUser - ==> Parameters: 8(String), 8(String)
+2015-06-11 23:56:12,072 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:56:12,073 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:56:12,073 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.findUserByName>
+2015-06-11 23:56:12,074 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.findUserByName - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@b57d3a]
+2015-06-11 23:56:12,074 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==>  Preparing: select * from t_base_user where 1=1 and user_name = ? 
+2015-06-11 23:56:12,075 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.findUserByName - ==> Parameters: 8(String)
+2015-06-11 23:56:12,077 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:56:12,078 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:56:12,078 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.update>
+2015-06-11 23:56:12,079 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.update - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@2087bf]
+2015-06-11 23:56:12,079 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.update - ==>  Preparing: update t_base_user SET user_name=?, password=?, credits=?, last_ip=?, sex=? WHERE id = ? 
+2015-06-11 23:56:12,079 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.update - ==> Parameters: 8(String), 8(String), 340(Integer), 127.0.0.1(String), 1(Integer), 30(Long)
+2015-06-11 23:56:12,079 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:56:12,080 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:56:12,080 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:56:12,081 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@2087bf]
+2015-06-11 23:56:12,081 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:56:12,082 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 用户登录成功(String), 稍后获取(String), 2015-06-11 23:56:12.08(Timestamp)
+2015-06-11 23:56:12,082 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:56:12,117 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@2087bf]
+2015-06-11 23:56:12,117 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:56:12,118 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:56:12,211 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:56:12,211 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-11 23:56:12,212 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@dbbc03]
+2015-06-11 23:56:12,212 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-06-11 23:56:12,212 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
+2015-06-11 23:56:12,218 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:56:14,990 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:56:14,990 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:56:14,991 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@434eb2]
+2015-06-11 23:56:14,993 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:56:14,993 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:56:14,993 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:56:14,996 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:56:14,997 [http-apr-8080-exec-3] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@e1b045]
+2015-06-11 23:56:14,998 [http-apr-8080-exec-3] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:56:14,998 [http-apr-8080-exec-3] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:56:15,000 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:22,596 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:22,597 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.add>
+2015-06-11 23:57:22,602 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@127c1ee]
+2015-06-11 23:57:22,602 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.add - ==>  Preparing: INSERT INTO t_base_user ( user_name, sex, birthday ) VALUES ( ?, ?, ? ) 
+2015-06-11 23:57:22,605 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.add - ==> Parameters: 2(String), null, null
+2015-06-11 23:57:22,761 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@127c1ee]
+2015-06-11 23:57:22,762 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:57:22,762 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:57:22,768 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:22,769 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:22,771 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:57:22,773 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@4078b1]
+2015-06-11 23:57:22,773 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:57:22,882 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 新增用户(String), 稍后获取(String), 2015-06-11 23:57:22.769(Timestamp)
+2015-06-11 23:57:22,983 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@4078b1]
+2015-06-11 23:57:22,984 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:57:22,984 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:57:22,985 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:24,077 [http-apr-8080-exec-7] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:24,078 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:57:24,079 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@5d6bf9]
+2015-06-11 23:57:24,104 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:57:24,105 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:57:24,105 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:57:24,110 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:57:24,111 [http-apr-8080-exec-7] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@d1a3c3]
+2015-06-11 23:57:24,111 [http-apr-8080-exec-7] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:57:24,111 [http-apr-8080-exec-7] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:57:24,113 [http-apr-8080-exec-7] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:28,552 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:28,552 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.add>
+2015-06-11 23:57:28,553 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@fc02a9]
+2015-06-11 23:57:28,554 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.add - ==>  Preparing: INSERT INTO t_base_user ( user_name, sex, birthday ) VALUES ( ?, ?, ? ) 
+2015-06-11 23:57:28,554 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.add - ==> Parameters: 3(String), null, null
+2015-06-11 23:57:28,798 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@fc02a9]
+2015-06-11 23:57:28,798 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:57:28,798 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:57:28,800 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:28,801 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:28,801 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:57:28,802 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@6fe3a]
+2015-06-11 23:57:28,802 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:57:28,802 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 新增用户(String), 稍后获取(String), 2015-06-11 23:57:28.801(Timestamp)
+2015-06-11 23:57:28,922 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@6fe3a]
+2015-06-11 23:57:28,922 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:57:28,923 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:57:28,925 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:29,870 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:29,870 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:57:29,871 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1ba9a2]
+2015-06-11 23:57:29,872 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:57:29,872 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:57:29,872 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:57:29,875 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:57:29,876 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@736c0f]
+2015-06-11 23:57:29,876 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:57:29,876 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:57:29,878 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:34,740 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:34,741 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.add>
+2015-06-11 23:57:34,742 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1f9010c]
+2015-06-11 23:57:34,742 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add - ==>  Preparing: INSERT INTO t_base_user ( user_name, sex, birthday ) VALUES ( ?, ?, ? ) 
+2015-06-11 23:57:34,742 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add - ==> Parameters: 4(String), null, null
+2015-06-11 23:57:34,841 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1f9010c]
+2015-06-11 23:57:34,842 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:57:34,842 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:57:34,844 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:34,845 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:34,845 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:57:34,847 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@f395]
+2015-06-11 23:57:34,847 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:57:34,848 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 新增用户(String), 稍后获取(String), 2015-06-11 23:57:34.845(Timestamp)
+2015-06-11 23:57:35,049 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@f395]
+2015-06-11 23:57:35,049 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:57:35,050 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:57:35,051 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:36,112 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:36,112 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:57:36,113 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@126d962]
+2015-06-11 23:57:36,113 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:57:36,113 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:57:36,114 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:57:36,117 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:57:36,118 [http-apr-8080-exec-6] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@10b3cfe]
+2015-06-11 23:57:36,118 [http-apr-8080-exec-6] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:57:36,118 [http-apr-8080-exec-6] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:57:36,120 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:40,097 [http-apr-8080-exec-7] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:40,097 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.add>
+2015-06-11 23:57:40,099 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.UserEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1b4a0fb]
+2015-06-11 23:57:40,099 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.UserEntity.add - ==>  Preparing: INSERT INTO t_base_user ( user_name, sex, birthday ) VALUES ( ?, ?, ? ) 
+2015-06-11 23:57:40,099 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.UserEntity.add - ==> Parameters: 5(String), null, null
+2015-06-11 23:57:40,323 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1b4a0fb]
+2015-06-11 23:57:40,323 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:57:40,323 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:57:40,325 [http-apr-8080-exec-7] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:40,326 [http-apr-8080-exec-7] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:40,327 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:57:40,328 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1337a56]
+2015-06-11 23:57:40,328 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:57:40,329 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 新增用户(String), 稍后获取(String), 2015-06-11 23:57:40.326(Timestamp)
+2015-06-11 23:57:40,496 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1337a56]
+2015-06-11 23:57:40,497 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:57:40,497 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:57:40,498 [http-apr-8080-exec-7] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:41,612 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:41,612 [http-apr-8080-exec-9] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:57:41,613 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@e8a951]
+2015-06-11 23:57:41,613 [http-apr-8080-exec-9] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:57:41,613 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:57:41,614 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:57:41,617 [http-apr-8080-exec-9] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:57:41,618 [http-apr-8080-exec-9] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@849a0f]
+2015-06-11 23:57:41,618 [http-apr-8080-exec-9] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:57:41,618 [http-apr-8080-exec-9] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:57:41,620 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:45,082 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:45,082 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.add>
+2015-06-11 23:57:45,083 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@17517ea]
+2015-06-11 23:57:45,083 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.add - ==>  Preparing: INSERT INTO t_base_user ( user_name, sex, birthday ) VALUES ( ?, ?, ? ) 
+2015-06-11 23:57:45,083 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.add - ==> Parameters: 6(String), null, null
+2015-06-11 23:57:45,167 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@17517ea]
+2015-06-11 23:57:45,168 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:57:45,168 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:57:45,170 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:45,171 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:45,171 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:57:45,173 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@133471e]
+2015-06-11 23:57:45,173 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:57:45,174 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 新增用户(String), 稍后获取(String), 2015-06-11 23:57:45.171(Timestamp)
+2015-06-11 23:57:45,373 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@133471e]
+2015-06-11 23:57:45,373 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:57:45,373 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:57:45,374 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:46,490 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:46,490 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:57:46,491 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@56a17]
+2015-06-11 23:57:46,492 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:57:46,492 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:57:46,492 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:57:46,497 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:57:46,502 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@16fa5ed]
+2015-06-11 23:57:46,502 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:57:46,503 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:57:46,504 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:50,059 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:50,060 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.add>
+2015-06-11 23:57:50,061 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@3ce83e]
+2015-06-11 23:57:50,061 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.add - ==>  Preparing: INSERT INTO t_base_user ( user_name, sex, birthday ) VALUES ( ?, ?, ? ) 
+2015-06-11 23:57:50,061 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.add - ==> Parameters: 7(String), null, null
+2015-06-11 23:57:50,209 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@3ce83e]
+2015-06-11 23:57:50,210 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:57:50,210 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:57:50,211 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:50,212 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:50,212 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:57:50,213 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@248390]
+2015-06-11 23:57:50,213 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:57:50,214 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 新增用户(String), 稍后获取(String), 2015-06-11 23:57:50.212(Timestamp)
+2015-06-11 23:57:50,460 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@248390]
+2015-06-11 23:57:50,460 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:57:50,461 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:57:50,462 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:51,764 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:51,765 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:57:51,766 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1d7480d]
+2015-06-11 23:57:51,767 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:57:51,767 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:57:51,767 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:57:51,772 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:57:51,773 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@143c529]
+2015-06-11 23:57:51,773 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:57:51,773 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:57:51,775 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:55,133 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:55,134 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.add>
+2015-06-11 23:57:55,135 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@4f4328]
+2015-06-11 23:57:55,136 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add - ==>  Preparing: INSERT INTO t_base_user ( user_name, sex, birthday ) VALUES ( ?, ?, ? ) 
+2015-06-11 23:57:55,136 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add - ==> Parameters: 9(String), null, null
+2015-06-11 23:57:55,434 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@4f4328]
+2015-06-11 23:57:55,434 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:57:55,434 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:57:55,436 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:55,436 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:55,436 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:57:55,437 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1ee4a82]
+2015-06-11 23:57:55,437 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:57:55,438 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 新增用户(String), 稍后获取(String), 2015-06-11 23:57:55.436(Timestamp)
+2015-06-11 23:57:55,662 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1ee4a82]
+2015-06-11 23:57:55,662 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:57:55,663 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:57:55,664 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:57:56,753 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:57:56,754 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:57:56,755 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1d928ac]
+2015-06-11 23:57:56,755 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:57:56,756 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:57:56,756 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:57:56,762 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:57:56,763 [http-apr-8080-exec-6] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@9b4dfa]
+2015-06-11 23:57:56,764 [http-apr-8080-exec-6] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:57:56,764 [http-apr-8080-exec-6] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:57:56,767 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:58:01,615 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:58:01,615 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.add>
+2015-06-11 23:58:01,616 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1d42521]
+2015-06-11 23:58:01,616 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add - ==>  Preparing: INSERT INTO t_base_user ( user_name, sex, birthday ) VALUES ( ?, ?, ? ) 
+2015-06-11 23:58:01,647 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add - ==> Parameters: 11(String), null, null
+2015-06-11 23:58:01,834 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1d42521]
+2015-06-11 23:58:01,834 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:58:01,835 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:58:01,836 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:58:01,837 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:58:01,837 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:58:01,838 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1635c1f]
+2015-06-11 23:58:01,838 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:58:01,838 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 新增用户(String), 稍后获取(String), 2015-06-11 23:58:01.836(Timestamp)
+2015-06-11 23:58:01,958 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1635c1f]
+2015-06-11 23:58:01,958 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:58:01,958 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:58:01,959 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:58:03,108 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:58:03,109 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:58:03,110 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@bbbdda]
+2015-06-11 23:58:03,110 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:58:03,111 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:58:03,111 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:58:03,115 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:58:03,117 [http-apr-8080-exec-2] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@14afaae]
+2015-06-11 23:58:03,117 [http-apr-8080-exec-2] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:58:03,117 [http-apr-8080-exec-2] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:58:03,119 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:58:12,605 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:58:12,605 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.add>
+2015-06-11 23:58:12,606 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@52dde2]
+2015-06-11 23:58:12,607 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.add - ==>  Preparing: INSERT INTO t_base_user ( user_name, sex, birthday ) VALUES ( ?, ?, ? ) 
+2015-06-11 23:58:12,607 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.add - ==> Parameters: 12(String), null, null
+2015-06-11 23:58:12,722 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@52dde2]
+2015-06-11 23:58:12,723 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:58:12,723 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:58:12,725 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:58:12,727 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:58:12,727 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
+2015-06-11 23:58:12,729 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@9a1aeb]
+2015-06-11 23:58:12,730 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-06-11 23:58:12,731 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 稍后获取(String), 新增用户(String), 稍后获取(String), 2015-06-11 23:58:12.726(Timestamp)
+2015-06-11 23:58:12,929 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@9a1aeb]
+2015-06-11 23:58:12,929 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-06-11 23:58:12,930 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-06-11 23:58:12,931 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:58:13,912 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:58:13,912 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:58:13,913 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@11476d4]
+2015-06-11 23:58:13,913 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-11 23:58:13,913 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
+2015-06-11 23:58:13,914 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:58:13,918 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:58:13,919 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@fb3977]
+2015-06-11 23:58:13,919 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:58:13,920 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:58:13,921 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:59:23,831 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:59:23,831 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:59:23,832 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:59:23,833 [http-apr-8080-exec-8] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@972601]
+2015-06-11 23:59:23,834 [http-apr-8080-exec-8] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:59:23,834 [http-apr-8080-exec-8] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:59:23,836 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:59:32,527 [http-apr-8080-exec-5] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:59:32,528 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:59:32,528 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@fd8618]
+2015-06-11 23:59:32,529 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - 生成的分页SQL：select * from t_base_user where 1=1 order by ? ? limit 10 ,10
+2015-06-11 23:59:32,529 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 10 ,10 
+2015-06-11 23:59:32,529 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
+2015-06-11 23:59:32,531 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:59:32,532 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1b33f6c]
+2015-06-11 23:59:32,532 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:59:32,533 [http-apr-8080-exec-5] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:59:32,534 [http-apr-8080-exec-5] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:59:34,486 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:59:34,486 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:59:34,487 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:59:34,488 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@f82b5d]
+2015-06-11 23:59:34,488 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:59:34,488 [http-apr-8080-exec-4] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:59:34,490 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:59:36,760 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:59:36,761 [http-apr-8080-exec-9] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:59:36,761 [http-apr-8080-exec-9] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:59:36,762 [http-apr-8080-exec-9] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@32305e]
+2015-06-11 23:59:36,763 [http-apr-8080-exec-9] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:59:36,763 [http-apr-8080-exec-9] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:59:36,764 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-06-11 23:59:38,315 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-06-11 23:59:38,315 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:59:38,316 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
+2015-06-11 23:59:38,317 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ooo Using Connection [com.mchange.v2.c3p0.impl.NewProxyConnection@1d860f0]
+2015-06-11 23:59:38,317 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ==>  Preparing: select count(1) from (select * from t_base_user where 1=1 ) count_sql_alias 
+2015-06-11 23:59:38,318 [http-apr-8080-exec-1] DEBUG cn.mypandora.dao.base.countSql - ==> Parameters: 
+2015-06-11 23:59:38,319 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around

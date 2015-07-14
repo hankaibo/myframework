@@ -1,7 +1,7 @@
-/**   
+/**
  * @ProjectName: MyFramework
- * @Package: cn.mypandora.system.controller 
- * @ClassName: LogoutController 
+ * @Package: cn.mypandora.system.controller
+ * @ClassName: LogoutController
  * Copyright © hankaibo. All rights reserved.
  * @Author: kaibo
  * @CreateDate: 2014-3-23 上午12:22:20 
@@ -9,6 +9,8 @@
  */
 package cn.mypandora.system.controller;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,19 +33,22 @@ import java.util.ResourceBundle;
 public class LogoutController {
 
     /**
-     * @Title: loginPage
-     * @Description: 跳转到登录页面。
      * @param request
      * @param response
-     * @return
      * @return String
+     * @Title: loginPage
+     * @Description: 跳转到登录页面。
      */
     @RequestMapping(method = RequestMethod.GET)
     public String loginPage(HttpServletRequest request, HttpServletResponse response) {
         ResourceBundle resourceBundle = ResourceBundle.getBundle("captcha");
-        String isCaptcha=resourceBundle.getString("isCaptcha");
-        if(isCaptcha.equalsIgnoreCase("true")){
+        String isCaptcha = resourceBundle.getString("isCaptcha");
+        if (isCaptcha.equalsIgnoreCase("true")) {
             request.setAttribute("isCaptcha", true);
+        }
+        Subject currentUser = SecurityUtils.getSubject();
+        if (SecurityUtils.getSubject().getSession() != null) {
+            currentUser.logout();
         }
         return "login";
     }

@@ -1,12 +1,15 @@
 package cn.mypandora.shiro.realm;
 
+import cn.mypandora.system.po.BaseUser;
+import cn.mypandora.system.service.BaseUserService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
-import org.h2.engine.User;
+
+import javax.annotation.Resource;
 
 /**
  * Created by kaibo on 2015/7/9.
@@ -14,34 +17,39 @@ import org.h2.engine.User;
  */
 public class UserRealm extends AuthorizingRealm {
 
-    private UserService userService;
+    @Resource
+    private BaseUserService baseUserService;
 
-    public void setUserService(UserService userService) {
-        this.userService = userService;
-    }
-
+    /**
+     * 为当前登录的Subject授予角色和权限
+     * @param principals
+     * @return
+     */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+        //获取当前登录的用户名,等价于(String)principals.fromRealm(this.getName()).iterator().next()
         String username = (String) principals.getPrimaryPrincipal();
 
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(userService.findRoles(username));
-        authorizationInfo.setStringPermissions(userService.findPermissions(username));
+        authorizationInfo.setRoles(baseUserService.findRoles(username));
+        authorizationInfo.setStringPermissions(baseUserService.findPermissions(username));
 
         return authorizationInfo;
     }
 
+    /**
+     * 为当前登录的Subject授予角色和权限
+     * @param token
+     * @return
+     * @throws AuthenticationException
+     */
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-
         String username = (String) token.getPrincipal();
-
-        User user = userService.findByUsername(username);
-
+        BaseUser user = baseUserService.findUserByUsername(username);
         if (user == null) {
             throw new UnknownAccountException();//没找到帐号
         }
-
         if (Boolean.TRUE.equals(user.getLocked())) {
             throw new LockedAccountException(); //帐号锁定
         }

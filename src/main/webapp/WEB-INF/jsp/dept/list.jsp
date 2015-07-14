@@ -8,14 +8,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <%@ include file="./../header.jsp" %>
 <link rel="stylesheet" href="${ctx }/resources/js/ztree/css/zTreeStyle.css" type="text/css">
-<link rel="stylesheet" href="${ctx}/resources/js/jquery-ui-bootstrap-masterbs3/third-party/jqGrid/jqGrid/css/ui.jqgrid.css" />
-<link rel="stylesheet" href="${ctx}/resources/js/jquery-ui-bootstrap-masterbs3/third-party/jqGrid/jqGrid.overrides.css" />
+<link rel="stylesheet" href="${ctx}/resources/js/jqGrid-4.8.2/css/ui.jqgrid.css" />
+<link rel="stylesheet" href="${ctx}/resources/js/jqGrid-4.8.2/css/ui.jqgrid-bootstarp.css" />
 <script type="text/javascript" src="${ctx }/resources/js/ztree/jquery.ztree.core-3.5.js"></script>
 <script type="text/javascript" src="${ctx }/resources/js/ztree/jquery.ztree.exedit-3.5.min.js"></script>
 <script type="text/javascript" src="${ctx }/resources/js/ztree/jquery.ztree.excheck-3.5.min.js"></script>
 <!--  jqGrid -->
-<script src="${ctx}/resources/js/jquery-ui-bootstrap-masterbs3/third-party/jqGrid/jqGrid/js/jquery.jqGrid.min.js"></script>
-<script src="${ctx}/resources/js/jquery-ui-bootstrap-masterbs3/third-party/jqGrid/jqGrid/js/i18n/grid.locale-cn.js"></script>
+<script src="${ctx}/resources/js/jqGrid-4.8.2/js/jquery.jqGrid.src.js"></script>
+<script src="${ctx}/resources/js/jqGrid-4.8.2/js/i18n/grid.locale-en.js"></script>
 <title>用户列表</title>
 <script type="text/javascript">
     $(function(){
@@ -211,15 +211,11 @@
                 url:'${ctx}/users',  //请求数据的url地址
                 datatype: "json",  //请求的数据类型
                 mtype:"get",
-                colNames:['ID','名称','性别','生日','最后访问时间','积分'], //数据列名称（数组）
+                colNames:['ID','名称','性别'], //数据列名称（数组）
                 colModel:[ //数据列各参数信息设置
                     {name:'id',index:'id', editable:false, width:80,align:'center', title:false},
                     {name:'username',index:'username', width:100, title:false},
-                    {name:'sex',index:'sex', width:40, formatter:'select', editoptions:{value:"0:女;1:男;2:保密"}},
-//                    {name:'birthday',index:'birthday', width:120,formatter:"date",formatoptions: {srcformat:'Y-m-d',newformat:'Y-m-d'}},
-                    {name:'strBirthday',index:'strBirthday', width:120},
-                    {name:'strLastVisit',index:'strLastVisit', width:160},
-                    {name:'credits',index:'credits', width:100,align:'center'}
+                    {name:'sex',index:'sex', width:40, formatter:'select', editoptions:{value:"0:女;1:男;2:保密"}}
                 ],
                 rowNum:10, //每页显示记录数
                 rowList:[10,20,30], //分页选项，可以下拉选择每页显示记录数
@@ -288,12 +284,12 @@
 </style>
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class="col-lg-4">
+        <div class="col-md-4">
             <ul id="treeDemo" class="ztree"></ul>
         </div>
-        <div class="col-lg-8">
+        <div class="col-md-8">
             <form class="form-inline">
                 <label>名称：</label><input type="text" class="input" id="username" required/>
                 <input type="button" class="btn btn-success" id="find_btn" value="查 询" />
