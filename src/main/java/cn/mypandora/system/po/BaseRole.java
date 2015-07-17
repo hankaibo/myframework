@@ -1,30 +1,26 @@
 /**
- * @ProjectName: MyFramework
- * @Package: cn.mypandora.system.po
- * @ClassName: BaseRole
- * Copyright © hankaibo. All rights reserved.
- * @Author: kaibo
- * @CreateDate: 2014-4-22 下午6:37:01 
+ * Copyright © 2015.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.system.po;
 
 import cn.mypandora.orm.model.BaseEntity;
 
 /**
- * @ClassName: BaseRole
- * @Description: 角色实体域对象。
- * @Author: kaibo
- * @date: 2014-4-22
- * @UpdateUser: kaibo
- * @UpdateDate: 2014-4-22 下午6:37:01
- * @UpdateRemark: What is modified?
+ * 角色实体域对象。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public class BaseRole extends BaseEntity {
 
     private static final long serialVersionUID = 6199599081168354432L;
+    // 角色名称
     private String role;
+    // 角色描述
     private String description;
+    // 角色实体域对象
     private Boolean available = Boolean.FALSE;
 
     public BaseRole() {

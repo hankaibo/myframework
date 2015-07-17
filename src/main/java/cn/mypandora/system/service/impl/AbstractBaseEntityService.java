@@ -1,20 +1,22 @@
-package cn.mypandora.system.service.impl;
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */package cn.mypandora.system.service.impl;
 
 import cn.mypandora.log.MyMethodAnno;
 import cn.mypandora.orm.Page;
 import cn.mypandora.orm.dao.IBaseEntityDao;
-import cn.mypandora.orm.service.AbstractBaseEntityOperation;
+import cn.mypandora.orm.service.AbstractBaseEntityService;
 import cn.mypandora.system.dao.BaseUserDao;
 import cn.mypandora.system.po.BaseUser;
 import cn.mypandora.system.service.BaseUserService;
+import cn.mypandora.system.service.PasswordHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * @ClassName:UserService
@@ -25,17 +27,25 @@ import java.util.Set;
  * @UpdateDate:2013-8-14 下午11:12:00
  * @UpdateRemark:What is modified?
  */
+/**
+ * 登录页面PO。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
+ */
 @Service
-public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> implements BaseUserService {
+public class AbstractBaseEntityService extends AbstractBaseEntityService<BaseUser> implements BaseUserService {
     @Resource
     private BaseUserDao dao;
+    @Resource
+    private PasswordHelper passwordHelper;
 
     //@formatter:off
     /* (非 Javadoc)
      * Title: getDao
      * Description:
      * @return
-     * @see cn.mypandora.orm.service.AbstractBaseEntityOperation#getDao()
+     * @see cn.mypandora.orm.service.AbstractBaseEntityService#getDao()
      */
     //@formatter:on
     @Override
@@ -104,6 +114,7 @@ public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> i
     @Override
     @MyMethodAnno(description = "新增用户")
     public void addUser(BaseUser baseUser) {
+        passwordHelper.encryptPassword(baseUser);
         dao.addEntity(baseUser);
     }
 
@@ -147,6 +158,62 @@ public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> i
     @MyMethodAnno(description = "修改用户")
     public void updateUser(BaseUser baseUser) {
         dao.updateEntity(baseUser);
+    }
+
+    /**
+     * 修改密码
+     *
+     * @param userId
+     * @param newPassword
+     */
+    @Override
+    public void changePassword(Long userId, String newPassword) {
+        BaseUser baseUser = getDao().findById(userId);
+        baseUser.setPassword(newPassword);
+        passwordHelper.encryptPassword(baseUser);
+        dao.updateEntity(baseUser);
+    }
+
+    /**
+     * 添加用户-角色关系
+     *
+     * @param userId
+     * @param roleIds
+     */
+    @Override
+    public void correlationRoles(Long userId, Long... roleIds) {
+        if(roleIds == null || roleIds.length == 0) {
+            return;
+        }
+        Map<String,Object> params=new HashMap<>();
+        for(Long roleId : roleIds) {
+            if(!exists(userId, roleId)) {
+                params.put("userId",userId);
+                params.put("roleId",roleId);
+                dao.insertByCondetion("correlationUserRole", params);
+            }
+        }
+    }
+
+    /**
+     * 移除用户-角色关系
+     *
+     * @param userId
+     * @param roleIds
+     */
+    @Override
+    public void uncorrelationRoles(Long userId, Long... roleIds) {
+        if(roleIds == null || roleIds.length == 0) {
+            return;
+        }
+        Map<String,Object> params=new HashMap<>();
+        for(Long roleId : roleIds) {
+            if(exists(userId, roleId)) {
+                params.put("userId",userId);
+                params.put("roleId",roleId);
+                dao.deleteByConditions("uncorrelationUserRole", params);
+            }
+        }
     }
 
     //@formatter:off
@@ -211,7 +278,13 @@ public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> i
      */
     @Override
     public Set<String> findRoles(String username) {
-        return null;
+        Set<String> set=new HashSet<>();
+        List<String> list=dao.findObjectListByCondition(null, null);
+        for(String str:list){
+            set.add(str);
+        }
+        return set;
+
     }
 
     /**
@@ -222,6 +295,18 @@ public class BaseUserServiceImpl extends AbstractBaseEntityOperation<BaseUser> i
      */
     @Override
     public Set<String> findPermissions(String username) {
-        return null;
+        Set<String> set=new HashSet<>();
+        List<String> list=dao.findObjectListByCondition(null, null);
+        for(String str:list){
+            set.add(str);
+        }
+        return set;
+    }
+
+    private boolean exists(Long userId, Long roleId) {
+        Map<String,Object> params=new HashMap<>();
+        params.put("userId",userId);
+        params.put("roleId",roleId);
+        return dao.findMapByCondition("isExistsUserRole",params).size()>0;
     }
 }

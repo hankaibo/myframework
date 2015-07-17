@@ -1,3 +1,8 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.mypandora.shiro.credentials;
 
 import org.apache.shiro.authc.AuthenticationInfo;
@@ -10,8 +15,9 @@ import org.apache.shiro.cache.CacheManager;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * Created by kaibo on 2015/7/9.
- * desc
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher {
 

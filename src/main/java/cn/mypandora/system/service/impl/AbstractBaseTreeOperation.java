@@ -1,7 +1,10 @@
-package cn.mypandora.system.service.impl;
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */package cn.mypandora.system.service.impl;
 
-import cn.mypandora.orm.dao.IBaseNestedDao;
-import cn.mypandora.orm.service.AbstractBaseNestedOperation;
+import cn.mypandora.orm.dao.IBaseTreeDao;
 import cn.mypandora.system.dao.BaseResDao;
 import cn.mypandora.system.po.BaseRes;
 import cn.mypandora.system.service.BaseResService;
@@ -15,13 +18,19 @@ import java.util.List;
  * Created by kaibo on 2014/8/5.
  * desc
  */
+/**
+ * 登录页面PO。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
+ */
 @Service
-public class BaseResServiceImpl extends AbstractBaseNestedOperation<BaseRes> implements BaseResService {
+public class AbstractBaseTreeOperation extends AbstractBaseTreeOperation<BaseRes> implements BaseResService {
     @Resource
     private BaseResDao dao;
 
     @Override
-    public IBaseNestedDao<BaseRes> getDao() {
+    public IBaseTreeDao<BaseRes> getDao() {
         return dao;
     }
 

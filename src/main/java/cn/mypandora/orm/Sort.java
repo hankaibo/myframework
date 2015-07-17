@@ -1,37 +1,27 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.mypandora.orm;
 
 /**
- * @ClassName:Sort
- * @Description:排序。
- * @Author:hankaibo
- * @date:2014-1-1
- * @UpdateUser:hankaibo
- * @UpdateDate:2014-1-1 上午11:59:43
- * @UpdateRemark:What is modified?
+ * 排序。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public class Sort {
-    /**
-     * 排序字段
-     */
+    // 排序方式
+    private final OrderStyle style;
+    // 排序字段
     private String field;
 
     /**
-     * 排序方式
-     */
-    private final OrderStyle style;
-
-    public enum OrderStyle {
-        ASC, // 升序
-        DESC // 降序
-    }
-
-    /**
      * 私有构造方法防止外部初始化
-     * 
-     * @param field
-     *            参与排序的字段
-     * @param style
-     *            排序方式 ASC, DESC
+     *
+     * @param field 参与排序的字段
+     * @param style 排序方式 ASC, DESC
      */
     private Sort(String field, OrderStyle style) {
         this.field = field;
@@ -40,9 +30,8 @@ public class Sort {
 
     /**
      * 创建升序对象
-     * 
-     * @param field
-     *            排序字段
+     *
+     * @param field 排序字段
      * @return 排序对象
      */
     public static Sort asc(String field) {
@@ -51,9 +40,8 @@ public class Sort {
 
     /**
      * 创建降序对象
-     * 
-     * @param field
-     *            排序字段
+     *
+     * @param field 排序字段
      * @return 排序对象
      */
     public static Sort desc(String field) {
@@ -62,7 +50,7 @@ public class Sort {
 
     /**
      * 本条件是否为升序
-     * 
+     *
      * @return 是否为升序
      */
     public boolean isAsc() {
@@ -103,6 +91,11 @@ public class Sort {
 
     public OrderStyle getStyle() {
         return style;
+    }
+
+    public enum OrderStyle {
+        ASC, // 升序
+        DESC // 降序
     }
 
 }

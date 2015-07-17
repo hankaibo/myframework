@@ -1,17 +1,13 @@
-/**   
- * @ProjectName: MyFramework
- * @Package: cn.mypandora.system.dao.impl 
- * @ClassName: BaseDeptDaoImpl 
- * Copyright © hankaibo. All rights reserved.
- * @Author: kaibo
- * @CreateDate: 2014-3-10 下午11:38:03 
+/**
+ * Copyright © 2015.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.system.dao.impl;
 
 import org.springframework.stereotype.Repository;
 
-import cn.mypandora.orm.dao.impl.BaseNestedDaoImpl;
+import cn.mypandora.orm.dao.impl.IBaseTreeDao;
 import cn.mypandora.system.dao.BaseDeptDao;
 import cn.mypandora.system.po.BaseDept;
 
@@ -24,8 +20,14 @@ import cn.mypandora.system.po.BaseDept;
  * @UpdateDate: 2014-3-10 下午11:38:03
  * @UpdateRemark: What is modified?
  */
+/**
+ * 登录页面PO。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
+ */
 @Repository
-public class BaseDeptDaoImpl extends BaseNestedDaoImpl<BaseDept> implements BaseDeptDao {
+public class BaseDeptDaoImpl extends IBaseTreeDao<BaseDept> implements BaseDeptDaoImpl {
 
     //@formatter:off
     /* (非 Javadoc)

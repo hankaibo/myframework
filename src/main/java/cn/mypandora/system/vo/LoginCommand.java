@@ -1,18 +1,26 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.mypandora.system.vo;
 
+import com.sun.org.glassfish.gmbal.Description;
+
 /**
- * @ClassName:LoginCommand
- * @Description:登录页面PO。
- * @Author:hankaibo
- * @date:2013-8-15
- * @UpdateUser:hankaibo
- * @UpdateDate:2013-8-15 上午1:17:56
- * @UpdateRemark:What is modified?
+ * 登录页面PO。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public class LoginCommand {
+    // 用户名
     private String username;
+    // 密码
     private String password;
+    // 验证码
     private String kaptcha;
+    // 记住我
     private boolean rememberMe;
 
 

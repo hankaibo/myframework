@@ -1,105 +1,65 @@
 /**
- * @ProjectName: MyFramework
- * @Package: cn.mypandora.orm.model
- * @ClassName: BaseTree
- * Copyright © hankaibo. All rights reserved.
- * @Author: kaibo
- * @CreateDate: 2014-3-11 上午12:21:30 
+ * Copyright © 2015.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.orm.model;
 
 /**
- * @ClassName: BaseTree
- * @Description: 实体域对象左右树基础类。
- * @Author: kaibo
- * @date: 2014-3-11
- * @UpdateUser: kaibo
- * @UpdateDate: 2014-3-11 上午12:21:30
- * @UpdateRemark: What is modified?
+ * 实体域对象左右树基础类。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
-public class BaseTree extends BaseEntity {
+public abstract class BaseTree extends BaseEntity {
+    // 节点ID
+    protected int nodeId;
+    // 节点名称
+    protected String name;
+    // 节点左值
+    protected int lft;
+    // 节点右值
+    protected int rgt;
+    // 父节点ID
+    protected int parentId;
 
-    private static final long serialVersionUID = 5603244638320710647L;
-    /*节点名称*/
-    private String name;
-    /*节点ID*/
-    private int nodeId;
-    /*节点左值*/
-    private int lft;
-    /*节点右值*/
-    private int rgt;
-    /*父节点ID*/
-    private int parentId;
-
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * @param name the name to set
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * @return the nodeId
-     */
     public int getNodeId() {
         return nodeId;
     }
 
-    /**
-     * @param nodeId the nodeId to set
-     */
     public void setNodeId(int nodeId) {
         this.nodeId = nodeId;
     }
 
-    /**
-     * @return the lft
-     */
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getLft() {
         return lft;
     }
 
-    /**
-     * @param lft the lft to set
-     */
     public void setLft(int lft) {
         this.lft = lft;
     }
 
-    /**
-     * @return the rgt
-     */
     public int getRgt() {
         return rgt;
     }
 
-    /**
-     * @param rgt the rgt to set
-     */
     public void setRgt(int rgt) {
         this.rgt = rgt;
     }
 
-    /**
-     * @return the parentId
-     */
     public int getParentId() {
         return parentId;
     }
 
-    /**
-     * @param parentId the parentId to set
-     */
     public void setParentId(int parentId) {
         this.parentId = parentId;
     }
-
 }

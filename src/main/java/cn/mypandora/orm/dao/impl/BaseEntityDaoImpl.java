@@ -1,3 +1,8 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.mypandora.orm.dao.impl;
 
 import cn.mypandora.orm.MyBatisSql;
@@ -22,11 +27,11 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * DAO通用操作实现。
- *
- * @param <T>
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 @Repository
 public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEntityDao<T> {
@@ -47,7 +52,6 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
     @Autowired
     private SqlSession sqlSession;
 
-
     /**
      * 构造sql配置文件中的key, 格式 nameSpace+'.'+sqlKey
      *
@@ -65,7 +69,7 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      *
      * @return sql配置文件命名空间名称
      */
-    public abstract String getNameSpace();
+    protected abstract String getNameSpace();
 
     /**
      * 查询sql
@@ -187,6 +191,8 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
     }
 
     /**
+     * 按条件修改实体。
+     *
      * @param sqlKey sql语句名称
      * @param params 参数
      */

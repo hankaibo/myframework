@@ -1,4 +1,8 @@
-package cn.mypandora.system.service;
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */package cn.mypandora.system.service;
 
 import cn.mypandora.system.po.BaseRes;
 
@@ -7,6 +11,12 @@ import java.util.List;
 /**
  * Created by kaibo on 2014/8/4.
  * desc
+ */
+/**
+ * 登录页面PO。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public interface BaseResService {
     /**

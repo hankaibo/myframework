@@ -1,11 +1,7 @@
-/**   
- * @ProjectName: myframework
- * @Package: cn.mypandora.system.service.impl 
- * @ClassName: BaseUploadServiceImpl 
- * Copyright © hankaibo. All rights reserved.
- * @Author: kaibo
- * @CreateDate: 2014-5-7 下午12:42:34 
+/**
+ * Copyright © 2015.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.system.service.impl;
 
@@ -16,7 +12,7 @@ import org.springframework.stereotype.Service;
 import cn.mypandora.log.MyMethodAnno;
 import cn.mypandora.orm.Page;
 import cn.mypandora.orm.dao.IBaseEntityDao;
-import cn.mypandora.orm.service.AbstractBaseEntityOperation;
+import cn.mypandora.orm.service.AbstractBaseEntityService;
 import cn.mypandora.system.dao.BaseUploadDao;
 import cn.mypandora.system.po.UploadFile;
 import cn.mypandora.system.service.BaseUploadService;
@@ -30,8 +26,14 @@ import cn.mypandora.system.service.BaseUploadService;
  * @UpdateDate: 2014-5-7 下午12:42:34
  * @UpdateRemark: What is modified?
  */
+/**
+ * 登录页面PO。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
+ */
 @Service
-public class BaseUploadServiceImpl extends AbstractBaseEntityOperation<UploadFile> implements BaseUploadService {
+public class BaseUploadServiceImpl extends AbstractBaseEntityService<UploadFile> implements BaseUploadService {
 
     @Resource
     private BaseUploadDao dao;
@@ -41,7 +43,7 @@ public class BaseUploadServiceImpl extends AbstractBaseEntityOperation<UploadFil
      * Title: getDao
      * Description:
      * @return
-     * @see cn.mypandora.orm.service.impl.AbstractBaseEntityOperation#getDao()
+     * @see cn.mypandora.orm.service.impl.AbstractBaseEntityService#getDao()
      */
     //@formatter:on
     @Override

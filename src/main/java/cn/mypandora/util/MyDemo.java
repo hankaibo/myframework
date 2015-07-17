@@ -1,10 +1,19 @@
-package cn.mypandora.util;
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */package cn.mypandora.util;
 
 import org.apache.commons.configuration.PropertiesConfiguration;
 
 /**
  * Created by kaibo on 2015/5/26.
  * desc
+ */
+/**
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public class MyDemo {
 

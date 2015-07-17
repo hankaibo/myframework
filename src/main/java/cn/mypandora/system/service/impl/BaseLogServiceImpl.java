@@ -1,21 +1,17 @@
-/**   
- * @ProjectName: MyFramework
- * @Package: cn.mypandora.system.service.impl 
- * @ClassName: BaseLogServiceImpl 
- * Copyright © hankaibo. All rights reserved.
- * @Author: kaibo
- * @CreateDate: 2014-4-27 下午3:31:10 
+/**
+ * Copyright © 2015.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.system.service.impl;
 
 import javax.annotation.Resource;
 
+import cn.mypandora.orm.service.AbstractBaseEntityService;
 import org.springframework.stereotype.Service;
 
 import cn.mypandora.orm.Page;
 import cn.mypandora.orm.dao.IBaseEntityDao;
-import cn.mypandora.orm.service.AbstractBaseEntityOperation;
 import cn.mypandora.system.dao.BaseLogDao;
 import cn.mypandora.system.po.BaseLog;
 import cn.mypandora.system.service.BaseLogService;
@@ -29,8 +25,14 @@ import cn.mypandora.system.service.BaseLogService;
  * @UpdateDate: 2014-4-27 下午3:31:10
  * @UpdateRemark: What is modified?
  */
+/**
+ * 登录页面PO。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
+ */
 @Service
-public class BaseLogServiceImpl extends AbstractBaseEntityOperation<BaseLog> implements BaseLogService {
+public class BaseLogServiceImpl extends AbstractBaseEntityService<BaseLog> implements BaseLogService {
 
     @Resource
     private BaseLogDao dao;
@@ -40,7 +42,7 @@ public class BaseLogServiceImpl extends AbstractBaseEntityOperation<BaseLog> imp
      * Title: getDao
      * Description:
      * @return
-     * @see cn.mypandora.orm.service.impl.AbstractBaseEntityOperation#getDao()
+     * @see cn.mypandora.orm.service.impl.AbstractBaseEntityService#getDao()
      */
     //@formatter:on
     @Override

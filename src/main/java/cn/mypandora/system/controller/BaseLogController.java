@@ -1,11 +1,7 @@
-/**   
- * @ProjectName: myframework
- * @Package: cn.mypandora.system.controller 
- * @ClassName: BaseLogController 
- * Copyright © hankaibo. All rights reserved.
- * @Author: kaibo
- * @CreateDate: 2014-4-30 下午3:31:00 
+/**
+ * Copyright © 2015.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.system.controller;
 

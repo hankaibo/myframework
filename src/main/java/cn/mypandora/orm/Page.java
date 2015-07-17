@@ -1,49 +1,33 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.mypandora.orm;
 
 import java.util.List;
 
 /**
- * @param <T>
- * @ClassName:Page
- * @Description:分页。
- * @Author:hankaibo
- * @date:2014-1-1
- * @UpdateUser:hankaibo
- * @UpdateDate:2014-1-1 上午11:52:31
- * @UpdateRemark:因为页面使用jqGrid自带的分页功能，故不需要计算分页导航条。暂时没有找到好的在分页中的排序，故采用原生SQL的办法。
+ * 分页。
+ * 因为页面使用jqGrid自带的分页功能，故不需要计算分页导航条。暂时没有找到好的在分页中的排序，故采用原生SQL的办法。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public class Page<T> {
-    /**
-     * 当前页
-     */
+    // 当前页
     protected int currentPage = 1;
-
-    /**
-     * 每页的记录条数
-     */
+    // 每页的记录条数
     protected int pageSize = 10;
-
-    /**
-     * 总页数
-     */
+    // 总页数
     protected long totalPage = -1;
-
-    /**
-     * 总记录数
-     */
+    // 总记录数
     protected long total = -1;
-
-    /**
-     * 自动计算总记录数
-     */
+    // 自动计算总记录数
     protected boolean autoCount = true;
-
-    /**
-     * 返回结果集
-     */
+    // 返回结果集
     private List<T> resultList;
 
-    //-----------setter getter--------------
     public int getCurrentPage() {
         return currentPage;
     }
@@ -94,6 +78,8 @@ public class Page<T> {
 
     /**
      * 根据currentPage和pageSize计算当前页第一条记录在总结果集中的位置,序号从1开始.
+     *
+     * @return
      */
     public int getFirst() {
         return ((currentPage - 1) * pageSize);

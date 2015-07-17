@@ -1,3 +1,8 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.mypandora.util;
 
 import java.io.File;
@@ -10,13 +15,10 @@ import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 
 /**
- * @ClassName: MyEntityUtil
- * @Description: 根据数据库表映射为实体类
- * @Author: kaibo
- * @date: 2014-5-16
- * @UpdateUser: kaibo
- * @UpdateDate: 2014-5-16 上午9:02:39
- * @UpdateRemark: What is modified?
+ * 根据数据库表映射为实体类
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public class MyEntityUtil {
     private final static String SRC = "src\\main\\java";
@@ -28,19 +30,17 @@ public class MyEntityUtil {
     private final static String TABLE_NAME = "t_base_user";// 表名
     private final static String DESCRIPTION = "实体用户。";// 实体类描述
     // ****************需要修改的参数*****************
-
-    private String[] colNames; // 列名数组
-    private String[] colTypes; // 列名类型数组
-    private int[] colSizes; // 列名大小数组
-    private boolean f_util = false; // 是否需要导入包java.util.*
-    private boolean f_sql = false; // 是否需要导入包java.sql.*
-    // private boolean f_sql = false; // 是否需要导入包import java.io.Serializable;
-
     // 数据库连接
     private static final String URL = "jdbc:mysql://localhost:3316/framework?useUnicode=true&characterEncoding=UTF-8";
     private static final String NAME = "root";
     private static final String PASS = "root";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
+    private String[] colNames; // 列名数组
+    // private boolean f_sql = false; // 是否需要导入包import java.io.Serializable;
+    private String[] colTypes; // 列名类型数组
+    private int[] colSizes; // 列名大小数组
+    private boolean f_util = false; // 是否需要导入包java.util.*
+    private boolean f_sql = false; // 是否需要导入包java.sql.*
 
     /*
      * 构造函数
@@ -75,11 +75,15 @@ public class MyEntityUtil {
 
     }
 
+    public static void main(String[] args) {
+        new MyEntityUtil();
+
+    }
+
     /**
+     * @return Connection
      * @Title: getConnection
      * @Description: 获取数据库连接并得到需要的结果集。
-     * @return
-     * @return Connection
      */
     private ResultSetMetaData getResultSetMetaData() {
         // 查要生成实体类的表
@@ -109,14 +113,12 @@ public class MyEntityUtil {
     }
 
     /**
-     * 
-     * @Title: parse
-     * @Description: 生成实体类主体代码
      * @param colNames
      * @param colTypes
      * @param colSizes
-     * @return
      * @return String
+     * @Title: parse
+     * @Description: 生成实体类主体代码
      */
     private String parse(String[] colNames, String[] colTypes, int[] colSizes) {
         StringBuffer sb = new StringBuffer();
@@ -159,7 +161,7 @@ public class MyEntityUtil {
         sb.append(" */");
 
         /*
-         * 参考例子。 
+         * 参考例子。
          * public class BaseEntity implements Serializable {
          * private static final long serialVersionUID = 1;
          */
@@ -176,10 +178,10 @@ public class MyEntityUtil {
     }
 
     /**
-     * @Title: processAllAttrs
-     * @Description: 生成所有属性
      * @param sb
      * @return void
+     * @Title: processAllAttrs
+     * @Description: 生成所有属性
      */
     private void processAllAttrs(StringBuffer sb) {
         for (int i = 0; i < colNames.length; i++) {
@@ -192,10 +194,10 @@ public class MyEntityUtil {
     }
 
     /**
-     * @Title: processAllMethod
-     * @Description: 生成所有方法
      * @param sb
      * @return void
+     * @Title: processAllMethod
+     * @Description: 生成所有方法
      */
     private void processAllMethod(StringBuffer sb) {
         for (int i = 0; i < colNames.length; i++) {
@@ -212,12 +214,10 @@ public class MyEntityUtil {
     }
 
     /**
+     * @param str t_base_user
+     * @return String
      * @Title: camelCase
      * @Description: 驼峰
-     * @param str
-     *            t_base_user
-     * @return
-     * @return String
      */
     private String camelCase(String str) {
         StringBuilder result = new StringBuilder();
@@ -247,68 +247,67 @@ public class MyEntityUtil {
     }
 
     /**
+     * @param sqlType
+     * @return String
      * @Title: sqlType2JavaType
      * @Description: 获得列的数据类型
-     * @param sqlType
-     * @return
-     * @return String
      */
     private String sqlType2JavaType(String sqlType) {
         switch (sqlType.toLowerCase()) {
-        case "bit":
-            return "Boolean";
-        case "tinyint":
-            return "Byte";
-        case "short":
-            return "Short";
-        case "int":
-            return "Integer";
-        case "long":
-            return "Long";
-        case "float":
-            return "Float";
-        case "decimal":
-        case "numeric":
-        case "real":
-        case "money":
-        case "smallmoney":
-            return "Double";
-        case "varchar":
-        case "char":
-        case "nvarchar":
-        case "nchar":
-        case "text":
-            return "String";
-        case "timestamp":
-        case "datetime":
-        case "date":
-        case "time":
-        case "year":
-            return "Date";
-        case "image":
-            return "Blod";
-        default:
-            return null;
+            case "bit":
+                return "Boolean";
+            case "tinyint":
+                return "Byte";
+            case "short":
+                return "Short";
+            case "int":
+                return "Integer";
+            case "long":
+                return "Long";
+            case "float":
+                return "Float";
+            case "decimal":
+            case "numeric":
+            case "real":
+            case "money":
+            case "smallmoney":
+                return "Double";
+            case "varchar":
+            case "char":
+            case "nvarchar":
+            case "nchar":
+            case "text":
+                return "String";
+            case "timestamp":
+            case "datetime":
+            case "date":
+            case "time":
+            case "year":
+                return "Date";
+            case "image":
+                return "Blod";
+            default:
+                return null;
         }
     }
 
     /**
-     * @Title: createFile
-     * @Description: 写入文件。
      * @param content
      * @return void
+     * @Title: createFile
+     * @Description: 写入文件。
      */
     private void createFile(String content) {
         try {
             String filePath = System.getProperty("user.dir") + File.separator + SRC + File.separator
                     + PACKAGE_PATH.replace(".", "\\") + File.separator;
-            String fileName=firstToUpper(camelCase(TABLE_NAME.substring(2))) + ".java";
-            File file ;
-            file= new File(filePath);
-            if(!file.exists()){
+            String fileName = firstToUpper(camelCase(TABLE_NAME.substring(2))) + ".java";
+            File file;
+            file = new File(filePath);
+            if (!file.exists()) {
                 file.mkdir();
             }
-            file= new File(filePath+fileName);
+            file = new File(filePath + fileName);
             System.out.println("**********文件路径**********");
             System.out.println(filePath);
             FileWriter writer = new FileWriter(file);
@@ -327,9 +326,5 @@ public class MyEntityUtil {
             ch[0] = (char) (ch[0] - 32);
         }
         return new String(ch);
-    }
-    public static void main(String[] args) {
-        new MyEntityUtil();
-
     }
 }

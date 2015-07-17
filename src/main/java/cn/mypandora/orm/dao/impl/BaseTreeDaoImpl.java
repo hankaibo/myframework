@@ -1,15 +1,11 @@
 /**
- * @ProjectName: MyFramework
- * @Package: cn.mypandora.orm.dao
- * @ClassName: BaseNestedDaoImpl
- * Copyright © hankaibo. All rights reserved.
- * @Author: kaibo
- * @CreateDate: 2014-3-11 上午12:40:23 
+ * Copyright © 2015.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.orm.dao.impl;
 
-import cn.mypandora.orm.dao.IBaseNestedDao;
+import cn.mypandora.orm.dao.IBaseTreeDao;
 import cn.mypandora.orm.model.BaseTree;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
@@ -21,13 +17,14 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * DAO通用操作实现。(嵌套类型)
- *
- * @param <T>
+ * DAO通用操作实现。(树类型)
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 @Repository
-public abstract class BaseNestedDaoImpl<T extends BaseTree> implements IBaseNestedDao<T> {
-    private static final Logger logger = LoggerFactory.getLogger(BaseNestedDaoImpl.class);
+public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDao<T> {
+    private static final Logger logger = LoggerFactory.getLogger(IBaseTreeDao.class);
 
     private static final String LOAD_FULL_TREE = "loadFullTree";
     private static final String LOAD_TREE_LEVEL = "loadTreeWithLevel";
@@ -77,7 +74,7 @@ public abstract class BaseNestedDaoImpl<T extends BaseTree> implements IBaseNest
      *
      * @return sql配置文件命名空间名称
      */
-    public abstract String getNameSpace();
+    protected abstract String getNameSpace();
 
     /**
      * 获取整棵树（一次性全部加载，适合数据量少的情况）

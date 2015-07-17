@@ -1,4 +1,8 @@
-package cn.mypandora.system.controller;
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */package cn.mypandora.system.controller;
 
 import cn.mypandora.system.po.BaseRes;
 import cn.mypandora.system.service.BaseResService;

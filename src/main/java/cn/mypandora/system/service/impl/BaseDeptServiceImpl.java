@@ -1,4 +1,8 @@
-package cn.mypandora.system.service.impl;
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */package cn.mypandora.system.service.impl;
 
 import java.util.List;
 
@@ -7,8 +11,8 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import cn.mypandora.orm.dao.IBaseNestedDao;
-import cn.mypandora.orm.service.AbstractBaseNestedOperation;
+import cn.mypandora.orm.dao.IBaseTreeDao;
+import cn.mypandora.orm.service.AbstractBaseTreeOperation;
 import cn.mypandora.system.dao.BaseDeptDao;
 import cn.mypandora.system.po.BaseDept;
 import cn.mypandora.system.service.BaseDeptService;
@@ -22,8 +26,14 @@ import cn.mypandora.system.service.BaseDeptService;
  * @UpdateDate:2013-8-14 下午11:12:00
  * @UpdateRemark:What is modified?
  */
+/**
+ * 登录页面PO。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
+ */
 @Service
-public class BaseDeptServiceImpl extends AbstractBaseNestedOperation<BaseDept> implements BaseDeptService {
+public class BaseDeptServiceImpl extends AbstractBaseTreeOperation<BaseDept> implements BaseDeptService {
     @Resource
     private BaseDeptDao dao;
 
@@ -32,11 +42,11 @@ public class BaseDeptServiceImpl extends AbstractBaseNestedOperation<BaseDept> i
      * Title: getDao
      * Description:
      * @return
-     * @see cn.mypandora.orm.service.AbstractBaseNestedOperation#getDao()
+     * @see cn.mypandora.orm.service.AbstractBaseTreeOperation#getDao()
      */
     //@formatter:on
     @Override
-    public IBaseNestedDao<BaseDept> getDao() {
+    public IBaseTreeDao<BaseDept> getDao() {
         return dao;
     }
 

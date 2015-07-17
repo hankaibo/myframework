@@ -1,11 +1,7 @@
 /**
- * @ProjectName: MyFramework
- * @Package: cn.mypandora.system.controller
- * @ClassName: BaseUserController
- * Copyright © hankaibo. All rights reserved.
- * @Author: kaibo
- * @CreateDate: 2014-3-13 下午2:17:38 
+ * Copyright © 2015.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.system.controller;
 

@@ -1,3 +1,8 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.mypandora.orm;
 
 import java.util.ArrayList;
@@ -5,51 +10,41 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * @ClassName:MyBatisSql
- * @Description: 获取MyBatis运行时SQL。
- * @Author:hankaibo
- * @date:2014-1-1
- * @UpdateUser:hankaibo
- * @UpdateDate:2014-1-1 下午12:02:44
- * @UpdateRemark:What is modified?
+ * 获取MyBatis运行时SQL。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public class MyBatisSql {
-    /**
-     * @Fields sql :运行期的sql
-     */
+    // 运行期的sql
     private String sql;
-    /**
-     * @Fields parameters :运行期的参数
-     */
+    // 运行期的参数
     private Object[] parameters;
-    /**
-     * @Fields resultClass :<select id="XXX" resultType="ZZZ">中的resultType
-     */
+    // <select id="XXX" resultType="ZZZ">中的resultType
     private Class<?> resultClass;
 
-    // ---------------getter setter----------------
-    public Class<?> getResultClass() {
-        return resultClass;
-    }
-
-    public void setResultClass(Class<?> resultClass) {
-        this.resultClass = resultClass;
+    public String getSql() {
+        return sql;
     }
 
     public void setSql(String sql) {
         this.sql = sql;
     }
 
-    public String getSql() {
-        return sql;
+    public Object[] getParameters() {
+        return parameters;
     }
 
     public void setParameters(Object[] parameters) {
         this.parameters = parameters;
     }
 
-    public Object[] getParameters() {
-        return parameters;
+    public Class<?> getResultClass() {
+        return resultClass;
+    }
+
+    public void setResultClass(Class<?> resultClass) {
+        this.resultClass = resultClass;
     }
 
     @Override

@@ -1,16 +1,23 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.mypandora.orm.dialect;
 
 /**
- * @ClassName:SQLServerDialect
- * @Description:sql server分页支持
- * @Author:hankaibo
- * @date:2014-1-1
- * @UpdateUser:hankaibo
- * @UpdateDate:2014-1-1 上午11:51:59
- * @UpdateRemark:What is modified?
+ * sql server分页支持。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public class SQLServerDialect implements Dialect {
-
+    /**
+     * @param sql    原始查询SQL
+     * @param offset 开始记录索引（从零开始）
+     * @param limit  每页记录大小
+     * @return 返回数据库相关的分页SQL语句
+     */
     @Override
     public String getPageSql(String sql, int offset, int limit) {
         sql = sql.trim();
@@ -21,5 +28,4 @@ public class SQLServerDialect implements Dialect {
         pageSql.append(") a )b where rownum> " + offset + " and rownum <= " + (offset + limit));
         return pageSql.toString();
     }
-
 }

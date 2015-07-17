@@ -1,4 +1,8 @@
-package cn.mypandora.util;
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */package cn.mypandora.util;
 
 import cn.mypandora.orm.model.BaseTree;
 import cn.mypandora.system.po.BaseDept;
@@ -13,6 +17,11 @@ import cn.mypandora.system.vo.ParentChildTree;
  * @UpdateUser:hankaibo
  * @UpdateDate:2013-9-10 下午5:27:57
  * @UpdateRemark:What is modified?
+ */
+/**
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public class MyTreeUtil {
     /**

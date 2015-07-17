@@ -91,13 +91,13 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 2015-06-20 22:06:01,504 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
 2015-06-20 22:06:01,505 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:06:01,505 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
-2015-06-20 22:06:01,518 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ÉÔºó»ñÈ¡(String), ÓÃ»§µÇÂ¼³É¹¦(String), ÉÔºó»ñÈ¡(String), 2015-06-20 22:06:01.502(Timestamp)
+2015-06-20 22:06:01,518 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ï¿½Ôºï¿½ï¿½È¡(String), ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½É¹ï¿½(String), ï¿½Ôºï¿½ï¿½È¡(String), 2015-06-20 22:06:01.502(Timestamp)
 2015-06-20 22:06:01,519 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - end around
 2015-06-20 22:06:01,556 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:06:01,557 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
 2015-06-20 22:06:01,558 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
 2015-06-20 22:06:01,684 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - begin around
-2015-06-20 22:06:01,684 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-20 22:06:01,684 [http-apr-8080-exec-4] DEBUG IBaseTreeDao - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
 2015-06-20 22:06:01,685 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:06:01,685 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
 2015-06-20 22:06:01,686 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
@@ -105,7 +105,7 @@ Caused by: org.springframework.beans.factory.NoSuchBeanDefinitionException: No q
 2015-06-20 22:06:05,193 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - begin around
 2015-06-20 22:06:05,194 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
 2015-06-20 22:06:05,197 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
-2015-06-20 22:06:05,341 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - Éú³ÉµÄ·ÖÒ³SQL£ºselect * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-20 22:06:05,341 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - ï¿½ï¿½ÉµÄ·ï¿½Ò³SQLï¿½ï¿½select * from t_base_user where 1=1 order by ? ? limit 0 ,10
 2015-06-20 22:06:05,342 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
 2015-06-20 22:06:05,343 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
 2015-06-20 22:06:05,377 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
@@ -188,13 +188,13 @@ java.lang.NumberFormatException: null
 2015-06-20 22:08:21,938 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
 2015-06-20 22:08:21,939 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:08:21,939 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
-2015-06-20 22:08:21,940 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ÉÔºó»ñÈ¡(String), ÓÃ»§µÇÂ¼³É¹¦(String), ÉÔºó»ñÈ¡(String), 2015-06-20 22:08:21.938(Timestamp)
+2015-06-20 22:08:21,940 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ï¿½Ôºï¿½ï¿½È¡(String), ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½É¹ï¿½(String), ï¿½Ôºï¿½ï¿½È¡(String), 2015-06-20 22:08:21.938(Timestamp)
 2015-06-20 22:08:21,940 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
 2015-06-20 22:08:21,942 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:08:21,943 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
 2015-06-20 22:08:21,944 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
 2015-06-20 22:08:22,187 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
-2015-06-20 22:08:22,187 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-20 22:08:22,187 [http-apr-8080-exec-10] DEBUG IBaseTreeDao - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
 2015-06-20 22:08:22,188 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:08:22,188 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
 2015-06-20 22:08:22,189 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
@@ -202,7 +202,7 @@ java.lang.NumberFormatException: null
 2015-06-20 22:08:23,967 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
 2015-06-20 22:08:23,968 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
 2015-06-20 22:08:23,969 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
-2015-06-20 22:08:23,971 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - Éú³ÉµÄ·ÖÒ³SQL£ºselect * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-20 22:08:23,971 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - ï¿½ï¿½ÉµÄ·ï¿½Ò³SQLï¿½ï¿½select * from t_base_user where 1=1 order by ? ? limit 0 ,10
 2015-06-20 22:08:23,971 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
 2015-06-20 22:08:23,972 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
 2015-06-20 22:08:24,011 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
@@ -393,13 +393,13 @@ java.lang.NumberFormatException: null
 2015-06-20 22:09:08,819 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
 2015-06-20 22:09:08,819 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:09:08,820 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
-2015-06-20 22:09:08,820 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ÉÔºó»ñÈ¡(String), ÓÃ»§µÇÂ¼³É¹¦(String), ÉÔºó»ñÈ¡(String), 2015-06-20 22:09:08.818(Timestamp)
+2015-06-20 22:09:08,820 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ï¿½Ôºï¿½ï¿½È¡(String), ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½É¹ï¿½(String), ï¿½Ôºï¿½ï¿½È¡(String), 2015-06-20 22:09:08.818(Timestamp)
 2015-06-20 22:09:08,820 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - end around
 2015-06-20 22:09:08,823 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:09:08,823 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
 2015-06-20 22:09:08,823 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
 2015-06-20 22:09:08,914 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - begin around
-2015-06-20 22:09:08,915 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-20 22:09:08,915 [http-apr-8080-exec-3] DEBUG IBaseTreeDao - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
 2015-06-20 22:09:08,915 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:09:08,916 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
 2015-06-20 22:09:08,916 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
@@ -407,7 +407,7 @@ java.lang.NumberFormatException: null
 2015-06-20 22:09:10,277 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
 2015-06-20 22:09:10,278 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
 2015-06-20 22:09:10,279 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
-2015-06-20 22:09:10,280 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - Éú³ÉµÄ·ÖÒ³SQL£ºselect * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-20 22:09:10,280 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - ï¿½ï¿½ÉµÄ·ï¿½Ò³SQLï¿½ï¿½select * from t_base_user where 1=1 order by ? ? limit 0 ,10
 2015-06-20 22:09:10,280 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
 2015-06-20 22:09:10,281 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
 2015-06-20 22:09:10,288 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
@@ -490,13 +490,13 @@ java.lang.NumberFormatException: null
 2015-06-20 22:09:46,470 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
 2015-06-20 22:09:46,471 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:09:46,471 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
-2015-06-20 22:09:46,472 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ÉÔºó»ñÈ¡(String), ÓÃ»§µÇÂ¼³É¹¦(String), ÉÔºó»ñÈ¡(String), 2015-06-20 22:09:46.47(Timestamp)
+2015-06-20 22:09:46,472 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ï¿½Ôºï¿½ï¿½È¡(String), ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½É¹ï¿½(String), ï¿½Ôºï¿½ï¿½È¡(String), 2015-06-20 22:09:46.47(Timestamp)
 2015-06-20 22:09:46,472 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
 2015-06-20 22:09:46,509 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:09:46,509 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
 2015-06-20 22:09:46,509 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
 2015-06-20 22:09:46,608 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
-2015-06-20 22:09:46,608 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-20 22:09:46,608 [http-apr-8080-exec-8] DEBUG IBaseTreeDao - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
 2015-06-20 22:09:46,609 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:09:46,609 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
 2015-06-20 22:09:46,610 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
@@ -504,7 +504,7 @@ java.lang.NumberFormatException: null
 2015-06-20 22:09:47,973 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - begin around
 2015-06-20 22:09:47,973 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
 2015-06-20 22:09:47,974 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
-2015-06-20 22:09:47,976 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - Éú³ÉµÄ·ÖÒ³SQL£ºselect * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-20 22:09:47,976 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - ï¿½ï¿½ÉµÄ·ï¿½Ò³SQLï¿½ï¿½select * from t_base_user where 1=1 order by ? ? limit 0 ,10
 2015-06-20 22:09:47,977 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
 2015-06-20 22:09:47,977 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
 2015-06-20 22:09:47,987 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
@@ -587,13 +587,13 @@ java.lang.NumberFormatException: null
 2015-06-20 22:09:53,296 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
 2015-06-20 22:09:53,297 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:09:53,297 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
-2015-06-20 22:09:53,298 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ÉÔºó»ñÈ¡(String), ÓÃ»§µÇÂ¼³É¹¦(String), ÉÔºó»ñÈ¡(String), 2015-06-20 22:09:53.296(Timestamp)
+2015-06-20 22:09:53,298 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ï¿½Ôºï¿½ï¿½È¡(String), ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½É¹ï¿½(String), ï¿½Ôºï¿½ï¿½È¡(String), 2015-06-20 22:09:53.296(Timestamp)
 2015-06-20 22:09:53,298 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - end around
 2015-06-20 22:09:53,300 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:09:53,301 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
 2015-06-20 22:09:53,301 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
 2015-06-20 22:09:53,435 [http-apr-8080-exec-10] DEBUG cn.mypandora.log.MyLogAspect - begin around
-2015-06-20 22:09:53,437 [http-apr-8080-exec-10] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-20 22:09:53,437 [http-apr-8080-exec-10] DEBUG IBaseTreeDao - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
 2015-06-20 22:09:53,440 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:09:53,440 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
 2015-06-20 22:09:53,441 [http-apr-8080-exec-10] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
@@ -601,7 +601,7 @@ java.lang.NumberFormatException: null
 2015-06-20 22:09:54,783 [http-apr-8080-exec-4] DEBUG cn.mypandora.log.MyLogAspect - begin around
 2015-06-20 22:09:54,783 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
 2015-06-20 22:09:54,784 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
-2015-06-20 22:09:54,785 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - Éú³ÉµÄ·ÖÒ³SQL£ºselect * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-20 22:09:54,785 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - ï¿½ï¿½ÉµÄ·ï¿½Ò³SQLï¿½ï¿½select * from t_base_user where 1=1 order by ? ? limit 0 ,10
 2015-06-20 22:09:54,785 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
 2015-06-20 22:09:54,785 [http-apr-8080-exec-4] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
 2015-06-20 22:09:54,792 [http-apr-8080-exec-4] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
@@ -684,13 +684,13 @@ java.lang.NumberFormatException: null
 2015-06-20 22:10:56,642 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
 2015-06-20 22:10:56,643 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:10:56,643 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
-2015-06-20 22:10:56,643 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ÉÔºó»ñÈ¡(String), ÓÃ»§µÇÂ¼³É¹¦(String), ÉÔºó»ñÈ¡(String), 2015-06-20 22:10:56.642(Timestamp)
+2015-06-20 22:10:56,643 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ï¿½Ôºï¿½ï¿½È¡(String), ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½É¹ï¿½(String), ï¿½Ôºï¿½ï¿½È¡(String), 2015-06-20 22:10:56.642(Timestamp)
 2015-06-20 22:10:56,643 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - end around
 2015-06-20 22:10:56,645 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:10:56,645 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
 2015-06-20 22:10:56,645 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
 2015-06-20 22:10:57,134 [http-apr-8080-exec-3] DEBUG cn.mypandora.log.MyLogAspect - begin around
-2015-06-20 22:10:57,135 [http-apr-8080-exec-3] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-20 22:10:57,135 [http-apr-8080-exec-3] DEBUG IBaseTreeDao - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
 2015-06-20 22:10:57,137 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:10:57,137 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
 2015-06-20 22:10:57,138 [http-apr-8080-exec-3] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
@@ -698,7 +698,7 @@ java.lang.NumberFormatException: null
 2015-06-20 22:11:02,191 [http-apr-8080-exec-5] DEBUG cn.mypandora.log.MyLogAspect - begin around
 2015-06-20 22:11:02,192 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
 2015-06-20 22:11:02,193 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
-2015-06-20 22:11:02,239 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - Éú³ÉµÄ·ÖÒ³SQL£ºselect * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-20 22:11:02,239 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - ï¿½ï¿½ÉµÄ·ï¿½Ò³SQLï¿½ï¿½select * from t_base_user where 1=1 order by ? ? limit 0 ,10
 2015-06-20 22:11:02,239 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
 2015-06-20 22:11:02,240 [http-apr-8080-exec-5] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
 2015-06-20 22:11:02,244 [http-apr-8080-exec-5] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
@@ -728,13 +728,13 @@ java.lang.NumberFormatException: null
 2015-06-20 22:13:40,330 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
 2015-06-20 22:13:40,330 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:13:40,331 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
-2015-06-20 22:13:40,331 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ÉÔºó»ñÈ¡(String), ÓÃ»§µÇÂ¼³É¹¦(String), ÉÔºó»ñÈ¡(String), 2015-06-20 22:13:40.329(Timestamp)
+2015-06-20 22:13:40,331 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ï¿½Ôºï¿½ï¿½È¡(String), ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½É¹ï¿½(String), ï¿½Ôºï¿½ï¿½È¡(String), 2015-06-20 22:13:40.329(Timestamp)
 2015-06-20 22:13:40,333 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - end around
 2015-06-20 22:13:40,335 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:13:40,336 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
 2015-06-20 22:13:40,336 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
 2015-06-20 22:13:40,506 [http-apr-8080-exec-8] DEBUG cn.mypandora.log.MyLogAspect - begin around
-2015-06-20 22:13:40,507 [http-apr-8080-exec-8] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-20 22:13:40,507 [http-apr-8080-exec-8] DEBUG IBaseTreeDao - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
 2015-06-20 22:13:40,508 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:13:40,508 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
 2015-06-20 22:13:40,556 [http-apr-8080-exec-8] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
@@ -742,7 +742,7 @@ java.lang.NumberFormatException: null
 2015-06-20 22:13:48,027 [http-apr-8080-exec-2] DEBUG cn.mypandora.log.MyLogAspect - begin around
 2015-06-20 22:13:48,028 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
 2015-06-20 22:13:48,029 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
-2015-06-20 22:13:48,030 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - Éú³ÉµÄ·ÖÒ³SQL£ºselect * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-20 22:13:48,030 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - ï¿½ï¿½ÉµÄ·ï¿½Ò³SQLï¿½ï¿½select * from t_base_user where 1=1 order by ? ? limit 0 ,10
 2015-06-20 22:13:48,031 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
 2015-06-20 22:13:48,031 [http-apr-8080-exec-2] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
 2015-06-20 22:13:48,036 [http-apr-8080-exec-2] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
@@ -879,13 +879,13 @@ java.lang.NumberFormatException: null
 2015-06-20 22:15:45,595 [http-apr-8080-exec-9] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
 2015-06-20 22:15:45,596 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:15:45,597 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
-2015-06-20 22:15:45,598 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ÉÔºó»ñÈ¡(String), ÓÃ»§µÇÂ¼³É¹¦(String), ÉÔºó»ñÈ¡(String), 2015-06-20 22:15:45.594(Timestamp)
+2015-06-20 22:15:45,598 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ï¿½Ôºï¿½ï¿½È¡(String), ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½É¹ï¿½(String), ï¿½Ôºï¿½ï¿½È¡(String), 2015-06-20 22:15:45.594(Timestamp)
 2015-06-20 22:15:45,599 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - end around
 2015-06-20 22:15:45,601 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:15:45,601 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
 2015-06-20 22:15:45,601 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
 2015-06-20 22:15:45,684 [http-apr-8080-exec-9] DEBUG cn.mypandora.log.MyLogAspect - begin around
-2015-06-20 22:15:45,685 [http-apr-8080-exec-9] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-20 22:15:45,685 [http-apr-8080-exec-9] DEBUG IBaseTreeDao - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
 2015-06-20 22:15:45,687 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:15:45,687 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
 2015-06-20 22:15:45,688 [http-apr-8080-exec-9] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
@@ -893,7 +893,7 @@ java.lang.NumberFormatException: null
 2015-06-20 22:15:46,769 [http-apr-8080-exec-7] DEBUG cn.mypandora.log.MyLogAspect - begin around
 2015-06-20 22:15:46,769 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
 2015-06-20 22:15:46,770 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
-2015-06-20 22:15:46,772 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - Éú³ÉµÄ·ÖÒ³SQL£ºselect * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-20 22:15:46,772 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - ï¿½ï¿½ÉµÄ·ï¿½Ò³SQLï¿½ï¿½select * from t_base_user where 1=1 order by ? ? limit 0 ,10
 2015-06-20 22:15:46,772 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
 2015-06-20 22:15:46,772 [http-apr-8080-exec-7] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
 2015-06-20 22:15:46,779 [http-apr-8080-exec-7] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
@@ -1084,13 +1084,13 @@ java.lang.NumberFormatException: null
 2015-06-20 22:16:29,262 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.LogEntity.add>
 2015-06-20 22:16:29,263 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:16:29,263 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
-2015-06-20 22:16:29,264 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ÉÔºó»ñÈ¡(String), ÓÃ»§µÇÂ¼³É¹¦(String), ÉÔºó»ñÈ¡(String), 2015-06-20 22:16:29.261(Timestamp)
+2015-06-20 22:16:29,264 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: ï¿½Ôºï¿½ï¿½È¡(String), ï¿½Ã»ï¿½ï¿½ï¿½Â¼ï¿½É¹ï¿½(String), ï¿½Ôºï¿½ï¿½È¡(String), 2015-06-20 22:16:29.261(Timestamp)
 2015-06-20 22:16:29,264 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - end around
 2015-06-20 22:16:29,267 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:16:29,267 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
 2015-06-20 22:16:29,267 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
 2015-06-20 22:16:29,514 [http-apr-8080-exec-1] DEBUG cn.mypandora.log.MyLogAspect - begin around
-2015-06-20 22:16:29,514 [http-apr-8080-exec-1] DEBUG cn.mypandora.orm.dao.impl.BaseNestedDaoImpl - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
+2015-06-20 22:16:29,514 [http-apr-8080-exec-1] DEBUG IBaseTreeDao - SQL Key <cn.mypandora.system.BaseRes.getDescendants>
 2015-06-20 22:16:29,515 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.BaseRes.getDescendants - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
 2015-06-20 22:16:29,515 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==>  Preparing: SELECT * FROM t_base_res t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_res s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_res s WHERE s.id=?) ORDER BY t.lft ASC 
 2015-06-20 22:16:29,516 [http-apr-8080-exec-1] DEBUG cn.mypandora.system.BaseRes.getDescendants - ==> Parameters: 1(Long), 1(Long)
@@ -1098,7 +1098,7 @@ java.lang.NumberFormatException: null
 2015-06-20 22:16:30,670 [http-apr-8080-exec-6] DEBUG cn.mypandora.log.MyLogAspect - begin around
 2015-06-20 22:16:30,671 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>
 2015-06-20 22:16:30,672 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.pageUsers - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@adb6c5]
-2015-06-20 22:16:30,673 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - Éú³ÉµÄ·ÖÒ³SQL£ºselect * from t_base_user where 1=1 order by ? ? limit 0 ,10
+2015-06-20 22:16:30,673 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.OffsetLimitInterceptor - ï¿½ï¿½ÉµÄ·ï¿½Ò³SQLï¿½ï¿½select * from t_base_user where 1=1 order by ? ? limit 0 ,10
 2015-06-20 22:16:30,673 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==>  Preparing: select * from t_base_user where 1=1 order by ? ? limit 0 ,10 
 2015-06-20 22:16:30,673 [http-apr-8080-exec-6] DEBUG cn.mypandora.system.UserEntity.pageUsers - ==> Parameters: id(String), desc(String)
 2015-06-20 22:16:30,679 [http-apr-8080-exec-6] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <cn.mypandora.system.UserEntity.pageUsers>

@@ -1,11 +1,7 @@
 /**
- * @ProjectName: MyFramework
- * @Package: cn.mypandora.system.controller
- * @ClassName: LogoutController
- * Copyright © hankaibo. All rights reserved.
- * @Author: kaibo
- * @CreateDate: 2014-3-23 上午12:22:20 
+ * Copyright © 2015.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.system.controller;
 

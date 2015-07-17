@@ -1,11 +1,7 @@
 /**
- * @ProjectName: MyFramework
- * @Package: cn.mypandora.orm.dao.impl
- * @ClassName: IBaseNestedDao
- * Copyright © hankaibo. All rights reserved.
- * @Author: kaibo
- * @CreateDate: 2014-3-16 上午1:03:39 
+ * Copyright © 2015.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.orm.dao;
 
@@ -15,11 +11,12 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * DAO通用操作API。(嵌套类型)
- *
- * @param <T>
+ * DAO通用操作API(树型)。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
-public interface IBaseNestedDao<T extends BaseTree> {
+public interface IBaseTreeDao<T extends BaseTree> {
     /**
      * 获取整棵树（一次性全部加载，适合数据量少的情况）
      *
@@ -66,7 +63,6 @@ public interface IBaseNestedDao<T extends BaseTree> {
      * @return 本节点的祖先节点
      */
     List<T> getAncestry(Long id);
-
 
     /**
      * 左节点加2

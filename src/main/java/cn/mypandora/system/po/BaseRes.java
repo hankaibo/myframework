@@ -1,28 +1,26 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.mypandora.system.po;
 
 import cn.mypandora.orm.model.BaseTree;
 
 /**
- * Created by kaibo on 2014/8/4.
- * desc
+ * 资源实体域对象。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public class BaseRes extends BaseTree {
-
-    /**
-     * 资源状态，启用/禁用。
-     */
+    // 资源状态，启用/禁用。
     private boolean isEnable;
-    /**
-     * 资源URL。
-     */
+    // 资源URL。
     private String url;
-    /**
-     * 节点的深度
-     */
+    // 资源节点的深度
     private int level;
-    /**
-     * 操作类型，是编辑还是添加...
-     */
+    // 操作类型，是编辑还是添加...
     private String oper;
 
     public boolean isEnable() {

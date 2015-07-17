@@ -1,11 +1,7 @@
 /**
- * @ProjectName: myframework
- * @Package: cn.mypandora.util
- * @ClassName: MyExcelUtil
- * Copyright © hankaibo. All rights reserved.
- * @Author: kaibo
- * @CreateDate: 2014-7-5 下午6:34:35 
+ * Copyright © 2015.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.util;
 
@@ -29,6 +25,11 @@ import java.util.regex.Pattern;
  * @UpdateUser: kaibo
  * @UpdateDate: 2014-7-5 下午7:41:21
  * @UpdateRemark: What is modified?
+ */
+/**
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public class MyExcelUtil {
     // 2007 版本以上 最大支持1048576行

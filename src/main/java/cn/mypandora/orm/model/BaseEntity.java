@@ -1,36 +1,27 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.mypandora.orm.model;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
 /**
- * @ClassName:BaseEntity
- * @Description:实体域对象基础类。
- * @Author:hankaibo
- * @date:2014-1-1
- * @UpdateUser:hankaibo
- * @UpdateDate:2014-1-1 上午11:53:48
+ * 实体域对象基础类。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
-public class BaseEntity implements Serializable {
+public abstract class BaseEntity implements Serializable {
+    // 主键
+    protected Long id;
+    // 创建时间
+    protected Timestamp createTime;
+    // 修改时间
+    protected Timestamp updateTime;
 
-    /** 
-     * @Fields serialVersionUID :序列化值。
-     */
-    private static final long serialVersionUID = -2913220082793071417L;
-    /**
-     * @Fields id :主键
-     */
-    private Long id;
-    /**
-     * @Fields createTime :创建时间
-     */
-    private Timestamp createTime;
-    /**
-     * @Fields updateTime :修改时间
-     */
-    private Timestamp updateTime;
-
-    // ----------setter getter------------
     public Long getId() {
         return id;
     }
@@ -54,5 +45,4 @@ public class BaseEntity implements Serializable {
     public void setUpdateTime(Timestamp updateTime) {
         this.updateTime = updateTime;
     }
-
 }

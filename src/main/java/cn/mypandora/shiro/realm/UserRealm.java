@@ -1,3 +1,8 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.mypandora.shiro.realm;
 
 import cn.mypandora.system.po.BaseUser;
@@ -12,8 +17,9 @@ import org.apache.shiro.util.ByteSource;
 import javax.annotation.Resource;
 
 /**
- * Created by kaibo on 2015/7/9.
- * desc
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public class UserRealm extends AuthorizingRealm {
 
@@ -22,6 +28,7 @@ public class UserRealm extends AuthorizingRealm {
 
     /**
      * 为当前登录的Subject授予角色和权限
+     *
      * @param principals
      * @return
      */
@@ -39,6 +46,7 @@ public class UserRealm extends AuthorizingRealm {
 
     /**
      * 为当前登录的Subject授予角色和权限
+     *
      * @param token
      * @return
      * @throws AuthenticationException

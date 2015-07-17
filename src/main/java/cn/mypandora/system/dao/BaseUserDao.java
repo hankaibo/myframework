@@ -24,6 +24,12 @@ import java.util.Map;
  * @UpdateDate: 2014年3月7日 下午5:17:32
  * @UpdateRemark: What is modified?
  */
+/**
+ * 登录页面PO。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
+ */
 public interface BaseUserDao extends IBaseEntityDao<BaseUser> {
     /**
      * @Title: findByCondition
@@ -46,12 +52,41 @@ public interface BaseUserDao extends IBaseEntityDao<BaseUser> {
     BaseUser findEntityByCondition(String sqlKey, Object params);
 
     /**
-     *
+     * 根据条件获取Map实体列表。
      * @param sqlKey
      * @param params
      * @return
      */
     List<Map<String, Object>> findMapByCondition(String sqlKey, Object params);
 
+    /**
+     *
+     * @param sqlKey
+     * @param params
+     * @param mapKey
+     * @return
+     */
     Map<String,Map<String,Object>> findMapByCondition(String sqlKey,Object params,String mapKey);
+
+    /**
+     *
+     * @param sqlKey
+     * @param params
+     * @return
+     */
+    <O> List<O> findObjectListByCondition(String sqlKey, Object params);
+
+    /**
+     *  按条件添加实体。
+     * @param sqlKey
+     * @param params
+     */
+    void insertByCondetion(String sqlKey, Object params);
+
+    /**
+     * 根据条件删除实体。
+     * @param sqlKey
+     * @param params
+     */
+    void deleteByConditions(String sqlKey, Object params);
 }

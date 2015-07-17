@@ -1,3 +1,8 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.mypandora.orm.dao;
 
 import cn.mypandora.orm.Page;
@@ -6,11 +11,11 @@ import cn.mypandora.orm.model.BaseEntity;
 import java.io.Serializable;
 import java.util.List;
 
-
 /**
  * DAO通用操作API。
- *
- * @param <T>
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public interface IBaseEntityDao<T extends BaseEntity> {
 

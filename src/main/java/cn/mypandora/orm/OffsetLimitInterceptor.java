@@ -1,3 +1,8 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.mypandora.orm;
 
 import cn.mypandora.orm.dialect.Dialect;
@@ -21,38 +26,20 @@ import java.sql.Connection;
 import java.util.Properties;
 
 /**
- * @ClassName: OffsetLimitInterceptor
- * @Description: 实现mybatis提供的拦截器接口，编写我们自己的分页实现，原理就是拦截底层JDBC操作相关的Statement对象，
- *               把前端的分页参数如当前记录索引和每页大小通过拦截器注入到sql语句中，
- *               即在sql执行之前通过分页参数重新生成分页sql,而具体的分页sql实现是分离到Dialect接口中去。
- * @date:2014-1-1
- * @UpdateUser:hankaibo
- * @UpdateDate:2014-1-1 上午11:52:57
- * @UpdateRemark:What is modified?
+ * 实现mybatis提供的拦截器接口，编写我们自己的分页实现，原理就是拦截底层JDBC操作相关的Statement对象，
+ * 把前端的分页参数如当前记录索引和每页大小通过拦截器注入到sql语句中，
+ * 即在sql执行之前通过分页参数重新生成分页sql,而具体的分页sql实现是分离到Dialect接口中去。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
-@Intercepts({ @Signature(type = StatementHandler.class, method = "prepare", args = { Connection.class }) })
+@Intercepts({@Signature(type = StatementHandler.class, method = "prepare", args = {Connection.class})})
 public class OffsetLimitInterceptor implements Interceptor {
-
     private static final Logger logger = LoggerFactory.getLogger(OffsetLimitInterceptor.class);
 
     private static final ObjectFactory DEFAULT_OBJECT_FACTORY = new DefaultObjectFactory();
     private static final ObjectWrapperFactory DEFAULT_OBJECT_WRAPPER_FACTORY = new DefaultObjectWrapperFactory();
 
-    // @formatter:off
-    /*
-     * (非 Javadoc) Title: intercept Description:
-     * 
-     * @param invocation
-     * 
-     * @return
-     * 
-     * @throws Throwable
-     * 
-     * @see
-     * org.apache.ibatis.plugin.Interceptor#intercept(org.apache.ibatis.plugin
-     * .Invocation)
-     */
-    // @formatter:on
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         StatementHandler statementHandler = (StatementHandler) invocation.getTarget();
@@ -94,17 +81,17 @@ public class OffsetLimitInterceptor implements Interceptor {
 
             Dialect dialect = null;
             switch (databaseType) {
-            case MYSQL:
-                dialect = new MySQLDialect();
-                break;
-            case MSSQL:
-                dialect = new SQLServerDialect();
-                break;
-            case ORACLE:
-                dialect = new OracleDialect();
-                break;
-            default:
-                dialect = new MySQLDialect();
+                case MYSQL:
+                    dialect = new MySQLDialect();
+                    break;
+                case MSSQL:
+                    dialect = new SQLServerDialect();
+                    break;
+                case ORACLE:
+                    dialect = new OracleDialect();
+                    break;
+                default:
+                    dialect = new MySQLDialect();
             }
 
             String originalSql = (String) metaObject.getValue("delegate.boundSql.sql");
@@ -122,17 +109,6 @@ public class OffsetLimitInterceptor implements Interceptor {
         return invocation.proceed();
     }
 
-    // @formatter:off
-    /*
-     * (非 Javadoc) Title: plugin Description:
-     * 
-     * @param target
-     * 
-     * @return
-     * 
-     * @see org.apache.ibatis.plugin.Interceptor#plugin(java.lang.Object)
-     */
-    // @formatter:on
     @Override
     public Object plugin(Object target) {
         // 当目标类是StatementHandler类型时，才包装目标类，否者直接返回目标本身,减少目标被代理的次数
@@ -143,19 +119,8 @@ public class OffsetLimitInterceptor implements Interceptor {
         }
     }
 
-    // @formatter:off
-    /*
-     * (非 Javadoc) Title: setProperties Description:
-     * 
-     * @param properties
-     * 
-     * @see
-     * org.apache.ibatis.plugin.Interceptor#setProperties(java.util.Properties)
-     */
-    // @formatter:on
     @Override
     public void setProperties(Properties properties) {
-
+        // do nothing
     }
-
 }

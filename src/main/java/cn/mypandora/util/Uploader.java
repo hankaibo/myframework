@@ -1,4 +1,8 @@
-//package cn.mypandora.util;
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ *///package cn.mypandora.util;
 //
 //import java.io.BufferedInputStream;
 //import java.io.BufferedReader;

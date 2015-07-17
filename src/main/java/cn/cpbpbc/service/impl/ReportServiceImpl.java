@@ -4,7 +4,7 @@ import cn.cpbpbc.po.ReportData;
 import cn.cpbpbc.service.ReportService;
 import cn.mypandora.orm.Page;
 import cn.mypandora.orm.dao.IBaseEntityDao;
-import cn.mypandora.orm.service.AbstractBaseEntityOperation;
+import cn.mypandora.orm.service.AbstractBaseEntityService;
 
 import java.io.Serializable;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
  * Created by kaibo on 2015/6/18.
  * desc
  */
-public class ReportServiceImpl extends AbstractBaseEntityOperation<ReportData> implements ReportService {
+public class ReportServiceImpl extends AbstractBaseEntityService<ReportData> implements ReportService {
     /**
      * 由继承子类实现真正地实体Dao.
      *

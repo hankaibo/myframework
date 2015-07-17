@@ -1,11 +1,7 @@
 /**
- * @ProjectName: myframework
- * @Package: cn.mypandora.util
- * @ClassName: MyUpload
- * Copyright © hankaibo. All rights reserved.
- * @Author: kaibo
- * @CreateDate: 2014-6-15 上午12:06:22
+ * Copyright © 2015.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.system.controller;
 

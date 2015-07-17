@@ -229,4 +229,32 @@
         GROUP BY t.sex
     </select>
 
+    <select id="isExistsUserRole" resultType="java.util.HashMap" >
+        select count(1) from t_base_users_roles
+        where user_id=#{userId, jdbcType=NUMERIC}
+        and role_id=#{roleId, jdbcType=NUMERIC}
+    </select>
+
+    <insert id="correlationUserRole" parameterType="java.util.HashMap">
+        insert into t_base_users_roles(
+            user_id,
+            role_id
+        )
+        VALUES(
+            #{userId, jdbcType=NUMERIC},
+            #{roleId, jdbcType=NUMERIC}
+        )
+        <selectKey resultType="long" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <delete id="uncorrelationUserRole" parameterType="java.util.HashMap">
+        <![CDATA[
+            delete from t_base_users_roles
+            where user_id=#{userId, jdbcType=NUMERIC}
+            and role_id=#{roleId, jdbcType=NUMERIC}
+        ]]>
+    </delete>
+
 </mapper>

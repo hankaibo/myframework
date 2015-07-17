@@ -1,27 +1,27 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.mypandora.orm.dialect;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @ClassName:MySQLDialectHepler
- * @Description:MySQLDialectHepler
- * @Author:hankaibo
- * @date:2014-1-1
- * @UpdateUser:hankaibo
- * @UpdateDate:2014-1-1 上午11:59:06
- * @UpdateRemark:What is modified?
+ * MySQL方言帮助类。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public class MySQLDialectHepler {
     /**
-     * @descrption 得到查询总数的sql
-     * @author xdwang
-     * @create 2012-12-19下午8:41:10
+     * 得到查询总数的sql
+     *
      * @param querySelect
      * @return
      */
     public static String getCountString(String querySelect) {
-
         querySelect = getLineSql(querySelect);
         int orderIndex = getLastOrderInsertPoint(querySelect);
 
@@ -41,7 +41,8 @@ public class MySQLDialectHepler {
 
     /**
      * 得到最后一个Order By的插入点位置
-     * 
+     *
+     * @param querySelect
      * @return 返回最后一个Order By插入点的位置
      */
     private static int getLastOrderInsertPoint(String querySelect) {
@@ -54,12 +55,11 @@ public class MySQLDialectHepler {
 
     /**
      * 得到分页的SQL
-     * 
-     * @param offset
-     *            偏移量
-     * @param limit
-     *            位置
-     * @return 分页SQL
+     *
+     * @param querySelect
+     * @param offset      偏移量
+     * @param limit       位置
+     * @return
      */
     public static String getPageSql(String querySelect, int offset, int limit) {
 
@@ -73,9 +73,8 @@ public class MySQLDialectHepler {
 
     /**
      * 将SQL语句变成一条语句，并且每个单词的间隔都是1个空格
-     * 
-     * @param sql
-     *            SQL语句
+     *
+     * @param sql SQL语句
      * @return 如果sql是NULL返回空，否则返回转化后的SQL
      */
     private static String getLineSql(String sql) {
@@ -84,6 +83,9 @@ public class MySQLDialectHepler {
 
     /**
      * 得到SQL第一个正确的FROM的的插入点
+     *
+     * @param querySelect
+     * @return
      */
     private static int getAfterFormInsertPoint(String querySelect) {
         String regex = "\\s+FROM\\s+";
@@ -101,10 +103,9 @@ public class MySQLDialectHepler {
 
     /**
      * 判断括号"()"是否匹配,并不会判断排列顺序是否正确
-     * 
-     * @param text
-     *            要判断的文本
-     * @return 如果匹配返回TRUE,否则返回FALSE
+     *
+     * @param text 要判断的文本
+     * @return 如果匹配返回TRUE, 否则返回FALSE
      */
     private static boolean isBracketCanPartnership(String text) {
         if (text == null || (getIndexOfCount(text, '(') != getIndexOfCount(text, ')'))) {
@@ -115,11 +116,10 @@ public class MySQLDialectHepler {
 
     /**
      * 得到一个字符在另一个字符串中出现的次数
-     * 
-     * @param text
-     *            文本
-     * @param ch
-     *            字符
+     *
+     * @param text 文本
+     * @param ch   字符
+     * @return
      */
     private static int getIndexOfCount(String text, char ch) {
         int count = 0;

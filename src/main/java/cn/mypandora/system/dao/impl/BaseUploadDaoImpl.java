@@ -1,11 +1,7 @@
-/**   
- * @ProjectName: myframework
- * @Package: cn.mypandora.system.dao.impl 
- * @ClassName: BaseUploadDaoImpl 
- * Copyright © hankaibo. All rights reserved.
- * @Author: kaibo
- * @CreateDate: 2014-5-7 下午2:21:28 
+/**
+ * Copyright © 2015.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.system.dao.impl;
 
@@ -23,6 +19,12 @@ import cn.mypandora.system.po.UploadFile;
  * @UpdateUser: kaibo
  * @UpdateDate: 2014-5-7 下午2:21:28
  * @UpdateRemark: What is modified?
+ */
+/**
+ * 登录页面PO。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 @Repository
 public class BaseUploadDaoImpl extends BaseEntityDaoImpl<UploadFile> implements BaseUploadDao {

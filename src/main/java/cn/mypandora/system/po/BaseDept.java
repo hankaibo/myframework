@@ -1,27 +1,19 @@
-/**   
- * @ProjectName: MyFramework
- * @Package: cn.mypandora.system.po 
- * @ClassName: BaseDept 
- * Copyright © hankaibo. All rights reserved.
- * @Author: kaibo
- * @CreateDate: 2014-3-10 下午11:31:38 
+/**
+ * Copyright © 2015.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.system.po;
 
 import cn.mypandora.orm.model.BaseTree;
 
 /**
- * @ClassName: BaseDept
- * @Description: 部门实体域对象。
- * @Author: kaibo
- * @date: 2014-3-10
- * @UpdateUser: kaibo
- * @UpdateDate: 2014-3-10 下午11:31:38
- * @UpdateRemark: What is modified?
+ * 部门实体域对象。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public class BaseDept extends BaseTree {
-
-private static final long serialVersionUID = 8343756770401531755L;
+    private static final long serialVersionUID = 8343756770401531755L;
 
 }

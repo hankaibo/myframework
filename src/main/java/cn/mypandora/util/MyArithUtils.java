@@ -1,15 +1,17 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.mypandora.util;
 
 import java.math.BigDecimal;
 
 /**
- * @ClassName:MyArithUtils
- * @Description:由于Java的简单类型不能够精确的对浮点数进行运算，这个工具类提供精确的浮点数运算，包括加减乘除和四舍五入。
- * @Author:网络
- * @date:2013-8-18
- * @UpdateUser:hankaibo
- * @UpdateDate:2013-8-18 上午11:29:11
- * @UpdateRemark:What is modified?
+ * 由于Java的简单类型不能够精确的对浮点数进行运算，这个工具类提供精确的浮点数运算，包括加减乘除和四舍五入。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public class MyArithUtils {
     // 默认除法运算精度
@@ -22,7 +24,7 @@ public class MyArithUtils {
 
     /**
      * 提供精确的加法运算
-     * 
+     *
      * @param v1 被加数
      * @param v2 加数
      * @return 两个参数的和
@@ -35,7 +37,7 @@ public class MyArithUtils {
 
     /**
      * 提供精确的减法运算
-     * 
+     *
      * @param v1 被减数
      * @param v2 减数
      * @return 两个参数的差
@@ -48,7 +50,7 @@ public class MyArithUtils {
 
     /**
      * 提供精确的乘法运算
-     * 
+     *
      * @param v1 被乘数
      * @param v2 乘数
      * @return 两个参数的积
@@ -61,7 +63,7 @@ public class MyArithUtils {
 
     /**
      * 提供(相对)精确的除法运算
-     * 
+     *
      * @param v1 被除数
      * @param v2 除数
      * @return 两个参数的商
@@ -72,9 +74,9 @@ public class MyArithUtils {
 
     /**
      * 提供(相对)精确的除法运算.当发生除不尽的情况时,由scale参数指定精度,以后的数字四舍五入.
-     * 
-     * @param v1 被除数
-     * @param v2 除数
+     *
+     * @param v1    被除数
+     * @param v2    除数
      * @param scale 表示需要精确到小数点以后几位
      * @return
      */
@@ -89,8 +91,8 @@ public class MyArithUtils {
 
     /**
      * 提供精确的小数位四舍五入处理.
-     * 
-     * @param v 需要四舍五入的数字
+     *
+     * @param v     需要四舍五入的数字
      * @param scale 小数点后保留几位
      * @return 四舍五入的结果
      */

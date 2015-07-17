@@ -1,48 +1,32 @@
 /**
- * @ProjectName: MyFramework
- * @Package: cn.mypandora.system.po
- * @ClassName: BasePermission
- * Copyright © hankaibo. All rights reserved.
- * @Author: kaibo
- * @CreateDate: 2014-4-22 下午6:40:37 
+ * Copyright © 2015.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.system.po;
 
 import cn.mypandora.orm.model.BaseEntity;
 
 /**
- * @ClassName: BasePermission
- * @Description: 权限实体域对象。
- * @Author: kaibo
- * @date: 2014-4-22
- * @UpdateUser: kaibo
- * @UpdateDate: 2014-4-22 下午6:40:37
- * @UpdateRemark: What is modified?
+ * 权限实体域对象。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 public class BasePermission extends BaseEntity {
-
     private static final long serialVersionUID = 7779139095887287122L;
-
-    /**
-     * 权限标识
-     */
+    // 权限标识
     private String permission;
-    /**
-     * 权限描述
-     */
+    // 权限描述
     private String description;
-    /**
-     * 是否可用,如果不可用将不会添加给用户
-     */
+    // 是否可用,如果不可用将不会添加给用户
     private Boolean available = Boolean.FALSE;
-
 
     public BasePermission() {
 
     }
 
-    private BasePermission(String permission, String description, Boolean available) {
+    public BasePermission(String permission, String description, Boolean available) {
         this.permission = permission;
         this.description = description;
         this.available = available;

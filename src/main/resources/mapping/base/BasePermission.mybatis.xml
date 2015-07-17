@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.mypandora.system.PermissionEntity">
+    <resultMap type="cn.mypandora.system.po.BasePermission" id="BasePermissionMap">
+        <result property="id" column="id"></result>
+        <result property="permission" column="permission"></result>
+        <result property="description" column="description"></result>
+        <result property="available" column="available"></result>
+        <result property="createTime" column="create_time"></result>
+        <result property="updateTime" column="update_time"></result>
+    </resultMap>
+
+    <insert id="add" parameterType="cn.mypandora.system.po.BasePermission">
+        <![CDATA[
+            INSERT INTO t_base_permissions (
+                permission,
+                description,
+                available,
+                create_time
+            ) VALUES (
+                #{permission, jdbcType=VARCHAR},
+                #{description, jdbcType=VARCHAR},
+                #{available, jdbcType=NUMERIC},
+                #{createTime}
+            )
+        ]]>
+        <selectKey resultType="long" keyProperty="id">
+            SELECT LAST_INSERT_ID() AS ID
+        </selectKey>
+    </insert>
+
+    <delete id="deleteCorrelation">
+        <![CDATA[
+            DELETE from t_base_roles_permissions
+            WHERE permission_id = #{id}
+        ]]>
+    </delete>
+
+    <delete id="delete">
+        <![CDATA[
+            DELETE from t_base_permissions
+            WHERE id = #{id}
+        ]]>
+    </delete>
+</mapper>

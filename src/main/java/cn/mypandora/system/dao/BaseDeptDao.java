@@ -1,15 +1,11 @@
-/**   
- * @ProjectName: MyFramework
- * @Package: cn.mypandora.system.dao 
- * @ClassName: BaseDeptDao 
- * Copyright © hankaibo. All rights reserved.
- * @Author: kaibo
- * @CreateDate: 2014-3-10 下午11:37:09 
+/**
+ * Copyright © 2015.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.system.dao;
 
-import cn.mypandora.orm.dao.IBaseNestedDao;
+import cn.mypandora.orm.dao.IBaseTreeDao;
 import cn.mypandora.system.po.BaseDept;
 
 /**
@@ -21,6 +17,12 @@ import cn.mypandora.system.po.BaseDept;
  * @UpdateDate: 2014-3-10 下午11:37:09
  * @UpdateRemark: What is modified?
  */
-public interface BaseDeptDao extends IBaseNestedDao<BaseDept> {
+/**
+ * 登录页面PO。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
+ */
+public interface BaseDeptDao extends IBaseTreeDao<BaseDept> {
 
 }

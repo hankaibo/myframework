@@ -1,11 +1,7 @@
 /**
- * @ProjectName: MyFramework
- * @Package: cn.mypandora.system.service
- * @ClassName: BaseUserService
- * Copyright © hankaibo. All rights reserved.
- * @Author: kaibo
- * @CreateDate: 2014年3月7日 下午5:08:53 
+ * Copyright © 2015.
  *
+ * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.system.service;
 
@@ -25,6 +21,12 @@ import java.util.Set;
  * @UpdateDate: 2014年3月7日 下午5:08:53
  * @UpdateRemark: What is modified?
  */
+/**
+ * 登录页面PO。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
+ */
 public interface BaseUserService {
 
 
@@ -37,10 +39,8 @@ public interface BaseUserService {
     void loginSuccess(BaseUser user);
 
     /**
+     * 新增用户。
      * @param baseUser
-     * @return void
-     * @Title: addUser
-     * @Description: 新增用户。
      */
     void addUser(BaseUser baseUser);
 
@@ -68,6 +68,26 @@ public interface BaseUserService {
      */
     void updateUser(BaseUser baseUser);
 
+    /**
+     * 修改密码
+     * @param userId
+     * @param newPassword
+     */
+    void changePassword(Long userId,String newPassword);
+
+    /**
+     * 添加用户-角色关系
+     * @param userId
+     * @param roleIds
+     */
+    void correlationRoles(Long userId,Long... roleIds);
+
+    /**
+     * 移除用户-角色关系
+     * @param userId
+     * @param roleIds
+     */
+    void uncorrelationRoles(Long userId,Long... roleIds);
     /**
      * @param id
      * @return BaseUser

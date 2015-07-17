@@ -21,7 +21,7 @@ import static org.junit.Assert.assertFalse;
 // 1基于JUnit4的Spring测试框架
 @RunWith(SpringJUnit4ClassRunner.class)
 // 2启动Spring容器
-@ContextConfiguration(locations = {"/applicationContext.xml"})
+@ContextConfiguration(locations = {"/applicationContext.xml","/applicationContext-shiro.xml"})
 public class TestUserService {
     // 3注入Spring容器中的Bean
     @Resource
@@ -50,15 +50,29 @@ public class TestUserService {
 //        user.setPassword("123456");
 //
 //        userService.loginSuccess(user);
-//
 //    }
-//
-    @Test
-    public void delUser() {
-        userService.deleteUser(9L);
+
+//    @Test
+//    public void delUser() {
+//        userService.deleteUser(9L);
 //        int i=0;
 //        int a=1000/i;
 //        System.out.println(a);
+//    }
+
+    @Test
+    public void correlationRoles(){
+        Long l1=8L;
+        Long[] l2={2l,3l,4l,5l};
+        userService.correlationRoles(l1,l2);
     }
+
+    @Test
+    public void uncorrelationRoles(){
+        Long l1=8L;
+        Long[] l2={2l,5l};
+        userService.uncorrelationRoles(l1,l2);
+    }
+
 
 }
