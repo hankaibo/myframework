@@ -1,13 +1,22 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.cpbpbc.po;
 
 import cn.mypandora.orm.model.BaseEntity;
 
 /**
- * Created by kaibo on 2015/6/18.
- * desc
+ * cpbpbc报表实体。
+ * <p>User: hankaibo
+ * <p>Date: 2015/7/19
+ * <p>Version: 1.0
  */
 public class ReportData extends BaseEntity {
+    //数据拥有者
     private String dataOwner;
+    //数据
     private Integer data1;
     private Integer data2;
     private Integer data3;

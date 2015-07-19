@@ -5,7 +5,7 @@
 <mapper namespace="cn.mypandora.system.LogEntity">
     <resultMap type="cn.mypandora.system.po.BaseLog" id="BaseLogMap">
         <result property="id" column="id"></result>
-        <result property="username" column="user_name"></result>
+        <result property="name" column="name"></result>
         <result property="description" column="description"></result>
         <result property="ip" column="ip"></result>
         <result property="createTime" column="create_time"></result>
@@ -17,26 +17,25 @@
     </select>
     
     <select id="pageLogs" resultMap="BaseLogMap" parameterType="java.util.HashMap">
-        select * from t_base_log
-        where 1=1
+        SELECT *
+        FROM t_base_log
+        WHERE 1=1
         <if test="id!=null">
-            and id = #{id}
+            AND id = #{id}
         </if>
-        order by create_time desc
+        ORDER BY create_time DESC
     </select>
     
     <insert id="add" parameterType="cn.mypandora.system.po.BaseLog">
         <![CDATA[
             INSERT INTO t_base_log (
-                user_name,
+                name,
                 description,
-                ip,
-                create_time
+                ip
             ) VALUES (
-                #{username, jdbcType=VARCHAR},
+                #{name, jdbcType=VARCHAR},
                 #{description, jdbcType=VARCHAR},
-                #{ip, jdbcType=VARCHAR},
-                #{createTime}
+                #{ip, jdbcType=VARCHAR}
             )
         ]]>
         <selectKey resultType="long" keyProperty="id">

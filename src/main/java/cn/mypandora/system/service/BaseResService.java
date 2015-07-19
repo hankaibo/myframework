@@ -2,18 +2,15 @@
  * Copyright © 2015.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
- */package cn.mypandora.system.service;
+ */
+package cn.mypandora.system.service;
 
 import cn.mypandora.system.po.BaseRes;
 
 import java.util.List;
 
 /**
- * Created by kaibo on 2014/8/4.
- * desc
- */
-/**
- * 登录页面PO。
+ * 资源管理Service。
  * <p>User: kaibo
  * <p>Date: 2015/7/17
  * <p>Version: 1.0
@@ -28,6 +25,7 @@ public interface BaseResService {
 
     /**
      * 获取带深度的所有资源。
+     *
      * @param level
      * @return
      */
@@ -39,7 +37,7 @@ public interface BaseResService {
      * @param id 当前操作资源（节点）id
      * @return
      */
-    List<BaseRes> getResDescendants(Long id);
+    List<BaseRes> getResDescendant(Long id);
 
     /**
      * 获得本资源（节点）的孩子资源（节点）。
@@ -47,7 +45,7 @@ public interface BaseResService {
      * @param id 当前操作资源（节点）id
      * @return
      */
-    List<BaseRes> getResChilds(Long id);
+    List<BaseRes> getResChild(Long id);
 
     /**
      * 获得本资源（节点）的父资源（节点）

@@ -18,15 +18,7 @@ import java.util.*;
 import java.util.regex.Pattern;
 
 /**
- * @ClassName: MyExcelUtil
- * @Description: Excel工具类
- * @Author: kaibo
- * @date: 2014-7-5
- * @UpdateUser: kaibo
- * @UpdateDate: 2014-7-5 下午7:41:21
- * @UpdateRemark: What is modified?
- */
-/**
+ * Excel工具类
  * <p>User: kaibo
  * <p>Date: 2015/7/17
  * <p>Version: 1.0
@@ -39,11 +31,11 @@ public class MyExcelUtil {
     private static final Logger logger = LoggerFactory.getLogger(MyExcelUtil.class);
 
     /**
+     * 扫描Excel第一行的Title
+     *
      * @param excelFile
      * @param sheetName 指定的sheet名称，没有时默认取第一个。
-     * @return List<String>
-     * @Title: scanExcelTitles
-     * @Description: 扫描Excel第一行的Title
+     * @return
      */
     public static List<String> scanExcelTitles(File excelFile, String... sheetName) {
         List<String> titles = new ArrayList<String>();
@@ -81,12 +73,12 @@ public class MyExcelUtil {
     }
 
     /**
+     * 导入Excel文件 内容以List<Map<String K,String V>>的方式存放
+     *
      * @param excelFile  Excel文件对象
      * @param fieldNames Map的Key列表，Value为相应的sheet一行中各列的值
      * @param sheetName  用于指定所需读取数据的表
-     * @return List<Map<String,String>>
-     * @Title: importExcelToMap
-     * @Description: 导入Excel文件 内容以List<Map<String K,String V>>的方式存放
+     * @return
      */
     public static List<Map<String, String>> importExcelToMap(File excelFile, String fieldNames, String... sheetName) {
         List<Map<String, String>> list = Collections.EMPTY_LIST;
@@ -130,7 +122,6 @@ public class MyExcelUtil {
     }
 
     /**
-     *
      * @param workbook
      * @param fieldNames
      * @param sheetName
@@ -205,12 +196,11 @@ public class MyExcelUtil {
     }
 
     /**
+     * 导出Excel表格, 该表格只有第一行标题有内容，其它为空。
+     *
      * @param filepath    文档保存路径
      * @param sheetTitle  Sheet的名称
      * @param fieldTitles Sheet各列的标题（第一行各列的名称）
-     * @return void
-     * @Title: exportExcel
-     * @Description: 导出Excel表格, 该表格只有第一行标题有内容，其它为空。
      */
     public static void exportExcel(String filepath, String sheetTitle, String fieldTitles) {
         // 创建工作簿（Excel文件）
@@ -233,14 +223,13 @@ public class MyExcelUtil {
     }
 
     /**
+     * 导出Excel文件 数据源的数据格式为List<Map<String K,String V>>
+     *
      * @param filepath    文档保存路径
      * @param sheetTitle  Sheet的名称
      * @param fieldTitles Sheet各列的标题（第一行各列的名称）
      * @param objList     数据源
      * @param fieldNames  各列对应objClass中field的名称
-     * @return void
-     * @Title: exportExcel
-     * @Description: 导出Excel文件 数据源的数据格式为List<Map<String K,String V>>
      */
     public static void exportExcel(String filepath, String sheetTitle, String fieldTitles, List<Map<String, String>> objList, String fieldNames) {
         Workbook workbook;
@@ -278,15 +267,14 @@ public class MyExcelUtil {
     }
 
     /**
+     * 导出Excle文档
+     *
      * @param filepath    文档保存路径
      * @param sheetTitle  Sheet的名称
      * @param fieldTitles Sheet各列的标题（第一行各列的名称）
      * @param objList     数据源
      * @param objClass    数据源中的数据类型
      * @param fieldNames  各列对应objClass中field的名称
-     * @return void
-     * @Title: exportExcel
-     * @Description: 导出Excle文档
      */
     public static void exportExcel(String filepath, String sheetTitle, String fieldTitles, List<?> objList, Class<?> objClass, String fieldNames) {
         // 初始化工作簿
@@ -307,11 +295,10 @@ public class MyExcelUtil {
     }
 
     /**
+     * 创建Excel当前sheet页的头信息
+     *
      * @param sheet       Excel工作簿的一个sheet
      * @param fieldTitles sheet头信息列表(sheet第一行各列值)
-     * @return void
-     * @Title: createTitle
-     * @Description: 创建Excel当前sheet页的头信息
      */
     private static void createTitle(Sheet sheet, String fieldTitles) {
         Row row = sheet.createRow(0); // 创建该页的一行
@@ -326,13 +313,12 @@ public class MyExcelUtil {
     }
 
     /**
+     * 创建Excel当前sheet页的内容
+     *
      * @param sheet      工作簿的sheet页
      * @param objList    数据源
      * @param objClass   数据源中的数据类型
      * @param fieldNames 各列对应objClass中field的名称
-     * @return void
-     * @Title: createBody
-     * @Description: 创建Excel当前sheet页的内容
      */
     private static void createBody(Sheet sheet, List<?> objList, Class<?> objClass, String fieldNames) {
         String[] targetMethod = fieldNames.split(",");
@@ -374,12 +360,12 @@ public class MyExcelUtil {
     }
 
     /**
+     * 方法返回的是一个对象的引用（如：getHomeplace.getName类型的方法序列）
+     * 按方法序列逐层调用直到最后放回基本类型的值
+     *
      * @param targetMethod 对象所包含的方法列
      * @param obj          待处理的对象
-     * @return String
-     * @Title: referenceInvoke
-     * @Description: 方法返回的是一个对象的引用（如：getHomeplace.getName类型的方法序列）
-     * 按方法序列逐层调用直到最后放回基本类型的值
+     * @return
      */
     private static String referenceInvoke(String targetMethod, Object obj) {
         // 截取方法序列的第一个方法(即截取属于obj对象的方法：getHomeplace())
@@ -409,11 +395,10 @@ public class MyExcelUtil {
     }
 
     /**
+     * 保存Excel文件
+     *
      * @param workbook   Excel工作簿
      * @param outputPath 文件保存路径
-     * @return void
-     * @Title: saveExcelFile
-     * @Description: 保存Excel文件
      */
     private static void saveExcelFile(Workbook workbook, String outputPath) {
         try {

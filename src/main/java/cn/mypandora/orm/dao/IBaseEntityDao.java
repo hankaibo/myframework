@@ -24,42 +24,42 @@ public interface IBaseEntityDao<T extends BaseEntity> {
      *
      * @param t 实体
      */
-    void addEntity(T t);
+    void add(T t);
 
     /**
      * 批量添加实体。
      *
      * @param list 实体
      */
-    void addBatchEntity(List<T> list);
+    void addBatch(List<T> list);
 
     /**
      * 修改实体。
      *
      * @param t 实体
      */
-    void updateEntity(T t);
+    void update(T t);
 
     /**
      * 批量修改实体。
      *
      * @param list 实体
      */
-    void updateBatchEntity(List<T> list);
+    void updateBatch(List<T> list);
 
     /**
      * 删除实体。
      *
      * @param id 实体id
      */
-    void deleteEntity(Serializable id);
+    void delete(Serializable id);
 
     /**
      * 批量删除实体。
      *
      * @param ids 实体id数组
      */
-    void deleteBatchEntity(Serializable[] ids);
+    void deleteBatch(Serializable[] ids);
 
     /**
      * 根据id获取实体。
@@ -84,5 +84,5 @@ public interface IBaseEntityDao<T extends BaseEntity> {
      * @param page   返回实体Page
      * @return 返回分页实体
      */
-    Page<T> findByCondition(String sqlKey, Object params, Page<T> page);
+    Page<T> findPageByCondition(String sqlKey, Object params, Page<T> page);
 }

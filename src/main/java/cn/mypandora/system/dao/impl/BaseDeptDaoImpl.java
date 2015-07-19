@@ -5,40 +5,28 @@
  */
 package cn.mypandora.system.dao.impl;
 
-import org.springframework.stereotype.Repository;
-
-import cn.mypandora.orm.dao.impl.IBaseTreeDao;
+import cn.mypandora.orm.dao.impl.BaseTreeDaoImpl;
 import cn.mypandora.system.dao.BaseDeptDao;
 import cn.mypandora.system.po.BaseDept;
+import org.springframework.stereotype.Repository;
 
 /**
- * @ClassName: BaseDeptDaoImpl
- * @Description: 部门管理DAO实现类。
- * @Author: kaibo
- * @date: 2014-3-10
- * @UpdateUser: kaibo
- * @UpdateDate: 2014-3-10 下午11:38:03
- * @UpdateRemark: What is modified?
- */
-/**
- * 登录页面PO。
+ * 部门管理DAO实现类。
  * <p>User: kaibo
  * <p>Date: 2015/7/17
  * <p>Version: 1.0
  */
 @Repository
-public class BaseDeptDaoImpl extends IBaseTreeDao<BaseDept> implements BaseDeptDaoImpl {
+public class BaseDeptDaoImpl extends BaseTreeDaoImpl<BaseDept> implements BaseDeptDao {
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: getNameSpace
-     * Description:
-     * @return
-     * @see cn.mypandora.orm.dao.BaseDaoImpl#getNameSpace()
+    /**
+     * 查询sql配置文件命名空间
+     *
+     * @return sql配置文件命名空间名称
      */
-    //@formatter:on
     @Override
-    public String getNameSpace() {
+    protected String getNameSpace() {
         return "cn.mypandora.system.BaseDept";
     }
+
 }

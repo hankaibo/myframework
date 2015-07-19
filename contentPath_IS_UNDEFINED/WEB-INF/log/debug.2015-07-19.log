@@ -1,0 +1,1294 @@
+2015-07-19 19:46:57,820 [main] ERROR org.springframework.test.context.TestContextManager - Caught exception while allowing TestExecutionListener [org.springframework.test.context.support.DependencyInjectionTestExecutionListener@cd792c] to prepare test instance [cn.mypandora.system.service.TestDeptService@1ce3f4b]
+java.lang.IllegalStateException: Failed to load ApplicationContext
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContext(CacheAwareContextLoaderDelegate.java:103) ~[spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.test.context.TestContext.getApplicationContext(TestContext.java:122) ~[spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.injectDependencies(DependencyInjectionTestExecutionListener.java:109) ~[spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.test.context.support.DependencyInjectionTestExecutionListener.prepareTestInstance(DependencyInjectionTestExecutionListener.java:75) ~[spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.test.context.TestContextManager.prepareTestInstance(TestContextManager.java:321) ~[spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.createTest(SpringJUnit4ClassRunner.java:211) [spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner$1.runReflectiveCall(SpringJUnit4ClassRunner.java:288) [spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12) [junit-4.11.jar:na]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.methodBlock(SpringJUnit4ClassRunner.java:284) [spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:231) [spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.runChild(SpringJUnit4ClassRunner.java:88) [spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53) [junit-4.11.jar:na]
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229) [junit-4.11.jar:na]
+	at org.springframework.test.context.junit4.statements.RunBeforeTestClassCallbacks.evaluate(RunBeforeTestClassCallbacks.java:61) [spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.test.context.junit4.statements.RunAfterTestClassCallbacks.evaluate(RunAfterTestClassCallbacks.java:71) [spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309) [junit-4.11.jar:na]
+	at org.springframework.test.context.junit4.SpringJUnit4ClassRunner.run(SpringJUnit4ClassRunner.java:174) [spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.junit.runner.JUnitCore.run(JUnitCore.java:160) [junit-4.11.jar:na]
+	at com.intellij.junit4.JUnit4IdeaTestRunner.startRunnerWithArgs(JUnit4IdeaTestRunner.java:74) [junit-rt.jar:na]
+	at com.intellij.rt.execution.junit.JUnitStarter.prepareStreamsAndStart(JUnitStarter.java:211) [junit-rt.jar:na]
+	at com.intellij.rt.execution.junit.JUnitStarter.main(JUnitStarter.java:67) [junit-rt.jar:na]
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:1.7.0_79]
+	at sun.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:57) ~[na:1.7.0_79]
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:1.7.0_79]
+	at java.lang.reflect.Method.invoke(Method.java:606) ~[na:1.7.0_79]
+	at com.intellij.rt.execution.application.AppMain.main(AppMain.java:120) [idea_rt.jar:na]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'baseDeptDaoImpl': Injection of autowired dependencies failed; nested exception is org.springframework.beans.factory.BeanCreationException: Could not autowire field: private org.apache.ibatis.session.SqlSession cn.mypandora.orm.dao.impl.BaseTreeDaoImpl.sqlSession; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSession' defined in class path resource [applicationContext.xml]: Cannot resolve reference to bean 'sqlSessionFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [applicationContext.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\project\myframework\myframework\target\classes\mapping\base\BaseRole.mybatis.xml]'; nested exception is java.lang.RuntimeException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'BaseRoleMap'.  Cause: java.lang.ClassNotFoundException: Cannot find class: BaseRoleMap
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:298) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.populateBean(AbstractAutowireCapableBeanFactory.java:1148) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:519) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:293) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:290) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:191) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:636) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:934) ~[spring-context-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:479) ~[spring-context-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:120) ~[spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.test.context.support.AbstractGenericContextLoader.loadContext(AbstractGenericContextLoader.java:60) ~[spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.delegateLoading(AbstractDelegatingSmartContextLoader.java:102) ~[spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.test.context.support.AbstractDelegatingSmartContextLoader.loadContext(AbstractDelegatingSmartContextLoader.java:246) ~[spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContextInternal(CacheAwareContextLoaderDelegate.java:69) ~[spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.test.context.CacheAwareContextLoaderDelegate.loadContext(CacheAwareContextLoaderDelegate.java:95) ~[spring-test-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	... 28 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: private org.apache.ibatis.session.SqlSession cn.mypandora.orm.dao.impl.BaseTreeDaoImpl.sqlSession; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSession' defined in class path resource [applicationContext.xml]: Cannot resolve reference to bean 'sqlSessionFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [applicationContext.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\project\myframework\myframework\target\classes\mapping\base\BaseRole.mybatis.xml]'; nested exception is java.lang.RuntimeException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'BaseRoleMap'.  Cause: java.lang.ClassNotFoundException: Cannot find class: BaseRoleMap
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:531) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.annotation.InjectionMetadata.inject(InjectionMetadata.java:88) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor.postProcessPropertyValues(AutowiredAnnotationBeanPostProcessor.java:295) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	... 44 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSession' defined in class path resource [applicationContext.xml]: Cannot resolve reference to bean 'sqlSessionFactory' while setting constructor argument; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [applicationContext.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\project\myframework\myframework\target\classes\mapping\base\BaseRole.mybatis.xml]'; nested exception is java.lang.RuntimeException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'BaseRoleMap'.  Cause: java.lang.ClassNotFoundException: Cannot find class: BaseRoleMap
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:334) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:108) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveConstructorArguments(ConstructorResolver.java:637) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:145) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1077) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:981) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:487) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:293) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:290) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:191) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.findAutowireCandidates(DefaultListableBeanFactory.java:921) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:864) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:779) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor$AutowiredFieldElement.inject(AutowiredAnnotationBeanPostProcessor.java:503) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	... 46 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'sqlSessionFactory' defined in class path resource [applicationContext.xml]: Invocation of init method failed; nested exception is org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\project\myframework\myframework\target\classes\mapping\base\BaseRole.mybatis.xml]'; nested exception is java.lang.RuntimeException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'BaseRoleMap'.  Cause: java.lang.ClassNotFoundException: Cannot find class: BaseRoleMap
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1514) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:521) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:458) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory$1.getObject(AbstractBeanFactory.java:293) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:223) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:290) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:191) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:328) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	... 61 common frames omitted
+Caused by: org.springframework.core.NestedIOException: Failed to parse mapping resource: 'file [D:\project\myframework\myframework\target\classes\mapping\base\BaseRole.mybatis.xml]'; nested exception is java.lang.RuntimeException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'BaseRoleMap'.  Cause: java.lang.ClassNotFoundException: Cannot find class: BaseRoleMap
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:412) ~[mybatis-spring-1.1.1.jar:1.1.1]
+	at org.mybatis.spring.SqlSessionFactoryBean.afterPropertiesSet(SqlSessionFactoryBean.java:295) ~[mybatis-spring-1.1.1.jar:1.1.1]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1573) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1511) ~[spring-beans-3.2.13.RELEASE.jar:3.2.13.RELEASE]
+	... 68 common frames omitted
+Caused by: java.lang.RuntimeException: Error parsing Mapper XML. Cause: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'BaseRoleMap'.  Cause: java.lang.ClassNotFoundException: Cannot find class: BaseRoleMap
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:113) ~[mybatis-3.2.2.jar:3.2.2]
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.parse(XMLMapperBuilder.java:88) ~[mybatis-3.2.2.jar:3.2.2]
+	at org.mybatis.spring.SqlSessionFactoryBean.buildSqlSessionFactory(SqlSessionFactoryBean.java:410) ~[mybatis-spring-1.1.1.jar:1.1.1]
+	... 71 common frames omitted
+Caused by: org.apache.ibatis.builder.BuilderException: Error resolving class. Cause: org.apache.ibatis.type.TypeException: Could not resolve type alias 'BaseRoleMap'.  Cause: java.lang.ClassNotFoundException: Cannot find class: BaseRoleMap
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:100) ~[mybatis-3.2.2.jar:3.2.2]
+	at org.apache.ibatis.builder.xml.XMLStatementBuilder.parseStatementNode(XMLStatementBuilder.java:63) ~[mybatis-3.2.2.jar:3.2.2]
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:128) ~[mybatis-3.2.2.jar:3.2.2]
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.buildStatementFromContext(XMLMapperBuilder.java:121) ~[mybatis-3.2.2.jar:3.2.2]
+	at org.apache.ibatis.builder.xml.XMLMapperBuilder.configurationElement(XMLMapperBuilder.java:111) ~[mybatis-3.2.2.jar:3.2.2]
+	... 73 common frames omitted
+Caused by: org.apache.ibatis.type.TypeException: Could not resolve type alias 'BaseRoleMap'.  Cause: java.lang.ClassNotFoundException: Cannot find class: BaseRoleMap
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:114) ~[mybatis-3.2.2.jar:3.2.2]
+	at org.apache.ibatis.builder.BaseBuilder.resolveAlias(BaseBuilder.java:127) ~[mybatis-3.2.2.jar:3.2.2]
+	at org.apache.ibatis.builder.BaseBuilder.resolveClass(BaseBuilder.java:98) ~[mybatis-3.2.2.jar:3.2.2]
+	... 77 common frames omitted
+Caused by: java.lang.ClassNotFoundException: Cannot find class: BaseRoleMap
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:188) ~[mybatis-3.2.2.jar:3.2.2]
+	at org.apache.ibatis.io.ClassLoaderWrapper.classForName(ClassLoaderWrapper.java:87) ~[mybatis-3.2.2.jar:3.2.2]
+	at org.apache.ibatis.io.Resources.classForName(Resources.java:254) ~[mybatis-3.2.2.jar:3.2.2]
+	at org.apache.ibatis.type.TypeAliasRegistry.resolveAlias(TypeAliasRegistry.java:110) ~[mybatis-3.2.2.jar:3.2.2]
+	... 79 common frames omitted
+2015-07-19 19:55:41,662 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 19:55:41,665 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 19:55:41,751 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@33c59]
+2015-07-19 19:55:41,757 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 19:55:41,808 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 0(Long)
+2015-07-19 19:55:41,809 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 19:55:41,810 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@33c59]
+2015-07-19 19:55:41,811 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 19:55:41,812 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 0(Long)
+2015-07-19 19:55:41,812 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 19:55:41,814 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@33c59]
+2015-07-19 19:55:41,816 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 19:55:41,819 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 美国公民(String), 1(Integer), 2(Integer), 0(Integer)
+2015-07-19 19:55:41,820 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 19:55:41,820 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@33c59]
+2015-07-19 19:55:41,821 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 19:55:41,822 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 0(Long)
+2015-07-19 19:55:41,823 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 19:55:41,981 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@33c59]
+2015-07-19 19:55:41,982 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 19:55:41,983 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:00:47,162 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:00:47,165 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:00:47,227 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:00:47,232 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:00:47,297 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 1(Long)
+2015-07-19 20:00:47,338 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:00:47,350 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:00:47,351 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:00:47,354 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:00:47,355 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:00:47,356 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 1(Long)
+2015-07-19 20:00:47,357 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:00:47,358 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:00:47,360 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:00:47,361 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 1(Long)
+2015-07-19 20:00:47,362 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:00:47,363 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:00:47,363 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:00:47,366 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 国会(String), 2(Integer), 3(Integer), 0(Integer)
+2015-07-19 20:00:47,367 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:00:47,368 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:00:47,369 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:00:47,370 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 1(Long)
+2015-07-19 20:00:47,370 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:00:47,428 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:00:47,429 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:00:47,430 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:05:19,635 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:05:19,650 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:05:19,986 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@168a6ec]
+2015-07-19 20:05:20,119 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:05:20,552 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 1(Long)
+2015-07-19 20:05:20,928 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:07:23,124 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:09:00,261 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:09:00,304 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@168a6ec]
+2015-07-19 20:09:00,311 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:09:00,320 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 1(Long)
+2015-07-19 20:12:07,916 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:12:07,924 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@168a6ec]
+2015-07-19 20:12:07,927 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:12:07,935 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 1(Long)
+2015-07-19 20:12:13,404 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:12:13,409 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@168a6ec]
+2015-07-19 20:12:13,413 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:12:13,431 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 总统(String), 4(Integer), 5(Integer), 0(Integer)
+2015-07-19 20:12:22,881 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:12:22,897 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@168a6ec]
+2015-07-19 20:12:22,909 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:12:22,923 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 1(Long)
+2015-07-19 20:12:26,727 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:12:26,739 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@168a6ec]
+2015-07-19 20:12:26,743 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:12:26,748 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:13:30,812 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:13:30,816 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:13:30,876 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:13:30,881 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:13:30,932 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 1(Long)
+2015-07-19 20:13:30,961 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:13:30,971 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:13:30,972 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:13:30,975 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:13:30,975 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:13:30,976 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 1(Long)
+2015-07-19 20:13:30,978 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:13:30,978 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:13:30,980 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:13:30,982 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 1(Long)
+2015-07-19 20:13:30,982 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:13:30,983 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:13:30,984 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:13:30,987 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 最高法院(String), 6(Integer), 7(Integer), 0(Integer)
+2015-07-19 20:13:30,989 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:13:30,990 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:13:30,992 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:13:30,994 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 1(Long)
+2015-07-19 20:13:30,995 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:13:31,000 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:13:31,001 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:13:31,002 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:14:44,454 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:14:44,457 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:14:44,520 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@c9326f]
+2015-07-19 20:14:44,526 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:14:44,574 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 2(Long)
+2015-07-19 20:14:44,604 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:14:44,614 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:14:44,615 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:14:44,619 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@c9326f]
+2015-07-19 20:14:44,619 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:14:44,621 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 2(Long)
+2015-07-19 20:14:44,622 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:14:44,624 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@c9326f]
+2015-07-19 20:14:44,625 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:14:44,627 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 2(Long)
+2015-07-19 20:14:44,628 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:14:44,629 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@c9326f]
+2015-07-19 20:14:44,630 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:14:44,634 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 众议院(String), 3(Integer), 4(Integer), 0(Integer)
+2015-07-19 20:14:44,634 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:14:44,635 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@c9326f]
+2015-07-19 20:14:44,636 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:14:44,637 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 2(Long)
+2015-07-19 20:14:44,638 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:14:44,643 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@c9326f]
+2015-07-19 20:14:44,644 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:14:44,645 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:15:26,162 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:15:26,165 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:15:26,227 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 20:15:26,232 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:15:26,283 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 2(Long)
+2015-07-19 20:15:26,313 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:15:26,322 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:15:26,323 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:15:26,326 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 20:15:26,327 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:15:26,328 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 2(Long)
+2015-07-19 20:15:26,329 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:15:26,330 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 20:15:26,332 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:15:26,333 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 2(Long)
+2015-07-19 20:15:26,334 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:15:26,335 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 20:15:26,336 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:15:26,339 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 参议院(String), 5(Integer), 6(Integer), 0(Integer)
+2015-07-19 20:15:26,340 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:15:26,341 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 20:15:26,341 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:15:26,342 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 2(Long)
+2015-07-19 20:15:26,343 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:15:26,348 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 20:15:26,349 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:15:26,350 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:16:46,209 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:16:46,211 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:16:46,273 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:16:46,279 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:16:46,348 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:16:46,378 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:16:46,389 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:16:46,389 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:16:46,392 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:16:46,393 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:16:46,395 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:16:46,396 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:16:46,397 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:16:46,399 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:16:46,400 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:16:46,401 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:16:46,402 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:16:46,403 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:16:46,406 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 白宫(String), 9(Integer), 10(Integer), 0(Integer)
+2015-07-19 20:16:46,406 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:16:46,407 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:16:46,408 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:16:46,409 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:16:46,409 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:16:46,415 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:16:46,416 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:16:46,417 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:17:07,919 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:17:07,924 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:17:07,984 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:17:07,990 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:17:08,037 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:17:08,066 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:17:08,076 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:17:08,077 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:17:08,080 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:17:08,080 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:17:08,082 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:17:08,083 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:17:08,084 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:17:08,085 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:17:08,111 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:17:08,112 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:17:08,113 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:17:08,114 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:17:08,117 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 副总统办公室(String), 11(Integer), 12(Integer), 0(Integer)
+2015-07-19 20:17:08,117 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:17:08,118 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:17:08,120 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:17:08,121 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:17:08,122 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:17:08,127 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:17:08,128 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:17:08,129 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:17:33,373 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:17:33,376 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:17:33,438 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1a6156f]
+2015-07-19 20:17:33,444 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:17:33,493 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:17:33,525 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:17:33,536 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:17:33,536 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:17:33,539 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1a6156f]
+2015-07-19 20:17:33,540 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:17:33,542 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:17:33,544 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:17:33,545 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1a6156f]
+2015-07-19 20:17:33,545 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:17:33,547 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:17:33,547 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:17:33,548 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1a6156f]
+2015-07-19 20:17:33,549 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:17:33,553 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 国家安全会议(String), 13(Integer), 14(Integer), 0(Integer)
+2015-07-19 20:17:33,554 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:17:33,555 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1a6156f]
+2015-07-19 20:17:33,555 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:17:33,556 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:17:33,558 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:17:33,562 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1a6156f]
+2015-07-19 20:17:33,563 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:17:33,565 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:18:36,409 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:18:36,412 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:18:36,474 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:18:36,480 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:18:36,533 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:18:36,562 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:18:36,571 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:18:36,572 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:18:36,575 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:18:36,576 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:18:36,578 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:18:36,579 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:18:36,580 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:18:36,581 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:18:36,582 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:18:36,582 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:18:36,584 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:18:36,585 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:18:36,588 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 贸易谈判代表署(String), 15(Integer), 16(Integer), 0(Integer)
+2015-07-19 20:18:36,589 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:18:36,594 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:18:36,595 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:18:36,596 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:18:36,596 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:18:36,601 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:18:36,601 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:18:36,602 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:18:52,520 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:18:52,523 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:18:52,586 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:18:52,591 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:18:52,642 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:18:52,672 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:18:52,682 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:18:52,683 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:18:52,686 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:18:52,687 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:18:52,688 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:18:52,690 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:18:52,691 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:18:52,692 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:18:52,694 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:18:52,694 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:18:52,695 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:18:52,696 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:18:52,698 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 环境品质署(String), 17(Integer), 18(Integer), 0(Integer)
+2015-07-19 20:18:52,701 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:18:52,701 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:18:52,703 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:18:52,704 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:18:52,704 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:18:52,708 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:18:52,709 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:18:52,710 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:19:40,565 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:19:40,569 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:19:40,649 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:19:40,655 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:19:40,706 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:19:40,736 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:19:40,746 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:19:40,747 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:19:40,750 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:19:40,751 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:19:40,752 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:19:40,753 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:19:40,754 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:19:40,755 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:19:40,757 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:19:40,757 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:19:40,758 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:19:40,760 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:19:40,767 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 科技政策室(String), 19(Integer), 20(Integer), 0(Integer)
+2015-07-19 20:19:40,768 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:19:40,769 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:19:40,770 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:19:40,771 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:19:40,771 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:19:40,775 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:19:40,776 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:19:40,777 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:20:04,823 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:20:04,826 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:20:04,898 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@10e470d]
+2015-07-19 20:20:04,904 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:20:04,956 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:20:04,986 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:20:04,997 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:20:04,998 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:20:05,001 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@10e470d]
+2015-07-19 20:20:05,001 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:20:05,004 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:20:05,005 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:20:05,006 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@10e470d]
+2015-07-19 20:20:05,007 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:20:05,008 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:20:05,009 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:20:05,011 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@10e470d]
+2015-07-19 20:20:05,011 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:20:05,014 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 国务院(String), 21(Integer), 22(Integer), 0(Integer)
+2015-07-19 20:20:05,015 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:20:05,017 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@10e470d]
+2015-07-19 20:20:05,017 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:20:05,019 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:20:05,020 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:20:05,024 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@10e470d]
+2015-07-19 20:20:05,025 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:20:05,027 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:20:57,481 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:20:57,484 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:20:57,547 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@5230b9]
+2015-07-19 20:20:57,552 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:20:57,600 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:20:57,629 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:20:57,638 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:20:57,639 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:20:57,642 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@5230b9]
+2015-07-19 20:20:57,643 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:20:57,644 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:20:57,646 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:20:57,647 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@5230b9]
+2015-07-19 20:20:57,648 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:20:57,649 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:20:57,650 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:20:57,652 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@5230b9]
+2015-07-19 20:20:57,653 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:20:57,659 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 财政部(String), 23(Integer), 24(Integer), 0(Integer)
+2015-07-19 20:20:57,661 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:20:57,662 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@5230b9]
+2015-07-19 20:20:57,663 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:20:57,664 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:20:57,665 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:20:57,669 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@5230b9]
+2015-07-19 20:20:57,670 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:20:57,671 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:21:13,331 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:21:13,334 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:21:13,396 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:21:13,402 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:21:13,468 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:21:13,502 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:21:13,511 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:21:13,512 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:21:13,515 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:21:13,516 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:21:13,518 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:21:13,519 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:21:13,520 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:21:13,520 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:21:13,522 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:21:13,522 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:21:13,524 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:21:13,524 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:21:13,528 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 国防部(String), 25(Integer), 26(Integer), 0(Integer)
+2015-07-19 20:21:13,528 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:21:13,529 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:21:13,530 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:21:13,531 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:21:13,532 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:21:13,536 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:21:13,537 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:21:13,538 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:21:24,945 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:21:24,948 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:21:25,011 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:21:25,016 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:21:25,065 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:21:25,094 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:21:25,104 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:21:25,105 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:21:25,107 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:21:25,108 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:21:25,110 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:21:25,111 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:21:25,113 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:21:25,113 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:21:25,115 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:21:25,115 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:21:25,116 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:21:25,118 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:21:25,120 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 司法部(String), 27(Integer), 28(Integer), 0(Integer)
+2015-07-19 20:21:25,121 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:21:25,122 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:21:25,123 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:21:25,124 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:21:25,124 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:21:25,129 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:21:25,129 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:21:25,130 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:21:37,449 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:21:37,452 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:21:37,514 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@e91c43]
+2015-07-19 20:21:37,520 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:21:37,569 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:21:37,599 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:21:37,609 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:21:37,609 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:21:37,612 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@e91c43]
+2015-07-19 20:21:37,613 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:21:37,615 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:21:37,617 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:21:37,618 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@e91c43]
+2015-07-19 20:21:37,619 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:21:37,620 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:21:37,620 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:21:37,621 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@e91c43]
+2015-07-19 20:21:37,623 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:21:37,626 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 内务部(String), 29(Integer), 30(Integer), 0(Integer)
+2015-07-19 20:21:37,627 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:21:37,628 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@e91c43]
+2015-07-19 20:21:37,629 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:21:37,630 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:21:37,631 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:21:37,635 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@e91c43]
+2015-07-19 20:21:37,636 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:21:37,637 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:21:52,453 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:21:52,456 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:21:52,516 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:21:52,523 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:21:52,571 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:21:52,599 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:21:52,613 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:21:52,613 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:21:52,616 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:21:52,617 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:21:52,619 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:21:52,620 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:21:52,621 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:21:52,623 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:21:52,624 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:21:52,626 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:21:52,627 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:21:52,627 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:21:52,630 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 农业部(String), 31(Integer), 32(Integer), 0(Integer)
+2015-07-19 20:21:52,632 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:21:52,633 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:21:52,634 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:21:52,635 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:21:52,636 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:21:52,640 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:21:52,641 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:21:52,643 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:22:04,668 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:22:04,673 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:22:04,738 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:22:04,744 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:22:04,793 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:22:04,823 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:22:04,833 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:22:04,833 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:22:04,836 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:22:04,837 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:22:04,838 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:22:04,840 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:22:04,841 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:22:04,842 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:22:04,844 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:22:04,844 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:22:04,846 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:22:04,846 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:22:04,850 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 商务部(String), 33(Integer), 34(Integer), 0(Integer)
+2015-07-19 20:22:04,850 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:22:04,851 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:22:04,852 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:22:04,853 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:22:04,854 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:22:04,862 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:22:04,863 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:22:04,863 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:22:17,543 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:22:17,546 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:22:17,606 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:22:17,611 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:22:17,659 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:22:17,689 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:22:17,699 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:22:17,699 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:22:17,702 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:22:17,703 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:22:17,704 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:22:17,706 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:22:17,707 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:22:17,708 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:22:17,710 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:22:17,710 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:22:17,711 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:22:17,713 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:22:17,716 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 劳工部(String), 35(Integer), 36(Integer), 0(Integer)
+2015-07-19 20:22:17,717 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:22:17,718 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:22:17,719 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:22:17,721 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:22:17,721 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:22:17,726 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:22:17,727 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:22:17,729 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:22:45,788 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:22:45,791 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:22:45,853 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:22:45,859 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:22:45,906 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:22:45,940 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:22:45,949 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:22:45,950 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:22:45,952 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:22:45,953 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:22:45,955 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:22:45,957 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:22:45,958 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:22:45,959 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:22:45,961 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:22:45,961 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:22:45,962 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:22:45,963 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:22:45,966 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 退伍军人事务部(String), 37(Integer), 38(Integer), 0(Integer)
+2015-07-19 20:22:45,967 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:22:45,968 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:22:45,969 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:22:45,971 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:22:45,971 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:22:45,976 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:22:45,977 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:22:45,977 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:23:01,416 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:23:01,419 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:23:01,480 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:01,487 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:23:01,535 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:23:01,567 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:23:01,580 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:23:01,581 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:23:01,585 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:01,587 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:23:01,589 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:23:01,590 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:23:01,592 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:01,593 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:23:01,595 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:23:01,596 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:23:01,597 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:01,598 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:23:01,602 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 教育部(String), 39(Integer), 40(Integer), 0(Integer)
+2015-07-19 20:23:01,603 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:23:01,604 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:01,605 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:23:01,606 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:23:01,606 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:23:01,612 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:01,613 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:23:01,615 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:23:15,088 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:23:15,091 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:23:15,157 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:15,163 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:23:15,210 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:23:15,239 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:23:15,249 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:23:15,249 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:23:15,253 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:15,254 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:23:15,255 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:23:15,257 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:23:15,258 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:15,259 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:23:15,260 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:23:15,261 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:23:15,262 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:15,262 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:23:15,267 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 能源部(String), 41(Integer), 42(Integer), 0(Integer)
+2015-07-19 20:23:15,267 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:23:15,268 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:15,269 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:23:15,270 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:23:15,270 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:23:15,275 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:15,276 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:23:15,281 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:23:28,676 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:23:28,679 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:23:28,740 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:23:28,745 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:23:28,793 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:23:28,822 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:23:28,836 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:23:28,836 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:23:28,839 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:23:28,840 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:23:28,841 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:23:28,842 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:23:28,844 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:23:28,846 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:23:28,848 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:23:28,848 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:23:28,850 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:23:28,851 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:23:28,854 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 交通部(String), 43(Integer), 44(Integer), 0(Integer)
+2015-07-19 20:23:28,856 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:23:28,858 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:23:28,859 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:23:28,860 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:23:28,860 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:23:28,865 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 20:23:28,866 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:23:28,868 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:23:51,253 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:23:51,256 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:23:51,316 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:51,322 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:23:51,370 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 20:23:51,400 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:23:51,410 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:23:51,411 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:23:51,414 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:51,414 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:23:51,416 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:23:51,417 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:23:51,418 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:51,418 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:23:51,420 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:23:51,421 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:23:51,422 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:51,424 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:23:51,426 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 住房和城市发展部(String), 45(Integer), 46(Integer), 0(Integer)
+2015-07-19 20:23:51,427 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:23:51,428 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:51,429 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:23:51,430 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 3(Long)
+2015-07-19 20:23:51,430 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:23:51,435 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:23:51,436 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:23:51,437 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:24:35,348 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:24:35,351 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:24:35,411 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 20:24:35,417 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:24:35,463 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 4(Long)
+2015-07-19 20:24:35,495 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:24:35,505 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:24:35,505 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:24:35,508 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 20:24:35,509 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:24:35,511 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 4(Long)
+2015-07-19 20:24:35,512 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:24:35,513 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 20:24:35,514 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:24:35,515 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 4(Long)
+2015-07-19 20:24:35,516 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:24:35,517 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 20:24:35,518 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:24:35,521 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 联邦地方法院(String), 49(Integer), 50(Integer), 0(Integer)
+2015-07-19 20:24:35,521 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:24:35,522 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 20:24:35,523 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:24:35,524 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 4(Long)
+2015-07-19 20:24:35,525 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:24:35,529 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 20:24:35,529 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:24:35,530 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:24:52,041 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:24:52,044 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:24:52,116 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@c9326f]
+2015-07-19 20:24:52,122 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:24:52,171 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 4(Long)
+2015-07-19 20:24:52,200 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:24:52,210 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:24:52,210 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:24:52,213 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@c9326f]
+2015-07-19 20:24:52,214 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:24:52,216 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 4(Long)
+2015-07-19 20:24:52,217 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:24:52,218 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@c9326f]
+2015-07-19 20:24:52,219 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:24:52,220 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 4(Long)
+2015-07-19 20:24:52,220 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:24:52,221 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@c9326f]
+2015-07-19 20:24:52,223 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:24:52,226 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 联邦上诉法院(String), 51(Integer), 52(Integer), 0(Integer)
+2015-07-19 20:24:52,227 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:24:52,228 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@c9326f]
+2015-07-19 20:24:52,229 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:24:52,231 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 4(Long)
+2015-07-19 20:24:52,232 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:24:52,236 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@c9326f]
+2015-07-19 20:24:52,237 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:24:52,238 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 20:25:08,233 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:25:08,236 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 20:25:08,297 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:25:08,303 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 20:25:08,352 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 4(Long)
+2015-07-19 20:25:08,382 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:25:08,392 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 20:25:08,393 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 20:25:08,396 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:25:08,397 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 20:25:08,398 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 4(Long)
+2015-07-19 20:25:08,399 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 20:25:08,400 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:25:08,402 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 20:25:08,403 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 4(Long)
+2015-07-19 20:25:08,403 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 20:25:08,405 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:25:08,407 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 20:25:08,410 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 特种法院(String), 53(Integer), 54(Integer), 0(Integer)
+2015-07-19 20:25:08,412 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 20:25:08,413 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:25:08,414 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 20:25:08,415 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 4(Long)
+2015-07-19 20:25:08,416 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 20:25:08,421 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 20:25:08,422 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 20:25:08,423 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 22:00:10,553 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:00:10,557 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.loadFullTree---------->
+2015-07-19 22:00:10,630 [main] DEBUG cn.mypandora.system.BaseDept.loadFullTree - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ca5236]
+2015-07-19 22:00:10,637 [main] DEBUG cn.mypandora.system.BaseDept.loadFullTree - ==>  Preparing: SELECT * FROM t_base_dept t WHERE 1=1 ORDER BY t.lft ASC 
+2015-07-19 22:00:10,684 [main] DEBUG cn.mypandora.system.BaseDept.loadFullTree - ==> Parameters: 
+2015-07-19 22:00:10,905 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:01:46,512 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:01:46,516 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.loadFullTree---------->
+2015-07-19 22:01:46,583 [main] DEBUG cn.mypandora.system.BaseDept.loadFullTree - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1d3a53d]
+2015-07-19 22:01:46,588 [main] DEBUG cn.mypandora.system.BaseDept.loadFullTree - ==>  Preparing: SELECT * FROM t_base_dept t WHERE 1=1 ORDER BY t.lft ASC 
+2015-07-19 22:01:46,638 [main] DEBUG cn.mypandora.system.BaseDept.loadFullTree - ==> Parameters: 
+2015-07-19 22:01:46,690 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:05:28,965 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:05:28,969 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.getDescendant---------->
+2015-07-19 22:05:28,987 [main] ERROR cn.mypandora.log.MyLogAspect - afterThrowing
+2015-07-19 22:05:28,993 [main] ERROR cn.mypandora.log.MyLogAspect - 错误信息：org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.exceptions.PersistenceException: 
+### Error querying database.  Cause: java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for cn.mypandora.system.BaseDept.getDescendant
+### Cause: java.lang.IllegalArgumentException: Mapped Statements collection does not contain value for cn.mypandora.system.BaseDept.getDescendant
+2015-07-19 22:06:21,878 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:06:21,881 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.getDescendant---------->
+2015-07-19 22:06:21,953 [main] DEBUG cn.mypandora.system.BaseDept.getDescendant - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@666a65]
+2015-07-19 22:06:21,959 [main] DEBUG cn.mypandora.system.BaseDept.getDescendant - ==>  Preparing: SELECT * FROM t_base_dept t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_dept s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_dept s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-07-19 22:06:22,018 [main] DEBUG cn.mypandora.system.BaseDept.getDescendant - ==> Parameters: 4(Long), 4(Long)
+2015-07-19 22:06:22,088 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:08:48,326 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:08:48,330 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.getChild---------->
+2015-07-19 22:08:48,401 [main] DEBUG cn.mypandora.system.BaseDept.getChild - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 22:08:48,407 [main] DEBUG cn.mypandora.system.BaseDept.getChild - ==>  Preparing: SELECT * FROM t_base_dept t WHERE 1=1 AND t.parent_id=? ORDER BY t.lft ASC 
+2015-07-19 22:08:48,457 [main] DEBUG cn.mypandora.system.BaseDept.getChild - ==> Parameters: 2(Long)
+2015-07-19 22:08:48,485 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:11:19,343 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:11:19,347 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.getChild---------->
+2015-07-19 22:11:19,419 [main] DEBUG cn.mypandora.system.BaseDept.getChild - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 22:11:19,427 [main] DEBUG cn.mypandora.system.BaseDept.getChild - ==>  Preparing: SELECT * FROM t_base_dept t WHERE 1=1 AND t.parent_id=? ORDER BY t.lft ASC 
+2015-07-19 22:11:19,493 [main] DEBUG cn.mypandora.system.BaseDept.getChild - ==> Parameters: 2(Long)
+2015-07-19 22:11:19,527 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:15:08,782 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:15:08,785 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.getParent---------->
+2015-07-19 22:15:08,855 [main] DEBUG cn.mypandora.system.BaseDept.getParent - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@36519d]
+2015-07-19 22:15:08,861 [main] DEBUG cn.mypandora.system.BaseDept.getParent - ==>  Preparing: SELECT * FROM t_base_dept t WHERE t.node_id=( SELECT s.parent_id FROM t_base_dept s WHERE s.id=? ) 
+2015-07-19 22:15:08,914 [main] DEBUG cn.mypandora.system.BaseDept.getParent - ==> Parameters: 1(Long)
+2015-07-19 22:15:08,946 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:17:13,440 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:17:13,454 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.getParent---------->
+2015-07-19 22:17:13,780 [main] DEBUG cn.mypandora.system.BaseDept.getParent - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@144dd46]
+2015-07-19 22:17:13,874 [main] DEBUG cn.mypandora.system.BaseDept.getParent - ==>  Preparing: SELECT * FROM t_base_dept t WHERE t.node_id=( SELECT s.parent_id FROM t_base_dept s WHERE s.id=? ) 
+2015-07-19 22:17:14,348 [main] DEBUG cn.mypandora.system.BaseDept.getParent - ==> Parameters: 1(Long)
+2015-07-19 22:17:14,689 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:19:00,121 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:19:00,219 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.getParent---------->
+2015-07-19 22:19:00,281 [main] DEBUG cn.mypandora.system.BaseDept.getParent - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@f02d8f]
+2015-07-19 22:19:00,288 [main] DEBUG cn.mypandora.system.BaseDept.getParent - ==>  Preparing: SELECT * FROM t_base_dept t WHERE t.node_id=( SELECT s.parent_id FROM t_base_dept s WHERE s.id=? ) 
+2015-07-19 22:19:00,335 [main] DEBUG cn.mypandora.system.BaseDept.getParent - ==> Parameters: 3(Long)
+2015-07-19 22:19:00,368 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:22:14,378 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:22:14,381 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 22:22:14,445 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 22:22:14,452 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 22:22:14,500 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 4(Long)
+2015-07-19 22:22:14,530 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:22:14,540 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:22:14,541 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 22:22:14,544 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 22:22:14,545 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 22:22:14,547 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 4(Long)
+2015-07-19 22:22:14,548 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 22:22:14,550 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 22:22:14,550 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 22:22:14,552 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 4(Long)
+2015-07-19 22:22:14,553 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 22:22:14,554 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 22:22:14,555 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( node_id, name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ?, ? ) 
+2015-07-19 22:22:14,559 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: null, 特种法院2(String), 55(Integer), 56(Integer), 0(Integer)
+2015-07-19 22:22:14,560 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 22:22:14,561 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 22:22:14,562 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 22:22:14,563 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 4(Long)
+2015-07-19 22:22:14,565 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:22:14,573 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 22:22:14,574 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 22:22:14,575 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 22:23:16,915 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:23:16,918 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 22:23:16,982 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 22:23:16,987 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 22:23:17,035 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 4(Long)
+2015-07-19 22:23:17,066 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:23:17,076 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:23:17,077 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 22:23:17,079 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 22:23:17,080 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 22:23:17,082 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 4(Long)
+2015-07-19 22:23:17,084 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 22:23:17,085 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 22:23:17,086 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 22:23:17,087 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 4(Long)
+2015-07-19 22:23:17,088 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 22:23:17,089 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 22:23:17,089 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( node_id, name, lft, rgt, parent_id ) VALUES ( id, ?, ?, ?, ? ) 
+2015-07-19 22:23:17,094 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 特种法院3(String), 57(Integer), 58(Integer), 0(Integer)
+2015-07-19 22:23:17,094 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 22:23:17,095 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 22:23:17,096 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 22:23:17,097 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 4(Long)
+2015-07-19 22:23:17,097 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:23:17,102 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 22:23:17,103 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 22:23:17,104 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 22:52:29,972 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:52:29,975 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.loadFullTree---------->
+2015-07-19 22:52:30,035 [main] DEBUG cn.mypandora.system.BaseDept.loadFullTree - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@10ff52d]
+2015-07-19 22:52:30,040 [main] DEBUG cn.mypandora.system.BaseDept.loadFullTree - ==>  Preparing: SELECT * FROM t_base_dept t WHERE 1=1 ORDER BY t.lft ASC 
+2015-07-19 22:52:30,097 [main] DEBUG cn.mypandora.system.BaseDept.loadFullTree - ==> Parameters: 
+2015-07-19 22:52:30,158 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:53:52,870 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:53:52,874 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.getDescendant---------->
+2015-07-19 22:53:52,939 [main] DEBUG cn.mypandora.system.BaseDept.getDescendant - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@5230b9]
+2015-07-19 22:53:52,945 [main] DEBUG cn.mypandora.system.BaseDept.getDescendant - ==>  Preparing: SELECT * FROM t_base_dept t WHERE 1=1 AND t.lft>( SELECT s.lft FROM t_base_dept s WHERE s.id=?) AND t.rgt<( SELECT s.rgt FROM t_base_dept s WHERE s.id=?) ORDER BY t.lft ASC 
+2015-07-19 22:53:52,997 [main] DEBUG cn.mypandora.system.BaseDept.getDescendant - ==> Parameters: 4(Long), 4(Long)
+2015-07-19 22:53:53,036 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:54:52,357 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:54:52,360 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.getChild---------->
+2015-07-19 22:54:52,422 [main] DEBUG cn.mypandora.system.BaseDept.getChild - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1ae46d5]
+2015-07-19 22:54:52,428 [main] DEBUG cn.mypandora.system.BaseDept.getChild - ==>  Preparing: SELECT * FROM t_base_dept t WHERE 1=1 AND t.parent_id=? ORDER BY t.lft ASC 
+2015-07-19 22:54:52,478 [main] DEBUG cn.mypandora.system.BaseDept.getChild - ==> Parameters: 2(Long)
+2015-07-19 22:54:52,509 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:55:50,731 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:55:50,734 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.getParent---------->
+2015-07-19 22:55:50,795 [main] DEBUG cn.mypandora.system.BaseDept.getParent - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1bb5ee1]
+2015-07-19 22:55:50,801 [main] DEBUG cn.mypandora.system.BaseDept.getParent - ==>  Preparing: SELECT * FROM t_base_dept t WHERE t.id=( SELECT s.parent_id FROM t_base_dept s WHERE s.id=? ) 
+2015-07-19 22:55:50,850 [main] DEBUG cn.mypandora.system.BaseDept.getParent - ==> Parameters: 3(Long)
+2015-07-19 22:55:50,879 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:57:05,690 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:57:05,693 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.getAncestry---------->
+2015-07-19 22:57:05,757 [main] DEBUG cn.mypandora.system.BaseDept.getAncestry - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@ac72d1]
+2015-07-19 22:57:05,762 [main] DEBUG cn.mypandora.system.BaseDept.getAncestry - ==>  Preparing: SELECT * FROM t_base_dept t WHERE t.lft<( SELECT s.lft FROM t_base_dept s WHERE s.id=?) AND t.rgt>( SELECT s.lft FROM t_base_dept s WHERE s.id=?) ORDER BY t.lft 
+2015-07-19 22:57:05,812 [main] DEBUG cn.mypandora.system.BaseDept.getAncestry - ==> Parameters: 9(Long), 9(Long)
+2015-07-19 22:57:05,843 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:58:25,821 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:58:25,824 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 22:58:25,890 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@5230b9]
+2015-07-19 22:58:25,896 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 22:58:25,945 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 4(Long)
+2015-07-19 22:58:25,981 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:58:25,992 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:58:25,992 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 22:58:25,995 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@5230b9]
+2015-07-19 22:58:25,997 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 22:58:25,998 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 4(Long)
+2015-07-19 22:58:25,999 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 22:58:26,000 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@5230b9]
+2015-07-19 22:58:26,001 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 22:58:26,003 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 4(Long)
+2015-07-19 22:58:26,004 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 22:58:26,005 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@5230b9]
+2015-07-19 22:58:26,007 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( node_id, name, lft, rgt, parent_id ) VALUES ( id, ?, ?, ?, ? ) 
+2015-07-19 22:58:26,013 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 特种法院4(String), 59(Integer), 60(Integer), 4(Long)
+2015-07-19 22:58:26,014 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 22:58:26,015 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@5230b9]
+2015-07-19 22:58:26,016 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 22:58:26,017 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 4(Long)
+2015-07-19 22:58:26,018 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:59:23,189 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:59:23,192 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 22:59:23,255 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@7ef567]
+2015-07-19 22:59:23,260 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 22:59:23,307 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 4(Long)
+2015-07-19 22:59:23,337 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:59:23,346 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 22:59:23,347 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftPlus2---------->
+2015-07-19 22:59:23,350 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@7ef567]
+2015-07-19 22:59:23,351 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft+2 WHERE t.lft>f.rgt 
+2015-07-19 22:59:23,352 [main] DEBUG cn.mypandora.system.BaseDept.lftPlus2 - ==> Parameters: 4(Long)
+2015-07-19 22:59:23,353 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtPlus2---------->
+2015-07-19 22:59:23,354 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@7ef567]
+2015-07-19 22:59:23,355 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt+2 WHERE t.rgt>f.rgt 
+2015-07-19 22:59:23,357 [main] DEBUG cn.mypandora.system.BaseDept.rgtPlus2 - ==> Parameters: 4(Long)
+2015-07-19 22:59:23,357 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.insertNode---------->
+2015-07-19 22:59:23,358 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@7ef567]
+2015-07-19 22:59:23,359 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==>  Preparing: INSERT INTO t_base_dept ( name, lft, rgt, parent_id ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 22:59:23,362 [main] DEBUG cn.mypandora.system.BaseDept.insertNode - ==> Parameters: 特种法院4(String), 59(Integer), 60(Integer), 4(Long)
+2015-07-19 22:59:23,363 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.parentRgtPlus2---------->
+2015-07-19 22:59:23,364 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@7ef567]
+2015-07-19 22:59:23,365 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==>  Preparing: UPDATE t_base_dept t SET t.rgt=t.rgt+2 WHERE id=? 
+2015-07-19 22:59:23,366 [main] DEBUG cn.mypandora.system.BaseDept.parentRgtPlus2 - ==> Parameters: 4(Long)
+2015-07-19 22:59:23,367 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 22:59:23,371 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@7ef567]
+2015-07-19 22:59:23,372 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 22:59:23,373 [main] DEBUG cn.mypandora.system.BaseDept.insertNode!selectKey - ==> Parameters: 
+2015-07-19 23:02:55,841 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:02:55,844 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lftMinus2---------->
+2015-07-19 23:02:55,909 [main] DEBUG cn.mypandora.system.BaseDept.lftMinus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@148820c]
+2015-07-19 23:02:55,916 [main] DEBUG cn.mypandora.system.BaseDept.lftMinus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.lft=t.lft-2 WHERE t.lft>f.rgt 
+2015-07-19 23:02:55,976 [main] DEBUG cn.mypandora.system.BaseDept.lftMinus2 - ==> Parameters: 29(Long)
+2015-07-19 23:02:55,977 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.rgtMinus2---------->
+2015-07-19 23:02:55,978 [main] DEBUG cn.mypandora.system.BaseDept.rgtMinus2 - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@148820c]
+2015-07-19 23:02:55,979 [main] DEBUG cn.mypandora.system.BaseDept.rgtMinus2 - ==>  Preparing: UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=?) f SET t.rgt=t.rgt-2 WHERE t.rgt>f.rgt 
+2015-07-19 23:02:55,980 [main] DEBUG cn.mypandora.system.BaseDept.rgtMinus2 - ==> Parameters: 29(Long)
+2015-07-19 23:02:55,981 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.delete---------->
+2015-07-19 23:02:55,982 [main] DEBUG cn.mypandora.system.BaseDept.delete - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@148820c]
+2015-07-19 23:02:55,983 [main] DEBUG cn.mypandora.system.BaseDept.delete - ==>  Preparing: DELETE from t_base_dept WHERE id = ? 
+2015-07-19 23:02:55,984 [main] DEBUG cn.mypandora.system.BaseDept.delete - ==> Parameters: 29(Long)
+2015-07-19 23:02:55,985 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:10:28,602 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:10:28,605 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 23:10:28,669 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1dcc7b5]
+2015-07-19 23:10:28,675 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 23:10:28,725 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 23:10:28,755 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:11:08,840 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:11:08,843 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 23:11:08,907 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 23:11:08,912 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 23:11:08,959 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 23:11:08,990 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:30:46,105 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:30:46,108 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 23:30:46,169 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1dcea8]
+2015-07-19 23:30:46,174 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 23:30:46,223 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 23:30:46,255 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:30:46,257 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:30:46,259 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.update---------->
+2015-07-19 23:30:46,260 [main] DEBUG cn.mypandora.system.BaseDept.update - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1dcea8]
+2015-07-19 23:30:46,261 [main] DEBUG cn.mypandora.system.BaseDept.update - ==>  Preparing: UPDATE t_base_dept t SET name=? WHERE id=? 
+2015-07-19 23:30:46,263 [main] DEBUG cn.mypandora.system.BaseDept.update - ==> Parameters: 总统(String), 3(Long)
+2015-07-19 23:30:46,425 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:33:47,627 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:33:47,630 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 23:33:47,692 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@2b1826]
+2015-07-19 23:33:47,697 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 23:33:47,750 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 23:33:47,780 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:33:47,783 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:33:47,783 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.update---------->
+2015-07-19 23:33:47,784 [main] DEBUG cn.mypandora.system.BaseDept.update - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@2b1826]
+2015-07-19 23:33:47,786 [main] DEBUG cn.mypandora.system.BaseDept.update - ==>  Preparing: UPDATE t_base_dept t SET name=?, update_time=?, WHERE id=? 
+2015-07-19 23:33:47,788 [main] DEBUG cn.mypandora.system.BaseDept.update - ==> Parameters: 总统(String), 总统(String), 3(Long)
+2015-07-19 23:33:47,865 [main] ERROR cn.mypandora.log.MyLogAspect - afterThrowing
+2015-07-19 23:33:47,866 [main] ERROR cn.mypandora.log.MyLogAspect - 错误信息：org.springframework.jdbc.BadSqlGrammarException: cn.mypandora.system.BaseDept.update (batch index #1) failed. Cause: java.sql.BatchUpdateException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE id=3' at line 4
+; bad SQL grammar []; nested exception is java.sql.BatchUpdateException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE id=3' at line 4
+2015-07-19 23:34:18,029 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:34:18,032 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 23:34:18,095 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1015a]
+2015-07-19 23:34:18,101 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 23:34:18,147 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 23:34:18,177 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:34:18,181 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:34:18,181 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.update---------->
+2015-07-19 23:34:18,181 [main] DEBUG cn.mypandora.system.BaseDept.update - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1015a]
+2015-07-19 23:34:18,184 [main] DEBUG cn.mypandora.system.BaseDept.update - ==>  Preparing: UPDATE t_base_dept t SET name=?, update_time=?, WHERE id=? 
+2015-07-19 23:34:18,194 [main] DEBUG cn.mypandora.system.BaseDept.update - ==> Parameters: 总统(String), 2015-07-19 23:34:18.18(Timestamp), 3(Long)
+2015-07-19 23:34:18,274 [main] ERROR cn.mypandora.log.MyLogAspect - afterThrowing
+2015-07-19 23:34:18,274 [main] ERROR cn.mypandora.log.MyLogAspect - 错误信息：org.springframework.jdbc.BadSqlGrammarException: cn.mypandora.system.BaseDept.update (batch index #1) failed. Cause: java.sql.BatchUpdateException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE id=3' at line 4
+; bad SQL grammar []; nested exception is java.sql.BatchUpdateException: You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'WHERE id=3' at line 4
+2015-07-19 23:36:13,214 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:36:13,218 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 23:36:13,278 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@5230b9]
+2015-07-19 23:36:13,283 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 23:36:13,332 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 3(Long)
+2015-07-19 23:36:13,364 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:36:13,367 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:36:13,367 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.update---------->
+2015-07-19 23:36:13,368 [main] DEBUG cn.mypandora.system.BaseDept.update - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@5230b9]
+2015-07-19 23:36:13,369 [main] DEBUG cn.mypandora.system.BaseDept.update - ==>  Preparing: UPDATE t_base_dept t SET name=?, update_time=? WHERE id=? 
+2015-07-19 23:36:13,379 [main] DEBUG cn.mypandora.system.BaseDept.update - ==> Parameters: 总统(String), 2015-07-19 23:36:13.366(Timestamp), 3(Long)
+2015-07-19 23:36:13,507 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:36:53,472 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:36:53,475 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.findById---------->
+2015-07-19 23:36:53,553 [main] DEBUG cn.mypandora.system.BaseDept.findById - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 23:36:53,559 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==>  Preparing: select * from t_base_dept where id = ? 
+2015-07-19 23:36:53,612 [main] DEBUG cn.mypandora.system.BaseDept.findById - ==> Parameters: 1(Long)
+2015-07-19 23:36:53,651 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:36:53,655 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:36:53,656 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.update---------->
+2015-07-19 23:36:53,657 [main] DEBUG cn.mypandora.system.BaseDept.update - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@1fcdb7e]
+2015-07-19 23:36:53,658 [main] DEBUG cn.mypandora.system.BaseDept.update - ==>  Preparing: UPDATE t_base_dept t SET name=?, update_time=? WHERE id=? 
+2015-07-19 23:36:53,668 [main] DEBUG cn.mypandora.system.BaseDept.update - ==> Parameters: 美国公民(String), 2015-07-19 23:36:53.654(Timestamp), 1(Long)
+2015-07-19 23:36:53,748 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:39:55,300 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:39:55,304 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lastNode---------->
+2015-07-19 23:39:55,362 [main] DEBUG cn.mypandora.system.BaseDept.lastNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@14e834c]
+2015-07-19 23:39:55,368 [main] DEBUG cn.mypandora.system.BaseDept.lastNode - ==>  Preparing: SELECT * FROM t_base_dept t WHERE t.id=? AND t.rgt+1=( SELECT p.rgt FROM t_base_dept p WHERE p.id=t.parent_id ) 
+2015-07-19 23:39:55,418 [main] DEBUG cn.mypandora.system.BaseDept.lastNode - ==> Parameters: 35(Long)
+2015-07-19 23:39:55,446 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.moveDown---------->
+2015-07-19 23:39:55,447 [main] DEBUG cn.mypandora.system.BaseDept.moveDown - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@14e834c]
+2015-07-19 23:39:55,448 [main] DEBUG cn.mypandora.system.BaseDept.moveDown - ==>  Preparing: UPDATE t_base_dept t SET t.lft=t.lft+2,t.rgt=t.rgt+2 WHERE id = ? 
+2015-07-19 23:39:55,449 [main] DEBUG cn.mypandora.system.BaseDept.moveDown - ==> Parameters: 35(Long)
+2015-07-19 23:39:55,450 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.moveUp---------->
+2015-07-19 23:39:55,451 [main] DEBUG cn.mypandora.system.BaseDept.moveUp - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@14e834c]
+2015-07-19 23:39:55,453 [main] DEBUG cn.mypandora.system.BaseDept.moveUp - ==>  Preparing: UPDATE t_base_dept t SET t.lft=t.lft-2,t.rgt=t.rgt-2 WHERE id = ? 
+2015-07-19 23:39:55,453 [main] DEBUG cn.mypandora.system.BaseDept.moveUp - ==> Parameters: 37(Long)
+2015-07-19 23:39:55,454 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:43:46,279 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:43:46,282 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.lastNode---------->
+2015-07-19 23:43:46,339 [main] DEBUG cn.mypandora.system.BaseDept.lastNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@14e834c]
+2015-07-19 23:43:46,345 [main] DEBUG cn.mypandora.system.BaseDept.lastNode - ==>  Preparing: SELECT * FROM t_base_dept t WHERE t.id=? AND t.rgt+1=( SELECT p.rgt FROM t_base_dept p WHERE p.id=t.parent_id ) 
+2015-07-19 23:43:46,394 [main] DEBUG cn.mypandora.system.BaseDept.lastNode - ==> Parameters: 20(Long)
+2015-07-19 23:43:46,424 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.moveDown---------->
+2015-07-19 23:43:46,425 [main] DEBUG cn.mypandora.system.BaseDept.moveDown - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@14e834c]
+2015-07-19 23:43:46,426 [main] DEBUG cn.mypandora.system.BaseDept.moveDown - ==>  Preparing: UPDATE t_base_dept t SET t.lft=t.lft+2,t.rgt=t.rgt+2 WHERE id = ? 
+2015-07-19 23:43:46,427 [main] DEBUG cn.mypandora.system.BaseDept.moveDown - ==> Parameters: 20(Long)
+2015-07-19 23:43:46,429 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.moveUp---------->
+2015-07-19 23:43:46,430 [main] DEBUG cn.mypandora.system.BaseDept.moveUp - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@14e834c]
+2015-07-19 23:43:46,430 [main] DEBUG cn.mypandora.system.BaseDept.moveUp - ==>  Preparing: UPDATE t_base_dept t SET t.lft=t.lft-2,t.rgt=t.rgt-2 WHERE id = ? 
+2015-07-19 23:43:46,431 [main] DEBUG cn.mypandora.system.BaseDept.moveUp - ==> Parameters: 21(Long)
+2015-07-19 23:43:46,432 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:45:52,345 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:45:52,348 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.firstNode---------->
+2015-07-19 23:45:52,409 [main] DEBUG cn.mypandora.system.BaseDept.firstNode - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@14e834c]
+2015-07-19 23:45:52,414 [main] DEBUG cn.mypandora.system.BaseDept.firstNode - ==>  Preparing: SELECT * FROM t_base_dept t WHERE t.id=? AND t.lft-1=( SELECT p.lft FROM t_base_dept p WHERE p.id=t.parent_id ) 
+2015-07-19 23:45:52,474 [main] DEBUG cn.mypandora.system.BaseDept.firstNode - ==> Parameters: 20(Long)
+2015-07-19 23:45:52,509 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.moveUp---------->
+2015-07-19 23:45:52,511 [main] DEBUG cn.mypandora.system.BaseDept.moveUp - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@14e834c]
+2015-07-19 23:45:52,512 [main] DEBUG cn.mypandora.system.BaseDept.moveUp - ==>  Preparing: UPDATE t_base_dept t SET t.lft=t.lft-2,t.rgt=t.rgt-2 WHERE id = ? 
+2015-07-19 23:45:52,514 [main] DEBUG cn.mypandora.system.BaseDept.moveUp - ==> Parameters: 20(Long)
+2015-07-19 23:45:52,516 [main] DEBUG cn.mypandora.orm.dao.IBaseTreeDao - SQL Key <------------cn.mypandora.system.BaseDept.moveDown---------->
+2015-07-19 23:45:52,517 [main] DEBUG cn.mypandora.system.BaseDept.moveDown - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@14e834c]
+2015-07-19 23:45:52,518 [main] DEBUG cn.mypandora.system.BaseDept.moveDown - ==>  Preparing: UPDATE t_base_dept t SET t.lft=t.lft+2,t.rgt=t.rgt+2 WHERE id = ? 
+2015-07-19 23:45:52,519 [main] DEBUG cn.mypandora.system.BaseDept.moveDown - ==> Parameters: 21(Long)
+2015-07-19 23:45:52,520 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:52:21,120 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:52:21,123 [main] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <-------------cn.mypandora.system.LogEntity.add------------>
+2015-07-19 23:52:21,185 [main] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:52:21,191 [main] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( user_name, description, ip, create_time ) VALUES ( ?, ?, ?, ? ) 
+2015-07-19 23:52:21,248 [main] ERROR cn.mypandora.log.MyLogAspect - afterThrowing
+2015-07-19 23:52:21,249 [main] ERROR cn.mypandora.log.MyLogAspect - 错误信息：org.mybatis.spring.MyBatisSystemException: nested exception is org.apache.ibatis.reflection.ReflectionException: There is no getter for property named 'username' in 'class cn.mypandora.system.po.BaseLog'
+2015-07-19 23:54:11,819 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:54:11,822 [main] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <-------------cn.mypandora.system.LogEntity.add------------>
+2015-07-19 23:54:11,881 [main] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@8af15e]
+2015-07-19 23:54:11,887 [main] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( name, description, ip ) VALUES ( ?, ?, ? ) 
+2015-07-19 23:54:11,938 [main] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 测试一(String), 这样可以吗？(String), 127.0.0.1(String)
+2015-07-19 23:54:12,075 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@8af15e]
+2015-07-19 23:54:12,079 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 23:54:12,082 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-07-19 23:54:12,126 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:55:20,160 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:55:20,163 [main] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <-------------cn.mypandora.system.LogEntity.add------------>
+2015-07-19 23:55:20,226 [main] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:20,232 [main] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( name, description, ip ) VALUES ( ?, ?, ? ) 
+2015-07-19 23:55:20,282 [main] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 测试一(String), 这样可以吗？(String), 127.0.0.1(String)
+2015-07-19 23:55:20,424 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:20,427 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 23:55:20,431 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-07-19 23:55:20,469 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:55:20,472 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:55:20,473 [main] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <-------------cn.mypandora.system.LogEntity.add------------>
+2015-07-19 23:55:20,475 [main] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:20,475 [main] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( name, description, ip ) VALUES ( ?, ?, ? ) 
+2015-07-19 23:55:20,477 [main] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 测试一(String), 这样可以吗？(String), 127.0.0.1(String)
+2015-07-19 23:55:20,604 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:20,605 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 23:55:20,606 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-07-19 23:55:20,608 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:55:20,609 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:55:20,609 [main] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <-------------cn.mypandora.system.LogEntity.add------------>
+2015-07-19 23:55:20,610 [main] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:20,611 [main] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( name, description, ip ) VALUES ( ?, ?, ? ) 
+2015-07-19 23:55:20,613 [main] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 测试一(String), 这样可以吗？(String), 127.0.0.1(String)
+2015-07-19 23:55:20,794 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:20,795 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 23:55:20,796 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-07-19 23:55:20,797 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:55:20,797 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:55:20,798 [main] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <-------------cn.mypandora.system.LogEntity.add------------>
+2015-07-19 23:55:20,800 [main] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:20,801 [main] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( name, description, ip ) VALUES ( ?, ?, ? ) 
+2015-07-19 23:55:20,802 [main] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 测试一(String), 这样可以吗？(String), 127.0.0.1(String)
+2015-07-19 23:55:20,902 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:20,903 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 23:55:20,904 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-07-19 23:55:20,906 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:55:20,906 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:55:20,907 [main] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <-------------cn.mypandora.system.LogEntity.add------------>
+2015-07-19 23:55:20,908 [main] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:20,909 [main] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( name, description, ip ) VALUES ( ?, ?, ? ) 
+2015-07-19 23:55:20,910 [main] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 测试一(String), 这样可以吗？(String), 127.0.0.1(String)
+2015-07-19 23:55:21,009 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:21,010 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 23:55:21,011 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-07-19 23:55:21,013 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:55:21,013 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:55:21,013 [main] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <-------------cn.mypandora.system.LogEntity.add------------>
+2015-07-19 23:55:21,015 [main] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:21,016 [main] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( name, description, ip ) VALUES ( ?, ?, ? ) 
+2015-07-19 23:55:21,018 [main] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 测试一(String), 这样可以吗？(String), 127.0.0.1(String)
+2015-07-19 23:55:21,118 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:21,123 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 23:55:21,126 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-07-19 23:55:21,129 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:55:21,129 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:55:21,130 [main] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <-------------cn.mypandora.system.LogEntity.add------------>
+2015-07-19 23:55:21,131 [main] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:21,132 [main] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( name, description, ip ) VALUES ( ?, ?, ? ) 
+2015-07-19 23:55:21,134 [main] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 测试一(String), 这样可以吗？(String), 127.0.0.1(String)
+2015-07-19 23:55:21,233 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:21,234 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 23:55:21,235 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-07-19 23:55:21,236 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:55:21,237 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:55:21,237 [main] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <-------------cn.mypandora.system.LogEntity.add------------>
+2015-07-19 23:55:21,238 [main] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:21,241 [main] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( name, description, ip ) VALUES ( ?, ?, ? ) 
+2015-07-19 23:55:21,242 [main] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 测试一(String), 这样可以吗？(String), 127.0.0.1(String)
+2015-07-19 23:55:21,350 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:21,351 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 23:55:21,354 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-07-19 23:55:21,356 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:55:21,356 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:55:21,357 [main] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <-------------cn.mypandora.system.LogEntity.add------------>
+2015-07-19 23:55:21,358 [main] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:21,359 [main] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( name, description, ip ) VALUES ( ?, ?, ? ) 
+2015-07-19 23:55:21,360 [main] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 测试一(String), 这样可以吗？(String), 127.0.0.1(String)
+2015-07-19 23:55:21,456 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:21,457 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 23:55:21,458 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-07-19 23:55:21,460 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:55:21,460 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:55:21,461 [main] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <-------------cn.mypandora.system.LogEntity.add------------>
+2015-07-19 23:55:21,462 [main] DEBUG cn.mypandora.system.LogEntity.add - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:21,463 [main] DEBUG cn.mypandora.system.LogEntity.add - ==>  Preparing: INSERT INTO t_base_log ( name, description, ip ) VALUES ( ?, ?, ? ) 
+2015-07-19 23:55:21,464 [main] DEBUG cn.mypandora.system.LogEntity.add - ==> Parameters: 测试一(String), 这样可以吗？(String), 127.0.0.1(String)
+2015-07-19 23:55:21,564 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@116f979]
+2015-07-19 23:55:21,565 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==>  Preparing: SELECT LAST_INSERT_ID() AS ID 
+2015-07-19 23:55:21,566 [main] DEBUG cn.mypandora.system.LogEntity.add!selectKey - ==> Parameters: 
+2015-07-19 23:55:21,567 [main] DEBUG cn.mypandora.log.MyLogAspect - end around
+2015-07-19 23:56:30,320 [main] DEBUG cn.mypandora.log.MyLogAspect - begin around
+2015-07-19 23:56:30,323 [main] DEBUG cn.mypandora.orm.dao.impl.BaseEntityDaoImpl - SQL Key <-------------cn.mypandora.system.LogEntity.delete------------>
+2015-07-19 23:56:30,382 [main] DEBUG cn.mypandora.system.LogEntity.delete - ooo Using Connection [com.alibaba.druid.proxy.jdbc.ConnectionProxyImpl@154a6ae]
+2015-07-19 23:56:30,388 [main] DEBUG cn.mypandora.system.LogEntity.delete - ==>  Preparing: DELETE from t_base_log WHERE id = ? 
+2015-07-19 23:56:30,442 [main] DEBUG cn.mypandora.system.LogEntity.delete - ==> Parameters: 11(Long)
+2015-07-19 23:56:30,551 [main] DEBUG cn.mypandora.log.MyLogAspect - end around

@@ -8,7 +8,6 @@ package cn.mypandora.system.service;
 import cn.mypandora.orm.Page;
 import cn.mypandora.system.po.BaseLog;
 
-
 /**
  * 日志管理Service。
  * <p>User: kaibo

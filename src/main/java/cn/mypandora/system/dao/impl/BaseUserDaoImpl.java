@@ -11,34 +11,20 @@ import cn.mypandora.system.dao.BaseUserDao;
 import cn.mypandora.system.po.BaseUser;
 
 /**
- * @ClassName:UserDao
- * @Description:用户管理DAO实现类。
- * @Author:hankaibo
- * @date:2013-8-13
- * @UpdateUser:hankaibo
- * @UpdateDate:2013-8-13 下午11:36:17
- * @UpdateRemark:What is modified?
- */
-/**
- * 登录页面PO。
+ * 用户管理DAO操作实现类。
  * <p>User: kaibo
  * <p>Date: 2015/7/17
  * <p>Version: 1.0
  */
 @Repository
 public class BaseUserDaoImpl extends BaseEntityDaoImpl<BaseUser> implements BaseUserDao {
-
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: getNameSpace
-     * Description:
-     * @return
-     * @see cn.mypandora.orm.dao.BaseDaoImpl#getNameSpace()
+    /**
+     * 查询sql配置文件命名空间
+     *
+     * @return sql配置文件命名空间名称
      */
-    //@formatter:on
     @Override
-    public String getNameSpace() {
+    protected String getNameSpace() {
         return "cn.mypandora.system.UserEntity";
     }
-
 }

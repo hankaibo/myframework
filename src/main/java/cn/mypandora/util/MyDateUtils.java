@@ -26,9 +26,9 @@ public class MyDateUtils {
     public final static String DAY_FORMAT = "yyyyMMdd";
 
     /**
-     * @return String
-     * @Title:getMonthFirstDay
-     * @Description: 得到当前月的第一天.
+     * 得到当前月的第一天.
+     *
+     * @return
      */
     public static String getMonthFirstDay() {
         Calendar cal = Calendar.getInstance();
@@ -47,9 +47,9 @@ public class MyDateUtils {
     }
 
     /**
-     * @return String
-     * @Title:getMonthLastDay
-     * @Description: 得到当前月最后一天
+     * 得到当前月最后一天
+     *
+     * @return
      */
     public static String getMonthLastDay() {
         Calendar cal = Calendar.getInstance();
@@ -75,9 +75,9 @@ public class MyDateUtils {
     }
 
     /**
-     * @return String
-     * @Title:getPreviousMonthFirst
-     * @Description: 得到上个月的第一天
+     * 得到上个月的第一天
+     *
+     * @return
      */
     public static String getPreviousMonthFirst() {
         Calendar cal = Calendar.getInstance();
@@ -102,9 +102,9 @@ public class MyDateUtils {
     }
 
     /**
-     * @return String
-     * @Title:getPreviousMonthEnd
-     * @Description: 得到上个月最后一天
+     * 得到上个月最后一天
+     *
+     * @return
      */
     public static String getPreviousMonthEnd() {
         Calendar cal = Calendar.getInstance();
@@ -130,9 +130,9 @@ public class MyDateUtils {
     }
 
     /**
-     * @return String
-     * @Title:getNextMonthFirst
-     * @Description: 得到下个月的第一天
+     * 得到下个月的第一天
+     *
+     * @return
      */
     public static String getNextMonthFirst() {
         Calendar cal = Calendar.getInstance();
@@ -152,9 +152,9 @@ public class MyDateUtils {
     }
 
     /**
-     * @return String
-     * @Title:getNextMonthEnd
-     * @Description: 得到下个月最后一天。
+     * 得到下个月最后一天。
+     *
+     * @return
      */
     public static String getNextMonthEnd() {
         Calendar cal = Calendar.getInstance();
@@ -171,9 +171,9 @@ public class MyDateUtils {
     }
 
     /**
-     * @return int
-     * @Title:getCurrentMonthDays
-     * @Description: 得到当前月的天数
+     * 得到当前月的天数
+     *
+     * @return
      */
     public static int getCurrentMonthDays() {
         Calendar cal = new GregorianCalendar();// Calendar.getInstance();
@@ -182,10 +182,10 @@ public class MyDateUtils {
     }
 
     /**
-     * @param date
-     * @return int
-     * @Title:getSpecifiedMonthDays
-     * @Description: 得到指定的月份的天数
+     * 得到指定的月份的天数
+     *
+     * @param date 指定的月份 yyyy-MM
+     * @return
      */
     public static int getSpecifiedMonthDays(String date) {
         Calendar cal = Calendar.getInstance();
@@ -200,9 +200,9 @@ public class MyDateUtils {
     }
 
     /**
-     * @return String
-     * @Title:getCurrentDate
-     * @Description: 得到当前月份
+     * 得到当前月份
+     *
+     * @return
      */
     public static String getCurrentMonth() {
         Calendar cal = Calendar.getInstance();
@@ -211,9 +211,9 @@ public class MyDateUtils {
     }
 
     /**
-     * @return String
-     * @Title:getCurrentDate
-     * @Description: 得到当前日期
+     * 得到当前日期
+     *
+     * @return
      */
     public static String getCurrentDate() {
         Calendar cal = Calendar.getInstance();
@@ -222,9 +222,9 @@ public class MyDateUtils {
     }
 
     /**
-     * @return String
-     * @Title:getCurrentTime
-     * @Description: 得到当前的时间
+     * 得到当前的时间
+     *
+     * @return
      */
     public static String getCurrentTime() {
         Calendar cal = Calendar.getInstance();
@@ -233,9 +233,9 @@ public class MyDateUtils {
     }
 
     /**
-     * @return String
-     * @Title:getPreviousMonthDate
-     * @Description: 得到当前日期的前一个月
+     * 得到当前日期的前一个月
+     *
+     * @return
      */
     public static String getPreviousMonthDate() {
         Calendar calendar = Calendar.getInstance();
@@ -247,10 +247,10 @@ public class MyDateUtils {
     }
 
     /**
+     * 得到与当前日期偏移量为X的日期。
+     *
      * @param offset
-     * @return String
-     * @Title:getOffsetDate
-     * @Description: 得到与当前日期偏移量为X的日期。
+     * @return
      */
     public static String getOffsetDate(int offset) {
         Calendar cal = Calendar.getInstance();
@@ -260,12 +260,12 @@ public class MyDateUtils {
     }
 
     /**
+     * 得到与指定日期偏移量为X的日期。
+     *
      * @param specifiedDate 指定的日期,格式为YYYY-MM-DD
-     * @param offset
-     * @return String
+     * @param offset        偏移的天数
+     * @return
      * @throws ParseException
-     * @Title:getSpecifiedOffsetDate
-     * @Description: 得到与指定日期偏移量为X的日期。
      */
     public static String getSpecifiedOffsetDate(String specifiedDate, int offset) throws ParseException {
         Date date = DateUtils.parseDate(specifiedDate, DATE_FORMAT);
@@ -276,12 +276,12 @@ public class MyDateUtils {
     }
 
     /**
+     * 得到与指定日期时间偏移量为X的时间。
+     *
      * @param specifiedTime 指定的时间,格式为yyyy-MM-dd HH:mm:ss
      * @param offset        偏移天数
-     * @return String
+     * @return
      * @throws ParseException
-     * @Title:getSpecifiedOffsetTime
-     * @Description: 得到与指定日期时间偏移量为X的时间。
      */
     public static String getSpecifiedOffsetTime(String specifiedTime, int offset) throws ParseException {
         Date date = DateUtils.parseDate(specifiedTime, TIME_FORMAT);
@@ -292,12 +292,12 @@ public class MyDateUtils {
     }
 
     /**
+     * 得到与指定日期时间偏移量为X的时间。
+     *
      * @param specifiedDateTime 指定的时间,格式为yyyy-MM-dd HH:mm:ss/yyyy-MM-dd
      * @param offset            偏移天数
-     * @return String
+     * @return
      * @throws ParseException
-     * @Title:getOffsetDateTime
-     * @Description: 得到与指定日期时间偏移量为X的时间。
      */
     public static String getOffsetDateTime(String specifiedDateTime, int offset) throws ParseException {
         String regexStr = "\\d{4}-\\d{2}-\\d{2}";
@@ -319,10 +319,10 @@ public class MyDateUtils {
     }
 
     /**
+     * 判断是星期几.
+     *
      * @param c
-     * @return String
-     * @Title:getWeekDay
-     * @Description: 判断是星期几.
+     * @return
      */
     public static String getWeekDay(Calendar c) {
         if (c == null) {
@@ -347,11 +347,11 @@ public class MyDateUtils {
     }
 
     /**
+     * 获得两个日期之间的连续日期.
+     *
      * @param begin 开始日期 .
      * @param end   结束日期 .
-     * @return List<String>
-     * @Title:getDaysListBetweenDates
-     * @Description: 获得两个日期之间的连续日期.
+     * @return
      */
     public static List<String> getDaysListBetweenDates(String begin, String end) {
         List<String> dateList = new ArrayList<String>();
@@ -374,11 +374,11 @@ public class MyDateUtils {
     }
 
     /**
+     * 获得连续的月份
+     *
      * @param begin
      * @param end
-     * @return List<String>
-     * @Title:getMonthsListBetweenDates
-     * @Description: 获得连续的月份
+     * @return
      */
     public static List<String> getMonthsListBetweenDates(String begin, String end) {
         List<String> dateList = new ArrayList<String>();
@@ -401,20 +401,32 @@ public class MyDateUtils {
     }
 
     /**
+     * 将long类型的时间值转换成标准格式的时间（yyyy-MM-dd HH:mm:ss）
+     *
      * @param createTime
-     * @return String
-     * @Title:long2Time
-     * @Description: 将long类型的时间值转换成标准格式的时间（yyyy-MM-dd HH:mm:ss）
+     * @return
      */
     public static String timestamp2Time(String createTime) {
         long fooTime = Long.parseLong(createTime) * 1000L;
         return DateFormatUtils.format(fooTime, TIME_FORMAT);
     }
 
+    /**
+     * 将时间转换为yyyy-MM-dd格式字符串
+     *
+     * @param date
+     * @return
+     */
     public static String date2StrDate(Date date) {
         return DateFormatUtils.format(date, DATE_FORMAT);
     }
 
+    /**
+     * 将时间转换为yyyy-MM-dd HH:mm:ss格式字符串
+     *
+     * @param date
+     * @return
+     */
     public static String date2StrTime(Date date) {
         return DateFormatUtils.format(date, TIME_FORMAT);
     }

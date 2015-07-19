@@ -14,6 +14,7 @@ import cn.mypandora.orm.model.BaseTree;
  * <p>Version: 1.0
  */
 public class BaseRes extends BaseTree {
+
     // 资源状态，启用/禁用。
     private boolean isEnable;
     // 资源URL。

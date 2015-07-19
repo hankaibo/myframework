@@ -46,8 +46,9 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
     private static final String FIND_BY_ID = "findById";
     private static final String FIND_ALL = "findAll";
     private static final String FIND_BY_SQL = "cn.mypandora.dao.base.dynaSql";
-    private static final String SQL_KEY = "SQL Key <";
-    private static final String SQL_KEY_END = ">";
+
+    private static final String SQL_KEY = "SQL Key <-------------";
+    private static final String SQL_KEY_END = "------------>";
 
     @Autowired
     private SqlSession sqlSession;
@@ -72,59 +73,12 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
     protected abstract String getNameSpace();
 
     /**
-     * 查询sql
-     *
-     * @param sqlKey sql语句名称
-     * @param param  参数
-     * @return
-     */
-    public String getSql(String sqlKey, Object param) {
-        String fullSqlKey = createSqlKeyName(sqlKey);
-        return getMyBatisSql(fullSqlKey, param).toString();
-    }
-
-    /**
-     * 根据sql语句查询
-     *
-     * @param sqlKey sql语句名称
-     * @return 所有数据
-     */
-    public List<Map<String, Object>> findBySql(String sqlKey) {
-        return sqlSession.selectList(createSqlKeyName(sqlKey));
-    }
-
-    /**
-     * 根据sql语句查询
-     *
-     * @param sql  sql语句
-     * @param page 分页类
-     * @return 分页数据
-     */
-    public Page<Map<String, Object>> findMapBySql(String sql, Page<Map<String, Object>> page) {
-        if (page == null) {
-            page = new Page<>();
-            List<Map<String, Object>> list = sqlSession.selectList(FIND_BY_SQL, sql);
-            page.setResultList(list);
-            return page;
-        }
-
-        int offset = page.getFirst();
-        List<Map<String, Object>> list = sqlSession.selectList(FIND_BY_SQL, sql,
-                new RowBounds(offset, page.getPageSize()));
-        page.setResultList(list);
-        page.setTotal(countBySql(sql));
-
-        return page;
-
-    }
-
-    /**
      * 添加实体。
      *
      * @param t 实体
      */
     @Override
-    public void addEntity(T t) {
+    public void add(T t) {
         sqlSession.insert(createSqlKeyName(ADD), t);
     }
 
@@ -134,7 +88,7 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param list 实体
      */
     @Override
-    public void addBatchEntity(List<T> list) {
+    public void addBatch(List<T> list) {
         sqlSession.insert(createSqlKeyName(ADD_BATCH), list);
     }
 
@@ -145,7 +99,7 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param o      自定义实体
      * @param <O>    自定义实体
      */
-    public <O> void addEntity(String sqlKey, O o) {
+    public <O> void addCustom(String sqlKey, O o) {
         sqlSession.insert(createSqlKeyName(sqlKey), o);
     }
 
@@ -155,7 +109,7 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param sqlKey sql语句名称
      * @param params 参数
      */
-    public void insertByCondetion(String sqlKey, Object params) {
+    public void addByCondetion(String sqlKey, Object params) {
         sqlSession.insert(createSqlKeyName(sqlKey), params);
     }
 
@@ -165,7 +119,7 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param t 实体
      */
     @Override
-    public void updateEntity(T t) {
+    public void update(T t) {
         sqlSession.update(createSqlKeyName(UPDATE), t);
     }
 
@@ -175,7 +129,7 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param list 实体
      */
     @Override
-    public void updateBatchEntity(List<T> list) {
+    public void updateBatch(List<T> list) {
         sqlSession.update(createSqlKeyName(UPDATE_BATCH), list);
     }
 
@@ -186,7 +140,7 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param o        自定义实体
      * @param <O>自定义实体
      */
-    public <O> void updateEntity(String sqlKey, O o) {
+    public <O> void updateCustom(String sqlKey, O o) {
         sqlSession.update(createSqlKeyName(sqlKey), o);
     }
 
@@ -206,7 +160,7 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param id 实体id
      */
     @Override
-    public void deleteEntity(Serializable id) {
+    public void delete(Serializable id) {
         sqlSession.delete(createSqlKeyName(DELETE), id);
     }
 
@@ -216,7 +170,7 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param ids 实体id数组
      */
     @Override
-    public void deleteBatchEntity(Serializable[] ids) {
+    public void deleteBatch(Serializable[] ids) {
         sqlSession.delete(createSqlKeyName(DELETE_BATCH), ids);
     }
 
@@ -226,7 +180,7 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param sqlKey sql语句名称
      * @param params 参数
      */
-    public void deleteByConditions(String sqlKey, Object params) {
+    public void deleteByCondition(String sqlKey, Object params) {
         sqlSession.delete(createSqlKeyName(sqlKey), params);
     }
 
@@ -248,7 +202,7 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param params 参数
      * @return 实体
      */
-    public T findEntityByCondition(String sqlKey, Object params) {
+    public T findByCondition(String sqlKey, Object params) {
         return sqlSession.selectOne(createSqlKeyName(sqlKey), params);
     }
 
@@ -260,11 +214,13 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param <O>    自定义实体
      * @return
      */
-    public <O> O findObjectByCondition(String sqlKey, Object params) {
+    public <O> O findCustomByCondition(String sqlKey, Object params) {
         return sqlSession.selectOne(createSqlKeyName(sqlKey), params);
     }
 
     /**
+     * 返回指定列为key的map集合或对象
+     *
      * @param sqlKey sql语句名称
      * @param params 参数
      * @param mapKey map key的列名
@@ -272,6 +228,17 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      */
     public Map<String, Map<String, Object>> findMapByCondition(String sqlKey, Object params, String mapKey) {
         return sqlSession.selectMap(createSqlKeyName(sqlKey), params, mapKey);
+    }
+
+    /**
+     * 查询一条记录。
+     *
+     * @param sqlKey sql语句名称
+     * @param params 参数
+     * @return 一条Map记录
+     */
+    public Map<String, Object> findOneMapByCondition(String sqlKey, Object params) {
+        return sqlSession.selectOne(createSqlKeyName(sqlKey), params);
     }
 
     /**
@@ -291,7 +258,28 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param params 参数
      * @return 满足条件的实体列表
      */
-    public List<T> findByCondition(String sqlKey, Object params) {
+    public List<T> findListByCondition(String sqlKey, Object params) {
+        return sqlSession.selectList(createSqlKeyName(sqlKey), params);
+    }
+
+    /**
+     * 根据sql语句查询
+     *
+     * @param sqlKey sql语句名称
+     * @return 所有数据
+     */
+    public List<Map<String, Object>> findListMapBySql(String sqlKey) {
+        return sqlSession.selectList(createSqlKeyName(sqlKey));
+    }
+
+    /**
+     * 返回Map列表数据
+     *
+     * @param sqlKey sql语句名称
+     * @param params 参数
+     * @return Map列表数据
+     */
+    public List<Map<String, Object>> findListMapByCondition(String sqlKey, Object params) {
         return sqlSession.selectList(createSqlKeyName(sqlKey), params);
     }
 
@@ -303,53 +291,8 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param <O>    自定义实体列表
      * @return 自定义实体列表
      */
-    public <O> List<O> findObjectListByCondition(String sqlKey, Object params) {
+    public <O> List<O> findListCustomByCondition(String sqlKey, Object params) {
         return sqlSession.selectList(createSqlKeyName(sqlKey), params);
-    }
-
-    /**
-     * 查询一条记录。
-     *
-     * @param sqlKey sql语句名称
-     * @param params 参数
-     * @return 一条Mar记录
-     */
-    public Map<String, Object> findOneByCondition(String sqlKey, Object params) {
-        return sqlSession.selectOne(createSqlKeyName(sqlKey), params);
-    }
-
-    /**
-     * 返回Map.
-     *
-     * @param sqlKey sql语句名称
-     * @param params 参数
-     * @return Map列表数据
-     */
-    public List<Map<String, Object>> findMapByCondition(String sqlKey, Object params) {
-        return sqlSession.selectList(createSqlKeyName(sqlKey), params);
-    }
-
-    /**
-     * 返回分页Map.
-     *
-     * @param sqlKey sql语句名称
-     * @param params 参数
-     * @param page   分页信息
-     * @return 分页Map
-     */
-    public Page<Map<String, Object>> findMapByConditionPage(String sqlKey, Object params, Page<Map<String, Object>> page) {
-        if (page == null) {
-            page = new Page<>();
-            List<Map<String, Object>> list = sqlSession.selectList(createSqlKeyName(sqlKey), params);
-            page.setResultList(list);
-            return page;
-        }
-        int offset = (page.getCurrentPage() - 1) * page.getPageSize();
-        List<Map<String, Object>> list = sqlSession.selectList(createSqlKeyName(sqlKey), params, new RowBounds(offset,
-                page.getPageSize()));
-        page.setResultList(list);
-        page.setTotal(count(sqlKey, params));
-        return page;
     }
 
     /**
@@ -361,7 +304,7 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @return 返回分页实体
      */
     @Override
-    public Page<T> findByCondition(String sqlKey, Object params, Page<T> page) {
+    public Page<T> findPageByCondition(String sqlKey, Object params, Page<T> page) {
         if (page == null) {
             page = new Page<>();
             List<T> list = sqlSession.selectList(createSqlKeyName(sqlKey), params);
@@ -377,6 +320,54 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
     }
 
     /**
+     * 根据sql语句查询
+     *
+     * @param sql  sql语句
+     * @param page 分页类
+     * @return 分页数据
+     */
+    public Page<Map<String, Object>> findPageMapBySql(String sql, Page<Map<String, Object>> page) {
+        if (page == null) {
+            page = new Page<>();
+            List<Map<String, Object>> list = sqlSession.selectList(FIND_BY_SQL, sql);
+            page.setResultList(list);
+            return page;
+        }
+
+        int offset = page.getFirst();
+        List<Map<String, Object>> list = sqlSession.selectList(FIND_BY_SQL, sql,
+                new RowBounds(offset, page.getPageSize()));
+        page.setResultList(list);
+        page.setTotal(countBySql(sql));
+
+        return page;
+
+    }
+
+    /**
+     * 返回分页Map.
+     *
+     * @param sqlKey sql语句名称
+     * @param params 参数
+     * @param page   分页信息
+     * @return 分页Map
+     */
+    public Page<Map<String, Object>> findPageMapByCondition(String sqlKey, Object params, Page<Map<String, Object>> page) {
+        if (page == null) {
+            page = new Page<>();
+            List<Map<String, Object>> list = sqlSession.selectList(createSqlKeyName(sqlKey), params);
+            page.setResultList(list);
+            return page;
+        }
+        int offset = (page.getCurrentPage() - 1) * page.getPageSize();
+        List<Map<String, Object>> list = sqlSession.selectList(createSqlKeyName(sqlKey), params, new RowBounds(offset,
+                page.getPageSize()));
+        page.setResultList(list);
+        page.setTotal(count(sqlKey, params));
+        return page;
+    }
+
+    /**
      * 分页查询（用于关联查询自定义实体）
      *
      * @param sqlKey 查询sql的名称
@@ -385,7 +376,7 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param <O>    自定义分页实体
      * @return
      */
-    public <O> Page<O> findObjectPageByCondition(String sqlKey, Object params, Page<O> page) {
+    public <O> Page<O> findPageCustomByCondition(String sqlKey, Object params, Page<O> page) {
         if (page == null) {
             page = new Page<>();
             List<O> list = sqlSession.selectList(createSqlKeyName(sqlKey), params);
@@ -399,34 +390,6 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
         page.setTotal(count(sqlKey, params));
         return page;
     }
-
-    /**
-     * 分页查询（传入实体，count+sqlKey 为 count一次统计key值，对数据新增操作少的查询）
-     * 使用两个查询,查询数据使用sqlKey,查询统统sqlKey为 "count"+sqlkey
-     *
-     * @param sqlKey 查询sql的名称
-     * @param params 参数
-     * @param page   返回实体Page
-     * @param <O>    自定义分页实体
-     * @return
-     */
-    public <O> Page<O> findOPageByCondition(String sqlKey, Object params, Page<O> page) {
-        if (page == null) {
-            page = new Page<>();
-            List<O> list = sqlSession.selectList(createSqlKeyName(sqlKey), params);
-            page.setResultList(list);
-            return page;
-        }
-        int offset = (page.getCurrentPage() - 1) * page.getPageSize();
-        List<O> list = sqlSession.selectList(createSqlKeyName(sqlKey), params,
-                new RowBounds(offset, page.getPageSize()));
-        page.setResultList(list);
-        if (page.getTotal() == -1) {
-            page.setTotal(countSimple(sqlKey, params));
-        }
-        return page;
-    }
-
 
     /**
      * @param param
@@ -525,6 +488,18 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
         String countSql = "select count(1) from (" + fromHql + ") count_sql_alias";
 
         return ((Number) sqlSession.selectOne("cn.mypandora.dao.base.countSql", countSql)).intValue();
+    }
+
+    /**
+     * 查询sql
+     *
+     * @param sqlKey sql语句名称
+     * @param param  参数
+     * @return
+     */
+    public String getSql(String sqlKey, Object param) {
+        String fullSqlKey = createSqlKeyName(sqlKey);
+        return getMyBatisSql(fullSqlKey, param).toString();
     }
 
 }

@@ -22,7 +22,6 @@ import javax.annotation.Resource;
  * <p>Version: 1.0
  */
 public class UserRealm extends AuthorizingRealm {
-
     @Resource
     private BaseUserService baseUserService;
 
@@ -38,8 +37,8 @@ public class UserRealm extends AuthorizingRealm {
         String username = (String) principals.getPrimaryPrincipal();
 
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(baseUserService.findRoles(username));
-        authorizationInfo.setStringPermissions(baseUserService.findPermissions(username));
+        authorizationInfo.setRoles(baseUserService.findRole(username));
+        authorizationInfo.setStringPermissions(baseUserService.findPermission(username));
 
         return authorizationInfo;
     }

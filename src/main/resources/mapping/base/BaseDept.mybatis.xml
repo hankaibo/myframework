@@ -6,7 +6,7 @@
     <resultMap type="cn.mypandora.system.po.BaseDept" id="BaseDeptMap">
         <result property="id" column="id"></result>
         <result property="name" column="name"></result>
-        <result property="nodeId" column="node_id"></result>
+        <!--<result property="nodeId" column="node_id"></result>-->
         <result property="lft" column="lft"></result>
         <result property="rgt" column="rgt"></result>
         <result property="parentId" column="parent_id"></result>
@@ -28,7 +28,7 @@
         ]]>
     </select>
     
-    <select id="getDescendants" resultMap="BaseDeptMap" parameterType="java.lang.Long">
+    <select id="getDescendant" resultMap="BaseDeptMap" parameterType="java.lang.Long">
         <![CDATA[
             SELECT *
             FROM t_base_dept t
@@ -36,7 +36,7 @@
             AND t.lft>(
                     SELECT s.lft
                     FROM t_base_dept s
-                    WHERE s.id=#{id}) 
+                    WHERE s.id=#{id})
             AND t.rgt<(
                     SELECT s.rgt
                     FROM t_base_dept s
@@ -45,11 +45,11 @@
         ]]>
     </select>
     
-    <select id="getChilds" resultMap="BaseDeptMap" parameterType="java.lang.Long">
+    <select id="getChild" resultMap="BaseDeptMap" parameterType="java.lang.Long">
         SELECT *
         FROM t_base_dept t 
         WHERE 1=1 
-        AND t.parent_id=#{noteId}
+        AND t.parent_id=#{id}
         ORDER BY t.lft ASC
     </select>
     
@@ -57,7 +57,7 @@
         <![CDATA[
             SELECT *
             FROM t_base_dept t
-            WHERE t.node_id=(
+            WHERE t.id=(
                     SELECT s.parent_id
                     FROM t_base_dept s
                     WHERE s.id=#{id}
@@ -124,10 +124,11 @@
         ]]>
     </update>
     
-    <update id="update">
+    <update id="update" parameterType="cn.mypandora.system.po.BaseDept">
         <![CDATA[
             UPDATE t_base_dept t
-            SET name=#{name, jdbcType=VARCHAR}
+            SET name=#{name, jdbcType=VARCHAR},
+                update_time=#{updateTime, jdbcType=TIMESTAMP}
             WHERE id=#{id, jdbcType=NUMERIC}
         ]]>
     </update>

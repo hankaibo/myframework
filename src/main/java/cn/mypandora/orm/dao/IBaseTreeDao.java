@@ -38,7 +38,7 @@ public interface IBaseTreeDao<T extends BaseTree> {
      * @param id 当前操作节点id
      * @return 本节点及下面的所有节点
      */
-    List<T> getDescendants(Long id);
+    List<T> getDescendant(Long id);
 
     /**
      * 获得本节点的孩子节点
@@ -46,7 +46,7 @@ public interface IBaseTreeDao<T extends BaseTree> {
      * @param id 当前操作节点id
      * @return 本节点的孩子节点
      */
-    List<T> getChilds(Long id);
+    List<T> getChild(Long id);
 
     /**
      * 获得本节点的父节点
@@ -141,14 +141,14 @@ public interface IBaseTreeDao<T extends BaseTree> {
      *
      * @param t 实体
      */
-    void updateEntity(T t);
+    void update(T t);
 
     /**
      * 删除实体。
      *
      * @param id 实体id
      */
-    void deleteEntity(Serializable id);
+    void delete(Serializable id);
 
     /**
      * 根据id获取实体。

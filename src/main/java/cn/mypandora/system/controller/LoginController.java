@@ -2,7 +2,8 @@
  * Copyright © 2015.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
- */package cn.mypandora.system.controller;
+ */
+package cn.mypandora.system.controller;
 
 import cn.mypandora.system.po.BaseRes;
 import cn.mypandora.system.po.BaseUser;
@@ -147,7 +148,7 @@ public class LoginController {
                     baseUserService.loginSuccess(user);
                     // 记录session的值
                     session.setAttribute("user", user);
-                    List<BaseRes> listResoureces = baseResService.getResDescendants(1L);
+                    List<BaseRes> listResoureces = baseResService.getResDescendant(1L);
                     List<ParentChildTree> listPCTrees = new ArrayList<>();
                     for (BaseRes res : listResoureces) {
                         listPCTrees.add(MyTreeUtil.lfNode2pcNode(res));

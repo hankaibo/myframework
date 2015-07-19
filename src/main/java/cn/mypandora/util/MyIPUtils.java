@@ -16,11 +16,11 @@ import javax.servlet.http.HttpServletRequest;
 public class MyIPUtils {
 
     /**
+     * 通过HttpServletRequest返回IP地址
+     *
      * @param request
-     * @return String
+     * @return
      * @throws Exception
-     * @Title: getIpAddr
-     * @Description: 通过HttpServletRequest返回IP地址
      */
     public static String getIpAddr(HttpServletRequest request) throws Exception {
         String ip = request.getHeader("x-forwarded-for");

@@ -61,7 +61,7 @@ public class MyLogAspect {
                 MyMethodAnno anno = method.getAnnotation(MyMethodAnno.class);
                 BaseLog log = new BaseLog();
                 log.setCreateTime(new Timestamp(System.currentTimeMillis()));
-                log.setUsername("稍后获取");
+                log.setName("稍后获取");
                 log.setIp("稍后获取");
                 log.setDescription(anno.description());
 
@@ -77,8 +77,8 @@ public class MyLogAspect {
      */
     @AfterThrowing(pointcut = "pointcut()", throwing = "ex")
     public void afterThrowingLog(Exception ex) {
-        System.out.println("afterThrowing");
-        System.out.println(ex);
+        logger.error("afterThrowing");
+        logger.error("错误信息："+ex);
     }
 
     /**

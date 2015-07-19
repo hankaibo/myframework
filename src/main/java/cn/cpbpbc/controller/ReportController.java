@@ -1,3 +1,8 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.cpbpbc.controller;
 
 import cn.mypandora.orm.Page;
@@ -10,8 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- * Created by kaibo on 2015/6/16.
- * desc
+ * <p>User: hankaibo
+ * <p>Date: 2015/7/19
+ * <p>Version: 1.0
  */
 @Controller
 @RequestMapping(value = "/report")

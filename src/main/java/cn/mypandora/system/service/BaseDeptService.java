@@ -6,7 +6,6 @@
 package cn.mypandora.system.service;
 
 import cn.mypandora.system.po.BaseDept;
-import com.sun.org.glassfish.gmbal.Description;
 
 import java.util.List;
 
@@ -30,7 +29,7 @@ public interface BaseDeptService {
      * @param id 当前操作部门（节点）id
      * @return
      */
-    List<BaseDept> getDeptDescendants(Long id);
+    List<BaseDept> getDeptDescendant(Long id);
 
     /**
      * 获得本部门（节点）的孩子部门（节点）。
@@ -38,7 +37,7 @@ public interface BaseDeptService {
      * @param id 当前操作部门（节点）id
      * @return
      */
-    List<BaseDept> getDeptChilds(Long id);
+    List<BaseDept> getDeptChild(Long id);
 
     /**
      * 获得本部门（节点）的父部门（节点）

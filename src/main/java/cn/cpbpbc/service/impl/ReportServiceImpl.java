@@ -1,29 +1,24 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.cpbpbc.service.impl;
 
 import cn.cpbpbc.po.ReportData;
 import cn.cpbpbc.service.ReportService;
 import cn.mypandora.orm.Page;
-import cn.mypandora.orm.dao.IBaseEntityDao;
-import cn.mypandora.orm.service.AbstractBaseEntityService;
 
 import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by kaibo on 2015/6/18.
- * desc
+ * cpbpbc报表接口实现类。
+ * <p>User: hankaibo
+ * <p>Date: 2015/7/19
+ * <p>Version: 1.0
  */
-public class ReportServiceImpl extends AbstractBaseEntityService<ReportData> implements ReportService {
-    /**
-     * 由继承子类实现真正地实体Dao.
-     *
-     * @return
-     */
-    @Override
-    public IBaseEntityDao<ReportData> getDao() {
-        return null;
-    }
-
+public class ReportServiceImpl implements ReportService {
     /**
      * 添加报告数据。
      *

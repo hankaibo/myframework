@@ -9,8 +9,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import javax.annotation.Resource;
 
 /**
- * Created by kaibo on 2015/7/16.
- * desc
+ * 权限JUnit测试。
+ * <p>User: kaibo
+ * <p>Date: 2015/7/17
+ * <p>Version: 1.0
  */
 // 1基于JUnit4的Spring测试框架
 @RunWith(SpringJUnit4ClassRunner.class)

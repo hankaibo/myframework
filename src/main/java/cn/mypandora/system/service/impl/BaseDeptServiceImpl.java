@@ -2,225 +2,167 @@
  * Copyright © 2015.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
- */package cn.mypandora.system.service.impl;
+ */
+package cn.mypandora.system.service.impl;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import cn.mypandora.orm.dao.IBaseTreeDao;
-import cn.mypandora.orm.service.AbstractBaseTreeOperation;
 import cn.mypandora.system.dao.BaseDeptDao;
 import cn.mypandora.system.po.BaseDept;
 import cn.mypandora.system.service.BaseDeptService;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import javax.annotation.Resource;
+import java.util.List;
 
 /**
- * @ClassName:BaseDeptServiceImpl
- * @Description:部门管理Service实现类。
- * @Author:hankaibo
- * @date:2013-8-14
- * @UpdateUser:hankaibo
- * @UpdateDate:2013-8-14 下午11:12:00
- * @UpdateRemark:What is modified?
- */
-/**
- * 登录页面PO。
+ * 部门管理Service实现类。
  * <p>User: kaibo
  * <p>Date: 2015/7/17
  * <p>Version: 1.0
  */
 @Service
-public class BaseDeptServiceImpl extends AbstractBaseTreeOperation<BaseDept> implements BaseDeptService {
+public class BaseDeptServiceImpl implements BaseDeptService {
     @Resource
     private BaseDeptDao dao;
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: getDao
-     * Description:
+    /**
+     * 获取所有部门（一次性全部加载，适合数据量少的情况）。
+     *
      * @return
-     * @see cn.mypandora.orm.service.AbstractBaseTreeOperation#getDao()
      */
-    //@formatter:on
-    @Override
-    public IBaseTreeDao<BaseDept> getDao() {
-        return dao;
-    }
-
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: loadFullDept
-     * Description:
-     * @return
-     * @see cn.mypandora.system.service.BaseDeptService#loadFullDept()
-     */
-    //@formatter:on
     @Override
     public List<BaseDept> loadFullDept() {
-        return getDao().loadFullTree();
+        return dao.loadFullTree();
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: getDeptDescendants
-     * Description:
-     * @param id
+    /**
+     * 获得本部门（节点）及下面的所有部门（节点）。
+     *
+     * @param id 当前操作部门（节点）id
      * @return
-     * @see cn.mypandora.system.service.BaseDeptService#getDeptDescendants(java.lang.Long)
      */
-    //@formatter:on
     @Override
-    public List<BaseDept> getDeptDescendants(Long id) {
-        return getDao().getDescendants(id);
+    public List<BaseDept> getDeptDescendant(Long id) {
+        return dao.getDescendant(id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: getDeptChilds
-     * Description:
-     * @param id
+    /**
+     * 获得本部门（节点）的孩子部门（节点）。
+     *
+     * @param id 当前操作部门（节点）id
      * @return
-     * @see cn.mypandora.system.service.BaseDeptService#getDeptChilds(java.lang.Long)
      */
-    //@formatter:on
     @Override
-    public List<BaseDept> getDeptChilds(Long id) {
-        return getDao().getChilds(id);
+    public List<BaseDept> getDeptChild(Long id) {
+        return dao.getChild(id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: getDeptParent
-     * Description:
-     * @param id
+    /**
+     * 获得本部门（节点）的父部门（节点）
+     *
+     * @param id 当前操作部门（节点）id
      * @return
-     * @see cn.mypandora.system.service.BaseDeptService#getDeptParent(java.lang.Long)
      */
-    //@formatter:on
     @Override
     public BaseDept getDeptParent(Long id) {
-        return getDao().getParent(id);
+        return dao.getParent(id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: getDeptAncestry
-     * Description:
-     * @param id
+    /**
+     * 获得本部门（节点）的祖先部门（节点）
+     *
+     * @param id 当前操作部门（节点）id
      * @return
-     * @see cn.mypandora.system.service.BaseDeptService#getDeptAncestry(java.lang.Long)
      */
-    //@formatter:on
     @Override
     public List<BaseDept> getDeptAncestry(Long id) {
-        return getDao().getAncestry(id);
+        return dao.getAncestry(id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: addDept
-     * Description:
-     * @param id
-     * @param params
-     * @see cn.mypandora.system.service.BaseDeptService#addDept(java.lang.Long, java.lang.Object)
+    /**
+     * 添加孩子部门（节点）
+     *
+     * @param id     父部门（节点）的nodeId
+     * @param params 子部门（节点）的信息
      */
-    //@formatter:on
     @Override
     @Transactional
     public void addDept(Long id, Object params) {
-        getDao().lftPlus2(id);
-        getDao().rgtPlus2(id);
-        getDao().insertNode(params);
-        getDao().parentRgtPlus2(id);
-
+        dao.lftPlus2(id);
+        dao.rgtPlus2(id);
+        dao.insertNode(params);
+        dao.parentRgtPlus2(id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: delDept
-     * Description:
-     * @param id
-     * @see cn.mypandora.system.service.BaseDeptService#delDept(java.lang.Long)
+    /**
+     * 删除部门（节点）
+     *
+     * @param id 要删除的部门（节点）ID
      */
-    //@formatter:on
     @Override
+    @Transactional
     public void delDept(Long id) {
-        getDao().lftMinus2(id);
-        getDao().rgtMinus2(id);
-        getDao().deleteEntity(id);
-
+        dao.lftMinus2(id);
+        dao.rgtMinus2(id);
+        dao.delete(id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: moveUpDept
-     * Description:
-     * @param id
-     * @param upId
-     * @see cn.mypandora.system.service.BaseDeptService#moveUpDept(java.lang.Long, java.lang.Long)
+    /**
+     * 上移某个部门（节点）(同级叶子之间,即把弟弟部门（节点）移到哥哥部门（节点）之前)
+     *
+     * @param id   弟弟部门（节点）ID
+     * @param upId 哥哥部门（节点）ID
      */
-    //@formatter:on
     @Override
+    @Transactional
     public void moveUpDept(Long id, Long upId) {
         // 当前节点不是首节点
-        if (!getDao().isFirstNode(id)) {
+        if (!dao.isFirstNode(id)) {
             // 弟弟（自身）节点左右值减2
-            getDao().brotherMinus2(id);
+            dao.brotherMinus2(id);
             // 哥哥节点左右值加去2
-            getDao().brotherPlus2(upId);
+            dao.brotherPlus2(upId);
         }
 
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: moveDownDept
-     * Description:
-     * @param id
-     * @param downId
-     * @see cn.mypandora.system.service.BaseDeptService#moveDownDept(java.lang.Long, java.lang.Long)
+    /**
+     * 下移某个部门（节点）(同级叶子之间,即把哥哥部门（节点）移到弟弟部门（节点）之后)
+     *
+     * @param id     哥哥部门（节点）ID
+     * @param downId 弟弟部门（节点）ID
      */
-    //@formatter:on
     @Override
+    @Transactional
     public void moveDownDept(Long id, Long downId) {
         // 当前节点不是末节点
-        if (!getDao().isLastNode(id)) {
+        if (!dao.isLastNode(id)) {
             // 哥哥节点（自身）左右值加2
-            getDao().brotherPlus2(id);
+            dao.brotherPlus2(id);
             // 弟弟节点左右值减2
-            getDao().brotherMinus2(downId);
+            dao.brotherMinus2(downId);
         }
-
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: findDeptById
-     * Description:
-     * @param id
+    /**
+     * 查询一个部门。
+     *
+     * @param id 当前操作部门（节点）id
      * @return
-     * @see cn.mypandora.system.service.BaseDeptService#findDeptById(java.lang.Long)
      */
-    //@formatter:on
     @Override
     public BaseDept findDeptById(Long id) {
-        return (BaseDept) dao.findById(id);
+        return dao.findById(id);
     }
 
-    //@formatter:off
-    /* (非 Javadoc)
-     * Title: updateDept
-     * Description:
-     * @param dept
-     * @see cn.mypandora.system.service.BaseDeptService#updateDept(cn.mypandora.system.po.BaseDept)
+    /**
+     * 更新一个部门。
+     *
+     * @param dept 部门信息
      */
-    //@formatter:on
     @Override
     public void updateDept(BaseDept dept) {
-        dao.updateEntity(dept);
+        dao.update(dept);
     }
 
 }

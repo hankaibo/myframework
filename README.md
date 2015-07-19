@@ -3,7 +3,7 @@ MVC Framework： struts2问题太多了,更新慢，漏洞多，而且使用中�
 Template：当然是使用SUN的官方标准JSP2.0了。
 Javascript Library：jQuery，相信这个大家都会吧！
 CSS Framework：Twitter Bootstrap，一是因为它流行，简洁；二是没有美工啊！
-JavaScript/CSS Compressor: 还是随便选的YUI Compressor。
+JavaScript/CSS Compressor: YUI Compressor。
 Validation: 前台JQuery Validation Plugin，后台Hibernate Valiator，双剑合璧，天下无敌。
 
 

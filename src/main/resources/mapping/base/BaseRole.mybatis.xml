@@ -19,7 +19,7 @@
         <result property="updateTime" column="update_time"></result>
     </resultMap>
 
-    <insert id="add" parameterType="BaseRoleMap">
+    <insert id="add" parameterType="cn.mypandora.system.po.BaseRole">
         <![CDATA[
             INSERT INTO t_base_user_role (
                 role,

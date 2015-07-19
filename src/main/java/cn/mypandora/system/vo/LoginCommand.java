@@ -5,8 +5,6 @@
  */
 package cn.mypandora.system.vo;
 
-import com.sun.org.glassfish.gmbal.Description;
-
 /**
  * 登录页面PO。
  * <p>User: kaibo

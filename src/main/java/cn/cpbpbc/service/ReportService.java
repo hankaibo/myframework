@@ -1,3 +1,8 @@
+/**
+ * Copyright © 2015.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ */
 package cn.cpbpbc.service;
 
 import cn.cpbpbc.po.ReportData;
@@ -7,8 +12,10 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by kaibo on 2015/6/16.
- * desc
+ * cpbpbc报表接口。
+ * <p>User: hankaibo
+ * <p>Date: 2015/7/19
+ * <p>Version: 1.0
  */
 public interface ReportService {
 

@@ -28,8 +28,8 @@ public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDa
 
     private static final String LOAD_FULL_TREE = "loadFullTree";
     private static final String LOAD_TREE_LEVEL = "loadTreeWithLevel";
-    private static final String GET_DESCENDANTS = "getDescendants";
-    private static final String GET_CHILDS = "getChilds";
+    private static final String GET_DESCENDANT = "getDescendant";
+    private static final String GET_CHILD = "getChild";
     private static final String GET_PARENT = "getParent";
     private static final String GET_ANCESTRY = "getAncestry";
 
@@ -51,8 +51,8 @@ public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDa
     private static final String DELETE = "delete";
     private static final String FIND_BY_ID = "findById";
 
-    private static final String SQL_KEY = "SQL Key <";
-    private static final String SQL_KEY_END = ">";
+    private static final String SQL_KEY = "SQL Key <------------";
+    private static final String SQL_KEY_END = "---------->";
 
     @Autowired
     private SqlSession sqlSession;
@@ -104,8 +104,8 @@ public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDa
      * @return 本节点及下面的所有节点
      */
     @Override
-    public List<T> getDescendants(Long id) {
-        return sqlSession.selectList(createSqlKeyName(GET_DESCENDANTS), id);
+    public List<T> getDescendant(Long id) {
+        return sqlSession.selectList(createSqlKeyName(GET_DESCENDANT), id);
     }
 
     /**
@@ -115,8 +115,8 @@ public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDa
      * @return 本节点的孩子节点
      */
     @Override
-    public List<T> getChilds(Long id) {
-        return sqlSession.selectList(createSqlKeyName(GET_CHILDS), id);
+    public List<T> getChild(Long id) {
+        return sqlSession.selectList(createSqlKeyName(GET_CHILD), id);
     }
 
     /**
@@ -260,7 +260,7 @@ public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDa
      * @param t 实体
      */
     @Override
-    public void updateEntity(T t) {
+    public void update(T t) {
         sqlSession.update(createSqlKeyName(UPDATE), t);
     }
 
@@ -270,7 +270,7 @@ public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDa
      * @param id 实体id
      */
     @Override
-    public void deleteEntity(Serializable id) {
+    public void delete(Serializable id) {
         sqlSession.delete(createSqlKeyName(DELETE), id);
     }
 }

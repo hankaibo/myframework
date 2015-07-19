@@ -2,10 +2,9 @@
  * Copyright © 2015.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
- */package cn.mypandora.system.service.impl;
+ */
+package cn.mypandora.system.service.impl;
 
-import cn.mypandora.orm.dao.IBaseEntityDao;
-import cn.mypandora.orm.service.AbstractBaseEntityService;
 import cn.mypandora.system.dao.BaseRoleDao;
 import cn.mypandora.system.po.BaseRole;
 import cn.mypandora.system.service.BaseRoleService;
@@ -19,16 +18,18 @@ import java.util.Map;
  * Created by kaibo on 2015/7/16.
  * desc
  */
+
 /**
- * 登录页面PO。
+ * 日志管理Service实现类。
  * <p>User: kaibo
  * <p>Date: 2015/7/17
  * <p>Version: 1.0
  */
 @Service
-public class BaseRoleServiceImpl extends AbstractBaseEntityService<BaseRole> implements BaseRoleService {
+public class BaseRoleServiceImpl implements BaseRoleService {
     @Resource
-    private BaseRoleDao baseRoleDao;
+    private BaseRoleDao dao;
+
     /**
      * 新建角色
      *
@@ -36,7 +37,7 @@ public class BaseRoleServiceImpl extends AbstractBaseEntityService<BaseRole> imp
      */
     @Override
     public void addRole(BaseRole baseRole) {
-        baseRoleDao.addEntity(baseRole);
+        dao.add(baseRole);
     }
 
     /**
@@ -46,7 +47,7 @@ public class BaseRoleServiceImpl extends AbstractBaseEntityService<BaseRole> imp
      */
     @Override
     public void deleteRole(Long roleId) {
-        baseRoleDao.deleteEntity(roleId);
+        dao.delete(roleId);
     }
 
     /**
@@ -56,16 +57,16 @@ public class BaseRoleServiceImpl extends AbstractBaseEntityService<BaseRole> imp
      * @param permissionIds
      */
     @Override
-    public void correlationPermissions(Long roleId, Long... permissionIds) {
-        if(permissionIds == null || permissionIds.length == 0) {
+    public void correlationPermission(Long roleId, Long... permissionIds) {
+        if (permissionIds == null || permissionIds.length == 0) {
             return;
         }
-        Map<String,Object> params=new HashMap<>();
-        for(Long permissionId : permissionIds) {
-            if(!exists(roleId,permissionId)) {
-                params.put("roleId",roleId);
-                params.put("permissionId",permissionId);
-                baseRoleDao.insertByCondetion("correlationRolePermission", params);
+        Map<String, Object> params = new HashMap<>();
+        for (Long permissionId : permissionIds) {
+            if (!exists(roleId, permissionId)) {
+                params.put("roleId", roleId);
+                params.put("permissionId", permissionId);
+                dao.addByCondetion("correlationRolePermission", params);
             }
         }
     }
@@ -77,34 +78,25 @@ public class BaseRoleServiceImpl extends AbstractBaseEntityService<BaseRole> imp
      * @param permissionIds
      */
     @Override
-    public void uncorrelationPermissions(Long roleId, Long... permissionIds) {
-        if(permissionIds == null || permissionIds.length == 0) {
+    public void uncorrelationPermission(Long roleId, Long... permissionIds) {
+        if (permissionIds == null || permissionIds.length == 0) {
             return;
         }
-        Map<String,Object> params=new HashMap<>();
-        for(Long permissionId : permissionIds) {
-            if(exists(roleId,permissionId)) {
-                params.put("roleId",roleId);
-                params.put("permissionId",permissionId);
-                baseRoleDao.deleteByConditions("uncorrelationRolePermission", params);
+        Map<String, Object> params = new HashMap<>();
+        for (Long permissionId : permissionIds) {
+            if (exists(roleId, permissionId)) {
+                params.put("roleId", roleId);
+                params.put("permissionId", permissionId);
+                dao.deleteByCondition("uncorrelationRolePermission", params);
             }
         }
     }
 
-    /**
-     * 由继承子类实现真正地实体Dao.
-     *
-     * @return
-     */
-    @Override
-    public IBaseEntityDao<BaseRole> getDao() {
-        return baseRoleDao;
-    }
 
     private boolean exists(Long roleId, Long permissionId) {
-        Map<String,Object> params=new HashMap<>();
-        params.put("roleId",roleId);
-        params.put("permissionId",permissionId);
-        return baseRoleDao.findMapByCondition("isExistsRolePermission",params).size()>0;
+        Map<String, Object> params = new HashMap<>();
+        params.put("roleId", roleId);
+        params.put("permissionId", permissionId);
+        return dao.findListMapByCondition("isExistsRolePermission", params).size() > 0;
     }
 }

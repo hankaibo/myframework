@@ -21,7 +21,6 @@ import java.text.SimpleDateFormat;
  */
 public class BaseUser extends BaseEntity {
     private static final long serialVersionUID = 1866721052326765131L;
-
     // 姓名
     private String username;
     // 密码
@@ -58,7 +57,7 @@ public class BaseUser extends BaseEntity {
     // 同上。
     private String strLastVisit;
     // 积分
-    private int credits;
+    private int credit;
 
     public String getUsername() {
         return username;
@@ -164,12 +163,12 @@ public class BaseUser extends BaseEntity {
         this.lastVisit = lastVisit;
     }
 
-    public int getCredits() {
-        return credits;
+    public int getCredit() {
+        return credit;
     }
 
-    public void setCredits(int credits) {
-        this.credits = credits;
+    public void setCredit(int credit) {
+        this.credit = credit;
     }
 
     public String getStrBirthday() {
@@ -180,5 +179,31 @@ public class BaseUser extends BaseEntity {
     public String getStrLastVisit() {
         SimpleDateFormat sdf = new SimpleDateFormat(MyDateUtils.TIME_FORMAT);
         return sdf.format(this.getLastVisit() != null ? this.getLastVisit() : new Timestamp(0L));
+    }
+
+    public String getCredentialsSalt(){
+        return username + salt;
+    }
+
+    @Override
+    public String toString() {
+        return "BaseUser{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", salt='" + salt + '\'' +
+                ", locked=" + locked +
+                ", realName='" + realName + '\'' +
+                ", email='" + email + '\'' +
+                ", phone='" + phone + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", pictureUrl='" + pictureUrl + '\'' +
+                ", sex=" + sex +
+                ", birthday=" + birthday +
+                ", strBirthday='" + strBirthday + '\'' +
+                ", lastIp='" + lastIp + '\'' +
+                ", lastVisit=" + lastVisit +
+                ", strLastVisit='" + strLastVisit + '\'' +
+                ", credit=" + credit +
+                '}';
     }
 }

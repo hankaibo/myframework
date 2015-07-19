@@ -8,11 +8,7 @@ package cn.mypandora.util;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSetMetaData;
-import java.sql.SQLException;
+import java.sql.*;
 
 /**
  * 根据数据库表映射为实体类
@@ -31,7 +27,7 @@ public class MyEntityUtil {
     private final static String DESCRIPTION = "实体用户。";// 实体类描述
     // ****************需要修改的参数*****************
     // 数据库连接
-    private static final String URL = "jdbc:mysql://localhost:3316/framework?useUnicode=true&characterEncoding=UTF-8";
+    private static final String URL = "jdbc:mysql://localhost:3306/myframework?useUnicode=true&characterEncoding=UTF-8";
     private static final String NAME = "root";
     private static final String PASS = "root";
     private static final String DRIVER = "com.mysql.jdbc.Driver";
@@ -42,7 +38,7 @@ public class MyEntityUtil {
     private boolean f_util = false; // 是否需要导入包java.util.*
     private boolean f_sql = false; // 是否需要导入包java.sql.*
 
-    /*
+    /**
      * 构造函数
      */
     public MyEntityUtil() {
@@ -81,9 +77,9 @@ public class MyEntityUtil {
     }
 
     /**
-     * @return Connection
-     * @Title: getConnection
-     * @Description: 获取数据库连接并得到需要的结果集。
+     * 获取数据库连接并得到需要的结果集。
+     *
+     * @return
      */
     private ResultSetMetaData getResultSetMetaData() {
         // 查要生成实体类的表
@@ -113,13 +109,14 @@ public class MyEntityUtil {
     }
 
     /**
+     * 生成实体类主体代码
+     *
      * @param colNames
      * @param colTypes
      * @param colSizes
-     * @return String
-     * @Title: parse
-     * @Description: 生成实体类主体代码
+     * @return
      */
+
     private String parse(String[] colNames, String[] colTypes, int[] colSizes) {
         StringBuffer sb = new StringBuffer();
 
@@ -178,10 +175,9 @@ public class MyEntityUtil {
     }
 
     /**
+     * 生成所有属性
+     *
      * @param sb
-     * @return void
-     * @Title: processAllAttrs
-     * @Description: 生成所有属性
      */
     private void processAllAttrs(StringBuffer sb) {
         for (int i = 0; i < colNames.length; i++) {
@@ -194,10 +190,9 @@ public class MyEntityUtil {
     }
 
     /**
+     * 生成所有方法
+     *
      * @param sb
-     * @return void
-     * @Title: processAllMethod
-     * @Description: 生成所有方法
      */
     private void processAllMethod(StringBuffer sb) {
         for (int i = 0; i < colNames.length; i++) {
@@ -214,10 +209,10 @@ public class MyEntityUtil {
     }
 
     /**
-     * @param str t_base_user
-     * @return String
-     * @Title: camelCase
-     * @Description: 驼峰
+     * 驼峰
+     *
+     * @param str
+     * @return
      */
     private String camelCase(String str) {
         StringBuilder result = new StringBuilder();
@@ -247,10 +242,10 @@ public class MyEntityUtil {
     }
 
     /**
+     * 获得列的数据类型
+     *
      * @param sqlType
-     * @return String
-     * @Title: sqlType2JavaType
-     * @Description: 获得列的数据类型
+     * @return
      */
     private String sqlType2JavaType(String sqlType) {
         switch (sqlType.toLowerCase()) {
@@ -292,10 +287,9 @@ public class MyEntityUtil {
     }
 
     /**
+     * 写入文件。
+     *
      * @param content
-     * @return void
-     * @Title: createFile
-     * @Description: 写入文件。
      */
     private void createFile(String content) {
         try {
@@ -320,6 +314,12 @@ public class MyEntityUtil {
         }
     }
 
+    /**
+     * 首字母大写
+     *
+     * @param str
+     * @return
+     */
     private String firstToUpper(String str) {
         char[] ch = str.toCharArray();
         if (ch[0] >= 'a' && ch[0] <= 'z') {

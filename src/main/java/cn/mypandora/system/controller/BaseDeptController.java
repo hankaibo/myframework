@@ -21,13 +21,14 @@ import java.util.Map;
 
 /**
  * @ClassName: BaseDeptController
- * @Description: 部门管理Controller。
+ * @Description:
  * @Author: kaibo
  * @date: 2014-3-10
  * @UpdateUser: kaibo
  * @UpdateDate: 2014-3-10 下午11:45:58
  * @UpdateRemark: What is modified?
  */
+
 @Controller
 @RequestMapping(value = "/depts")
 public class BaseDeptController {

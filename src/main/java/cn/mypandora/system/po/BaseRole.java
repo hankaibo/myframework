@@ -14,7 +14,6 @@ import cn.mypandora.orm.model.BaseEntity;
  * <p>Version: 1.0
  */
 public class BaseRole extends BaseEntity {
-
     private static final long serialVersionUID = 6199599081168354432L;
     // 角色名称
     private String role;

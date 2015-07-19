@@ -12,8 +12,8 @@ package cn.mypandora.orm.model;
  * <p>Version: 1.0
  */
 public abstract class BaseTree extends BaseEntity {
-    // 节点ID
-    protected int nodeId;
+    // 节点ID,用的自增主键代替。
+//    protected int nodeId;
     // 节点名称
     protected String name;
     // 节点左值
@@ -23,13 +23,13 @@ public abstract class BaseTree extends BaseEntity {
     // 父节点ID
     protected int parentId;
 
-    public int getNodeId() {
-        return nodeId;
-    }
-
-    public void setNodeId(int nodeId) {
-        this.nodeId = nodeId;
-    }
+//    public int getNodeId() {
+//        return nodeId;
+//    }
+//
+//    public void setNodeId(int nodeId) {
+//        this.nodeId = nodeId;
+//    }
 
     public String getName() {
         return name;

@@ -2,7 +2,8 @@
  * Copyright © 2015.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
- */package cn.mypandora.system.controller;
+ */
+package cn.mypandora.system.controller;
 
 import cn.mypandora.system.po.BaseRes;
 import cn.mypandora.system.service.BaseResService;
@@ -34,10 +35,10 @@ public class BaseResController {
      */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    public  Map<String,List<BaseRes>> list() {
-        Map<String,List<BaseRes>> map=new HashMap<>();
+    public Map<String, List<BaseRes>> list() {
+        Map<String, List<BaseRes>> map = new HashMap<>();
         List<BaseRes> listResoureces = baseResService.loadFullResWithLevel(1);
-        map.put("listBaseRes",listResoureces);
+        map.put("listBaseRes", listResoureces);
         return map;
     }
 
@@ -79,7 +80,7 @@ public class BaseResController {
      * @Title: edit
      * @Description: 编辑资源。
      */
-    @RequestMapping(value = "/{id}",method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     @ResponseBody
     public String edit(BaseRes res) {
         baseResService.updateRes(res);

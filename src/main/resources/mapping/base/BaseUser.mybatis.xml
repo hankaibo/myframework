@@ -12,8 +12,10 @@
     </cache>
     <resultMap type="cn.mypandora.system.po.BaseUser" id="BaseUserMap">
         <result property="id" column="id"></result>
-        <result property="username" column="user_name"></result>
+        <result property="username" column="username"></result>
         <result property="password" column="password"></result>
+        <result property="salt" column="salt"></result>
+        <result property="locked" column="locked"></result>
         <result property="realName" column="real_name"></result>
         <result property="email" column="email"></result>
         <result property="phone" column="phone"></result>
@@ -23,7 +25,7 @@
         <result property="birthday" column="birthday"></result>
         <result property="lastIp" column="last_ip"></result>
         <result property="lastVisit" column="last_visit"></result>
-        <result property="credits" column="credits"></result>
+        <result property="credit" column="credit"></result>
         <result property="createTime" column="create_time"></result>
         <result property="updateTime" column="update_time"></result>
     </resultMap>
@@ -38,7 +40,7 @@
         from t_base_user
         where 1=1
         <if test="username!=null">
-            and user_name = #{username}
+            and username = #{username}
         </if>
         <if test="password!=null">
             and password = #{password}
@@ -50,14 +52,16 @@
         select *
         from t_base_user
         where 1=1
-        and user_name = #{username}
+        and username = #{username}
     </select>
 
     <insert id="add" parameterType="cn.mypandora.system.po.BaseUser">
         <![CDATA[
             INSERT INTO t_base_user (
-                user_name,
+                username,
                 password,
+                salt,
+                locked,
                 real_name,
                 email,
                 phone,
@@ -65,13 +69,15 @@
                 picture_url,
                 sex,
                 birthday,
-                credits,
+                credit,
                 last_ip,
                 create_time,
                 update_time
             ) VALUES (
                 #{username, jdbcType=VARCHAR},
                 #{password, jdbcType=VARCHAR},
+                #{salt, jdbcType=VARCHAR},
+                #{locked, jdbcType=NUMERIC},
                 #{realName, jdbcType=VARCHAR},
                 #{email, jdbcType=VARCHAR},
                 #{phone, jdbcType=VARCHAR},
@@ -79,9 +85,9 @@
                 #{pictureUrl, jdbcType=VARCHAR},
                 #{sex, jdbcType=NUMERIC},
                 #{birthday},
-                #{credits, jdbcType=NUMERIC},
+                #{credit, jdbcType=NUMERIC},
                 #{lastIp, jdbcType=VARCHAR},
-                #{creatTime},
+                #{createTime},
                 #{updateTime}
             )
         ]]>
@@ -136,12 +142,12 @@
         ]]>
     </delete>
 
-    <delete id="deleteBatch" parameterType="java.util.List">
+    <delete id="deleteBatch" parameterType="java.lang.reflect.Array">
         <![CDATA[
             DELETE from t_base_user
             WHERE id in
         ]]>
-        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+        <foreach collection="array" index="index" item="item" open="(" separator="," close=")">
             #{item}
         </foreach>
     </delete>
@@ -150,10 +156,16 @@
         update  t_base_user
         <set>
             <if test="username!=null and username!=''">
-                user_name=#{username, jdbcType=VARCHAR},
+                username=#{username, jdbcType=VARCHAR},
             </if>
             <if test="password!=null and password!=''">
                 password=#{password, jdbcType=VARCHAR},
+            </if>
+            <if test="salt!=null and salt!=''">
+                salt=#{salt, jdbcType=VARCHAR},
+            </if>
+            <if test="locked!=null and locked!=''">
+                locked=#{locked, jdbcType=NUMERIC},
             </if>
             <if test="realName!=null and realName!=''">
                 real_name=#{realName, jdbcType=VARCHAR},
@@ -164,8 +176,8 @@
             <if test="pictureUrl!=null and pictureUrl!=''">
                 picture_url=#{pictureUrl, jdbcType=VARCHAR},
             </if>
-            <if test="credits!=null and credits!=''">
-                credits=#{credits, jdbcType=NUMERIC},
+            <if test="credit!=null and credit!=''">
+                credit=#{credit, jdbcType=NUMERIC},
             </if>
             <if test="lastIp!=null and lastIp!=''">
                 last_ip=#{lastIp, jdbcType=VARCHAR},
@@ -211,8 +223,41 @@
     <select id="pageUsers" resultMap="BaseUserMap">
         select * from t_base_user
         where 1=1
-        <if test="username!=null">
-            and user_name = #{username}
+        <if test="username!=null and username!=''">
+            username=#{username, jdbcType=VARCHAR},
+        </if>
+        <if test="password!=null and password!=''">
+            password=#{password, jdbcType=VARCHAR},
+        </if>
+        <if test="salt!=null and salt!=''">
+            salt=#{salt, jdbcType=VARCHAR},
+        </if>
+        <if test="locked!=null and locked!=''">
+            locked=#{locked, jdbcType=NUMERIC},
+        </if>
+        <if test="realName!=null and realName!=''">
+            real_name=#{realName, jdbcType=VARCHAR},
+        </if>
+        <if test="email!=null and email!=''">
+            email=#{email, jdbcType=VARCHAR},
+        </if>
+        <if test="pictureUrl!=null and pictureUrl!=''">
+            picture_url=#{pictureUrl, jdbcType=VARCHAR},
+        </if>
+        <if test="credit!=null and credit!=''">
+            credit=#{credit, jdbcType=NUMERIC},
+        </if>
+        <if test="lastIp!=null and lastIp!=''">
+            last_ip=#{lastIp, jdbcType=VARCHAR},
+        </if>
+        <if test="birthday!=null and birthday!=''">
+            birthday=#{birthday, jdbcType=DATE},
+        </if>
+        <if test="sex!=null and sex!=''">
+            sex=#{sex, jdbcType=NUMERIC},
+        </if>
+        <if test="mobile!=null and mobile!=''">
+            mobile=#{mobile, jdbcType=VARCHAR}
         </if>
         <if test="sortName!=null">
             order by #{sortName} #{orderName}
