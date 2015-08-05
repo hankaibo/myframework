@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.mypandora.system.UserEntity">
+<mapper namespace="cn.mypandora.system.service.BaseUserService">
     <cache type="org.mybatis.caches.ehcache.EhcacheCache">
         <property name="timeToIdleSeconds" value="3600"/><!--1 hour-->
         <property name="timeToLiveSeconds" value="3600"/><!--1 hour-->
@@ -10,7 +10,7 @@
         <property name="maxEntriesLocalDisk" value="10000000"/>
         <property name="memoryStoreEvictionPolicy" value="LRU"/>
     </cache>
-    <resultMap type="cn.mypandora.system.po.BaseUser" id="BaseUserMap">
+    <resultMap type="baseUser" id="baseUserMap">
         <result property="id" column="id"></result>
         <result property="username" column="username"></result>
         <result property="password" column="password"></result>
@@ -35,7 +35,7 @@
         <result property="value" column="sexCount"></result>
     </resultMap>
 
-    <select id="hasMatchUser" resultMap="BaseUserMap" parameterType="java.util.HashMap">
+    <select id="hasMatchUser" resultMap="baseUserMap" parameterType="hashMap">
         select *
         from t_base_user
         where 1=1
@@ -48,14 +48,14 @@
         order by id desc
     </select>
 
-    <select id="findUserByName" resultMap="BaseUserMap" parameterType="String">
+    <select id="findUserByName" resultMap="baseUserMap" parameterType="string">
         select *
         from t_base_user
         where 1=1
         and username = #{username}
     </select>
 
-    <insert id="add" parameterType="cn.mypandora.system.po.BaseUser">
+    <insert id="add" parameterType="baseUser">
         <![CDATA[
             INSERT INTO t_base_user (
                 username,
@@ -96,7 +96,7 @@
         </selectKey>
     </insert>
 
-    <insert id="addBatch" parameterType="java.util.List">
+    <insert id="addBatch" parameterType="list">
         INSERT INTO t_base_user (
             user_name,
             password,
@@ -152,8 +152,8 @@
         </foreach>
     </delete>
 
-    <update id="update" parameterType="cn.mypandora.system.po.BaseUser">
-        update  t_base_user
+    <update id="update" parameterType="baseUser">
+        UPDATE  t_base_user
         <set>
             <if test="username!=null and username!=''">
                 username=#{username, jdbcType=VARCHAR},
@@ -195,7 +195,7 @@
         WHERE   id = #{id, jdbcType=NUMERIC}
     </update>
 
-    <update id="updateBatch" parameterType="java.util.List">
+    <update id="updateBatch" parameterType="list">
         update  t_base_user
         <set>
             <if test="password!=null and password!=''">
@@ -211,16 +211,18 @@
         </foreach>
     </update>
 
-    <select id="findById" resultMap="BaseUserMap" parameterType="java.lang.Long">
+    <select id="findById" resultMap="baseUserMap" parameterType="long">
         select * from t_base_user
         where id = #{id}
     </select>
 
-    <select id="findAll" resultMap="BaseUserMap">
-        select * from t_base_user
+    <select id="findAll" resultMap="baseUserMap">
+        SELECT *
+        FROM t_base_user
+        ORDER BY username
     </select>
 
-    <select id="pageUsers" resultMap="BaseUserMap">
+    <select id="pageUsers" resultMap="baseUserMap">
         select * from t_base_user
         where 1=1
         <if test="username!=null and username!=''">
@@ -268,20 +270,21 @@
 
     </select>
 
-    <select id="findUserSexCount" resultType="java.util.HashMap" >
-        SELECT t.sex, COUNT(t.sex) sexCount
-        FROM t_base_user t
-        GROUP BY t.sex
-    </select>
+    <!--<select id="findUserSexCount" resultType="hashMap" >-->
+        <!--SELECT t.sex, COUNT(t.sex) sexCount-->
+        <!--FROM t_base_user t-->
+        <!--GROUP BY t.sex-->
+    <!--</select>-->
 
-    <select id="isExistsUserRole" resultType="java.util.HashMap" >
-        select count(1) from t_base_users_roles
+    <select id="isExistsUserRole" resultType="integer" >
+        SELECT COUNT(1)
+        FROM t_base_user_role
         where user_id=#{userId, jdbcType=NUMERIC}
         and role_id=#{roleId, jdbcType=NUMERIC}
     </select>
 
-    <insert id="correlationUserRole" parameterType="java.util.HashMap">
-        insert into t_base_users_roles(
+    <insert id="correlationUserRole" parameterType="hashMap">
+        insert into t_base_user_role(
             user_id,
             role_id
         )
@@ -294,12 +297,29 @@
         </selectKey>
     </insert>
 
-    <delete id="uncorrelationUserRole" parameterType="java.util.HashMap">
+    <delete id="uncorrelationUserRole" parameterType="hashMap">
         <![CDATA[
-            delete from t_base_users_roles
+            delete from t_base_user_role
             where user_id=#{userId, jdbcType=NUMERIC}
             and role_id=#{roleId, jdbcType=NUMERIC}
         ]]>
     </delete>
+
+    <select id="findRole" resultType="string" parameterType="string">
+        SELECT r.role
+        FROM t_base_user u,t_base_user_role ur,t_base_role r
+        WHERE ur.user_id=u.id
+        AND ur.role_id=r.id
+        AND u.username=#{username}
+    </select>
+
+    <select id="findPermission" resultType="string" parameterType="string">
+        SELECT p.permission
+        FROM t_base_role_permission rp,t_base_permission p
+        WHERE rp.role_id in (
+        SELECT r.id
+        FROM t_base_user u,t_base_user_role ur,t_base_role r
+        WHERE ur.user_id=u.id AND ur.role_id=r.id AND u.username=#{username}) AND rp.permission_id=p.id
+    </select>
 
 </mapper>

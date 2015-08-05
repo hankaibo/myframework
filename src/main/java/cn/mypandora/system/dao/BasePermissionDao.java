@@ -18,8 +18,8 @@ public interface BasePermissionDao extends IBaseEntityDao<BasePermission> {
     /**
      * 根据条件删除实体。
      *
-     * @param sqlKey
-     * @param params
+     * @param sqlKey sql映射名称
+     * @param params 参数
      */
     void deleteByCondition(String sqlKey, Object params);
 }

@@ -5,18 +5,10 @@
  */
 package cn.mypandora.orm.dao.impl;
 
-import cn.mypandora.orm.MyBatisSql;
-import cn.mypandora.orm.Page;
 import cn.mypandora.orm.dao.IBaseEntityDao;
 import cn.mypandora.orm.model.BaseEntity;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.ibatis.mapping.*;
-import org.apache.ibatis.reflection.MetaObject;
-import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
-import org.apache.ibatis.reflection.property.PropertyTokenizer;
-import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
-import org.apache.ibatis.scripting.xmltags.ForEachSqlNode;
-import org.apache.ibatis.session.RowBounds;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import org.apache.ibatis.session.SqlSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -136,9 +128,9 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
     /**
      * 更新自定义实体。
      *
-     * @param sqlKey   sql语句名称
-     * @param o        自定义实体
-     * @param <O>自定义实体
+     * @param sqlKey sql语句名称
+     * @param o      自定义实体
+     * @param <O>    自定义实体
      */
     public <O> void updateCustom(String sqlKey, O o) {
         sqlSession.update(createSqlKeyName(sqlKey), o);
@@ -188,7 +180,7 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * 根据id获取实体。
      *
      * @param id 实体id
-     * @return 返回单个实体
+     * @return 单个实体
      */
     @Override
     public T findById(Serializable id) {
@@ -212,7 +204,7 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param sqlKey sql语句名称
      * @param params 参数
      * @param <O>    自定义实体
-     * @return
+     * @return 一个自定义实体
      */
     public <O> O findCustomByCondition(String sqlKey, Object params) {
         return sqlSession.selectOne(createSqlKeyName(sqlKey), params);
@@ -244,7 +236,7 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
     /**
      * 查询所有实体。
      *
-     * @return 返回所有实体
+     * @return 所有实体
      */
     @Override
     public List<T> findAll() {
@@ -301,21 +293,20 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param sqlKey 查询sql的名称
      * @param params 参数
      * @param page   返回实体Page
-     * @return 返回分页实体
+     * @return 分页实体
      */
     @Override
-    public Page<T> findPageByCondition(String sqlKey, Object params, Page<T> page) {
+    public PageInfo<T> findPageByCondition(String sqlKey, Object params, PageInfo<T> page) {
         if (page == null) {
-            page = new Page<>();
+            page = new PageInfo<>();
             List<T> list = sqlSession.selectList(createSqlKeyName(sqlKey), params);
-            page.setResultList(list);
+            page.setList(list);
             return page;
         }
-        int offset = (page.getCurrentPage() - 1) * page.getPageSize();
-        List<T> list = sqlSession.selectList(createSqlKeyName(sqlKey), params,
-                new RowBounds(offset, page.getPageSize()));
-        page.setResultList(list);
-        page.setTotal(count(sqlKey, params));
+//        int offset = (page.getPageNum() - 1) * page.getPageSize();
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<T> list = sqlSession.selectList(createSqlKeyName(sqlKey), params);
+        page = new PageInfo(list);
         return page;
     }
 
@@ -326,20 +317,17 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param page 分页类
      * @return 分页数据
      */
-    public Page<Map<String, Object>> findPageMapBySql(String sql, Page<Map<String, Object>> page) {
+    public PageInfo<Map<String, Object>> findPageMapBySql(String sql, PageInfo<Map<String, Object>> page) {
         if (page == null) {
-            page = new Page<>();
+            page = new PageInfo<>();
             List<Map<String, Object>> list = sqlSession.selectList(FIND_BY_SQL, sql);
-            page.setResultList(list);
+            page.setList(list);
             return page;
         }
-
-        int offset = page.getFirst();
-        List<Map<String, Object>> list = sqlSession.selectList(FIND_BY_SQL, sql,
-                new RowBounds(offset, page.getPageSize()));
-        page.setResultList(list);
-        page.setTotal(countBySql(sql));
-
+//        int offset = page.getPageNum();
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<Map<String, Object>> list = sqlSession.selectList(FIND_BY_SQL, sql);
+        page = new PageInfo<>(list);
         return page;
 
     }
@@ -352,18 +340,17 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param page   分页信息
      * @return 分页Map
      */
-    public Page<Map<String, Object>> findPageMapByCondition(String sqlKey, Object params, Page<Map<String, Object>> page) {
+    public PageInfo<Map<String, Object>> findPageMapByCondition(String sqlKey, Object params, PageInfo<Map<String, Object>> page) {
         if (page == null) {
-            page = new Page<>();
+            page = new PageInfo<>();
             List<Map<String, Object>> list = sqlSession.selectList(createSqlKeyName(sqlKey), params);
-            page.setResultList(list);
+            page.setList(list);
             return page;
         }
-        int offset = (page.getCurrentPage() - 1) * page.getPageSize();
-        List<Map<String, Object>> list = sqlSession.selectList(createSqlKeyName(sqlKey), params, new RowBounds(offset,
-                page.getPageSize()));
-        page.setResultList(list);
-        page.setTotal(count(sqlKey, params));
+//        int offset = (page.getPageNum() - 1) * page.getPageSize();
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<Map<String, Object>> list = sqlSession.selectList(createSqlKeyName(sqlKey), params);
+        page = new PageInfo<>(list);
         return page;
     }
 
@@ -374,132 +361,22 @@ public abstract class BaseEntityDaoImpl<T extends BaseEntity> implements IBaseEn
      * @param params 参数
      * @param page   返回实体Page
      * @param <O>    自定义分页实体
-     * @return
+     * @return 分页自定义实体
      */
-    public <O> Page<O> findPageCustomByCondition(String sqlKey, Object params, Page<O> page) {
+    public <O> PageInfo<O> findPageCustomByCondition(String sqlKey, Object params, PageInfo<O> page) {
         if (page == null) {
-            page = new Page<>();
+            page = new PageInfo<>();
             List<O> list = sqlSession.selectList(createSqlKeyName(sqlKey), params);
-            page.setResultList(list);
+            page.setList(list);
             return page;
         }
-        int offset = (page.getCurrentPage() - 1) * page.getPageSize();
-        List<O> list = sqlSession.selectList(createSqlKeyName(sqlKey), params,
-                new RowBounds(offset, page.getPageSize()));
-        page.setResultList(list);
-        page.setTotal(count(sqlKey, params));
+//        int offset = (page.getPageNum() - 1) * page.getPageSize();
+//        List<O> list = sqlSession.selectList(createSqlKeyName(sqlKey), params, new RowBounds(offset, page.getPageSize()));
+//        page.setList(list);
+        PageHelper.startPage(page.getPageNum(), page.getPageSize());
+        List<O> list = sqlSession.selectList(createSqlKeyName(sqlKey), params);
+        page = new PageInfo<>(list);
         return page;
-    }
-
-    /**
-     * @param param
-     * @return Object
-     * @throws
-     * @Title: getMyBatisSql
-     * @Description:
-     * @author hankaibo
-     * @date 2013-12-19 下午2:07:44
-     */
-    private MyBatisSql getMyBatisSql(String id, Object param) {
-        MyBatisSql myBatisSql = new MyBatisSql();
-        MappedStatement ms = sqlSession.getConfiguration().getMappedStatement(id);
-        BoundSql boundSql = ms.getBoundSql(param);
-
-        List<ResultMap> resultMaps = ms.getResultMaps();
-        if (resultMaps != null && resultMaps.size() > 0) {
-            ResultMap resultMap = ms.getResultMaps().get(0);
-            myBatisSql.setResultClass(resultMap.getType());
-        }
-        myBatisSql.setSql(boundSql.getSql());
-
-        List<ParameterMapping> parameterMappings = boundSql.getParameterMappings();
-        if (parameterMappings != null) {
-            Object[] parameterArray = new Object[parameterMappings.size()];
-            MetaObject metaObject = param == null ? null : MetaObject.forObject(param, new DefaultObjectFactory(),
-                    new DefaultObjectWrapperFactory());
-            for (int i = 0; i < parameterMappings.size(); i++) {
-                ParameterMapping parameterMapping = parameterMappings.get(i);
-                if (parameterMapping.getMode() != ParameterMode.OUT) {
-                    Object value;
-                    String propertyName = parameterMapping.getProperty();
-                    PropertyTokenizer prop = new PropertyTokenizer(propertyName);
-                    if (param == null) {
-                        value = null;
-                    } else if (ms.getConfiguration().getTypeHandlerRegistry().hasTypeHandler(param.getClass())) {
-                        value = param;
-                    } else if (boundSql.hasAdditionalParameter(propertyName)) {
-                        value = boundSql.getAdditionalParameter(propertyName);
-                    } else if (propertyName.startsWith(ForEachSqlNode.ITEM_PREFIX)
-                            && boundSql.hasAdditionalParameter(prop.getName())) {
-                        value = boundSql.getAdditionalParameter(prop.getName());
-                        if (value != null) {
-                            // TODO
-                            value = MetaObject.forObject(value, null, null).getValue(
-                                    propertyName.substring(prop.getName().length()));
-                        }
-                    } else {
-                        value = metaObject == null ? null : metaObject.getValue(propertyName);
-                    }
-                    parameterArray[i] = value;
-                }
-            }
-            myBatisSql.setParameters(parameterArray);
-        }
-        return myBatisSql;
-    }
-
-    /**
-     * 分页查询时，查询总数。
-     *
-     * @param sqlKey 查询sql的名称
-     * @param params 参数
-     * @return 总数
-     */
-    private int countSimple(String sqlKey, Object params) {
-        String fromHql = getMyBatisSql(createSqlKeyName("count" + sqlKey), params).toString();
-        String countSql = "select count(1) from (" + fromHql + ") count_sql_alias";
-        return ((Number) sqlSession.selectOne("cn.mypandora.dao.base.countSql", countSql)).intValue();
-    }
-
-    /**
-     * 分页查询时，查询总数。以order by对SQL语句进行分割，故原SQL语句中多个order by时将错误。
-     *
-     * @param sqlKey 查询sql的名称
-     * @param params 参数
-     * @return 总数
-     */
-    private int count(String sqlKey, Object params) {
-        String fromHql = getMyBatisSql(createSqlKeyName(sqlKey), params).toString();
-        fromHql = StringUtils.substringBeforeLast(fromHql, "order by");
-        String countSql = "select count(1) from (" + fromHql + ") count_sql_alias";
-
-        return ((Number) sqlSession.selectOne("cn.mypandora.dao.base.countSql", countSql)).intValue();
-
-    }
-
-    /**
-     * 分页查询时，查询总数。
-     *
-     * @param sql 查询sql
-     * @return 总数
-     */
-    private int countBySql(String sql) {
-        String fromHql = getMyBatisSql(FIND_BY_SQL, sql).toString();
-        String countSql = "select count(1) from (" + fromHql + ") count_sql_alias";
-
-        return ((Number) sqlSession.selectOne("cn.mypandora.dao.base.countSql", countSql)).intValue();
-    }
-
-    /**
-     * 查询sql
-     *
-     * @param sqlKey sql语句名称
-     * @param param  参数
-     * @return
-     */
-    public String getSql(String sqlKey, Object param) {
-        String fullSqlKey = createSqlKeyName(sqlKey);
-        return getMyBatisSql(fullSqlKey, param).toString();
     }
 
 }

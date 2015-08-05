@@ -2,15 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.mypandora.system.RoleEntity">
+<mapper namespace="cn.mypandora.system.service.BaseRoleService">
     <cache type="org.mybatis.caches.ehcache.EhcacheCache">
-        <property name="timeToIdleSeconds" value="3600"/><!--1 hour-->
-        <property name="timeToLiveSeconds" value="3600"/><!--1 hour-->
+        <property name="timeToIdleSeconds" value="3600"/>
+        <!--1 hour-->
+        <property name="timeToLiveSeconds" value="3600"/>
+        <!--1 hour-->
         <property name="maxEntriesLocalHeap" value="1000"/>
         <property name="maxEntriesLocalDisk" value="10000000"/>
         <property name="memoryStoreEvictionPolicy" value="LRU"/>
     </cache>
-    <resultMap type="cn.mypandora.system.po.BaseRole" id="BaseRoleMap">
+    <resultMap type="baseRole" id="baseRoleMap">
         <result property="id" column="id"></result>
         <result property="role" column="role"></result>
         <result property="description" column="description"></result>
@@ -19,20 +21,16 @@
         <result property="updateTime" column="update_time"></result>
     </resultMap>
 
-    <insert id="add" parameterType="cn.mypandora.system.po.BaseRole">
+    <insert id="add" parameterType="baseRole">
         <![CDATA[
-            INSERT INTO t_base_user_role (
+            INSERT INTO t_base_role (
                 role,
                 description,
-                available,
-                create_time,
-                update_time
+                available
             ) VALUES (
                 #{role, jdbcType=VARCHAR},
                 #{description, jdbcType=VARCHAR},
-                #{available, jdbcType=NUMERIC},
-                #{creatTime},
-                #{updateTime}
+                #{available, jdbcType=NUMERIC}
             )
         ]]>
         <selectKey resultType="long" keyProperty="id">
@@ -42,36 +40,38 @@
 
     <delete id="delete">
         <![CDATA[
-            DELETE from t_base_user_role
+            DELETE FROM t_base_role
             WHERE id = #{id}
         ]]>
     </delete>
 
-    <select id="isExistsRolePermission" resultType="java.util.HashMap" >
-        select count(1) from t_base_user_role
-        where permission_id=#{permissionId, jdbcType=NUMERIC}
-        and role_id=#{roleId, jdbcType=NUMERIC}
+    <select id="isExistsRolePermission" resultType="integer">
+        SELECT COUNT(1) AS COUNT
+        FROM t_base_role_permission
+        WHERE 1=1 AND role_id=#{roleId, jdbcType=NUMERIC}
+        AND permission_id=#{permissionId, jdbcType=NUMERIC}
     </select>
 
-    <insert id="correlationRolePermission" parameterType="java.util.HashMap">
-        insert into t_base_role_permission(
-            user_id,
-            role_id
+    <insert id="correlationRolePermission" parameterType="hashMap">
+        INSERT INTO t_base_role_permission(
+        role_id,
+        permission_id
         )
         VALUES(
-            #{userId, jdbcType=NUMERIC},
-            #{roleId, jdbcType=NUMERIC}
+        #{roleId, jdbcType=NUMERIC},
+        #{permissionId, jdbcType=NUMERIC}
         )
         <selectKey resultType="long" keyProperty="id">
             SELECT LAST_INSERT_ID() AS ID
         </selectKey>
     </insert>
 
-    <delete id="uncorrelationUserRole" parameterType="java.util.HashMap">
+    <delete id="uncorrelationRolePermission" parameterType="hashMap">
         <![CDATA[
-            delete from t_base_users_roles
-            where user_id=#{userId, jdbcType=NUMERIC}
-            and role_id=#{roleId, jdbcType=NUMERIC}
+            DELETE
+            FROM t_base_role_permission
+            WHERE permission_id=#{permissionId, jdbcType=NUMERIC}
+            AND role_id=#{roleId, jdbcType=NUMERIC}
         ]]>
     </delete>
 

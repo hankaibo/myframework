@@ -9,11 +9,12 @@ import cn.mypandora.system.dao.BasePermissionDao;
 import cn.mypandora.system.po.BasePermission;
 import cn.mypandora.system.service.BasePermissionService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
 /**
- * 日志管理Service实现类。
+ * 权限管理Service实现类。
  * <p>User: kaibo
  * <p>Date: 2015/7/17
  * <p>Version: 1.0
@@ -27,9 +28,10 @@ public class BasePermissionServiceImpl implements BasePermissionService {
     /**
      * 添加权限
      *
-     * @param basePermission
+     * @param basePermission 权限
      */
     @Override
+    @Transactional
     public void addPermission(BasePermission basePermission) {
         dao.add(basePermission);
     }
@@ -37,9 +39,10 @@ public class BasePermissionServiceImpl implements BasePermissionService {
     /**
      * 删除权限
      *
-     * @param permissionId
+     * @param permissionId 权限id
      */
     @Override
+    @Transactional
     public void deletePermission(Long permissionId) {
         //1.先去关联表中删除相关联的权限
         dao.deleteByCondition("deleteCorrelation", permissionId);

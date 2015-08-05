@@ -5,8 +5,8 @@
  */
 package cn.cpbpbc.controller;
 
-import cn.mypandora.orm.Page;
 import cn.mypandora.system.po.BaseUser;
+import com.github.pagehelper.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

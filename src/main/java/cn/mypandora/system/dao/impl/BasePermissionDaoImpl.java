@@ -18,13 +18,14 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class BasePermissionDaoImpl extends BaseEntityDaoImpl<BasePermission> implements BasePermissionDao {
+
     /**
-     * 查询sql配置文件命名空间
+     * 查询SQL配置文件命名空间
      *
-     * @return sql配置文件命名空间名称
+     * @RETURN SQL配置文件命名空间名称
      */
     @Override
     public String getNameSpace() {
-        return "cn.mypandora.system.PermissionEntity";
+        return "cn.mypandora.system.service.BasePermissionService";
     }
 }

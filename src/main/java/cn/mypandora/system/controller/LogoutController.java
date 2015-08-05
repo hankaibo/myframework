@@ -29,11 +29,11 @@ import java.util.ResourceBundle;
 public class LogoutController {
 
     /**
+     * 跳转到登录页面。
+     *
      * @param request
      * @param response
-     * @return String
-     * @Title: loginPage
-     * @Description: 跳转到登录页面。
+     * @return
      */
     @RequestMapping(method = RequestMethod.GET)
     public String loginPage(HttpServletRequest request, HttpServletResponse response) {

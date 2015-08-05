@@ -64,7 +64,6 @@ public class LoginController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String loginPage(ModelMap model) {
-
         ResourceBundle resourceBundle = ResourceBundle.getBundle("captcha");
         String isCaptcha = resourceBundle.getString("isCaptcha");
         if (isCaptcha.equalsIgnoreCase("true")) {
@@ -80,6 +79,7 @@ public class LoginController {
         String isCaptcha = resourceBundle.getString("isCaptcha");
 
         if (isCaptcha.equalsIgnoreCase("true")) {
+            //获取HttpSession中的验证码
             String code = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
             if (loginCommand.getKaptcha().equals(code)) {
                 logger.debug("验证码成功。");
@@ -95,12 +95,11 @@ public class LoginController {
     }
 
     /**
+     * 生成验证码。
+     *
      * @param request
      * @param response
-     * @return void
      * @throws Exception
-     * @Title: getKaptchaImage
-     * @Description: 生成验证码。
      */
     @RequestMapping(value = "/captchaImage", method = RequestMethod.GET)
     public void getKaptchaImage(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -135,7 +134,6 @@ public class LoginController {
         //构造登陆令牌环
         UsernamePasswordToken token = new UsernamePasswordToken(loginCommand.getUsername(), loginCommand.getPassword());
         try {
-            //
             SecurityUtils.getSubject().login(token);
             //登录成功之后，积分+5；查询对应资源；显示相应页面。
             //登陆成功

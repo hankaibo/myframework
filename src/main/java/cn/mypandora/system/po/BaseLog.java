@@ -7,6 +7,9 @@ package cn.mypandora.system.po;
 
 import cn.mypandora.orm.model.BaseEntity;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 /**
  * 日志实体域对象。
  * <p>User: kaibo
@@ -16,10 +19,13 @@ import cn.mypandora.orm.model.BaseEntity;
 public class BaseLog extends BaseEntity {
     private static final long serialVersionUID = 4687184269056883778L;
     // 名称
+    @NotNull
     private String name;
     // 描述
+    @Size(min=1,max=50)
     private String description;
     // IP
+    @NotNull
     private String ip;
 
     public String getName() {

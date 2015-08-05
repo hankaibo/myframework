@@ -5,7 +5,8 @@
  */
 package cn.mypandora.system.service;
 
-import cn.mypandora.orm.Page;
+import com.github.pagehelper.PageInfo;
+
 import cn.mypandora.system.po.UploadFile;
 
 /**
@@ -45,6 +46,6 @@ public interface BaseUploadService {
      * @param page
      * @return
      */
-    Page<UploadFile> findPageFileByCondition(String string, Object object, Page<UploadFile> page);
+    PageInfo<UploadFile> findPageFileByCondition(String string, Object object, PageInfo<UploadFile> page);
 
 }

@@ -5,15 +5,23 @@
  */
 package cn.mypandora.system.service;
 
-import cn.mypandora.orm.Page;
 import cn.mypandora.system.po.BaseLog;
+import com.github.pagehelper.PageInfo;
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import javax.annotation.Resource;
+import javax.validation.ConstraintViolation;
+import javax.validation.Validation;
+import javax.validation.Validator;
+import javax.validation.ValidatorFactory;
+import java.util.Set;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * 日志JUnit测试。
@@ -27,28 +35,55 @@ public class TestLogService {
     @Resource
     private BaseLogService service;
 
+    private static Validator validator;
+
+    @BeforeClass
+    public static void setUp() {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
+    }
+
     @Test
-    public void addLog(){
-        BaseLog log=new BaseLog();
+    public void addLog() {
+        BaseLog log = new BaseLog();
         log.setIp("127.0.0.1");
-        log.setName("测试一");
+//        log.setName("测试12");
         log.setDescription("这样可以吗？");
-        for(int i=0;i<10;i++){
+        for (int i = 0; i < 2; i++) {
             service.addLog(log);
+        }
+        Set<ConstraintViolation<BaseLog>> constraintViolations = validator.validate(log);
+        assertEquals(1, constraintViolations.size());
+        assertEquals("不能为null", constraintViolations.iterator().next().getMessage());
+
+    }
+
+    @Test
+    public void deleteLog() {
+        service.deleteLog(37L);
+    }
+
+    @Test
+    public void deleteBatchLog() {
+        Long[] arrLong = {1L, 2L, 3L, 4L, 5L, 6L, 7L, 8L, 9L};
+        service.deleteBatchLog(arrLong);
+    }
+
+    @Test
+    public void findAllLog() {
+        for (BaseLog log : service.findAllLog()) {
+            System.out.println(log.getName());
         }
     }
 
     @Test
-    public void deleteLog(){
-        service.deleteLog(11L);
-    }
-
-    @Test
-    public void findLogByCondition(){
-        Page<BaseLog> pageLog=new Page<>();
-        pageLog.setCurrentPage(1);
-        pageLog.setPageSize(3);
-        pageLog=service.findLogByCondition("pageLogs",null,pageLog);
-        Assert.assertTrue(pageLog.getResultList().size()==3);
+    public void findLogByCondition() {
+        PageInfo<BaseLog> pageLog = new PageInfo<>();
+        pageLog.setPageNum(2);
+        pageLog.setPageSize(7);
+        pageLog = service.findLogByCondition("pageLogs", null, pageLog);
+        Assert.assertTrue(pageLog.getList().size() == 7);
+        Assert.assertTrue(pageLog.getTotal() > 33);
+        System.out.println(pageLog.toString());
     }
 }

@@ -17,30 +17,30 @@ public interface BaseRoleService {
     /**
      * 新建角色
      *
-     * @param baseRole
+     * @param baseRole 角色实体
      */
     void addRole(BaseRole baseRole);
 
     /**
      * 删除角色
      *
-     * @param roleId
+     * @param roleId 角色实体id
      */
     void deleteRole(Long roleId);
 
     /**
      * 添加角色-权限之间关系
      *
-     * @param roleId
-     * @param permissionIds
+     * @param roleId        角色实体id
+     * @param permissionIds 权限实体id
      */
     void correlationPermission(Long roleId, Long... permissionIds);
 
     /**
      * 移除角色-权限之间关系
      *
-     * @param roleId
-     * @param permissionIds
+     * @param roleId        角色实体id
+     * @param permissionIds 权限实体id
      */
     void uncorrelationPermission(Long roleId, Long... permissionIds);
 }

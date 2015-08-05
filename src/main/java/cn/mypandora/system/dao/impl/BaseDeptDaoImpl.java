@@ -26,7 +26,7 @@ public class BaseDeptDaoImpl extends BaseTreeDaoImpl<BaseDept> implements BaseDe
      */
     @Override
     protected String getNameSpace() {
-        return "cn.mypandora.system.BaseDept";
+        return "cn.mypandora.system.service.BaseDeptService";
     }
 
 }

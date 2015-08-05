@@ -5,6 +5,9 @@
  */
 package cn.mypandora.orm.model;
 
+import javax.validation.constraints.Max;
+import javax.validation.constraints.NotNull;
+
 /**
  * 实体域对象左右树基础类。
  * <p>User: kaibo
@@ -12,15 +15,19 @@ package cn.mypandora.orm.model;
  * <p>Version: 1.0
  */
 public abstract class BaseTree extends BaseEntity {
-    // 节点ID,用的自增主键代替。
+    // 节点ID,用自增主键代替。
 //    protected int nodeId;
     // 节点名称
+    @NotNull
     protected String name;
-    // 节点左值
-    protected int lft;
     // 节点右值
+    @Max(99999)
     protected int rgt;
+    // 节点左值
+    @Max(99999)
+    protected int lft;
     // 父节点ID
+    @Max(99999)
     protected int parentId;
 
 //    public int getNodeId() {

@@ -6,11 +6,11 @@
 package cn.mypandora.system.service.impl;
 
 import cn.mypandora.log.MyMethodAnno;
-import cn.mypandora.orm.Page;
 import cn.mypandora.system.dao.BaseUserDao;
 import cn.mypandora.system.po.BaseUser;
 import cn.mypandora.system.service.BaseUserService;
 import cn.mypandora.system.service.PasswordHelper;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,9 +33,10 @@ public class BaseUserServiceImpl implements BaseUserService {
     /**
      * 用户登录成功之后，积分+5，保存。
      *
-     * @param user
+     * @param user 用户实体
      */
     @Override
+    @Transactional
     public void loginSuccess(BaseUser user) {
         user.setCredit(5 + user.getCredit());
         dao.update(user);
@@ -44,8 +45,9 @@ public class BaseUserServiceImpl implements BaseUserService {
     /**
      * 新增用户。
      *
-     * @param baseUser
+     * @param baseUser 用户实体
      */
+    @Transactional
     @MyMethodAnno(description = "新增用户")
     public void addUser(BaseUser baseUser) {
         passwordHelper.encryptPassword(baseUser);
@@ -55,7 +57,7 @@ public class BaseUserServiceImpl implements BaseUserService {
     /**
      * 按主键删除用户(物理)。
      *
-     * @param id
+     * @param id 用户id
      */
     @Transactional
     @MyMethodAnno(description = "删除用户")
@@ -66,7 +68,7 @@ public class BaseUserServiceImpl implements BaseUserService {
     /**
      * 按主键删除批量用户(物理)。
      *
-     * @param ids
+     * @param ids 用户id数组
      */
     @Override
     @Transactional
@@ -78,7 +80,7 @@ public class BaseUserServiceImpl implements BaseUserService {
     /**
      * 修改用户。
      *
-     * @param baseUser
+     * @param baseUser 用户实体
      */
     @Override
     @MyMethodAnno(description = "修改用户")
@@ -89,10 +91,11 @@ public class BaseUserServiceImpl implements BaseUserService {
     /**
      * 修改密码
      *
-     * @param userId
-     * @param newPassword
+     * @param userId      用户id
+     * @param newPassword 新密码
      */
     @Override
+    @Transactional
     public void changePassword(Long userId, String newPassword) {
         BaseUser baseUser = dao.findById(userId);
         baseUser.setPassword(newPassword);
@@ -103,10 +106,11 @@ public class BaseUserServiceImpl implements BaseUserService {
     /**
      * 添加用户-角色关系
      *
-     * @param userId
-     * @param roleIds
+     * @param userId  用户id
+     * @param roleIds 角色id数组
      */
     @Override
+    @Transactional
     public void correlationRole(Long userId, Long... roleIds) {
         if (roleIds == null || roleIds.length == 0) {
             return;
@@ -124,10 +128,11 @@ public class BaseUserServiceImpl implements BaseUserService {
     /**
      * 移除用户-角色关系
      *
-     * @param userId
-     * @param roleIds
+     * @param userId  用户id
+     * @param roleIds 角色id数组
      */
     @Override
+    @Transactional
     public void uncorrelationRole(Long userId, Long... roleIds) {
         if (roleIds == null || roleIds.length == 0) {
             return;
@@ -145,8 +150,8 @@ public class BaseUserServiceImpl implements BaseUserService {
     /**
      * 按主键查询用户。
      *
-     * @param id
-     * @return
+     * @param id 用户id
+     * @return 一个用户实体
      */
     @Override
     public BaseUser findUserById(Long id) {
@@ -156,8 +161,8 @@ public class BaseUserServiceImpl implements BaseUserService {
     /**
      * 根据用户名和密码判断用户是否匹配。
      *
-     * @param username
-     * @param password
+     * @param username 用户名称
+     * @param password 用户密码
      * @return boolean true,表示该用户存在，可以访问；false，反之。
      */
     @Override
@@ -173,8 +178,8 @@ public class BaseUserServiceImpl implements BaseUserService {
     /**
      * 根据用户名查询用户实例。
      *
-     * @param username
-     * @return
+     * @param username 用户名称
+     * @return 一个用户实体
      */
     @Override
     public BaseUser findUserByUsername(String username) {
@@ -184,28 +189,31 @@ public class BaseUserServiceImpl implements BaseUserService {
     /**
      * 根据条件分页查询用户。
      *
-     * @param string
-     * @param object
-     * @param page
-     * @return
+     * @param string sql映射名称
+     * @param object 参数
+     * @param page   分页信息
+     * @return 分页用户
      */
     @Override
-    public Page<BaseUser> findPageUserByCondition(String string, Object object, Page<BaseUser> page) {
+    public PageInfo<BaseUser> findPageUserByCondition(String string, Object object, PageInfo<BaseUser> page) {
         return dao.findPageByCondition(string, object, page);
     }
 
     /**
      * 查询某个月份用户的使用情况
      *
-     * @param month
+     * @param month 指定的月份
      * @return
+     * TODO
      */
     @Override
     public List<Map<String, Object>> findUserCount(String month) {
         Map<String, String> params = new HashMap<>();
         params.put("month", month);
-        return dao.findListMapByCondition("findUserByDate", params);
+//        return dao.findListMapByCondition("findUserByDate", params);
+        return null;
     }
+
 
 
     /**
@@ -228,13 +236,13 @@ public class BaseUserServiceImpl implements BaseUserService {
     /**
      * 根据用户名查找其角色
      *
-     * @param username
-     * @return
+     * @param username 用户名称
+     * @return 用户的角色集合
      */
     @Override
     public Set<String> findRole(String username) {
         Set<String> set = new HashSet<>();
-        List<String> list = dao.findListCustomByCondition(null, null);
+        List<String> list = dao.findListCustomByCondition("findRole", username);
         for (String str : list) {
             set.add(str);
         }
@@ -245,23 +253,28 @@ public class BaseUserServiceImpl implements BaseUserService {
     /**
      * 根据用户名查找其权限
      *
-     * @param username
-     * @return
+     * @param username 用户名称
+     * @return 用户的权限集合
      */
     @Override
     public Set<String> findPermission(String username) {
         Set<String> set = new HashSet<>();
-        List<String> list = dao.findListCustomByCondition(null, null);
+        List<String> list = dao.findListCustomByCondition("findPermission", username);
         for (String str : list) {
             set.add(str);
         }
         return set;
     }
 
+    /**
+     * @param userId 角色实体id
+     * @param roleId 权限实体id
+     * @return true, 表示存在；false表示不存在
+     */
     private boolean exists(Long userId, Long roleId) {
         Map<String, Object> params = new HashMap<>();
         params.put("userId", userId);
         params.put("roleId", roleId);
-        return dao.findListMapByCondition("isExistsUserRole", params).size() > 0;
+        return (Integer) dao.findCustomByCondition("isExistsUserRole", params) > 0;
     }
 }

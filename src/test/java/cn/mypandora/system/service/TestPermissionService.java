@@ -24,21 +24,21 @@ public class TestPermissionService {
     protected BasePermission p3;
     // 3注入Spring容器中的Bean
     @Resource
-    private BasePermissionService basePermissionService;
+    private BasePermissionService service;
 
     @Test
     public void addPermission() {
         //1、新增权限
-        p1 = new BasePermission("user:create", "用户模块新增", Boolean.TRUE);
-        p2 = new BasePermission("user:update", "用户模块修改", Boolean.TRUE);
-        p3 = new BasePermission("menu:create", "菜单模块新增", Boolean.TRUE);
-        basePermissionService.addPermission(p1);
-        basePermissionService.addPermission(p2);
-        basePermissionService.addPermission(p3);
+        p1 = new BasePermission("user:create", "用户1模块新增", Boolean.TRUE);
+        p2 = new BasePermission("user:update", "用户1模块修改", Boolean.TRUE);
+        p3 = new BasePermission("menu:create", "菜单1模块新增", Boolean.TRUE);
+        service.addPermission(p1);
+        service.addPermission(p2);
+        service.addPermission(p3);
     }
 
     @Test
-    public void deletePermission(){
-        basePermissionService.deletePermission(1L);
+    public void deletePermission() {
+        service.deletePermission(2L);
     }
 }

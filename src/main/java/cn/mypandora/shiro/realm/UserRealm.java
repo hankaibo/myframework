@@ -35,7 +35,7 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
         //获取当前登录的用户名,等价于(String)principals.fromRealm(this.getName()).iterator().next()
         String username = (String) principals.getPrimaryPrincipal();
-
+        //为当前用户设置角色和权限
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
         authorizationInfo.setRoles(baseUserService.findRole(username));
         authorizationInfo.setStringPermissions(baseUserService.findPermission(username));
@@ -44,7 +44,7 @@ public class UserRealm extends AuthorizingRealm {
     }
 
     /**
-     * 为当前登录的Subject授予角色和权限
+     * 验证当前登录的subject
      *
      * @param token
      * @return

@@ -27,6 +27,6 @@ public class BaseLogDaoImpl extends BaseEntityDaoImpl<BaseLog> implements BaseLo
      */
     @Override
     protected String getNameSpace() {
-        return "cn.mypandora.system.LogEntity";
+        return "cn.mypandora.system.service.BaseLogService";
     }
 }

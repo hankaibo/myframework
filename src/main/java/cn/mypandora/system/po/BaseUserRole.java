@@ -7,10 +7,6 @@
 import cn.mypandora.orm.model.BaseEntity;
 
 /**
- * Created by kaibo on 2015/7/9.
- * desc
- */
-/**
  * 部门实体域对象。
  * <p>User: kaibo
  * <p>Date: 2015/7/17

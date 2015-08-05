@@ -5,9 +5,9 @@
  */
 package cn.mypandora.system.controller;
 
-import cn.mypandora.orm.Page;
 import cn.mypandora.system.po.BaseLog;
 import cn.mypandora.system.service.BaseLogService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -49,10 +49,10 @@ public class BaseLogController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public @ResponseBody
-    Page<BaseLog>  list(ModelMap model,
+    PageInfo<BaseLog> list(ModelMap model,
             @RequestParam(value = "currentPage", required = true, defaultValue = "1") int currentPage) {
-        Page<BaseLog> page = new Page<>();
-        page.setCurrentPage(currentPage);
+        PageInfo<BaseLog> page = new PageInfo<>();
+        page.setPageNum(currentPage);
         page = baseLogService.findLogByCondition("pageLogs", null, page);
         return page;
     }
@@ -77,10 +77,10 @@ public class BaseLogController {
         Map<String, Object> params = new HashMap<String, Object>();
         //从session中获取用户的ID。
         params.put("id", 5);
-        Page<BaseLog> page = new Page<>();
-        page.setCurrentPage(currentPage);
+        PageInfo<BaseLog> page = new PageInfo<>();
+        page.setPageNum(currentPage);
         page = baseLogService.findLogByCondition("pageLogs", null, page);
-        model.put("logs", page.getResultList());
+        model.put("logs", page.getList());
         model.put("page", page);
         return "log/mylog";
     }

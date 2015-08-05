@@ -90,11 +90,11 @@ public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDa
      * 获取某一层级节点。
      *
      * @param level 节点层级。
-     * @return
+     * @return 指定层级的树
      */
     @Override
     public List<T> loadTreeWithLevel(int level) {
-        return sqlSession.selectList(createSqlKeyName(LOAD_TREE_LEVEL),level);
+        return sqlSession.selectList(createSqlKeyName(LOAD_TREE_LEVEL), level);
     }
 
     /**
@@ -144,7 +144,7 @@ public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDa
     /**
      * 左节点加2
      *
-     * @param id
+     * @param id 节点id
      */
     @Override
     public void lftPlus2(Long id) {
@@ -154,7 +154,7 @@ public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDa
     /**
      * 右节点加2
      *
-     * @param id
+     * @param id 节点id
      */
     @Override
     public void rgtPlus2(Long id) {
@@ -164,7 +164,7 @@ public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDa
     /**
      * 添加节点
      *
-     * @param params 添加节点
+     * @param params 节点信息
      */
     @Override
     public void insertNode(Object params) {
@@ -174,7 +174,7 @@ public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDa
     /**
      * 父右节点加2
      *
-     * @param id 父节点
+     * @param id 节点id
      */
     @Override
     public void parentRgtPlus2(Long id) {
@@ -184,7 +184,7 @@ public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDa
     /**
      * 左节点减2
      *
-     * @param id
+     * @param id 节点id
      */
     @Override
     public void lftMinus2(Long id) {
@@ -194,7 +194,7 @@ public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDa
     /**
      * 右节点减2
      *
-     * @param id
+     * @param id 节点id
      */
     @Override
     public void rgtMinus2(Long id) {
@@ -204,7 +204,7 @@ public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDa
     /**
      * 左右节点加2
      *
-     * @param id
+     * @param id 节点id
      */
     @Override
     public void brotherPlus2(Long id) {
@@ -214,7 +214,7 @@ public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDa
     /**
      * 左右节点减2
      *
-     * @param id
+     * @param id 节点id
      */
     @Override
     public void brotherMinus2(Long id) {
@@ -225,7 +225,7 @@ public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDa
      * 判断是否是第一个节点
      *
      * @param id 节点id
-     * @return
+     * @return 是第一个节点，返回真；反之，则假。
      */
     @Override
     public boolean isFirstNode(Long id) {
@@ -236,7 +236,7 @@ public abstract class BaseTreeDaoImpl<T extends BaseTree> implements IBaseTreeDa
      * 判断是否是最后一个节点
      *
      * @param id 节点id
-     * @return
+     * @return 是最后一个节点，返回真；反之，则假。
      */
     @Override
     public boolean isLastNode(Long id) {

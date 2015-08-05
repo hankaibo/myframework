@@ -19,15 +19,15 @@ public interface BaseResService {
     /**
      * 获取所有资源（一次性全部加载，适合数据量少的情况）。
      *
-     * @return
+     * @return 所有资源
      */
     List<BaseRes> loadFullRes();
 
     /**
      * 获取带深度的所有资源。
      *
-     * @param level
-     * @return
+     * @param level 资源深度
+     * @return 指定层级的所有资源
      */
     List<BaseRes> loadFullResWithLevel(int level);
 
@@ -35,7 +35,7 @@ public interface BaseResService {
      * 获得本资源（节点）及下面的所有资源（节点）。
      *
      * @param id 当前操作资源（节点）id
-     * @return
+     * @return 资源及其下所有资源
      */
     List<BaseRes> getResDescendant(Long id);
 
@@ -43,7 +43,7 @@ public interface BaseResService {
      * 获得本资源（节点）的孩子资源（节点）。
      *
      * @param id 当前操作资源（节点）id
-     * @return
+     * @return 资源下所有资源
      */
     List<BaseRes> getResChild(Long id);
 
@@ -51,7 +51,7 @@ public interface BaseResService {
      * 获得本资源（节点）的父资源（节点）
      *
      * @param id 当前操作资源（节点）id
-     * @return
+     * @return 资源的父资源
      */
     BaseRes getResParent(Long id);
 
@@ -59,7 +59,7 @@ public interface BaseResService {
      * 获得本资源（节点）的祖先资源（节点）。
      *
      * @param id 当前操作资源（节点）id
-     * @return
+     * @return 资源的祖先资源
      */
     List<BaseRes> getResAncestry(Long id);
 
@@ -97,15 +97,15 @@ public interface BaseResService {
     /**
      * 查询一个资源。
      *
-     * @param id
-     * @return
+     * @param id 资源id
+     * @return 一个资源实体
      */
     BaseRes findResById(Long id);
 
     /**
      * 更新一个资源。
      *
-     * @param res
+     * @param res 资源实体
      */
     void updateRes(BaseRes res);
 }

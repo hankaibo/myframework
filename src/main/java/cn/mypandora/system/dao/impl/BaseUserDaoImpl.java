@@ -2,13 +2,13 @@
  * Copyright © 2015.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
- */package cn.mypandora.system.dao.impl;
-
-import org.springframework.stereotype.Repository;
+ */
+package cn.mypandora.system.dao.impl;
 
 import cn.mypandora.orm.dao.impl.BaseEntityDaoImpl;
 import cn.mypandora.system.dao.BaseUserDao;
 import cn.mypandora.system.po.BaseUser;
+import org.springframework.stereotype.Repository;
 
 /**
  * 用户管理DAO操作实现类。
@@ -18,6 +18,7 @@ import cn.mypandora.system.po.BaseUser;
  */
 @Repository
 public class BaseUserDaoImpl extends BaseEntityDaoImpl<BaseUser> implements BaseUserDao {
+
     /**
      * 查询sql配置文件命名空间
      *
@@ -25,6 +26,7 @@ public class BaseUserDaoImpl extends BaseEntityDaoImpl<BaseUser> implements Base
      */
     @Override
     protected String getNameSpace() {
-        return "cn.mypandora.system.UserEntity";
+        return "cn.mypandora.system.service.BaseUserService";
     }
+
 }

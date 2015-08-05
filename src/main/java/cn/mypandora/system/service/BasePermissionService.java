@@ -17,15 +17,14 @@ public interface BasePermissionService {
     /**
      * 添加权限
      *
-     * @param basePermission
-     * @return
+     * @param basePermission 权限
      */
     void addPermission(BasePermission basePermission);
 
     /**
      * 删除权限
      *
-     * @param permissionId
+     * @param permissionId 权限id
      */
     void deletePermission(Long permissionId);
 }

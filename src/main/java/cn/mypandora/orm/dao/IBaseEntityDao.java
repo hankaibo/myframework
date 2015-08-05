@@ -5,8 +5,8 @@
  */
 package cn.mypandora.orm.dao;
 
-import cn.mypandora.orm.Page;
 import cn.mypandora.orm.model.BaseEntity;
+import com.github.pagehelper.PageInfo;
 
 import java.io.Serializable;
 import java.util.List;
@@ -65,14 +65,14 @@ public interface IBaseEntityDao<T extends BaseEntity> {
      * 根据id获取实体。
      *
      * @param id 实体id
-     * @return 返回单个实体
+     * @return 单个实体
      */
     T findById(Serializable id);
 
     /**
      * 查询所有实体。
      *
-     * @return 返回所有实体
+     * @return 所有实体
      */
     List<T> findAll();
 
@@ -82,7 +82,7 @@ public interface IBaseEntityDao<T extends BaseEntity> {
      * @param sqlKey 查询sql的名称
      * @param params 查询参数
      * @param page   返回实体Page
-     * @return 返回分页实体
+     * @return 分页实体
      */
-    Page<T> findPageByCondition(String sqlKey, Object params, Page<T> page);
+    PageInfo<T> findPageByCondition(String sqlKey, Object params, PageInfo<T> page);
 }

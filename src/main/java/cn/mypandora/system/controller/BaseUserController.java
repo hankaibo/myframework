@@ -5,12 +5,12 @@
  */
 package cn.mypandora.system.controller;
 
-import cn.mypandora.orm.Page;
 import cn.mypandora.system.po.BaseUser;
 import cn.mypandora.system.po.UploadFile;
 import cn.mypandora.system.service.BaseUserService;
 import cn.mypandora.util.MyDateUtils;
 import cn.mypandora.util.MyExcelUtil;
+import com.github.pagehelper.PageInfo;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -67,7 +67,7 @@ public class BaseUserController {
     @RequestMapping(method = RequestMethod.GET)
     public
     @ResponseBody
-    Page<BaseUser> list(HttpServletRequest request) {
+    PageInfo<BaseUser> list(HttpServletRequest request) {
         //获取jqGrid的分页参数、排序参数和查询参数
         int currentPage = Integer.parseInt(request.getParameter("page"));
         int pageSize = Integer.parseInt(request.getParameter("rows"));
@@ -75,8 +75,8 @@ public class BaseUserController {
         String orderName = request.getParameter("sord");
         String username = request.getParameter("username");
 
-        Page<BaseUser> page = new Page<>();
-        page.setCurrentPage(currentPage);
+        PageInfo<BaseUser> page = new PageInfo<>();
+        page.setPageNum(currentPage);
         page.setPageSize(pageSize);
 
         Map<String, Object> params = new HashMap<>();
@@ -192,13 +192,13 @@ public class BaseUserController {
     @RequestMapping(value = "/down/{currentPage}", method = RequestMethod.GET)
     public ResponseEntity<byte[]> down(@PathVariable int currentPage, HttpServletRequest request) throws IOException {
         // 获取要生成的Excel表格数据
-        Page<BaseUser> page = new Page<>();
-        page.setCurrentPage(currentPage);
+        PageInfo<BaseUser> page = new PageInfo<>();
+        page.setPageNum(currentPage);
         page = baseUserService.findPageUserByCondition("pageUsers", null, page);
         // 获取项目根路径并用查询数据生成表格
         String rootpath = request.getSession().getServletContext().getRealPath("/");
         String fileName = MyDateUtils.getCurrentDate() + XLSX;
-        MyExcelUtil.exportExcel(rootpath + "download" + fileName, "sheet1", "ID,用户名,性别,生日,积分", page.getResultList(), BaseUser.class, "id,username,sex,birthday,credits");
+        MyExcelUtil.exportExcel(rootpath + "download" + fileName, "sheet1", "ID,用户名,性别,生日,积分", page.getList(), BaseUser.class, "id,username,sex,birthday,credits");
         // 下载
         File file = new File(rootpath + "download" + fileName);
         HttpHeaders headers = new HttpHeaders();

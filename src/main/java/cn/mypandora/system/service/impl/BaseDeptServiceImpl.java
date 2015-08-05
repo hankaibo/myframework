@@ -28,7 +28,7 @@ public class BaseDeptServiceImpl implements BaseDeptService {
     /**
      * 获取所有部门（一次性全部加载，适合数据量少的情况）。
      *
-     * @return
+     * @return 所有部门数据
      */
     @Override
     public List<BaseDept> loadFullDept() {
@@ -39,7 +39,7 @@ public class BaseDeptServiceImpl implements BaseDeptService {
      * 获得本部门（节点）及下面的所有部门（节点）。
      *
      * @param id 当前操作部门（节点）id
-     * @return
+     * @return 指定部门及其下的所有部门
      */
     @Override
     public List<BaseDept> getDeptDescendant(Long id) {
@@ -50,7 +50,7 @@ public class BaseDeptServiceImpl implements BaseDeptService {
      * 获得本部门（节点）的孩子部门（节点）。
      *
      * @param id 当前操作部门（节点）id
-     * @return
+     * @return 指定部门下的所有部门
      */
     @Override
     public List<BaseDept> getDeptChild(Long id) {
@@ -61,7 +61,7 @@ public class BaseDeptServiceImpl implements BaseDeptService {
      * 获得本部门（节点）的父部门（节点）
      *
      * @param id 当前操作部门（节点）id
-     * @return
+     * @return 本部门的父部门
      */
     @Override
     public BaseDept getDeptParent(Long id) {
@@ -72,7 +72,7 @@ public class BaseDeptServiceImpl implements BaseDeptService {
      * 获得本部门（节点）的祖先部门（节点）
      *
      * @param id 当前操作部门（节点）id
-     * @return
+     * @return 本部门的祖先部门
      */
     @Override
     public List<BaseDept> getDeptAncestry(Long id) {
@@ -97,7 +97,7 @@ public class BaseDeptServiceImpl implements BaseDeptService {
     /**
      * 删除部门（节点）
      *
-     * @param id 要删除的部门（节点）ID
+     * @param id 要删除的部门ID
      */
     @Override
     @Transactional
@@ -148,7 +148,7 @@ public class BaseDeptServiceImpl implements BaseDeptService {
      * 查询一个部门。
      *
      * @param id 当前操作部门（节点）id
-     * @return
+     * @return 一个部门
      */
     @Override
     public BaseDept findDeptById(Long id) {
@@ -161,6 +161,7 @@ public class BaseDeptServiceImpl implements BaseDeptService {
      * @param dept 部门信息
      */
     @Override
+    @Transactional
     public void updateDept(BaseDept dept) {
         dao.update(dept);
     }

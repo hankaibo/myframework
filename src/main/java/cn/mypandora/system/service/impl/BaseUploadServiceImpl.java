@@ -5,11 +5,12 @@
  */
 package cn.mypandora.system.service.impl;
 
-import cn.mypandora.orm.Page;
 import cn.mypandora.system.dao.BaseUploadDao;
 import cn.mypandora.system.po.UploadFile;
 import cn.mypandora.system.service.BaseUploadService;
+import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 
@@ -31,6 +32,7 @@ public class BaseUploadServiceImpl implements BaseUploadService {
      * @param baseFile
      */
     @Override
+    @Transactional
     public void saveFile(UploadFile baseFile) {
         dao.add(baseFile);
     }
@@ -41,6 +43,7 @@ public class BaseUploadServiceImpl implements BaseUploadService {
      * @param id
      */
     @Override
+    @Transactional
     public void deleteFile(Long id) {
         dao.delete(id);
     }
@@ -65,7 +68,7 @@ public class BaseUploadServiceImpl implements BaseUploadService {
      * @return
      */
     @Override
-    public Page<UploadFile> findPageFileByCondition(String string, Object object, Page<UploadFile> page) {
+    public PageInfo<UploadFile> findPageFileByCondition(String string, Object object, PageInfo<UploadFile> page) {
         return dao.findPageByCondition(string, object, page);
     }
 

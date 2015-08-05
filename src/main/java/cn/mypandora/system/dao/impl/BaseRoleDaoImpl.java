@@ -18,6 +18,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class BaseRoleDaoImpl extends BaseEntityDaoImpl<BaseRole> implements BaseRoleDao {
+
     /**
      * 查询sql配置文件命名空间
      *
@@ -25,6 +26,6 @@ public class BaseRoleDaoImpl extends BaseEntityDaoImpl<BaseRole> implements Base
      */
     @Override
     public String getNameSpace() {
-        return "cn.mypandora.system.RoleEntity";
+        return "cn.mypandora.system.service.BaseRoleService";
     }
 }

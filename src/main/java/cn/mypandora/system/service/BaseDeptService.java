@@ -16,10 +16,11 @@ import java.util.List;
  * <p>Version: 1.0
  */
 public interface BaseDeptService {
+
     /**
      * 获取所有部门（一次性全部加载，适合数据量少的情况）。
      *
-     * @return
+     * @return 所有部门数据
      */
     List<BaseDept> loadFullDept();
 
@@ -27,7 +28,7 @@ public interface BaseDeptService {
      * 获得本部门（节点）及下面的所有部门（节点）。
      *
      * @param id 当前操作部门（节点）id
-     * @return
+     * @return 指定部门及其下的所有部门
      */
     List<BaseDept> getDeptDescendant(Long id);
 
@@ -35,7 +36,7 @@ public interface BaseDeptService {
      * 获得本部门（节点）的孩子部门（节点）。
      *
      * @param id 当前操作部门（节点）id
-     * @return
+     * @return 指定部门下的所有部门
      */
     List<BaseDept> getDeptChild(Long id);
 
@@ -43,7 +44,7 @@ public interface BaseDeptService {
      * 获得本部门（节点）的父部门（节点）
      *
      * @param id 当前操作部门（节点）id
-     * @return
+     * @return 本部门的父部门
      */
     BaseDept getDeptParent(Long id);
 
@@ -51,7 +52,7 @@ public interface BaseDeptService {
      * 获得本部门（节点）的祖先部门（节点）
      *
      * @param id 当前操作部门（节点）id
-     * @return
+     * @return 本部门的祖先部门
      */
     List<BaseDept> getDeptAncestry(Long id);
 
@@ -66,7 +67,7 @@ public interface BaseDeptService {
     /**
      * 删除部门（节点）
      *
-     * @param id 要删除的部门（节点）ID
+     * @param id 要删除的部门ID
      */
     void delDept(Long id);
 
@@ -90,7 +91,7 @@ public interface BaseDeptService {
      * 查询一个部门。
      *
      * @param id 当前操作部门（节点）id
-     * @return
+     * @return 一个部门
      */
     BaseDept findDeptById(Long id);
 

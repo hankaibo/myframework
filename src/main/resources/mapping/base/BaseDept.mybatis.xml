@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.mypandora.system.BaseDept">
-    <resultMap type="cn.mypandora.system.po.BaseDept" id="BaseDeptMap">
+<mapper namespace="cn.mypandora.system.service.BaseDeptService">
+    <resultMap type="baseDept" id="baseDeptMap">
         <result property="id" column="id"></result>
         <result property="name" column="name"></result>
         <!--<result property="nodeId" column="node_id"></result>-->
@@ -13,49 +13,55 @@
         <result property="createTime" column="create_time"></result>
         <result property="updateTime" column="update_time"></result>
     </resultMap>
-    
-    <select id="findById" resultMap="BaseDeptMap" parameterType="java.lang.Long">
-        select * from t_base_dept
-        where id = #{id}
+
+    <sql id="baseDeptColumns">id,name,lft,rgt,parent_id,create_time,update_time</sql>
+
+    <select id="findById" resultMap="baseDeptMap" parameterType="long">
+        SELECT
+        <include refid="baseDeptColumns"/>
+        FROM t_base_dept
+        WHERE id = #{id}
     </select>
 
-    <select id="loadFullTree" resultMap="BaseDeptMap">
-        <![CDATA[
-            SELECT *
-            FROM t_base_dept t
-            WHERE 1=1 
-            ORDER BY t.lft ASC
-        ]]>
+    <select id="loadFullTree" resultMap="baseDeptMap">
+        SELECT
+        <include refid="baseDeptColumns"/>
+        FROM t_base_dept t
+        WHERE 1=1
+        ORDER BY t.lft ASC
     </select>
-    
-    <select id="getDescendant" resultMap="BaseDeptMap" parameterType="java.lang.Long">
+
+    <select id="getDescendant" resultMap="baseDeptMap" parameterType="long">
+        SELECT
+        <include refid="baseDeptColumns"/>
         <![CDATA[
-            SELECT *
             FROM t_base_dept t
             WHERE 1=1 
-            AND t.lft>(
+            AND t.lft>=(
                     SELECT s.lft
                     FROM t_base_dept s
                     WHERE s.id=#{id})
-            AND t.rgt<(
+            AND t.rgt<=(
                     SELECT s.rgt
                     FROM t_base_dept s
                     WHERE s.id=#{id})
             ORDER BY t.lft ASC
         ]]>
     </select>
-    
-    <select id="getChild" resultMap="BaseDeptMap" parameterType="java.lang.Long">
-        SELECT *
-        FROM t_base_dept t 
-        WHERE 1=1 
+
+    <select id="getChild" resultMap="baseDeptMap" parameterType="long">
+        SELECT
+        <include refid="baseDeptColumns"/>
+        FROM t_base_dept t
+        WHERE 1=1
         AND t.parent_id=#{id}
         ORDER BY t.lft ASC
     </select>
-    
-    <select id="getParent" resultMap="BaseDeptMap" parameterType="java.lang.Long">
+
+    <select id="getParent" resultMap="baseDeptMap" parameterType="long">
+        SELECT
+        <include refid="baseDeptColumns"/>
         <![CDATA[
-            SELECT *
             FROM t_base_dept t
             WHERE t.id=(
                     SELECT s.parent_id
@@ -65,9 +71,10 @@
         ]]>
     </select>
 
-    <select id="getAncestry" resultMap="BaseDeptMap" parameterType="java.lang.Long">
+    <select id="getAncestry" resultMap="baseDeptMap" parameterType="long">
+        SELECT
+        <include refid="baseDeptColumns"/>
         <![CDATA[
-            SELECT *
             FROM t_base_dept t
             WHERE t.lft<(
                     SELECT s.lft
@@ -80,7 +87,7 @@
             ORDER BY t.lft
         ]]>
     </select>
-    
+
     <update id="lftPlus2">
         <![CDATA[
             UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=#{id, jdbcType=NUMERIC}) f 
@@ -88,7 +95,7 @@
             WHERE t.lft>f.rgt
         ]]>
     </update>
-    
+
     <update id="rgtPlus2">
         <![CDATA[
             UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=#{id, jdbcType=NUMERIC}) f 
@@ -96,8 +103,8 @@
             WHERE t.rgt>f.rgt
         ]]>
     </update>
-    
-    <insert id="insertNode" parameterType="cn.mypandora.system.po.BaseDept">
+
+    <insert id="insertNode" parameterType="baseDept">
         <![CDATA[
             INSERT INTO t_base_dept (
                 name,
@@ -111,11 +118,11 @@
                 #{parentId, jdbcType=NUMERIC}
             )
         ]]>
-        <selectKey resultType="long" keyProperty="id">
+        <selectKey resultType="long" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID() AS ID
         </selectKey>
     </insert>
-    
+
     <update id="parentRgtPlus2">
         <![CDATA[
             UPDATE t_base_dept t
@@ -123,8 +130,8 @@
             WHERE id=#{id, jdbcType=NUMERIC}
         ]]>
     </update>
-    
-    <update id="update" parameterType="cn.mypandora.system.po.BaseDept">
+
+    <update id="update" parameterType="baseDept">
         <![CDATA[
             UPDATE t_base_dept t
             SET name=#{name, jdbcType=VARCHAR},
@@ -132,7 +139,7 @@
             WHERE id=#{id, jdbcType=NUMERIC}
         ]]>
     </update>
-    
+
     <update id="lftMinus2">
         <![CDATA[
             UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=#{id, jdbcType=NUMERIC}) f 
@@ -140,7 +147,7 @@
             WHERE t.lft>f.rgt
         ]]>
     </update>
-    
+
     <update id="rgtMinus2">
         <![CDATA[
             UPDATE t_base_dept t,(SELECT * FROM t_base_dept WHERE id=#{id, jdbcType=NUMERIC}) f 
@@ -148,14 +155,14 @@
             WHERE t.rgt>f.rgt
         ]]>
     </update>
-    
+
     <delete id="delete">
         <![CDATA[
             DELETE from t_base_dept 
             WHERE id = #{id}
-        ]]> 
+        ]]>
     </delete>
-    
+
     <update id="moveUp">
         <![CDATA[
             UPDATE t_base_dept t 
@@ -163,7 +170,7 @@
             WHERE id = #{id}
         ]]>
     </update>
-    
+
     <update id="moveDown">
         <![CDATA[
             UPDATE t_base_dept t 
@@ -171,10 +178,11 @@
             WHERE id = #{id}
         ]]>
     </update>
-    
-    <select id="firstNode" resultMap="BaseDeptMap" parameterType="java.lang.Long">
+
+    <select id="firstNode" resultMap="baseDeptMap" parameterType="long">
+        SELECT
+        <include refid="baseDeptColumns"/>
         <![CDATA[
-            SELECT *
             FROM t_base_dept t
             WHERE t.id=#{id}
             AND t.lft-1=(
@@ -184,10 +192,11 @@
                 )
         ]]>
     </select>
-    
-    <select id="lastNode" resultMap="BaseDeptMap" parameterType="java.lang.Long">
+
+    <select id="lastNode" resultMap="baseDeptMap" parameterType="long">
+        SELECT
+        <include refid="baseDeptColumns"/>
         <![CDATA[
-            SELECT *
             FROM t_base_dept t
             WHERE t.id=#{id}
             AND t.rgt+1=(

@@ -6,7 +6,7 @@
 package cn.cpbpbc.service;
 
 import cn.cpbpbc.po.ReportData;
-import cn.mypandora.orm.Page;
+import com.github.pagehelper.Page;
 
 import java.io.Serializable;
 import java.util.List;

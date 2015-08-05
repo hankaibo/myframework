@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.mypandora.system.BaseRes">
-    <resultMap type="cn.mypandora.system.po.BaseRes" id="BaseResMap">
+<mapper namespace="cn.mypandora.system.service.BaseResService">
+    <cache-ref namespace="cn.mypandora.system.service.BaseUserService"/>
+    <resultMap type="baseRes" id="baseResMap">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="url" column="URL"/>
-        <result property="nodeId" column="node_id"/>
+        <!--<result property="nodeId" column="node_id"/>-->
         <result property="lft" column="lft"/>
         <result property="rgt" column="rgt"/>
         <result property="parentId" column="parent_id"/>
@@ -16,24 +17,26 @@
         <result property="updateTime" column="update_time"/>
         <result property="level" column="level"/>
     </resultMap>
+
+    <sql id="baseResColumns">id,name,URL,lft,rgt,parent_id,is_enable,create_time,update_time</sql>
     
-    <select id="findById" resultMap="BaseResMap" parameterType="java.lang.Long">
+    <select id="findById" resultMap="baseResMap" parameterType="long">
         select * from t_base_res
         where id = #{id}
     </select>
 
-    <select id="loadFullTree" resultMap="BaseResMap">
+    <select id="loadFullTree" resultMap="baseResMap">
+        SELECT <include refid="baseResColumns"/>
         <![CDATA[
-            SELECT *
             FROM t_base_res t
             WHERE 1=1 
             ORDER BY t.lft ASC
         ]]>
     </select>
 
-    <select id="loadTreeWithLevel" resultMap="BaseResMap">
+    <select id="loadTreeWithLevel" resultMap="baseResMap">
+        SELECT node.*,(COUNT(parent.name)-1) AS LEVEL
         <![CDATA[
-            SELECT node.*,(COUNT(parent.name)-1) AS LEVEL
             FROM t_base_res node,t_base_res parent
             WHERE node.lft BETWEEN parent.lft AND parent.rgt
             GROUP BY node.name
@@ -42,16 +45,16 @@
         ]]>
     </select>
 
-    <select id="getDescendants" resultMap="BaseResMap" parameterType="java.lang.Long">
+    <select id="getDescendant" resultMap="baseResMap" parameterType="long">
+        SELECT <include refid="baseResColumns"/>
         <![CDATA[
-            SELECT *
             FROM t_base_res t
             WHERE 1=1 
-            AND t.lft>(
+            AND t.lft>=(
                     SELECT s.lft
                     FROM t_base_res s
                     WHERE s.id=#{id}) 
-            AND t.rgt<(
+            AND t.rgt<=(
                     SELECT s.rgt
                     FROM t_base_res s
                     WHERE s.id=#{id})
@@ -59,19 +62,19 @@
         ]]>
     </select>
     
-    <select id="getChilds" resultMap="BaseResMap" parameterType="java.lang.Long">
-        SELECT *
+    <select id="getChild" resultMap="baseResMap" parameterType="long">
+        SELECT <include refid="baseResColumns"/>
         FROM t_base_res t
         WHERE 1=1 
         AND t.parent_id=#{noteId}
         ORDER BY t.lft ASC
     </select>
     
-    <select id="getParent" resultMap="BaseResMap" parameterType="java.lang.Long">
+    <select id="getParent" resultMap="baseResMap" parameterType="long">
+        SELECT <include refid="baseResColumns"/>
         <![CDATA[
-            SELECT *
             FROM t_base_res t
-            WHERE t.node_id=(
+            WHERE t.id=(
                     SELECT s.parent_id
                     FROM t_base_res s
                     WHERE s.id=#{id}
@@ -79,9 +82,9 @@
         ]]>
     </select>
 
-    <select id="getAncestry" resultMap="BaseResMap" parameterType="java.lang.Long">
+    <select id="getAncestry" resultMap="baseResMap" parameterType="long">
+        SELECT <include refid="baseResColumns"/>
         <![CDATA[
-            SELECT *
             FROM t_base_res t
             WHERE t.lft<(
                     SELECT s.lft
@@ -111,24 +114,22 @@
         ]]>
     </update>
     
-    <insert id="insertNode" parameterType="cn.mypandora.system.po.BaseRes">
+    <insert id="insertNode" parameterType="baseRes">
         <![CDATA[
             INSERT INTO t_base_res (
                 name,
-                node_id,
+                URL,
                 lft,
                 rgt,
                 parent_id,
-                is_enable,
-                URL
+                is_enable
             ) VALUES (
                 #{name, jdbcType=VARCHAR},
-                #{nodeId, jdbcType=NUMERIC},
+                #{url, jdbcType=VARCHAR},
                 #{lft, jdbcType=NUMERIC},
                 #{rgt, jdbcType=NUMERIC},
                 #{parentId, jdbcType=NUMERIC},
-                #{isenable, jdbcType=NUMERIC},
-                #{url, jdbcType=VARCHAR}
+                #{isEnable, jdbcType=NUMERIC}
             )
         ]]>
         <selectKey resultType="long" keyProperty="id">
@@ -144,14 +145,20 @@
         ]]>
     </update>
 
-    <update id="update" parameterType="cn.mypandora.system.po.BaseRes">
+    <update id="update" parameterType="baseRes">
             UPDATE t_base_res t
             <set>
                 <if test="name!=null and name!=''">
                     name=#{name, jdbcType=VARCHAR},
                 </if>
                 <if test="url!=null and url!=''">
-                    URL=#{url, jdbcType=VARCHAR}
+                    URL=#{url, jdbcType=VARCHAR},
+                </if>
+                <if test="isEnable!=null and isEnable!=''">
+                    is_enable=#{isEnable, jdbcType=BOOLEAN},
+                </if>
+                <if test="updateTime!=null and updateTime!=''">
+                    update_time=#{updateTime, jdbcType=TIMESTAMP}
                 </if>
             </set>
             WHERE id=#{id, jdbcType=NUMERIC}
@@ -175,7 +182,7 @@
     
     <delete id="delete">
         <![CDATA[
-            DELETE from t_base_res
+            DELETE FROM t_base_res
             WHERE id = #{id}
         ]]> 
     </delete>
@@ -196,9 +203,9 @@
         ]]>
     </update>
     
-    <select id="firstNode" resultMap="BaseResMap" parameterType="java.lang.Long">
+    <select id="firstNode" resultMap="baseResMap" parameterType="long">
+        SELECT <include refid="baseResColumns"/>
         <![CDATA[
-            SELECT *
             FROM t_base_res t
             WHERE t.id=#{id}
             AND t.lft-1=(
@@ -209,9 +216,9 @@
         ]]>
     </select>
     
-    <select id="lastNode" resultMap="BaseResMap" parameterType="java.lang.Long">
+    <select id="lastNode" resultMap="baseResMap" parameterType="long">
+        SELECT <include refid="baseResColumns"/>
         <![CDATA[
-            SELECT *
             FROM t_base_res t
             WHERE t.id=#{id}
             AND t.rgt+1=(

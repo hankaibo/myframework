@@ -5,6 +5,7 @@
  */
 package cn.mypandora.orm.model;
 
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
@@ -16,6 +17,7 @@ import java.sql.Timestamp;
  */
 public abstract class BaseEntity implements Serializable {
     // 主键
+    @NotNull
     protected Long id;
     // 创建时间
     protected Timestamp createTime;

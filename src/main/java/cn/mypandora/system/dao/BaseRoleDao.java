@@ -8,9 +8,6 @@ package cn.mypandora.system.dao;
 import cn.mypandora.orm.dao.IBaseEntityDao;
 import cn.mypandora.system.po.BaseRole;
 
-import java.util.List;
-import java.util.Map;
-
 /**
  * 角色管理DAO。
  * <p>User: kaibo
@@ -19,27 +16,27 @@ import java.util.Map;
  */
 public interface BaseRoleDao extends IBaseEntityDao<BaseRole> {
     /**
-     * 根据条件获取Map实体列表。
+     * 根据条件获取实体。
      *
-     * @param sqlKey
-     * @param params
-     * @return
+     * @param sqlKey sql映射语句名称
+     * @param params 参数
+     * @return 一个自定义实体
      */
-    List<Map<String, Object>> findListMapByCondition(String sqlKey, Object params);
+    <O> O findCustomByCondition(String sqlKey, Object params);
 
     /**
      * 按条件添加实体。
      *
-     * @param sqlKey
-     * @param params
+     * @param sqlKey sql映射语句名称
+     * @param params 参数
      */
     void addByCondetion(String sqlKey, Object params);
 
     /**
      * 根据条件删除实体。
      *
-     * @param sqlKey
-     * @param params
+     * @param sqlKey sql映射语句名称
+     * @param params 参数
      */
     void deleteByCondition(String sqlKey, Object params);
 }

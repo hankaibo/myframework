@@ -25,7 +25,7 @@ public class BaseRole extends BaseEntity {
     public BaseRole() {
     }
 
-    private BaseRole(String role, String description, Boolean available) {
+    public BaseRole(String role, String description, Boolean available) {
         this.role = role;
         this.description = description;
         this.available = available;

@@ -9,18 +9,14 @@ import cn.mypandora.system.dao.BaseRoleDao;
 import cn.mypandora.system.po.BaseRole;
 import cn.mypandora.system.service.BaseRoleService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by kaibo on 2015/7/16.
- * desc
- */
-
-/**
- * 日志管理Service实现类。
+ * 角色管理Service实现类。
  * <p>User: kaibo
  * <p>Date: 2015/7/17
  * <p>Version: 1.0
@@ -33,9 +29,10 @@ public class BaseRoleServiceImpl implements BaseRoleService {
     /**
      * 新建角色
      *
-     * @param baseRole
+     * @param baseRole 角色实体
      */
     @Override
+    @Transactional
     public void addRole(BaseRole baseRole) {
         dao.add(baseRole);
     }
@@ -43,9 +40,10 @@ public class BaseRoleServiceImpl implements BaseRoleService {
     /**
      * 删除角色
      *
-     * @param roleId
+     * @param roleId 角色实体id
      */
     @Override
+    @Transactional
     public void deleteRole(Long roleId) {
         dao.delete(roleId);
     }
@@ -53,10 +51,11 @@ public class BaseRoleServiceImpl implements BaseRoleService {
     /**
      * 添加角色-权限之间关系
      *
-     * @param roleId
-     * @param permissionIds
+     * @param roleId        角色实体id
+     * @param permissionIds 权限实体id
      */
     @Override
+    @Transactional
     public void correlationPermission(Long roleId, Long... permissionIds) {
         if (permissionIds == null || permissionIds.length == 0) {
             return;
@@ -74,10 +73,11 @@ public class BaseRoleServiceImpl implements BaseRoleService {
     /**
      * 移除角色-权限之间关系
      *
-     * @param roleId
-     * @param permissionIds
+     * @param roleId        角色实体id
+     * @param permissionIds 权限实体id
      */
     @Override
+    @Transactional
     public void uncorrelationPermission(Long roleId, Long... permissionIds) {
         if (permissionIds == null || permissionIds.length == 0) {
             return;
@@ -92,11 +92,15 @@ public class BaseRoleServiceImpl implements BaseRoleService {
         }
     }
 
-
+    /**
+     * @param roleId       角色实体id
+     * @param permissionId 权限实体id
+     * @return true, 表示存在；false表示不存在
+     */
     private boolean exists(Long roleId, Long permissionId) {
         Map<String, Object> params = new HashMap<>();
         params.put("roleId", roleId);
         params.put("permissionId", permissionId);
-        return dao.findListMapByCondition("isExistsRolePermission", params).size() > 0;
+        return (Integer) dao.findCustomByCondition("isExistsRolePermission", params) > 0;
     }
 }

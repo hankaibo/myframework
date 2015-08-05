@@ -9,10 +9,10 @@ import cn.mypandora.system.dao.BaseResDao;
 import cn.mypandora.system.po.BaseRes;
 import cn.mypandora.system.service.BaseResService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
-
 
 /**
  * 资源管理Service实现类。
@@ -28,7 +28,7 @@ public class BaseResServiceImpl implements BaseResService {
     /**
      * 获取所有资源（一次性全部加载，适合数据量少的情况）。
      *
-     * @return
+     * @return 所有资源
      */
     @Override
     public List<BaseRes> loadFullRes() {
@@ -38,8 +38,8 @@ public class BaseResServiceImpl implements BaseResService {
     /**
      * 获取带深度的所有资源。
      *
-     * @param level
-     * @return
+     * @param level 资源深度
+     * @return 指定深度的所有资源
      */
     @Override
     public List<BaseRes> loadFullResWithLevel(int level) {
@@ -50,7 +50,7 @@ public class BaseResServiceImpl implements BaseResService {
      * 获得本资源（节点）及下面的所有资源（节点）。
      *
      * @param id 当前操作资源（节点）id
-     * @return
+     * @return 资源及其下所有资源
      */
     @Override
     public List<BaseRes> getResDescendant(Long id) {
@@ -61,7 +61,7 @@ public class BaseResServiceImpl implements BaseResService {
      * 获得本资源（节点）的孩子资源（节点）。
      *
      * @param id 当前操作资源（节点）id
-     * @return
+     * @return 资源的子资源
      */
     @Override
     public List<BaseRes> getResChild(Long id) {
@@ -72,7 +72,7 @@ public class BaseResServiceImpl implements BaseResService {
      * 获得本资源（节点）的父资源（节点）
      *
      * @param id 当前操作资源（节点）id
-     * @return
+     * @return 资源的父资源
      */
     @Override
     public BaseRes getResParent(Long id) {
@@ -83,7 +83,7 @@ public class BaseResServiceImpl implements BaseResService {
      * 获得本资源（节点）的祖先资源（节点）。
      *
      * @param id 当前操作资源（节点）id
-     * @return
+     * @return 资源的祖先资源
      */
     @Override
     public List<BaseRes> getResAncestry(Long id) {
@@ -97,6 +97,7 @@ public class BaseResServiceImpl implements BaseResService {
      * @param params 子资源（节点）的信息
      */
     @Override
+    @Transactional
     public void addRes(Long id, Object params) {
         dao.lftPlus2(id);
         dao.rgtPlus2(id);
@@ -110,6 +111,7 @@ public class BaseResServiceImpl implements BaseResService {
      * @param id 要删除的资源（节点）ID
      */
     @Override
+    @Transactional
     public void delRes(Long id) {
         dao.lftMinus2(id);
         dao.rgtMinus2(id);
@@ -123,6 +125,7 @@ public class BaseResServiceImpl implements BaseResService {
      * @param upId 哥哥资源（节点）ID
      */
     @Override
+    @Transactional
     public void moveUpRes(Long id, Long upId) {
         // 当前节点不是首节点
         if (!dao.isFirstNode(id)) {
@@ -140,6 +143,7 @@ public class BaseResServiceImpl implements BaseResService {
      * @param downId 弟弟资源（节点）ID
      */
     @Override
+    @Transactional
     public void moveDownRes(Long id, Long downId) {
         // 当前节点不是末节点
         if (!dao.isLastNode(id)) {
@@ -153,8 +157,8 @@ public class BaseResServiceImpl implements BaseResService {
     /**
      * 查询一个资源。
      *
-     * @param id
-     * @return
+     * @param id 资源id
+     * @return 一个资源实体
      */
     @Override
     public BaseRes findResById(Long id) {
@@ -164,9 +168,10 @@ public class BaseResServiceImpl implements BaseResService {
     /**
      * 更新一个资源。
      *
-     * @param res
+     * @param res 资源实体
      */
     @Override
+    @Transactional
     public void updateRes(BaseRes res) {
         dao.update(res);
     }

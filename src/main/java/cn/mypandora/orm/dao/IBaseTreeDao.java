@@ -17,6 +17,7 @@ import java.util.List;
  * <p>Version: 1.0
  */
 public interface IBaseTreeDao<T extends BaseTree> {
+
     /**
      * 获取整棵树（一次性全部加载，适合数据量少的情况）
      *
@@ -27,8 +28,8 @@ public interface IBaseTreeDao<T extends BaseTree> {
     /**
      * 获取某一层级节点。
      *
-     * @param level 节点层级。
-     * @return
+     * @param level 节点层级
+     * @return 指定层级的树
      */
     List<T> loadTreeWithLevel(int level);
 
@@ -67,56 +68,56 @@ public interface IBaseTreeDao<T extends BaseTree> {
     /**
      * 左节点加2
      *
-     * @param id
+     * @param id 节点id
      */
     void lftPlus2(Long id);
 
     /**
      * 右节点加2
      *
-     * @param id
+     * @param id 节点id
      */
     void rgtPlus2(Long id);
 
     /**
      * 添加节点
      *
-     * @param params 添加节点
+     * @param params 节点信息
      */
     void insertNode(Object params);
 
     /**
      * 父右节点加2
      *
-     * @param id 父节点
+     * @param id 节点id
      */
     void parentRgtPlus2(Long id);
 
     /**
      * 左节点减2
      *
-     * @param id
+     * @param id 节点id
      */
     void lftMinus2(Long id);
 
     /**
      * 右节点减2
      *
-     * @param id
+     * @param id 节点id
      */
     void rgtMinus2(Long id);
 
     /**
      * 左右节点加2
      *
-     * @param id
+     * @param id 节点id
      */
     void brotherPlus2(Long id);
 
     /**
      * 左右节点减2
      *
-     * @param id
+     * @param id 节点id
      */
     void brotherMinus2(Long id);
 
@@ -124,7 +125,7 @@ public interface IBaseTreeDao<T extends BaseTree> {
      * 判断是否是第一个节点
      *
      * @param id 节点id
-     * @return
+     * @return 是第一个节点，返回真；反之，则假。
      */
     boolean isFirstNode(Long id);
 
@@ -132,7 +133,7 @@ public interface IBaseTreeDao<T extends BaseTree> {
      * 判断是否是最后一个节点
      *
      * @param id 节点id
-     * @return
+     * @return 是最后一个节点，返回真；反之，则假。
      */
     boolean isLastNode(Long id);
 
