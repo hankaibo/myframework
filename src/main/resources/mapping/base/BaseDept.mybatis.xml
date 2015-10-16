@@ -37,11 +37,11 @@
         <![CDATA[
             FROM t_base_dept t
             WHERE 1=1 
-            AND t.lft>=(
+            AND t.lft>(
                     SELECT s.lft
                     FROM t_base_dept s
                     WHERE s.id=#{id})
-            AND t.rgt<=(
+            AND t.rgt<(
                     SELECT s.rgt
                     FROM t_base_dept s
                     WHERE s.id=#{id})

@@ -3,7 +3,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cn.mypandora.system.service.BaseResService">
-    <cache-ref namespace="cn.mypandora.system.service.BaseUserService"/>
+    <!--<cache-ref namespace="cn.mypandora.system.service.BaseUserService"/>-->
     <resultMap type="baseRes" id="baseResMap">
         <result property="id" column="id"/>
         <result property="name" column="name"/>
@@ -50,11 +50,11 @@
         <![CDATA[
             FROM t_base_res t
             WHERE 1=1 
-            AND t.lft>=(
+            AND t.lft>(
                     SELECT s.lft
                     FROM t_base_res s
                     WHERE s.id=#{id}) 
-            AND t.rgt<=(
+            AND t.rgt<(
                     SELECT s.rgt
                     FROM t_base_res s
                     WHERE s.id=#{id})

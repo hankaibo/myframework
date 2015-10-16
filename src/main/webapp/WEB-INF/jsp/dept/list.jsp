@@ -286,10 +286,10 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2">
             <ul id="treeDemo" class="ztree"></ul>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10">
             <form class="form-inline">
                 <label>名称：</label><input type="text" class="input" id="username" required/>
                 <input type="button" class="btn btn-success" id="find_btn" value="查 询" />

@@ -100,7 +100,8 @@ public class TestResService {
 
     @Test
     public void findResById() {
-        service.findResById(2L);
+        BaseRes baseRes=service.findResById(1L);
+        org.junit.Assert.assertNotNull(baseRes);
     }
 
     @Test

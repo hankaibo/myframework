@@ -36,7 +36,7 @@
 //                    {name:'birthday',index:'birthday', width:120,formatter:"date",formatoptions: {srcformat:'Y-m-d',newformat:'Y-m-d'}},
                     {name:'strBirthday',index:'strBirthday', width:120},
                     {name:'strLastVisit',index:'strLastVisit', width:160},
-                    {name:'credits',index:'credits', width:100,align:'center',formatter:fancyBoxFormatter},
+                    {name:'credit',index:'credit', width:100,align:'center'},//,formatter:fancyBoxFormatter},
                     {name:'action',align:'center',sortable:false,formatter:displayButtons}
                 ],
                 rowNum:10, //每页显示记录数
@@ -53,11 +53,11 @@
                 sortname: 'id',  //排序字段名,可以是列名称或者是一个数字，这个参数会被提交到后台.
                 sortorder: "desc", //排序方式：倒序，本例中设置默认按id倒序排序
                 jsonReader:{
-                    root:"resultList",              // 数据行（默认为：rows）
-                    page: "currentPage",            // 当前页
-                    total: "totalPage",             // 总页数
-                    records: "total",               // 总记录数
-                    repeatitems : false             // 设置成false，在后台设置值的时候，可以乱序。且并非每个值都得设
+                    root:"list",              // 数据行（默认为：rows）
+                    page: "pageNum",            // 当前页
+                    total: "pages",             // 总页数
+                    records: "total",           // 总记录数
+                    repeatitems : false         // 设置成false，在后台设置值的时候，可以乱序。且并非每个值都得设
                 },
                 loadComplete:function(data){ //完成服务器请求后，回调函数
                     if(data.records==0){ //如果没有记录返回，追加提示信息，删除按钮不可用

@@ -38,7 +38,7 @@ TRACE < DEBUG < INFO < WARN < ERROR
     <logger name="java.sql.PreparedStatement" level="DEBUG" />
 
     <root>
-        <level value="error"/>
+        <level value="debug"/>
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
     </root>

@@ -34,10 +34,10 @@ public interface IBaseTreeDao<T extends BaseTree> {
     List<T> loadTreeWithLevel(int level);
 
     /**
-     * 获得本节点及下面的所有节点
+     * 获得本节点下面的所有后代节点
      *
      * @param id 当前操作节点id
-     * @return 本节点及下面的所有节点
+     * @return 本节点下面的所有后代节点
      */
     List<T> getDescendant(Long id);
 

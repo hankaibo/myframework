@@ -32,8 +32,7 @@
         ];
 
         $(function() {
-            var treeObj = $("#treeDemo");
-            $.fn.zTree.init(treeObj, setting, zNodes);
+            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
             zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo");
             curMenu = zTree_Menu.getNodes()[0].children[0];
             zTree_Menu.selectNode(curMenu);
@@ -114,10 +113,10 @@
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-lg-2 col-lg-offset-1" style="background-color:#e7e7e7;">
+            <div class="col-lg-2" style="background-color:#e7e7e7;">
                 <div id="treeDemo"></div>
             </div>
-            <div class="col-lg-9">
+            <div class="col-lg-10">
                 <iframe id="rightFrame" name="rightFrame" src="${ctx}/users/toList" frameborder=0 scrolling=no style="margin-left:0px;margin-top:-3px;width:100%;height:500px;"></iframe>
             </div>
         </div>

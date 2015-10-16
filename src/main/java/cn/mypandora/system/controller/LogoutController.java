@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.ResourceBundle;
 
 /**
@@ -32,11 +31,11 @@ public class LogoutController {
      * 跳转到登录页面。
      *
      * @param request
-     * @param response
-     * @return
+     * @return 登录逻辑页面
      */
     @RequestMapping(method = RequestMethod.GET)
-    public String loginPage(HttpServletRequest request, HttpServletResponse response) {
+    public String loginPage(HttpServletRequest request) {
+        //TODO 放置于缓存中
         ResourceBundle resourceBundle = ResourceBundle.getBundle("captcha");
         String isCaptcha = resourceBundle.getString("isCaptcha");
         if (isCaptcha.equalsIgnoreCase("true")) {

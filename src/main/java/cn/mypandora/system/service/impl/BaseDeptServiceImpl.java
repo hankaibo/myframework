@@ -36,10 +36,10 @@ public class BaseDeptServiceImpl implements BaseDeptService {
     }
 
     /**
-     * 获得本部门（节点）及下面的所有部门（节点）。
+     * 获得本部门（节点）下面的所有后代部门（节点）。
      *
      * @param id 当前操作部门（节点）id
-     * @return 指定部门及其下的所有部门
+     * @return 指定部门下的所有后代部门
      */
     @Override
     public List<BaseDept> getDeptDescendant(Long id) {

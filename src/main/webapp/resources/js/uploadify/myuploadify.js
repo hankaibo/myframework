@@ -76,9 +76,9 @@ function myUploadify(uploadOrImport,isAuto, fileSize, fileDesc,fileType,filePath
 //         'onEnable' :function(){
 //         },
        // 在初始化时，若检测不到浏览器有兼容性的flash版本时触发
-         'onFallback' :function(){
-             alert("对不起，您没有安装Flash插件!请安装之后再使用上传功能。");
-         },
+//         'onFallback' :function(){
+//             alert("对不起，您没有安装Flash插件!请安装之后再使用上传功能。");
+//         },
        // 在Uploadify初始化时触发，该事件获取一个参数instance，该参数为Uploadify的一个实例
 //         'onInit' : function(instance) {
 //             alert('The queue ID is ' + instance.settings.queueID);

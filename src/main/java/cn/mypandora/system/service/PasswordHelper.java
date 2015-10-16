@@ -36,6 +36,11 @@ public class PasswordHelper {
         this.hashIterations = hashIterations;
     }
 
+    /**
+     * 盐采用用户名+随机数
+     *
+     * @param baseUser 用户实体
+     */
     public void encryptPassword(BaseUser baseUser) {
         baseUser.setSalt(randomNumberGenerator.nextBytes().toHex());
         String newPassword = new SimpleHash(algorithmName, baseUser.getPassword(), ByteSource.Util.bytes(baseUser.getCredentialsSalt()), hashIterations).toHex();

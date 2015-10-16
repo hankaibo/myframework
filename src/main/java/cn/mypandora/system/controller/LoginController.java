@@ -135,29 +135,21 @@ public class LoginController {
         UsernamePasswordToken token = new UsernamePasswordToken(loginCommand.getUsername(), loginCommand.getPassword());
         try {
             SecurityUtils.getSubject().login(token);
-            //登录成功之后，积分+5；查询对应资源；显示相应页面。
-            //登陆成功
             HttpSession session = request.getSession(true);
-            try {
-                BaseUser user = baseUserService.findUserByUsername(loginCommand.getUsername());
-                if (user != null) {
-                    user.setLastIp(request.getRemoteAddr());
-                    user.setLastVisit(new Timestamp(System.currentTimeMillis()));
-                    baseUserService.loginSuccess(user);
-                    // 记录session的值
-                    session.setAttribute("user", user);
-                    List<BaseRes> listResoureces = baseResService.getResDescendant(1L);
-                    List<ParentChildTree> listPCTrees = new ArrayList<>();
-                    for (BaseRes res : listResoureces) {
-                        listPCTrees.add(MyTreeUtil.lfNode2pcNode(res));
-                    }
-                    request.getSession().setAttribute("menuTree", listPCTrees);
-                    return new ModelAndView("main");
-                }
-            } catch (Exception e) {
-                logger.error(e.getMessage(), e);
+            //登陆成功后，积分+5；查询对应资源；显示相应页面。
+            BaseUser user = baseUserService.findUserByUsername(loginCommand.getUsername());
+            user.setLastIp(request.getRemoteAddr());
+            user.setLastVisit(new Timestamp(System.currentTimeMillis()));
+            baseUserService.loginSuccess(user);
+            // 记录session的值
+            session.setAttribute("user", user);
+            List<BaseRes> listResoureces = baseResService.getResDescendant(1L);
+            List<ParentChildTree> listPCTrees = new ArrayList<>();
+            for (BaseRes res : listResoureces) {
+                listPCTrees.add(MyTreeUtil.lfNode2pcNode(res));
             }
-            return isCaptcha ? new ModelAndView("login", "error", "用户名或密码错误.").addObject("isCaptcha", true) : new ModelAndView("login", "error", "用户名或密码错误.");
+            request.getSession().setAttribute("menuTree", listPCTrees);
+            return new ModelAndView("main");
         } catch (UnknownAccountException e) {
             logger.error("账号不存在!:" + e);
         } catch (IncorrectCredentialsException e) {

@@ -226,40 +226,40 @@
         select * from t_base_user
         where 1=1
         <if test="username!=null and username!=''">
-            username=#{username, jdbcType=VARCHAR},
+            AND username=#{username, jdbcType=VARCHAR}
         </if>
         <if test="password!=null and password!=''">
-            password=#{password, jdbcType=VARCHAR},
+            AND password=#{password, jdbcType=VARCHAR}
         </if>
         <if test="salt!=null and salt!=''">
-            salt=#{salt, jdbcType=VARCHAR},
+            AND salt=#{salt, jdbcType=VARCHAR}
         </if>
         <if test="locked!=null and locked!=''">
-            locked=#{locked, jdbcType=NUMERIC},
+            AND locked=#{locked, jdbcType=NUMERIC}
         </if>
         <if test="realName!=null and realName!=''">
-            real_name=#{realName, jdbcType=VARCHAR},
+            AND real_name=#{realName, jdbcType=VARCHAR}
         </if>
         <if test="email!=null and email!=''">
-            email=#{email, jdbcType=VARCHAR},
+            AND email=#{email, jdbcType=VARCHAR}
         </if>
         <if test="pictureUrl!=null and pictureUrl!=''">
-            picture_url=#{pictureUrl, jdbcType=VARCHAR},
+            AND picture_url=#{pictureUrl, jdbcType=VARCHAR}
         </if>
         <if test="credit!=null and credit!=''">
-            credit=#{credit, jdbcType=NUMERIC},
+            AND credit=#{credit, jdbcType=NUMERIC}
         </if>
         <if test="lastIp!=null and lastIp!=''">
-            last_ip=#{lastIp, jdbcType=VARCHAR},
+            AND last_ip=#{lastIp, jdbcType=VARCHAR}
         </if>
         <if test="birthday!=null and birthday!=''">
-            birthday=#{birthday, jdbcType=DATE},
+            AND birthday=#{birthday, jdbcType=DATE}
         </if>
         <if test="sex!=null and sex!=''">
-            sex=#{sex, jdbcType=NUMERIC},
+            AND sex=#{sex, jdbcType=NUMERIC}
         </if>
         <if test="mobile!=null and mobile!=''">
-            mobile=#{mobile, jdbcType=VARCHAR}
+            AND mobile=#{mobile, jdbcType=VARCHAR}
         </if>
         <if test="sortName!=null">
             order by #{sortName} #{orderName}

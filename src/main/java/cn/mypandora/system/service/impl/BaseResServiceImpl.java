@@ -47,10 +47,10 @@ public class BaseResServiceImpl implements BaseResService {
     }
 
     /**
-     * 获得本资源（节点）及下面的所有资源（节点）。
+     * 获得本资源（节点）下面的所有后代资源（节点）。
      *
      * @param id 当前操作资源（节点）id
-     * @return 资源及其下所有资源
+     * @return 资源下所有后代资源
      */
     @Override
     public List<BaseRes> getResDescendant(Long id) {
