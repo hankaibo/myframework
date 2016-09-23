@@ -75,6 +75,10 @@
         <property name="passwordParam" value="password"/>
         <property name="loginUrl" value="/login.jsp"/>
     </bean>
+    <!-- 退出登录过滤器 -->
+    <bean id="logoutFilter" class="org.apache.shiro.web.filter.authc.LogoutFilter">
+        <property name="redirectUrl" value="/login?logout=1"/>
+    </bean>
 
     <!-- Shiro主过滤器本身功能十分强大,其强大之处就在于它支持任何基于URL路径表达式的、自定义的过滤器的执行 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -89,6 +93,7 @@
         <property name="filters">
             <util:map>
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
+                <entry key="logout" value-ref="logoutFilter"/>
             </util:map>
         </property>
         <!-- Shiro连接约束配置,即过滤链的定义 -->
