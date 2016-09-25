@@ -11,6 +11,8 @@ import cn.mypandora.system.service.BaseUserService;
 import cn.mypandora.util.MyDateUtils;
 import cn.mypandora.util.MyExcelUtil;
 import com.github.pagehelper.PageInfo;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -48,6 +50,16 @@ public class BaseUserController {
     @Resource
     private BaseUserService baseUserService;
 
+    @ResponseBody
+    @RequestMapping(value = "/show", method=RequestMethod.POST)
+    @ApiOperation(value="测试接口", notes="测试接口详细描述")
+    public String show(
+            @ApiParam(required=true, name="name", value="姓名")
+            @RequestParam(name = "name") String stuName){
+        return "success";
+    }
+
+
     /**
      * @return String
      * @Title: toList
@@ -64,7 +76,8 @@ public class BaseUserController {
      * @Title: list
      * Description: : 获取用户列表数据。
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @ApiOperation(value = "获取用户列表", notes = "")
+    @RequestMapping(value = { "" }, method = RequestMethod.GET)
     public
     @ResponseBody
     PageInfo<BaseUser> list(HttpServletRequest request) {
