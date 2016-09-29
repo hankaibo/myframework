@@ -23,9 +23,9 @@
         <param-name>logbackConfigLocation</param-name>
         <param-value>classpath:logback.xml</param-value>
     </context-param>
-    <!--<listener>-->
-        <!--<listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>-->
-    <!--</listener>-->
+    <listener>
+        <listener-class>ch.qos.logback.ext.spring.web.LogbackConfigListener</listener-class>
+    </listener>
 
     <!-- 配置web容器，以便web容器启动时能够自动加载spring容器。 -->
     <context-param>

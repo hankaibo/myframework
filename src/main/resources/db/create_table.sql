@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS `t_base_dept` (
   `rgt` int(5) NOT NULL,
   `parent_id` int(5) NOT NULL,
   `lvl` int(5) DEFAULT NULL,
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
-  `update_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `create_time` datetime DEFAULT '0000-00-00 00:00:00',
+  `update_time` datetime DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `node_id` (`node_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='部门表。';
@@ -42,8 +42,8 @@ CREATE TABLE IF NOT EXISTS `t_base_log` (
   `name` varchar(50) NOT NULL,
   `description` varchar(50) DEFAULT NULL,
   `ip` varchar(50) DEFAULT NULL,
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
-  `update_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `create_time` datetime DEFAULT '0000-00-00 00:00:00',
+  `update_time` datetime DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='日志表。';
 
@@ -57,8 +57,8 @@ CREATE TABLE IF NOT EXISTS `t_base_permission` (
   `permission` varchar(50) NOT NULL,
   `description` varchar(100) DEFAULT NULL,
   `available` tinyint(1) NOT NULL DEFAULT '0',
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
-  `update_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `create_time` datetime DEFAULT '0000-00-00 00:00:00',
+  `update_time` datetime DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='权限表。';
 
@@ -76,8 +76,8 @@ CREATE TABLE IF NOT EXISTS `t_base_res` (
   `rgt` int(11) NOT NULL,
   `parent_id` int(11) NOT NULL,
   `is_enable` tinyint(1) NOT NULL DEFAULT '0',
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
-  `update_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `create_time` datetime DEFAULT '0000-00-00 00:00:00',
+  `update_time` datetime DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `node_id` (`node_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='资源表。';
@@ -92,8 +92,8 @@ CREATE TABLE IF NOT EXISTS `t_base_role` (
   `role` varchar(50) NOT NULL,
   `description` varchar(100) DEFAULT NULL,
   `available` tinyint(1) NOT NULL DEFAULT '0',
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
-  `update_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `create_time` datetime DEFAULT '0000-00-00 00:00:00',
+  `update_time` datetime DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色表。';
 
@@ -106,8 +106,8 @@ CREATE TABLE IF NOT EXISTS `t_base_role_permission` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `role_id` int(11) NOT NULL,
   `permission_id` int(11) NOT NULL,
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
-  `update_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `create_time` datetime DEFAULT '0000-00-00 00:00:00',
+  `update_time` datetime DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='角色-权限关联表。';
 
@@ -132,8 +132,8 @@ CREATE TABLE IF NOT EXISTS `t_base_user` (
   `credit` int(11) DEFAULT NULL,
   `last_ip` varchar(50) DEFAULT NULL,
   `last_visit` timestamp NULL DEFAULT NULL,
-  `create_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `create_time` timestamp NULL DEFAULT '0000-00-00 00:00:00',
+  `update_time` timestamp NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`),
   UNIQUE KEY `email` (`email`)
@@ -148,8 +148,8 @@ CREATE TABLE IF NOT EXISTS `t_base_user_role` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
   `role_id` int(11) NOT NULL,
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
-  `update_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `create_time` datetime DEFAULT '0000-00-00 00:00:00',
+  `update_time` datetime DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='用户-角色关联表。';
 
@@ -165,8 +165,8 @@ CREATE TABLE IF NOT EXISTS `t_upload_file` (
   `save_name` varchar(100) DEFAULT NULL,
   `save_path` varchar(100) DEFAULT NULL,
   `file_type` int(11) DEFAULT NULL,
-  `create_time` datetime DEFAULT CURRENT_TIMESTAMP,
-  `update_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `create_time` datetime DEFAULT '0000-00-00 00:00:00',
+  `update_time` datetime DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='上传的文件表。';
 

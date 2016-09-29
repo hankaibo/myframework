@@ -24,7 +24,7 @@
     <!-- Direct static mappings -->
     <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
     <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
-    <!--&lt;!&ndash; Include a swagger configuration&ndash;&gt;-->
+    <!-- Include a swagger configuration-->
     <!--<bean name="/swaggerConfig" class="cn.mypandora.config.SwaggerConfig"/>-->
 
     <!-- 配置视图解析器，将ModelAndView及字符串解析为具体的页面 -->
