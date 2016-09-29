@@ -6,8 +6,6 @@
 package cn.mypandora.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import springfox.documentation.service.ApiInfo;
@@ -24,8 +22,8 @@ import static springfox.documentation.builders.PathSelectors.regex;
  * <p>Version: 1.0
  */
 @EnableSwagger2
-@PropertySource("classpath:swagger.properties")
-@ComponentScan(basePackages = "cn.mypandora.system.controller")
+//@PropertySource("classpath:swagger.properties")
+//@ComponentScan(basePackages = "cn.mypandora.system.controller")
 public class SwaggerConfig extends WebMvcConfigurerAdapter {
 
     /**
