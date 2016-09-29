@@ -164,7 +164,7 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>1.7.6</version>
+            <version>1.7.21</version>
         </dependency>
         <dependency>
             <groupId>ch.qos.logback</groupId>
@@ -257,12 +257,12 @@
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
-            <version>3.9</version>
+            <version>3.15</version>
         </dependency>
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
-            <version>3.9</version>
+            <version>3.15</version>
         </dependency>
         <dependency>
             <groupId>commons-io</groupId>
@@ -281,11 +281,11 @@
             <version>2.3.0</version>
         </dependency>
         <!-- captcha -->
-        <dependency>
-            <groupId>com.google.code.kaptcha</groupId>
-            <artifactId>kaptcha</artifactId>
-            <version>2.3</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.google.code.kaptcha</groupId>-->
+            <!--<artifactId>kaptcha</artifactId>-->
+            <!--<version>2.3</version>-->
+        <!--</dependency>-->
 
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -334,7 +334,7 @@
 
     </dependencies>
     <properties>
-        <spring.version>4.2.3.RELEASE</spring.version>
+        <spring.version>4.2.8.RELEASE</spring.version>
     </properties>
     <build>
         <finalName>myframework</finalName>

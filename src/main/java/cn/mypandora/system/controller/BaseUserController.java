@@ -11,8 +11,7 @@ import cn.mypandora.system.service.BaseUserService;
 import cn.mypandora.util.MyDateUtils;
 import cn.mypandora.util.MyExcelUtil;
 import com.github.pagehelper.PageInfo;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import io.swagger.annotations.*;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
@@ -43,6 +42,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping(value = "/users")
+@Api(value = "contacts-api", description = "有关于用户的CURD操作", position = 5)
 public class BaseUserController {
     private final static String XLS = ".xls";
     private final static String XLSX = ".xlsx";
@@ -123,6 +123,7 @@ public class BaseUserController {
      * @Title: add
      * @Description: 添加用户。
      */
+    @ApiOperation(value = "创建用户", notes = "返回用户实体对象", response = BaseUser.class, position = 2)
     @RequestMapping(method = RequestMethod.POST)
     public String add(BaseUser baseUser) {
         baseUserService.addUser(baseUser);
@@ -184,6 +185,11 @@ public class BaseUserController {
      * @Description: 用户修改。
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "更新成功", response = BaseUser.class),
+            @ApiResponse(code = 404, message = "找不到页面"),
+            @ApiResponse(code = 500, message = "内部报错")}
+    )
     public String update(BaseUser baseUser) {
         baseUserService.updateUser(baseUser);
         return "user/list";

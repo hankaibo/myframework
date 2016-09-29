@@ -8,8 +8,6 @@ package cn.mypandora.system.controller;
 import cn.mypandora.system.service.BaseResService;
 import cn.mypandora.system.service.BaseUserService;
 import cn.mypandora.system.vo.LoginCommand;
-import com.google.code.kaptcha.Constants;
-import com.google.code.kaptcha.Producer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -41,78 +39,20 @@ public class LoginController {
     private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @Resource
-    private Producer captchaProducer;
-    @Resource
     private BaseUserService baseUserService;
     @Resource
     private BaseResService baseResService;
 
     @RequestMapping(method = RequestMethod.GET)
     public String loginPage(ModelMap model) {
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("captcha");
-        String isCaptcha = resourceBundle.getString("isCaptcha");
-        if (isCaptcha.equalsIgnoreCase("true")) {
-            model.put("isCaptcha", true);
-        }
         return "login";
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ModelAndView loginCheck(HttpServletRequest request, HttpServletResponse response, LoginCommand loginCommand) {
-        // 判断是否生成验证码
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("captcha");
-        String isCaptcha = resourceBundle.getString("isCaptcha");
-
-        if (isCaptcha.equalsIgnoreCase("true")) {
-            //获取HttpSession中的验证码
-            String code = (String) request.getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
-            if (loginCommand.getKaptcha().equals(code)) {
-                logger.debug("验证码成功。");
-                //用户名/密码判断
-                return actualLoginCheck(request, response, loginCommand, true);
-            } else {
-                return new ModelAndView("login", "error", "验证码错误.").addObject("isCaptcha", true);
-            }
-        } else {
-            //用户名/密码判断
-            return actualLoginCheck(request, response, loginCommand, false);
-        }
+        return actualLoginCheck(request, response, loginCommand, false);
     }
 
-    /**
-     * 生成验证码。
-     *
-     * @param request
-     * @param response
-     * @throws Exception
-     */
-    @RequestMapping(value = "/captchaImage", method = RequestMethod.GET)
-    public void getKaptchaImage(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        response.setDateHeader("Expires", 0);
-        // Set standard HTTP/1.1 no-cache headers.
-        response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
-        // Set IE extended HTTP/1.1 no-cache headers (use addHeader).
-        response.addHeader("Cache-Control", "post-check=0, pre-check=0");
-        // Set standard HTTP/1.0 no-cache header.
-        response.setHeader("Pragma", "no-cache");
-        // return a jpeg
-        response.setContentType("image/jpeg");
-        // create the text for the image
-        String capText = captchaProducer.createText();
-        // store the text in the session
-        request.getSession().setAttribute(Constants.KAPTCHA_SESSION_KEY, capText);
-
-        // create the image with the text
-        BufferedImage bi = captchaProducer.createImage(capText);
-        ServletOutputStream out = response.getOutputStream();
-        // write the data out
-        ImageIO.write(bi, "jpg", out);
-        try {
-            out.flush();
-        } finally {
-            out.close();
-        }
-    }
 
     private ModelAndView actualLoginCheck(HttpServletRequest request, HttpServletResponse response, LoginCommand loginCommand, boolean isCaptcha) {
 //        boolean rememberMe = WebUtils.isTrue(request, FormAuthenticationFilter.DEFAULT_REMEMBER_ME_PARAM);

@@ -35,12 +35,6 @@ public class LogoutController {
      */
     @RequestMapping(method = RequestMethod.GET)
     public String loginPage(HttpServletRequest request) {
-        //TODO 放置于缓存中
-        ResourceBundle resourceBundle = ResourceBundle.getBundle("captcha");
-        String isCaptcha = resourceBundle.getString("isCaptcha");
-        if (isCaptcha.equalsIgnoreCase("true")) {
-            request.setAttribute("isCaptcha", true);
-        }
         Subject currentUser = SecurityUtils.getSubject();
         if (SecurityUtils.getSubject().getSession() != null) {
             currentUser.logout();
