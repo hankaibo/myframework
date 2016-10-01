@@ -3,13 +3,13 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  */
-package cn.mypandora.system.service.impl;
+package cn.mypandora.service.impl;
 
 import cn.mypandora.log.MyMethodAnno;
 import cn.mypandora.system.dao.BaseUserDao;
 import cn.mypandora.po.BaseUser;
-import cn.mypandora.system.service.BaseUserService;
-import cn.mypandora.system.service.PasswordHelper;
+import cn.mypandora.service.BaseUserService;
+import cn.mypandora.service.PasswordHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

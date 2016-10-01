@@ -6,7 +6,7 @@
 package cn.mypandora.log;
 
 import cn.mypandora.po.BaseLog;
-import cn.mypandora.system.service.BaseLogService;
+import cn.mypandora.service.BaseLogService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.*;

@@ -5,8 +5,8 @@
  */
 package cn.mypandora.controller;
 
-import cn.mypandora.system.service.BaseResService;
-import cn.mypandora.system.service.BaseUserService;
+import cn.mypandora.service.BaseResService;
+import cn.mypandora.service.BaseUserService;
 import cn.mypandora.vo.LoginCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

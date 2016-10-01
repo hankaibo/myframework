@@ -6,7 +6,7 @@
 package cn.mypandora.controller;
 
 import cn.mypandora.po.BaseLog;
-import cn.mypandora.system.service.BaseLogService;
+import cn.mypandora.service.BaseLogService;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

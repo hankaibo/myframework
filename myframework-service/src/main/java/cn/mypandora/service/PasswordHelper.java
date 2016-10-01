@@ -3,7 +3,7 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  */
-package cn.mypandora.system.service;
+package cn.mypandora.service;
 
 import cn.mypandora.po.BaseUser;
 import org.apache.shiro.crypto.RandomNumberGenerator;

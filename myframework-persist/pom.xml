@@ -8,10 +8,17 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-
     <artifactId>myframework-persist</artifactId>
+    <packaging>jar</packaging>
+
     <dependencies>
-        <!-- MyBatis,MyBatis-Spring,MyBatis-cache,echache-core -->
+        <!--依赖模块-->
+        <dependency>
+            <groupId>cn.mypandora</groupId>
+            <artifactId>myframework-model</artifactId>
+        </dependency>
+        <!--jar-->
+        <!-- MyBatis,MyBatis-Spring,MyBatis-cache,echache-core,pagehelper -->
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>

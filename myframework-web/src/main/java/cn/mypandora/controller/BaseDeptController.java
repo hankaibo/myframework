@@ -6,7 +6,7 @@
 package cn.mypandora.controller;
 
 import cn.mypandora.po.BaseDept;
-import cn.mypandora.system.service.BaseDeptService;
+import cn.mypandora.service.BaseDeptService;
 import cn.mypandora.vo.ParentChildTree;
 import cn.mypandora.util.MyTreeUtil;
 import org.springframework.stereotype.Controller;

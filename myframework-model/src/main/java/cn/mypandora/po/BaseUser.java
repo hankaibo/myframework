@@ -6,7 +6,6 @@
 package cn.mypandora.po;
 
 import cn.mypandora.model.BaseEntity;
-import cn.mypandora.util.MyDateUtils;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.sql.Date;
@@ -21,6 +20,8 @@ import java.text.SimpleDateFormat;
  */
 public class BaseUser extends BaseEntity {
     private static final long serialVersionUID = 1866721052326765131L;
+    public final static String DATE_FORMAT = "yyyy-MM-dd";
+    public final static String TIME_FORMAT = "yyyy-MM-dd HH:mm:ss";
     // 姓名
     private String username;
     // 密码
@@ -172,12 +173,12 @@ public class BaseUser extends BaseEntity {
     }
 
     public String getStrBirthday() {
-        SimpleDateFormat sdf = new SimpleDateFormat(MyDateUtils.DATE_FORMAT);
+        SimpleDateFormat sdf = new SimpleDateFormat(DATE_FORMAT);
         return sdf.format(this.getBirthday() != null ? this.getBirthday() : new Date(System.currentTimeMillis()));
     }
 
     public String getStrLastVisit() {
-        SimpleDateFormat sdf = new SimpleDateFormat(MyDateUtils.TIME_FORMAT);
+        SimpleDateFormat sdf = new SimpleDateFormat(TIME_FORMAT);
         return sdf.format(this.getLastVisit() != null ? this.getLastVisit() : new Timestamp(0L));
     }
 

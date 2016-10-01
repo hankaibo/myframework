@@ -3,7 +3,7 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  */
-package cn.mypandora.system.service;
+package cn.mypandora.service;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
@@ -16,10 +16,10 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-        TestDeptService.class,
-        TestLogService.class,
-        TestPermissionService.class,
-        TestResService.class
+        cn.mypandora.service.TestDeptService.class,
+        cn.mypandora.service.TestLogService.class,
+        cn.mypandora.service.TestPermissionService.class,
+        cn.mypandora.service.TestResService.class
 })
 public class TestAllService {
 }

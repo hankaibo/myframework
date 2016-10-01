@@ -3,11 +3,11 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  */
-package cn.mypandora.system.service.impl;
+package cn.mypandora.service.impl;
 
 import cn.mypandora.system.dao.BaseRoleDao;
 import cn.mypandora.po.BaseRole;
-import cn.mypandora.system.service.BaseRoleService;
+import cn.mypandora.service.BaseRoleService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

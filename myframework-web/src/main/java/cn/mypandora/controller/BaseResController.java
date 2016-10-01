@@ -6,7 +6,7 @@
 package cn.mypandora.controller;
 
 import cn.mypandora.po.BaseRes;
-import cn.mypandora.system.service.BaseResService;
+import cn.mypandora.service.BaseResService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

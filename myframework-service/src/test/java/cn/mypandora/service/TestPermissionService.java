@@ -1,4 +1,4 @@
-package cn.mypandora.system.service;
+package cn.mypandora.service;
 
 import cn.mypandora.po.BasePermission;
 import org.junit.Test;

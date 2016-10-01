@@ -13,7 +13,6 @@
     <!-- 扫描类包，将标注Spring注解的类自动转化Bean,同时完成Bean的注入 -->
     <mvc:annotation-driven />
     <context:component-scan base-package="cn.mypandora.controller"/>
-    <context:component-scan base-package="springfox.petstore.controller" />
 
     <!--添加Shiro Spring AOP权限注解的支持-->
     <!--<aop:config proxy-target-class="true"></aop:config>-->

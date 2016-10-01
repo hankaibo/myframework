@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="cn.mypandora.system.service.BaseDeptService">
+<mapper namespace="cn.mypandora.service.BaseDeptService">
     <resultMap type="baseDept" id="baseDeptMap">
         <result property="id" column="id"></result>
         <result property="name" column="name"></result>

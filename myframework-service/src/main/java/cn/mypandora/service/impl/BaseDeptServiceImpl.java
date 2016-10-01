@@ -3,11 +3,11 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  */
-package cn.mypandora.system.service.impl;
+package cn.mypandora.service.impl;
 
 import cn.mypandora.system.dao.BaseDeptDao;
 import cn.mypandora.po.BaseDept;
-import cn.mypandora.system.service.BaseDeptService;
+import cn.mypandora.service.BaseDeptService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

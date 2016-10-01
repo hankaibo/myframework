@@ -6,7 +6,7 @@
 package cn.mypandora.controller;
 
 import cn.mypandora.po.UploadFile;
-import cn.mypandora.system.service.BaseUploadService;
+import cn.mypandora.service.BaseUploadService;
 import cn.mypandora.util.MyExcelUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;

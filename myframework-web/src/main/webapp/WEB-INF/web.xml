@@ -36,21 +36,6 @@
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
 
-    <!--DelegatingFilterProxy作用是自动到spring容器查找名字为shiroFilter（filter-name）的bean并把所有Filter的操作委托给它-->
-    <!--<filter>-->
-        <!--<filter-name>shiroFilter</filter-name>-->
-        <!--<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>-->
-        <!--<init-param>-->
-            <!--&lt;!&ndash;该值缺省为false,表示生命周期由SpringApplicationContext管理,设置为true则表示由ServletContainer管理&ndash;&gt;-->
-            <!--<param-name>targetFilterLifecycle</param-name>-->
-            <!--<param-value>true</param-value>-->
-        <!--</init-param>-->
-    <!--</filter>-->
-    <!--<filter-mapping>-->
-        <!--<filter-name>shiroFilter</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
-    <!--</filter-mapping>-->
-
     <!-- 修改编码 -->
     <filter>
         <filter-name>projectEncoding</filter-name>
@@ -79,11 +64,6 @@
         <servlet-name>framework</servlet-name>
     </filter-mapping>
 
-    <!-- swagger2 -->
-    <servlet-mapping>
-        <servlet-name>default</servlet-name>
-        <url-pattern>/swagger-ui.html</url-pattern>
-    </servlet-mapping>
     <!-- 配置spring mvc -->
     <servlet-mapping>
         <servlet-name>framework</servlet-name>
