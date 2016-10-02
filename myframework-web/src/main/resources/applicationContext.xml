@@ -12,14 +12,11 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
-        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd
-        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+        http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
     <!-- 扫描类包，将标注Spring注解的类自动转化Bean,同时完成Bean的注入并在父容器中（applicationContext.xml）将Controller的注解排除掉 -->
-    <mvc:annotation-driven/>
     <context:component-scan base-package="cn.mypandora.*">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
-    <bean class="cn.mypandora.config.SwaggerConfig"/>
 
     <!-- *****************************数据库配置文件***************************** -->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">

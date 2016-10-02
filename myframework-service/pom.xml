@@ -61,10 +61,6 @@
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>commons-logging</groupId>-->
-            <!--<artifactId>commons-logging</artifactId>-->
-        <!--</dependency>-->
         <!--page-->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
