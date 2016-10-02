@@ -18,9 +18,8 @@
     <!-- 解决restful风格时静态资源无法访问问题 -->
     <mvc:resources mapping="/resources/**" location="/resources/" cache-period="31556926"/>
     <!-- Direct static mappings -->
-    <!--<mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />-->
-    <mvc:resources mapping="/swagger/**" location="/WEB-INF/swagger-ui/"/>
-    <!--<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />-->
+    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
+    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
 
     <!-- 配置视图解析器，将ModelAndView及字符串解析为具体的页面 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
