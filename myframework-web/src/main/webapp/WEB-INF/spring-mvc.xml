@@ -11,21 +11,15 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
     <!-- 扫描类包，将标注Spring注解的类自动转化Bean,同时完成Bean的注入 -->
-    <mvc:annotation-driven />
+    <!--<mvc:annotation-driven />-->
     <context:component-scan base-package="cn.mypandora.controller"/>
 
-    <!--添加Shiro Spring AOP权限注解的支持-->
-    <!--<aop:config proxy-target-class="true"></aop:config>-->
-    <!--<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">-->
-        <!--<property name="securityManager" ref="securityManager"/>-->
-    <!--</bean>-->
-    <!-- 解决restful风格时静态资源无法访问问题 -->
+    <!--&lt;!&ndash; 解决restful风格时静态资源无法访问问题 &ndash;&gt;-->
     <mvc:resources mapping="/resources/**" location="/resources/" cache-period="31556926"/>
     <!-- Direct static mappings -->
-    <mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />
-    <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
-    <!-- Include a swagger configuration-->
-    <!--<bean name="/swaggerConfig" class="cn.mypandora.config.SwaggerConfig"/>-->
+    <!--<mvc:resources mapping="swagger-ui.html" location="classpath:/META-INF/resources/" />-->
+    <mvc:resources mapping="/swagger/**" location="/WEB-INF/swagger-ui/"/>
+    <!--<mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />-->
 
     <!-- 配置视图解析器，将ModelAndView及字符串解析为具体的页面 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"

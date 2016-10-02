@@ -6,6 +6,9 @@
 package cn.mypandora.po;
 
 import cn.mypandora.model.BaseTree;
+import org.hibernate.validator.constraints.NotBlank;
+
+import javax.validation.constraints.Min;
 
 /**
  * 资源实体域对象。
@@ -17,10 +20,13 @@ public class BaseRes extends BaseTree {
     // 资源状态，启用/禁用。
     private boolean isEnable;
     // 资源URL。
+    @NotBlank
     private String url;
     // 资源节点的深度
+    @Min(1)
     private int level;
     // 操作类型，是编辑还是添加...
+    @NotBlank
     private String oper;
 
     public boolean isEnable() {

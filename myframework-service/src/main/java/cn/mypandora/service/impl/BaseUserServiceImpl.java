@@ -9,7 +9,7 @@ import cn.mypandora.log.MyMethodAnno;
 import cn.mypandora.system.dao.BaseUserDao;
 import cn.mypandora.po.BaseUser;
 import cn.mypandora.service.BaseUserService;
-import cn.mypandora.service.PasswordHelper;
+import cn.mypandora.util.PasswordHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

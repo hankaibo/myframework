@@ -3,14 +3,13 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  */
-package cn.mypandora.service;
+package cn.mypandora.util;
 
 import cn.mypandora.po.BaseUser;
 import org.apache.shiro.crypto.RandomNumberGenerator;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.util.ByteSource;
-import org.springframework.stereotype.Service;
 
 /**
  * 密码帮助类。
@@ -18,7 +17,7 @@ import org.springframework.stereotype.Service;
  * <p>Date: 2015/7/17
  * <p>Version: 1.0
  */
-@Service
+
 public class PasswordHelper {
     private RandomNumberGenerator randomNumberGenerator = new SecureRandomNumberGenerator();
     private String algorithmName = "md5";

@@ -6,6 +6,7 @@
 package cn.mypandora.po;
 
 import cn.mypandora.model.BaseEntity;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * 角色实体域对象。
@@ -16,8 +17,10 @@ import cn.mypandora.model.BaseEntity;
 public class BaseRole extends BaseEntity {
     private static final long serialVersionUID = 6199599081168354432L;
     // 角色名称
+    @NotBlank
     private String role;
     // 角色描述
+    @NotBlank
     private String description;
     // 角色实体域对象
     private Boolean available = Boolean.FALSE;

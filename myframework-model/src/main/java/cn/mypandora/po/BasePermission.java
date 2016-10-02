@@ -6,6 +6,7 @@
 package cn.mypandora.po;
 
 import cn.mypandora.model.BaseEntity;
+import org.hibernate.validator.constraints.NotBlank;
 
 /**
  * 权限实体域对象。
@@ -16,8 +17,10 @@ import cn.mypandora.model.BaseEntity;
 public class BasePermission extends BaseEntity {
     private static final long serialVersionUID = 7779139095887287122L;
     // 权限标识
+    @NotBlank
     private String permission;
     // 权限描述
+    @NotBlank
     private String description;
     // 是否可用,如果不可用将不会添加给用户
     private Boolean available = Boolean.FALSE;

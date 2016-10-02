@@ -7,6 +7,8 @@ package cn.mypandora.po;
 
 import cn.mypandora.model.BaseEntity;
 
+import javax.validation.constraints.Min;
+
 /**
  * 角色-权限实体域对象。
  * <p>User: kaibo
@@ -15,8 +17,10 @@ import cn.mypandora.model.BaseEntity;
  */
 public class BaseRolePermission extends BaseEntity {
     // 角色ID
+    @Min(value = 1)
     private Long baseRoleId;
     // 权限ID
+    @Min(value = 1)
     private Long basePermissionId;
 
     public Long getBaseRoleId() {
