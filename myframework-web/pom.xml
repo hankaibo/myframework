@@ -124,6 +124,11 @@
             <!--<version>2.4.0</version>-->
             <!--<scope>test</scope>-->
         <!--</dependency>-->
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>19.0</version>
+        </dependency>
         <!--jackson-->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>

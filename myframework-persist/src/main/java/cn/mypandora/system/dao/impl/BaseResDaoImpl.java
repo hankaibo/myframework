@@ -26,7 +26,7 @@ public class BaseResDaoImpl extends BaseTreeDaoImpl<BaseRes> implements BaseResD
      */
     @Override
     public String getNameSpace() {
-        return "cn.mypandora.system.service.BaseResService";
+        return "cn.mypandora.service.BaseResService";
     }
 
 }

@@ -5,7 +5,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<%@ include file="./../header.jsp" %>
+<%@ include file="../home.jsp" %>
 <script type="text/javascript">
 $(function() {
     $( "#inputBirthday" ).datepicker({

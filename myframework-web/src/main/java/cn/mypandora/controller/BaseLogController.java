@@ -32,7 +32,6 @@ public class BaseLogController {
     private BaseLogService baseLogService;
 
     /**
-     *
      * @return
      */
     @RequestMapping(value = "/toList", method = RequestMethod.GET)
@@ -41,18 +40,13 @@ public class BaseLogController {
     }
 
     /**
-     * @Title: list
-     * @Description: 查询日志列表。
-     * @param model
-     * @param currentPage
-     * @return
-     * @return String
+     *  查询日志列表。
      */
     @RequestMapping(method = RequestMethod.GET)
     public
     @ResponseBody
-    PageInfo<BaseLog> list(ModelMap model,
-                           @RequestParam(value = "currentPage", required = true, defaultValue = "1") int currentPage) {
+    PageInfo<BaseLog> list(
+            @RequestParam(value = "currentPage", required = true, defaultValue = "1") int currentPage) {
         PageInfo<BaseLog> page = new PageInfo<>();
         page.setPageNum(currentPage);
         page = baseLogService.findLogByCondition("pageLogs", null, page);
@@ -60,11 +54,10 @@ public class BaseLogController {
     }
 
     /**
+     * @param id
+     * @return String
      * @Title: del
      * @Description: 删除日志。
-     * @param id
-     * @return
-     * @return String
      */
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     public String del(@PathVariable Long id) {
@@ -72,7 +65,9 @@ public class BaseLogController {
         return "redirect:/log/logs";
     }
 
-    /************* 进入我的日志 **************/
+    /*************
+     * 进入我的日志
+     **************/
     @RequestMapping(value = "/me", method = RequestMethod.GET)
     public String myLog(ModelMap model,
                         @RequestParam(value = "currentPage", required = true, defaultValue = "1") int currentPage) {

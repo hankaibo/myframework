@@ -26,6 +26,6 @@ public class BasePermissionDaoImpl extends BaseEntityDaoImpl<BasePermission> imp
      */
     @Override
     public String getNameSpace() {
-        return "cn.mypandora.system.service.BasePermissionService";
+        return "cn.mypandora.service.BasePermissionService";
     }
 }

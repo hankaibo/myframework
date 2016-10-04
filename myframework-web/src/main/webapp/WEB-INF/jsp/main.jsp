@@ -1,129 +1,134 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="ctx" value="${pageContext.request.contextPath}"/>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%@ include file="header.jsp" %>
-    <link rel="stylesheet" href="${ctx }/resources/js/ztree/css/zTreeStyle.css" type="text/css">
-    <script src="${ctx}/resources/js/ztree/jquery.ztree.core-3.5.js"></script>
+    <link href="//cdn.bootcss.com/pure/0.6.0/pure.css" rel="stylesheet">
     <title>主页</title>
-    <script>
-        var curMenu=null,zTree_Menu=null;
-        var setting={
-            view:{
-                showLine:false,
-                selectedMulti:false,
-                dblClickExpand:false
-            },
-            data:{simpleData:{enable:true}},
-            callback:{
-                onNodeCreated:this.onNodeCreated,
-                beforeClick:this.beforeClick,
-                onClick:this.onClick
-            }
-        };
-        var zNodes =[
-            <c:forEach var="res" items="${menuTree}">
-                {id:"${res.id}",name:"${res.name}",pId:"${res.pid}",_url:"${res.URL}" },
-            </c:forEach>
-        ];
-
-        $(function() {
-            $.fn.zTree.init($("#treeDemo"), setting, zNodes);
-            zTree_Menu = $.fn.zTree.getZTreeObj("treeDemo");
-            curMenu = zTree_Menu.getNodes()[0].children[0];
-            zTree_Menu.selectNode(curMenu);
-
-            var a = $("#" + zTree_Menu.getNodes()[0].tId + "_a");
-            a.addClass("cur");
-
-            $("#rightFrame").load(function(){
-                var thisheight = $(this).contents().find("body").height()+50;
-                $(this).height(thisheight < 500 ? 500 : thisheight);
-            });
-        });
-        function beforeClick(treeId, node) {
-            if (node.isParent) {
-                if (node.level === 0) {
-                    var pNode = curMenu;
-                    while (pNode && pNode.level !==0) {
-                        pNode = pNode.getParentNode();
-                    }
-                    if (pNode !== node) {
-                        var a = $("#" + pNode.tId + "_a");
-                        a.removeClass("cur");
-                        zTree_Menu.expandNode(pNode, false);
-                    }
-                    a = $("#" + node.tId + "_a");
-                    a.addClass("cur");
-
-                    var isOpen = false;
-                    for (var i=0,l=node.children.length; i<l; i++) {
-                        if(node.children[i].open) {
-                            isOpen = true;
-                            break;
-                        }
-                    }
-                    if (isOpen) {
-                        zTree_Menu.expandNode(node, true);
-                        curMenu = node;
-                    } else {
-                        zTree_Menu.expandNode(node.children[0].isParent?node.children[0]:node, true);
-                        curMenu = node.children[0];
-                    }
-                } else {
-                    zTree_Menu.expandNode(node);
-                }
-            }
-            return !node.isParent;
+    <style>
+        .accordionMenu h2{
+            position: relative;
+            margin: 0;
+            padding: 1em 1em .1em;
         }
-        function onClick(e, treeId, node) {
-            window.open('${ctx}'+node._url,"rightFrame");
+        .accordionMenu :not(:first-child) h2 {
+            padding-top:0;
         }
-    </script>
+        .accordionMenu h2:before{
+            border:5px solid #fff;
+            border-color:#fff transparent transparent;
+            context:"123";
+            /*height:0;*/
+            /*width:0;*/
+            position: absolute;
+            right:10px;
+            /*top:15px;*/
+        }
+        .accordionMenu h2 a{
+            background: linear-gradient(to top,#cecece,#8f8f8f);
+            border-radius:5px;
+            color:#424242;
+            display: block;
+            font-size:13px;
+            margin: 0;
+            padding:.5em .5em;
+            text-shadow:2px 2px 2px #aeaeae;
+            text-decoration:none;
+        }
+        .accordionMenu :target h2 a,
+        .accordionMenu h2 a:focus,
+        .accordionMenu h2 a:hover,
+        .accordionMenu h2 a:active{
+            background:#2288dd;
+            background:linear-gradient(to top,#6bb2ff,#2288dd);
+            color:#fff;
+        }
+        .accordionMenu ul li{
+            height:0;
+            overflow: hidden;
+            margin-left: 1em;
+            transition:height .5s ease-in;
+        }
+        .accordionMenu :target ul li{
+            height:40px;
+            margin-left: 1em;
+        }
+        .accordionMenu :target h2:before{
+            border-color:transparent transparent transparent #fff;
+        }
+    </style>
 </head>
 <body>
-    <div class="navbar navbar-default navbar-static-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <a class="navbar-brand thumbnail" href="#"> <img alt="Brand" src="${ctx}/resources/images/0101.jpg"></a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="#">系统管理</a></li>
-                    <li><a href="#">统计管理</a></li>
-                    <li><a href="#">个人管理</a></li>
-                    <li><a href="#"><abbr title="I'm a dog." class="initialism">About me</abbr></a></li>
+<div id='container'></div>
+<script id="template" type="text/ractive">
+    <div class="pure-g">
+        <div class="pure-u-1">
+            <nav class="pure-menu pure-menu-horizontal">
+                <a href="#" class="pure-menu-heading pure-menu-link">BRAND</a>
+                <ul class="pure-menu-list">
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">Home</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">系统管理</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">关于我</a></li>
+                    <li class="pure-menu-item"><a href="#" class="pure-menu-link">注销</a></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)" id="dropdownMenu1" aria-expanded="false">${user.username }<span class="caret"></span></a>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <li><a href="#">个人信息</a></li>
+            </nav>
+        </div>
+    </div>
+    <div class="pure-g">
+        <div class="pure-u-1-5">
+            <div class="pure-menu">
+                <ul class="pure-menu-list accordionMenu">
+                    <li class="menuSection" id="base">
+                        <h2 class="pure-menu-heading"><a href="#base">基础管理</a></h2>
+                        <ul class="pure-menu-list" on-click="openPage">
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">部门管理</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link" value="/logs/toList">日志管理</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">资源管理</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">用户管理</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">角色管理</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">权限管理</a></li>
                         </ul>
                     </li>
-                    <li><a href="${ctx}/logout">注销</a></li>
+                    <li class="menuSection" id="me">
+                        <h2 class="pure-menu-heading"><a href="#me">关于我</a></h2>
+                        <ul class="pure-menu-list" on-click="openPage">
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link" value="/users/me">个人管理</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link" value="/logs/me">个人日志</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link" value="/users/me">个人信息</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
+        </div>
+        <div class="pure-u-4-5">
+            <iframe id="rightFrame" name="rightFrame" src="/login/home" frameborder=0 scrolling=no width="100%"></iframe>
+        </div>
+    </div>
+    <div class="pure-g">
+        <div class="pure-u-1">
+            <p class="text-muted text-center">©2015 hankaibo .</p>
         </div>
     </div>
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-2" style="background-color:#e7e7e7;">
-                <div id="treeDemo"></div>
-            </div>
-            <div class="col-lg-10">
-                <iframe id="rightFrame" name="rightFrame" src="${ctx}/users/toList" frameborder=0 scrolling=no style="margin-left:0px;margin-top:-3px;width:100%;height:500px;"></iframe>
-            </div>
-        </div>
-    </div>
-    
-    <div class="navbar navbar-default">
-        <p class="text-muted text-center">©2015 hankaibo .</p>
-    </div>
+</script>
+
+<!-- 公共JS资源 -->
+<script src="//cdn.bootcss.com/ractive/0.7.3/ractive.min.js"></script>
+<script type="text/javascript">
+    var ractive = new Ractive({
+        el: '#container',
+        template: '#template',
+        data: {}
+    });
+    ractive.on({
+        "openPage": function (event) {
+            var pageSrc=event.original.target.getAttribute('value');
+            var rightFrame=document.querySelector('#rightFrame');
+            rightFrame.src=pageSrc;
+            return false;
+        }
+    });
+</script>
 </body>
 </html>

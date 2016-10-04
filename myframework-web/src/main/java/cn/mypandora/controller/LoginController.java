@@ -68,6 +68,7 @@ public class LoginController {
 //            session.setAttribute("user", user);
 //            List<BaseRes> listResoureces = baseResService.getResDescendant(1L);
 //            List<ParentChildTree> listPCTrees = new ArrayList<>();
+
 //            for (BaseRes res : listResoureces) {
 //                listPCTrees.add(MyTreeUtil.lfNode2pcNode(res));
 //            }
@@ -84,4 +85,10 @@ public class LoginController {
 //        }
 //        return isCaptcha ? new ModelAndView("login", "error", "用户名或密码错误.").addObject("isCaptcha", true) : new ModelAndView("login", "error", "用户名或密码错误.");
     }
+
+    @RequestMapping(value="/home", method = RequestMethod.GET)
+    public String homePage(ModelMap model) {
+        return "home";
+    }
 }
+

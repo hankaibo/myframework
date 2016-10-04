@@ -6,7 +6,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <%@ include file="./../header.jsp" %>
+    <%@ include file="../home.jsp" %>
     <script src="${ctx}/resources/js/jquery-validation-1.13.1/dist/jquery.validate.min.js"></script>
     <script src="${ctx}/resources/js/jquery-validation-1.13.1/dist/localization/messages_zh.min.js"></script>
     <title>用户修改</title>

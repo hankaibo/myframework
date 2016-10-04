@@ -1,39 +1,44 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/resources/css/bootstrap-3.3.4/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="/resources/js/jquery-ui-1.11.4.custom/jquery-ui.theme.min.css" />
+    <link href="//cdn.bootcss.com/pure/0.6.0/pure.css" rel="stylesheet">
     <title>登陆</title>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4" ms-controller="login">
-                <form action="${ctx}/login" method="post">
-                    <h1 class="text-center">请登录</h1>
-                    <input class="form-control" type="text" placeholder="用户名" name="username" ms-duplex={{username}} required autofocus>
-                    <input class="form-control" type="password" placeholder="密码" name="password" ms-duplex={{password}} required>
-                    <%--<div ms-visible="{{isCaptcha}}">--%>
-                        <%--<input class="form-control" type="text" placeholder="验证码" name="kaptcha" required>--%>
-                        <%--<img src="${ctx}/login/captcha-image" id="kaptchaImage" />--%>
-                    <%--</div>--%>
-                    <%--<label class="checkbox"> <input type="checkbox" name="rememberMe" value="true"/>一天内记住我的登录状态</label>--%>
-                    <button class="btn btn-primary btn-lg btn-block" type="submit">登录</button>
-                </form>
-            </div>
-        </div>
+<div id='container'></div>
+
+<script id="template" type="text/ractive">
+<div class="pure-g">
+    <div class="pure-u-1-3"></div>
+    <div class="pure-u-1-3">
+        <form class="pure-form pure-form-stacked" action="/login" method="post">
+            <fieldset class="pure-group">
+                <legend>Login</legend>
+                <input class="pure-input-1" type="text" placeholder="用户名" name="username" required autofocus>
+                <input class="pure-input-1" type="password" placeholder="密码" name="password" required>
+            </fieldset>
+
+            <button class="pure-button pure-button-primary pure-input-1" type="submit">登录</button>
+        </form>
     </div>
-<script src="/resources/js/avalon.js"></script>
-<script src="/resources/js/jquery-1.11.0.min.js"></script>
+    <div class="pure-u-1-3"></div>
+</div>
+
+
+</script>
+<script src="//cdn.bootcss.com/ractive/0.7.3/ractive.min.js"></script>
 <script type="text/javascript">
-//    var vm=avalon.define({
-//        $id:"login",
-//        username:"123",
-//        password:"",
-//        isCaptcha:false
-//    });
+    var ractive = new Ractive({
+        el: '#container',
+        template: '#template',
+        data: {
+            username: '',
+            password: ''
+        }
+    });
 </script>
 </body>
 </html>

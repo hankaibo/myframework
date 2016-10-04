@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <%@ include file="./../header.jsp" %>
+    <%@ include file="../home.jsp" %>
     <script type="text/javascript" src="${ctx}/resources/js/amcharts/amcharts/amcharts.js"></script>
     <script type="text/javascript" src="${ctx}/resources/js/amcharts/amcharts/serial.js"></script>
     <title>用户分析</title>

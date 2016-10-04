@@ -26,7 +26,7 @@ public class BaseUserDaoImpl extends BaseEntityDaoImpl<BaseUser> implements Base
      */
     @Override
     protected String getNameSpace() {
-        return "cn.mypandora.system.service.BaseUserService";
+        return "cn.mypandora.service.BaseUserService";
     }
 
 }

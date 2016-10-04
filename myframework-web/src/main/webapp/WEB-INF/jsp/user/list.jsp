@@ -6,7 +6,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <%@ include file="./../header.jsp" %>
+    <%@ include file="../home.jsp" %>
     <link rel="stylesheet" href="${ctx}/resources/js/jqGrid-4.8.2/css/ui.jqgrid.css" />
     <link rel="stylesheet" href="${ctx}/resources/js/jqGrid-4.8.2/css/ui.jqgrid-bootstarp.css" />
     <link rel="stylesheet" href="${ctx}/resources/js/fancyBox/source/jquery.fancybox.css?v=2.1.5" media="screen" />

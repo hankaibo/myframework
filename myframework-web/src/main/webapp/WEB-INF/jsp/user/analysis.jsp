@@ -14,7 +14,7 @@
 <head>
 <meta charset="UTF-8">
 <title></title>
-<%@ include file="./../header.jsp" %>
+<%@ include file="../home.jsp" %>
 <script type="text/javascript" src="${ctx}/resources/js/echarts-2.2.1/build/dist/echarts.js"></script>
 <script type="text/javascript">
 //路径配置

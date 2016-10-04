@@ -27,6 +27,6 @@ public class BaseUploadDaoImpl extends BaseEntityDaoImpl<UploadFile> implements 
      */
     @Override
     protected String getNameSpace() {
-        return "cn.mypandora.system.uploadFileEntity";
+        return "cn.mypandora.uploadFileEntity";
     }
 }

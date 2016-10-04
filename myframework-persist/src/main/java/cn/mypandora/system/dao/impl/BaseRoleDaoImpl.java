@@ -26,6 +26,6 @@ public class BaseRoleDaoImpl extends BaseEntityDaoImpl<BaseRole> implements Base
      */
     @Override
     public String getNameSpace() {
-        return "cn.mypandora.system.service.BaseRoleService";
+        return "cn.mypandora.service.BaseRoleService";
     }
 }

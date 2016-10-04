@@ -9,7 +9,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link type="text/css" rel="stylesheet" href="${ctx}/resources/js/jqueryui/css/jquery-ui-1.10.0.custom.css" />
 <link href="${ctx}/resources/js/uploadify/uploadify.css" rel="stylesheet" type="text/css" />
-<%@ include file="./../header.jsp" %>
+<%@ include file="../home.jsp" %>
 <script type="text/javascript" src="${ctx}/resources/js/uploadify/jquery.uploadify.js"></script>
 <script type="text/javascript" src="${ctx}/resources/js/uploadify/myuploadify.js"></script>
 <title>我的信息</title>
