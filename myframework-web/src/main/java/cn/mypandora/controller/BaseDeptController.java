@@ -25,7 +25,7 @@ import java.util.Map;
  * <p>Date: 2016/9/26
  * <p>Version: 1.0
  */
-@Api(value="-api",description = "部门的CURD操作")
+@Api(value = "dept-api", description = "部门的CURD操作")
 @Controller
 @RequestMapping(value = "/depts")
 public class BaseDeptController {
@@ -34,20 +34,21 @@ public class BaseDeptController {
 
     /**
      * 跳转到部门首页。
-     * @return
+     *
+     * @return 跳转到部门首页
      */
-    @RequestMapping(method = RequestMethod.GET)
-    public String gotoList(){
+    @RequestMapping(value="gotoList",method = RequestMethod.GET)
+    public String gotoList() {
         return "dept/list";
     }
 
     /**
-     *  获取整个部门树。
-     * @return String
+     * 获取整个部门树。
+     *
+     * @return 获取整个部门树
      */
     @RequestMapping(method = RequestMethod.GET)
     @ResponseBody
-    
     public List<ParentChildTree> list(ModelMap model) {
         List<BaseDept> listDepts = baseDeptService.loadFullDept();
 
@@ -59,11 +60,8 @@ public class BaseDeptController {
     }
 
     /**
-     * @Title: add
-     * @Description: 添加部门。
-     * @param id
-     * @return
-     * @return BaseDept
+     * 添加部门
+     * @return 添加部门
      */
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
@@ -79,11 +77,8 @@ public class BaseDeptController {
     }
 
     /**
-     * @Title: edit
-     * @Description: 编辑部门。
-     * @param dept
-     * @return
-     * @return String
+     * 编辑部门
+     * @return 编辑部门
      */
     @RequestMapping(method = RequestMethod.PUT)
     @ResponseBody
@@ -93,11 +88,8 @@ public class BaseDeptController {
     }
 
     /**
-     * @Title: del
-     * @Description: 删除一个部门（叶子节点）
-     * @param id
-     * @return
-     * @return String
+     * 删除一个部门（叶子节点）
+     * @return 删除一个部门（叶子节点）
      */
     @RequestMapping(value = "{id}", method = RequestMethod.DELETE)
     @ResponseBody
@@ -107,13 +99,9 @@ public class BaseDeptController {
     }
 
     /**
-     * @Title: moveUp
-     * @Description: 上移。（同级叶子节点）
-     * @param id
-     *            弟弟节点ID
-     * @param upId
-     *            哥哥节点ID
-     * @return void
+     * @param id   弟弟节点ID
+     * @param upId 哥哥节点ID
+     * @return 上移。（同级叶子节点）
      */
     @RequestMapping(value = "/{id}/{upId}/up", method = RequestMethod.GET)
     public
@@ -127,13 +115,9 @@ public class BaseDeptController {
     }
 
     /**
-     * @Title: moveDown
-     * @Description: 下移。（同级叶子节点）
-     * @param id
-     *            哥哥节点ID
-     * @param downId
-     *            弟弟节点ID
-     * @return void
+     * @param id     哥哥节点ID
+     * @param downId 弟弟节点ID
+     * @return 下移。（同级叶子节点）
      */
     @RequestMapping(value = "{id}/{upId}/down", method = RequestMethod.GET)
     public
