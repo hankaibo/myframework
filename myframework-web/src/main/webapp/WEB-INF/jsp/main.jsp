@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="//cdn.bootcss.com/pure/0.6.0/pure.css" rel="stylesheet">
+    <%--<link href="//cdn.bootcss.com/pure/0.6.0/pure.css" rel="stylesheet">--%>
     <title>主页</title>
     <style>
         .accordionMenu h2{
@@ -82,7 +82,7 @@
                     <li class="menuSection" id="base">
                         <h2 class="pure-menu-heading"><a href="#base">基础管理</a></h2>
                         <ul class="pure-menu-list" on-click="openPage">
-                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">部门管理</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link" value="/depts/">部门管理</a></li>
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link" value="/logs/toList">日志管理</a></li>
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link">资源管理</a></li>
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link">用户管理</a></li>
@@ -113,8 +113,7 @@
 
 </script>
 
-<!-- 公共JS资源 -->
-<script src="//cdn.bootcss.com/ractive/0.7.3/ractive.min.js"></script>
+<%@ include file="./js.jsp" %>
 <script type="text/javascript">
     var ractive = new Ractive({
         el: '#container',

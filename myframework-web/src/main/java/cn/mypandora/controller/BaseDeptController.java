@@ -33,22 +33,29 @@ public class BaseDeptController {
     private BaseDeptService baseDeptService;
 
     /**
-     * @Title: list
-     * @Description: 获取整个部门树。
-     * @param model
+     * 跳转到部门首页。
      * @return
+     */
+    @RequestMapping(method = RequestMethod.GET)
+    public String gotoList(){
+        return "dept/list";
+    }
+
+    /**
+     *  获取整个部门树。
      * @return String
      */
     @RequestMapping(method = RequestMethod.GET)
-    public String list(ModelMap model) {
+    @ResponseBody
+    
+    public List<ParentChildTree> list(ModelMap model) {
         List<BaseDept> listDepts = baseDeptService.loadFullDept();
 
         List<ParentChildTree> listPCTrees = new ArrayList<>();
         for (BaseDept dept : listDepts) {
             listPCTrees.add(MyTreeUtil.lfNode2pcNode(dept));
         }
-        model.put("listdepts", listPCTrees);
-        return "dept/list";
+        return listPCTrees;
     }
 
     /**

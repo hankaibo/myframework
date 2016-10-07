@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="//cdn.bootcss.com/pure/0.6.0/pure.css" rel="stylesheet">
+    <%--<link href="//cdn.bootcss.com/pure/0.6.0/pure.css" rel="stylesheet">--%>
     <title>登陆</title>
 </head>
 <body>
@@ -29,7 +29,7 @@
 
 
 </script>
-<script src="//cdn.bootcss.com/ractive/0.7.3/ractive.min.js"></script>
+<%@ include file="./js.jsp" %>
 <script type="text/javascript">
     var ractive = new Ractive({
         el: '#container',
