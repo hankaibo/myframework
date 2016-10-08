@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="${pageContext.request.contextPath}/resources/css/pure.css" rel="stylesheet">
+    <link href="//cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
     <title>用户列表</title>
 </head>
 <body>
@@ -13,16 +14,44 @@
 <script id="template" type="text/ractive">
 <div class="pure-g">
     <div class="pure-u-1-5">
-        <div>
           {{#deptList}}
             {{>parent}}
           {{/deptList}}
-        </div>
     </div>
     <div class="pure-u-4-5">
-        <div>
+        <table class="pure-table pure-table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Make</th>
+                    <th>Model</th>
+                    <th>Year</th>
+                </tr>
+            </thead>
 
-        </div>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Honda</td>
+                    <td>Accord</td>
+                    <td>2009</td>
+                </tr>
+
+                <tr>
+                    <td>2</td>
+                    <td>Toyota</td>
+                    <td>Camry</td>
+                    <td>2012</td>
+                </tr>
+
+                <tr>
+                    <td>3</td>
+                    <td>Hyundai</td>
+                    <td>Elantra</td>
+                    <td>2010</td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>
 
@@ -37,13 +66,16 @@
 
 {{#partial child}}
 <li class='file'>
-  <img class='icon-{{id}}'>
+  <i class="fa fa-plus-square-o"></i>
   <span>{{name}}</span>
   {{#if parent }}
     {{>parent}}
   {{/if }}
 </li>
 {{/partial}}
+
+
+
 
 
 
@@ -81,7 +113,7 @@
             if (res.ok) {
                 res.json().then(function (data) {
 //                    console.log(data);
-                    ractive.set('deptList', transData(data,'id', 'pid', 'children'));
+                    ractive.set('deptList', transData(data, 'id', 'pid', 'children'));
                 });
             } else {
                 console.log("Looks like the response wasn't perfect, got status", res.status);
