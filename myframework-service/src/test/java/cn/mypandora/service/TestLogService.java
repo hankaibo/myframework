@@ -30,7 +30,7 @@ import static org.junit.Assert.assertEquals;
  * <p>Version: 1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/applicationContext.xml"})
+@ContextConfiguration(locations = {"/applicationContext-test.xml"})
 public class TestLogService {
     @Resource
     private BaseLogService service;

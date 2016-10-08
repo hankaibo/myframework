@@ -110,7 +110,7 @@
             </div>
         </div>
         <div class="pure-u-4-5">
-            <iframe id="rightFrame" name="rightFrame" src="/login/home" frameborder=0 scrolling=no width="100%"></iframe>
+            <iframe id="rightFrame" name="rightFrame" src="/login/home" frameborder=0 scrolling=no style="height:calc(100vh - 34px);width:100%;"></iframe>
         </div>
     </div>
     <div class="pure-g">

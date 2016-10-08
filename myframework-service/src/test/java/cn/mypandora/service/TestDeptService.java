@@ -29,7 +29,7 @@ import static org.junit.Assert.assertTrue;
  * <p>Version: 1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/applicationContext.xml"})
+@ContextConfiguration(locations = {"/applicationContext-test.xml"})
 public class TestDeptService {
     @Resource
     private BaseDeptService service;
@@ -83,8 +83,8 @@ public class TestDeptService {
 //        service.addDept(0L, map);
         //添加非根节点
         Map<String, Object> map = new HashMap<>();
-        BaseDept dept = service.findDeptById(4L);
-        map.put("name", "特种法院8");
+        BaseDept dept = service.findDeptById(11L);
+        map.put("name", "特种法院1001002");
         map.put("lft", dept.getRgt());
         map.put("rgt", dept.getRgt() + 1);
         map.put("parentId", dept.getId());
@@ -95,7 +95,7 @@ public class TestDeptService {
 
     @Test
     public void delDept() {
-        service.delDept(43L);
+        service.delDept(3L);
     }
 
     @Test

@@ -23,7 +23,7 @@ import java.util.Map;
  * <p>Version: 1.0
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"/applicationContext.xml"})
+@ContextConfiguration(locations = {"/applicationContext-test.xml"})
 public class TestResService {
     @Resource
     private BaseResService service;

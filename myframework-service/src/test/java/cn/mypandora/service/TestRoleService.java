@@ -22,7 +22,7 @@ import javax.annotation.Resource;
 // 1基于JUnit4的Spring测试框架
 @RunWith(SpringJUnit4ClassRunner.class)
 // 2启动Spring容器
-@ContextConfiguration(locations = {"/applicationContext.xml", "/applicationContext-shiro.xml"})
+@ContextConfiguration(locations = {"/applicationContext-test.xml", "/applicationContext-shiro.xml"})
 public class TestRoleService {
     protected BaseRole r1;
     protected BaseRole r2;

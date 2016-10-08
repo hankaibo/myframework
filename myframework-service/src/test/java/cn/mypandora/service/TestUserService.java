@@ -29,7 +29,7 @@ import static org.junit.Assert.assertFalse;
 // 1基于JUnit4的Spring测试框架
 @RunWith(SpringJUnit4ClassRunner.class)
 // 2启动Spring容器
-@ContextConfiguration(locations = {"/applicationContext.xml", "/applicationContext-shiro.xml"})
+@ContextConfiguration(locations = {"/applicationContext-test.xml", "/applicationContext-shiro.xml"})
 public class TestUserService {
     // 3注入Spring容器中的Bean
     @Resource
