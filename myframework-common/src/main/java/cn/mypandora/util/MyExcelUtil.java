@@ -5,6 +5,7 @@
  */
 package cn.mypandora.util;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -24,10 +25,6 @@ import java.util.regex.Pattern;
  * <p>Version: 1.0
  */
 public class MyExcelUtil {
-    // 2007 版本以上 最大支持1048576行
-    public final static String EXCEl_FILE_2007 = ".xlsx";
-    // 2003 版本 最大支持65536 行
-    public final static String EXCEL_FILE_2003 = ".xls";
     private static final Logger logger = LoggerFactory.getLogger(MyExcelUtil.class);
 
     /**
@@ -38,15 +35,10 @@ public class MyExcelUtil {
      * @return
      */
     public static List<String> scanExcelTitles(File excelFile, String... sheetName) {
-        List<String> titles = new ArrayList<String>();
+        List<String> titles = new ArrayList<>();
         try {
-            String fileName = excelFile.getName();
-            Workbook workbook;
-            if (fileName.substring(fileName.lastIndexOf(".")).equalsIgnoreCase(EXCEl_FILE_2007)) {
-                workbook = new XSSFWorkbook(new FileInputStream(excelFile));
-            } else {
-                workbook = new HSSFWorkbook(new FileInputStream(excelFile));
-            }
+            Workbook workbook=WorkbookFactory.create(new FileInputStream(excelFile));
+
             Sheet sheet;
             if (sheetName.length == 0) {
                 sheet = workbook.getSheetAt(0);
@@ -73,48 +65,39 @@ public class MyExcelUtil {
     }
 
     /**
-     * 导入Excel文件 内容以List<Map<String K,String V>>的方式存放
+     * 读取Excel文件 内容以List<Map<String K,String V>>的方式存放
      *
      * @param excelFile  Excel文件对象
      * @param fieldNames Map的Key列表，Value为相应的sheet一行中各列的值
      * @param sheetName  用于指定所需读取数据的表
      * @return
      */
-    public static List<Map<String, String>> importExcelToMap(File excelFile, String fieldNames, String... sheetName) {
+    public static List<Map<String, String>> readExcelToMap(File excelFile, String fieldNames, String... sheetName) {
         List<Map<String, String>> list = Collections.EMPTY_LIST;
-        String fileName = excelFile.getName();
-        Workbook workbook;
+
         try {
-            if (fileName.substring(fileName.lastIndexOf(".")).equalsIgnoreCase(EXCEl_FILE_2007)) {
-                workbook = new XSSFWorkbook(new FileInputStream(excelFile));
-            } else {
-                workbook = new HSSFWorkbook(new FileInputStream(excelFile));
-            }
-            list = executeImport(workbook, fieldNames, sheetName);
-        } catch (IOException e) {
+            Workbook workbook=WorkbookFactory.create(new FileInputStream(excelFile));
+            list = execRead(workbook, fieldNames, sheetName);
+        } catch (Exception e) {
             logger.error("导入表格出错，信息:" + e);
         }
-        return list;
 
+        return list;
     }
 
     /**
+     * 读取Excel文件 内容以List<Map<String K,String V>>的方式存放
+     *
      * @param excelFile  输入流
-     * @param fileName   文件名称
      * @param fieldNames Key
      * @param sheetName  sheet名称
      * @return
      */
-    public static List<Map<String, String>> importExcelToMap(InputStream excelFile, String fileName, String fieldNames, String... sheetName) {
+    public static List<Map<String, String>> readExcelToMap(InputStream excelFile, String fieldNames, String... sheetName) {
         List<Map<String, String>> list = Collections.EMPTY_LIST;
         try {
-            Workbook workbook;
-            if (fileName.substring(fileName.lastIndexOf(".")).equalsIgnoreCase(EXCEl_FILE_2007)) {
-                workbook = new XSSFWorkbook(excelFile);
-            } else {
-                workbook = new HSSFWorkbook(excelFile);
-            }
-            list = executeImport(workbook, fieldNames, sheetName);
+            Workbook workbook=WorkbookFactory.create(excelFile);
+            list = execRead(workbook, fieldNames, sheetName);
         } catch (Exception e) {
             logger.error("导入表格出错，信息:" + e);
         }
@@ -122,12 +105,12 @@ public class MyExcelUtil {
     }
 
     /**
-     * @param workbook
-     * @param fieldNames
-     * @param sheetName
+     * @param workbook 工作薄对象
+     * @param fieldNames 要读取的列
+     * @param sheetName 要操作的工作表，没有时取默认第一个
      * @return
      */
-    private static List<Map<String, String>> executeImport(Workbook workbook, String fieldNames, String... sheetName) {
+    private static List<Map<String, String>> execRead(Workbook workbook, String fieldNames, String... sheetName) {
         String[] strKey = fieldNames.split(",");
         List<Map<String, String>> listMap = new ArrayList<>();
         int i = 1;
@@ -146,31 +129,28 @@ public class MyExcelUtil {
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("rowid", String.valueOf(row.getRowNum()));
                 for (int keyIndex = 0; keyIndex < strKey.length; keyIndex++) {
-                    Cell cell = null;
+                    Cell cell;
                     cell = row.getCell(keyIndex);
-                    String cellvalue = "";
+                    String cellValue = "";
                     if (cell != null) {
                         switch (cell.getCellType()) {
-                            // 如果当前Cell的Type为NUMERIC
                             case Cell.CELL_TYPE_NUMERIC: {
                                 // 判断当前的cell是否为Date
                                 if (DateUtil.isCellDateFormatted(cell)) {
                                     // 如果是Date类型则，取得该Cell的Date值
                                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                                    cellvalue = sdf.format(DateUtil.getJavaDate(cell.getNumericCellValue()));
+                                    cellValue = sdf.format(DateUtil.getJavaDate(cell.getNumericCellValue()));
                                 }
                                 // 如果是纯数字
                                 else {
                                     // 取得当前Cell的数值
                                     Integer num = new Integer((int) cell.getNumericCellValue());
-                                    cellvalue = String.valueOf(num);
+                                    cellValue = String.valueOf(num);
                                 }
                                 break;
                             }
-                            // 如果当前Cell的Type为STRIN
                             case Cell.CELL_TYPE_STRING:
-                                // 取得当前的Cell字符串
-                                cellvalue = cell.getRichStringCellValue().getString();
+                                cellValue = cell.getRichStringCellValue().getString();
                                 break;
                             case Cell.CELL_TYPE_BOOLEAN:
                                 System.out.println(cell.getBooleanCellValue());
@@ -178,12 +158,11 @@ public class MyExcelUtil {
                             case Cell.CELL_TYPE_FORMULA:
                                 System.out.println(cell.getCellFormula());
                                 break;
-                            // 默认的Cell值
                             default:
-                                cellvalue = " ";
+                                cellValue = " ";
                         }
                     }
-                    map.put(strKey[keyIndex], cellvalue);
+                    map.put(strKey[keyIndex], cellValue);
                 }
                 listMap.add(map);
                 i++;
@@ -202,24 +181,20 @@ public class MyExcelUtil {
      * @param sheetTitle  Sheet的名称
      * @param fieldTitles Sheet各列的标题（第一行各列的名称）
      */
-    public static void exportExcel(String filepath, String sheetTitle, String fieldTitles) {
-        // 创建工作簿（Excel文件）
-        Workbook workbook;
-        if (filepath.substring(filepath.lastIndexOf(".")).equalsIgnoreCase(EXCEl_FILE_2007)) {
-            workbook = new XSSFWorkbook();
-        } else {
-            workbook = new HSSFWorkbook();
+    public static void writeExcel(String filepath, String sheetTitle, String fieldTitles) {
+        Workbook[] wbs=new Workbook[]{ new HSSFWorkbook(),new XSSFWorkbook()};
+        for(int i=0;i<wbs.length;i++){
+            Workbook wb = wbs[i];
+            // 创建Excel工作簿的第一个Sheet页
+            Sheet sheet = wb.createSheet();
+            wb.setSheetName(0, sheetTitle);
+
+            // 创建Sheet页的文件头（第一行）
+            createTitle(sheet, fieldTitles);
+
+            // 保存Excel文件
+            saveExcelFile(wb, filepath);
         }
-
-        // 创建Excel工作簿的第一个Sheet页
-        Sheet sheet = workbook.createSheet();
-        workbook.setSheetName(0, sheetTitle);
-
-        // 创建Sheet页的文件头（第一行）
-        createTitle(sheet, fieldTitles);
-
-        // 保存Excel文件
-        saveExcelFile(workbook, filepath);
     }
 
     /**
@@ -231,39 +206,39 @@ public class MyExcelUtil {
      * @param objList     数据源
      * @param fieldNames  各列对应objClass中field的名称
      */
-    public static void exportExcel(String filepath, String sheetTitle, String fieldTitles, List<Map<String, String>> objList, String fieldNames) {
-        Workbook workbook;
-        if (filepath.substring(filepath.lastIndexOf(".")).equalsIgnoreCase(EXCEl_FILE_2007)) {
-            workbook = new XSSFWorkbook();
-        } else {
-            workbook = new HSSFWorkbook();
-        }
+    public static void writeExcel(String filepath, String sheetTitle, String fieldTitles, List<Map<String, String>> objList, String fieldNames) {
+        Workbook[] wbs=new Workbook[]{new HSSFWorkbook(),new XSSFWorkbook()};
+        for(int j=0;j<wbs.length;j++){
+            Workbook workbook=wbs[j];
+            CreationHelper creationHelper=workbook.getCreationHelper();
 
-        // 创建Excel工作簿的第一个Sheet页
-        Sheet sheet = workbook.createSheet(sheetTitle);
-        workbook.setSheetName(0, sheetTitle);
+            // 创建Excel工作簿的第一个Sheet页
+            Sheet sheet = workbook.createSheet(sheetTitle);
+            workbook.setSheetName(0, sheetTitle);
 
-        // 创建Sheet页的文件头（第一行）
-        createTitle(sheet, fieldTitles);
+            // 创建Sheet页的文件头（第一行）
+            createTitle(sheet, fieldTitles);
 
-        // 创建Sheet页的文件体（后续行）
-        String[] strArray = fieldNames.split(",");
-        for (int objIndex = 0; objIndex < objList.size(); objIndex++) {
-            Map<String, String> map = objList.get(objIndex);
-            Row row = sheet.createRow(objIndex + 1);
-            for (int i = 0; i < strArray.length; i++) {
-                Cell cell = row.createCell(i);
-                cell.setCellType(Cell.CELL_TYPE_STRING);
-                if (map.get(strArray[i]) != null)
-                    cell.setCellValue(map.get(strArray[i]).toString());
-                else {
-                    cell.setCellValue("");
+            // 创建Sheet页的文件体（后续行）
+            String[] strArray = fieldNames.split(",");
+            for (int objIndex = 0; objIndex < objList.size(); objIndex++) {
+                Map<String, String> map = objList.get(objIndex);
+                Row row = sheet.createRow(objIndex + 1);
+                for (int cellNum = 0; cellNum < strArray.length; cellNum++) {
+                    Cell cell = row.createCell(cellNum);
+                    cell.setCellType(CellType.STRING);
+                    if (map.get(strArray[cellNum]) != null)
+                        cell.setCellValue(map.get(strArray[cellNum]).toString());
+                    else {
+                        cell.setCellValue("");
+                    }
                 }
             }
+
+            // 保存Excel文件
+            saveExcelFile(workbook, filepath);
         }
 
-        // 保存Excel文件
-        saveExcelFile(workbook, filepath);
     }
 
     /**
@@ -276,22 +251,21 @@ public class MyExcelUtil {
      * @param objClass    数据源中的数据类型
      * @param fieldNames  各列对应objClass中field的名称
      */
-    public static void exportExcel(String filepath, String sheetTitle, String fieldTitles, List<?> objList, Class<?> objClass, String fieldNames) {
-        // 初始化工作簿
-        Workbook workbook;
-        if (filepath.substring(filepath.lastIndexOf(".")).equalsIgnoreCase(EXCEl_FILE_2007)) {
-            workbook = new XSSFWorkbook();
-        } else {
-            workbook = new HSSFWorkbook();
+    public static void writeExcel(String filepath, String sheetTitle, String fieldTitles, List<?> objList, Class<?> objClass, String fieldNames) {
+        Workbook[] wbs=new Workbook[]{new HSSFWorkbook(),new XSSFWorkbook()};
+        for(int j=0;j<wbs.length;j++) {
+            Workbook workbook = wbs[j];
+            CreationHelper creationHelper = workbook.getCreationHelper();
+
+            Sheet sheet = workbook.createSheet();
+            workbook.setSheetName(0, sheetTitle);
+
+            createTitle(sheet, fieldTitles);
+            createBody(sheet, objList, objClass, fieldNames);
+            // 保存Excel文件
+            saveExcelFile(workbook, filepath);
         }
 
-        Sheet sheet = workbook.createSheet();// 创建Excel工作簿的第一个Sheet页
-        workbook.setSheetName(0, sheetTitle);
-
-        createTitle(sheet, fieldTitles);// 创建Sheet页的文件头（第一行）
-        createBody(sheet, objList, objClass, fieldNames);// 创建Sheet页的文件体（后续行）
-        // 保存Excel文件
-        saveExcelFile(workbook, filepath);
     }
 
     /**
@@ -301,13 +275,13 @@ public class MyExcelUtil {
      * @param fieldTitles sheet头信息列表(sheet第一行各列值)
      */
     private static void createTitle(Sheet sheet, String fieldTitles) {
-        Row row = sheet.createRow(0); // 创建该页的一行
-        Cell cell = null;
+        Row row = sheet.createRow(0);
+        Cell cell;
 
         String[] strArray = fieldTitles.split(",");
         for (int i = 0; i < strArray.length; i++) {
-            cell = row.createCell(i); // 创建该行的一列
-            cell.setCellType(Cell.CELL_TYPE_STRING);
+            cell = row.createCell(i);
+            cell.setCellType(CellType.STRING);
             cell.setCellValue(strArray[i]);
         }
     }
@@ -339,7 +313,7 @@ public class MyExcelUtil {
                         int len = targetMethodName.indexOf(".") < 0 ? targetMethodName.length() : targetMethodName.indexOf(".");
                         if (srcMethod.getName().equals(("get" + String.valueOf(targetMethodName.substring(0, len).charAt(0)).toUpperCase() + targetMethodName.substring(1, len)))) {
                             Cell cell = row.createCell(strIndex);
-                            cell.setCellType(Cell.CELL_TYPE_STRING);
+                            cell.setCellType(CellType.STRING);
                             try {
                                 // 如果方法返回一个引用类型的值
                                 if (targetMethodName.contains(".")) {
@@ -357,6 +331,24 @@ public class MyExcelUtil {
             }
         }
 
+    }
+
+    /**
+     * 保存Excel文件
+     *
+     * @param workbook   Excel工作簿
+     * @param outputPath 文件保存路径
+     */
+    private static void saveExcelFile(Workbook workbook, String outputPath) {
+        try {
+            FileOutputStream fos = new FileOutputStream(outputPath);
+            workbook.write(fos);
+
+            fos.flush();
+            fos.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     /**
@@ -394,26 +386,13 @@ public class MyExcelUtil {
         }
     }
 
-    /**
-     * 保存Excel文件
-     *
-     * @param workbook   Excel工作簿
-     * @param outputPath 文件保存路径
-     */
-    private static void saveExcelFile(Workbook workbook, String outputPath) {
-        try {
-            FileOutputStream fos = new FileOutputStream(outputPath);
-            workbook.write(fos);
-
-            fos.flush();
-            fos.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     public static void main(String[] args) {
-        // scanExcelTitles(new File("石油管道.xls"), "08级");
-        List<Map<String, String>> listMap = importExcelToMap(new File("石油管道.xlsx"), "姓名, 性别, 身份证号, 学号, 年级, 系部代码, 系部, 专业", "06、07级B");
+        // 读取测试
+        String fileName="C:\\Users\\JUSFOUN\\Desktop\\10.xlsx";
+        List<String> titles=scanExcelTitles(new File(fileName));
+        List<Map<String, String>> listMap = readExcelToMap(new File(fileName), StringUtils.join(titles,','), "Sheet1");
+
+        // 生成测试
+        writeExcel("C:\\Users\\JUSFOUN\\Desktop\\11.xlsx","test1","name,leader",listMap,StringUtils.join(titles,','));
     }
 }

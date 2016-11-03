@@ -183,7 +183,7 @@ public class BaseUserController {
         // 获取项目根路径并用查询数据生成表格
         String rootpath = request.getSession().getServletContext().getRealPath("/");
         String fileName = MyDateUtils.getCurrentDate() + XLSX;
-        MyExcelUtil.exportExcel(rootpath + "download" + fileName, "sheet1", "ID,用户名,性别,生日,积分", page.getList(), BaseUser.class, "id,username,sex,birthday,credits");
+        MyExcelUtil.writeExcel(rootpath + "download" + fileName, "sheet1", "ID,用户名,性别,生日,积分", page.getList(), BaseUser.class, "id,username,sex,birthday,credits");
         // 下载
         File file = new File(rootpath + "download" + fileName);
         HttpHeaders headers = new HttpHeaders();

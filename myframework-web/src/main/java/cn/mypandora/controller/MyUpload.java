@@ -87,7 +87,7 @@ public class MyUpload {
             InputStream inputStream = part.getInputStream();
             String fileName = getFileName(part);
             String fieldNames = "08级,姓名, 性别, 身份证号, 学号, 年级, 系部代码, 系部, 专业";
-            List<Map<String, String>> listmap = MyExcelUtil.importExcelToMap(inputStream, fileName, fieldNames);
+            List<Map<String, String>> listmap = MyExcelUtil.readExcelToMap(inputStream, fileName, fieldNames);
             for (Map<String, String> foo : listmap) {
                 while (foo.entrySet().iterator().hasNext()) {
                     System.out.println(123);
