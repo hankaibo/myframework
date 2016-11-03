@@ -30,15 +30,20 @@ public class MyExcelUtil {
     /**
      * 扫描Excel第一行的Title
      *
-     * @param excelFile
+     * @param file  Excel文件对象
+     * @param inputStream Excel inputStream对象
      * @param sheetName 指定的sheet名称，没有时默认取第一个。
      * @return
      */
-    public static List<String> scanExcelTitles(File excelFile, String... sheetName) {
+    public static List<String> scanExcelTitles(File file, InputStream inputStream,String... sheetName) {
         List<String> titles = new ArrayList<>();
         try {
-            Workbook workbook=WorkbookFactory.create(new FileInputStream(excelFile));
-
+            Workbook workbook;
+            if(file !=null){
+                workbook=WorkbookFactory.create(new FileInputStream(file));
+            }else{
+                workbook=WorkbookFactory.create(inputStream);
+            }
             Sheet sheet;
             if (sheetName.length == 0) {
                 sheet = workbook.getSheetAt(0);
@@ -57,8 +62,11 @@ public class MyExcelUtil {
                     i++;
                 }
             }
+
+            workbook.close();
+            inputStream.close();
         } catch (Exception e) {
-            logger.debug("Scan Excel [" + excelFile.getPath() + excelFile.getName() + "] Error");
+            logger.debug("Scan Excel Error");
             throw new RuntimeException(e);
         }
         return titles;
@@ -67,40 +75,30 @@ public class MyExcelUtil {
     /**
      * 读取Excel文件 内容以List<Map<String K,String V>>的方式存放
      *
-     * @param excelFile  Excel文件对象
+     * @param file  Excel文件对象
+     * @param inputStream Excel inputStream对象
      * @param fieldNames Map的Key列表，Value为相应的sheet一行中各列的值
      * @param sheetName  用于指定所需读取数据的表
      * @return
      */
-    public static List<Map<String, String>> readExcelToMap(File excelFile, String fieldNames, String... sheetName) {
+    public static List<Map<String, String>> readExcelToMap(File file,InputStream inputStream, String fieldNames, String... sheetName) {
         List<Map<String, String>> list = Collections.EMPTY_LIST;
 
         try {
-            Workbook workbook=WorkbookFactory.create(new FileInputStream(excelFile));
+            Workbook workbook;
+            if(file !=null){
+                workbook=WorkbookFactory.create(new FileInputStream(file));
+            }else{
+                workbook=WorkbookFactory.create(inputStream);
+            }
             list = execRead(workbook, fieldNames, sheetName);
+
+            workbook.close();
+            inputStream.close();
         } catch (Exception e) {
             logger.error("导入表格出错，信息:" + e);
         }
 
-        return list;
-    }
-
-    /**
-     * 读取Excel文件 内容以List<Map<String K,String V>>的方式存放
-     *
-     * @param excelFile  输入流
-     * @param fieldNames Key
-     * @param sheetName  sheet名称
-     * @return
-     */
-    public static List<Map<String, String>> readExcelToMap(InputStream excelFile, String fieldNames, String... sheetName) {
-        List<Map<String, String>> list = Collections.EMPTY_LIST;
-        try {
-            Workbook workbook=WorkbookFactory.create(excelFile);
-            list = execRead(workbook, fieldNames, sheetName);
-        } catch (Exception e) {
-            logger.error("导入表格出错，信息:" + e);
-        }
         return list;
     }
 
@@ -389,10 +387,10 @@ public class MyExcelUtil {
     public static void main(String[] args) {
         // 读取测试
         String fileName="C:\\Users\\JUSFOUN\\Desktop\\10.xlsx";
-        List<String> titles=scanExcelTitles(new File(fileName));
-        List<Map<String, String>> listMap = readExcelToMap(new File(fileName), StringUtils.join(titles,','), "Sheet1");
+        List<String> titles=scanExcelTitles(new File(fileName),null);
+        List<Map<String, String>> listMap = readExcelToMap(new File(fileName), null, StringUtils.join(titles,','), "Sheet1");
 
         // 生成测试
-        writeExcel("C:\\Users\\JUSFOUN\\Desktop\\11.xlsx","test1","name,leader",listMap,StringUtils.join(titles,','));
+        writeExcel("C:\\Users\\JUSFOUN\\Desktop\\12.xlsx","test1","name,leader",listMap,StringUtils.join(titles,','));
     }
 }

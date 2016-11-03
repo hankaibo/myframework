@@ -37,6 +37,7 @@
         </property>
     </bean>
 
-    <!-- 基于servlet3.x的附件上传 -->
-    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>
+    <!-- 基于servlet3.x的文件上传，如果使用spring的文件上传请更换bean -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver" />
+
 </beans>

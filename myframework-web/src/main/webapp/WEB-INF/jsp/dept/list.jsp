@@ -109,7 +109,7 @@
     });
 
     (function () {
-        fetch("http://localhost:8080/depts").then(function (res) {
+        fetch("/depts").then(function (res) {
             if (res.ok) {
                 res.json().then(function (data) {
 //                    console.log(data);

@@ -22,13 +22,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -214,6 +218,31 @@ public class BaseUserController {
         BaseUser baseUser = baseUserService.findUserById(id);
         model.put("userself", baseUser);
         return "user/myedit";
+    }
+
+    @RequestMapping(value="/me/attendance",method = RequestMethod.GET)
+    public String myAttendance(){
+        return "user/myattendance";
+    }
+
+    @RequestMapping(value = "/me/addendance/upload", method = RequestMethod.POST)
+    public void upload(MultipartFile file) {
+        String fileName=file.getName();
+        long fileSize=file.getSize();
+        System.out.println(fileName+":"+fileSize);
+
+        try {
+            InputStream is=file.getInputStream();
+            List<String> titles=MyExcelUtil.scanExcelTitles(null,is);
+//            List<String> titles=new ArrayList<>();
+//            titles.add("姓名");
+//            titles.add("b");
+            List<Map<String, String>> listMap = MyExcelUtil.readExcelToMap(null,is, StringUtils.join(titles,','), "Sheet1");
+            System.out.println(listMap.size());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     /**

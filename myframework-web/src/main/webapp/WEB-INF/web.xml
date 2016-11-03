@@ -77,7 +77,12 @@
             <param-name>contextConfigLocation</param-name>
             <param-value>/WEB-INF/spring-mvc.xml</param-value>
         </init-param>
-        <load-on-startup>2</load-on-startup>
+        <multipart-config>
+            <location>d:\\tools</location>
+            <max-file-size>20848820</max-file-size>
+            <max-request-size>418018841</max-request-size>
+            <file-size-threshold>1048576</file-size-threshold>
+        </multipart-config>
     </servlet>
 
     <welcome-file-list>

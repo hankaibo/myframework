@@ -104,6 +104,7 @@
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link" value="/users/me">个人管理</a></li>
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link" value="/logs/me">个人日志</a></li>
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link" value="/users/me">个人信息</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link" value="/users/me/attendance">个人考勤</a></li>
                         </ul>
                     </li>
                 </ul>
