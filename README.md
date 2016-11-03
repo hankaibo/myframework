@@ -1,4 +1,4 @@
-# myframeword!
+# myframework!
 > 不多言，详情请看代码。
 
 # 内容列表
@@ -12,10 +12,10 @@
 
 
 # Web
-* MVC Framework： struts2问题太多了,更新慢，漏洞多，而且使用中也麻烦，而SpringMVC3 Restful太棒了。
+* MVC Framework： struts2问题太多了，更新慢，漏洞多，而且使用中也麻烦，而SpringMVC3 Restful太棒了。
 * Template：当然是使用SUN的官方标准JSP2.0了。
-* Javascript Library：jQuery，相信这个大家都会吧！
-* CSS Framework：Twitter Bootstrap，一是因为它流行，简洁；二是没有美工啊！
+* Javascript Library：jQuery，相信这个大家都会吧！Ractivejs，简单的双向绑定模板引擎。
+* CSS Framework：Pure.css，一是因为它简单，简洁；二是没有美工啊！
 * JavaScript/CSS Compressor: YUI Compressor。
 * Validation: 前台JQuery Validation Plugin，后台Hibernate Valiator，双剑合璧，天下无敌。
 
@@ -43,5 +43,6 @@
 
 
 # Environment
-* SDK:当然是JDK7了，9到要出世了，7再不用就没机会了。
+* SDK:当然是JDK8了，9到要出世了，8再不用就没机会了。
 * 服务器：Tomcat7,对servlet3.0支持挺好的。
+* Maven，事实上的开发标准，虽然快过期了。
