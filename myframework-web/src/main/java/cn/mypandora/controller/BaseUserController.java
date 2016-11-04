@@ -14,6 +14,7 @@ import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.*;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.poi.ss.formula.functions.Value;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -30,10 +31,9 @@ import javax.servlet.http.Part;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * <p>User: hankaibo
@@ -220,29 +220,72 @@ public class BaseUserController {
         return "user/myedit";
     }
 
-    @RequestMapping(value="/me/attendance",method = RequestMethod.GET)
-    public String myAttendance(){
+    @RequestMapping(value = "/me/attendance", method = RequestMethod.GET)
+    public String myAttendance() {
         return "user/myattendance";
     }
 
     @RequestMapping(value = "/me/addendance/upload", method = RequestMethod.POST)
-    public void upload(MultipartFile file) {
-        String fileName=file.getName();
-        long fileSize=file.getSize();
-        System.out.println(fileName+":"+fileSize);
+    @ResponseBody
+    public Map<String, Object> upload(MultipartFile file) {
+        Map<String, Object> result = new HashMap<>();
 
         try {
-            InputStream is=file.getInputStream();
-            List<String> titles=MyExcelUtil.scanExcelTitles(null,is);
-//            List<String> titles=new ArrayList<>();
-//            titles.add("姓名");
-//            titles.add("b");
-            List<Map<String, String>> listMap = MyExcelUtil.readExcelToMap(null,is, StringUtils.join(titles,','), "Sheet1");
+            List<String> titles = MyExcelUtil.scanExcelTitles(null, file.getInputStream());
+            List<Map<String, String>> listMap = MyExcelUtil.readExcelToMap(null, file.getInputStream(), StringUtils.join(titles, ','), "Sheet1");
             System.out.println(listMap.size());
+
+            // x
+            List<String> categories = new ArrayList<>();
+            for (int i = 2; i < titles.size(); i++) {
+                categories.add(titles.get(i));
+            }
+
+            // y
+            List<Double[]> data = new ArrayList<>();
+            for (int j = 0; j < listMap.size(); j++) {
+                if (StringUtils.endsWithIgnoreCase(listMap.get(j).get("姓名"), "吕颖萍")) {
+                    Iterator<String> it = categories.iterator();
+                    while (it.hasNext()) {
+                        // 打卡时间
+                        Double[] attendance=new Double[2];
+
+                        // 首先获取指定日期的值，可能为空
+                        String cellValue=StringUtils.trim(listMap.get(j).get(it.next()));
+                        // 如果为空，设为默认的0 0
+                        if(StringUtils.isEmpty(cellValue)){
+                            attendance[0]=0D;
+                            attendance[1]=0D;
+                        }else{ // 如果不为空，就开始进行分割
+                            String pattern="^0";
+                            Pattern r=Pattern.compile(pattern);
+
+                            String[] arrCellValue=cellValue.split(" ");
+                            if(arrCellValue.length==1){// 长度为1时，有可能是第一个也有可能是第二个，要判断，他妈的
+                                // 把它转为数字，如果大于12就认为是下午的打卡记录，设上午记录为0；反之，则设下午记录为24.
+                                if(Double.parseDouble(r.matcher(arrCellValue[0]).replaceAll("").replace(":","."))>=12.0){
+                                    attendance[0]=0D;
+                                    attendance[1]=Double.parseDouble(r.matcher(arrCellValue[0]).replaceAll("").replace(":","."));
+                                }else {
+                                    attendance[0]=Double.parseDouble(r.matcher(arrCellValue[0]).replaceAll("").replace(":","."));
+                                    attendance[1]=0D;
+                                }
+                            }else {// 长度大于1时，取第一个和最后一个
+                                attendance[0]=Double.parseDouble(r.matcher(arrCellValue[0]).replaceAll("").replace(":","."));
+                                attendance[1]=Double.parseDouble(r.matcher(arrCellValue[arrCellValue.length-1]).replaceAll("").replace(":","."));
+                            }
+                        }
+                        data.add(attendance);
+                    }
+                }
+            }
+            result.put("categories", categories);
+            result.put("data", data);
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        return result;
     }
 
     /**

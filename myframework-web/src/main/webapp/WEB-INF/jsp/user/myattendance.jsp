@@ -21,14 +21,17 @@
 <div class="pure-g">
     <div class="pure-u-1">
         <form id="uploadForm" enctype="multipart/form-data">
-            <input type="file" id="input" onchange="handleFiles(this.files)">
-            <button id="upload" type="button">upload</button>
+            <input type="file" id="file">
+            <button type="button" class="button button-success" on-click="upload">upload</button>
         </form>
-
+        <div id="main" style="min-width:300px;height:800px"></div>
     </div>
 </div>
 
 </script>
+<script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
+<script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/highcharts-more.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/ractive.min.js"></script>
 <script type="text/javascript">
     var ractive = new Ractive({
@@ -36,21 +39,49 @@
         template: '#template',
         data: {}
     });
+    ractive.on({
+        upload:function () {
+            uploadFiles();
+        }
+    });
 
-    function handleFiles(files) {
+    function createChart(data) {
+        $('#main').highcharts({
+            chart: {
+                type: 'columnrange',
+                inverted: true
+            },
+            title: {
+                text: '考勤图示'
+            },
+            xAxis: {
+                categories: data.categories
+            },
+            yAxis: { },
+            plotOptions: {
+                columnrange: {
+                    dataLabels: {
+                        enabled: true,
+                        formatter: function () {
+                            return this.y;
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: '工作中',
+                data: data.data
+            }]
+        });
+    }
+
+    function uploadFiles() {
+        var files=document.querySelector("#file").files;
         var reader=new FileReader();
-        var numFiles=files.length;
         var file=files[0];
         var data=new FormData();
         data.append('file',file);
         data.append('user','hankaibo');
-        console.group("上传文件信息");
-        console.log("文件数:%d个。",numFiles);
-        console.log("文件名称:%s。",file.name);
-        console.log("文件大小:%d kb。",file.size);
-        console.log("文件类型:%s。",file.type);
-        console.dir(file);
-        console.groupEnd();
 
         reader.onload=function(e){
             fetch("/users/me/addendance/upload",{
@@ -60,12 +91,17 @@
 //                },
                 body:data
             })
-            .then()
-            .then(function (data) {
-                console.log(data);
-            })
-            .catch(function (error) {
-                console.log(error);
+            .then(function (res) {
+                console.log(res);
+                if(res.ok){
+                    res.json().then(function (data){
+                        createChart(data);
+                    });
+                } else{
+                    console.log('error');
+                }
+            },function (e) {
+                console.error(e);
             });
         }.bind(this);
         reader.readAsBinaryString( file );

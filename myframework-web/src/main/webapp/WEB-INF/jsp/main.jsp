@@ -65,6 +65,16 @@
         .accordionMenu :target h2:before {
             border-color: transparent transparent transparent #fff;
         }
+
+        #container{
+            display: flex;
+            height: 100vh;
+            flex-direction: column;
+        }
+
+        .main {
+            flex: 1;
+        }
     </style>
 </head>
 <body>
@@ -83,7 +93,7 @@
             </nav>
         </div>
     </div>
-    <div class="pure-g">
+    <div class="pure-g main">
         <div class="pure-u-1-5">
             <div class="pure-menu">
                 <ul class="pure-menu-list accordionMenu">
@@ -111,7 +121,7 @@
             </div>
         </div>
         <div class="pure-u-4-5">
-            <iframe id="rightFrame" name="rightFrame" src="/login/home" frameborder=0 scrolling=no height="calc(100vh - 34px)" width="100%" ></iframe>
+            <iframe id="rightFrame" name="rightFrame" src="/login/home" frameborder=0 scrolling=no height="100%" width="100%" ></iframe>
         </div>
     </div>
     <div class="pure-g">
