@@ -5,12 +5,14 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:aop="http://www.springframework.org/schema/aop"
        xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
        xmlns:task="http://www.springframework.org/schema/task"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+        http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd
         http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.0.xsd">
     <!-- 扫描类包，将标注Spring注解的类自动转化Bean,同时完成Bean的注入并在父容器中（applicationContext.xml）将Controller的注解排除掉 -->
     <context:component-scan base-package="cn.mypandora.*">
@@ -29,7 +31,7 @@
     <!-- *****************************数据库连接***************************** -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
         <property name="url" value="${center.jdbc.jdbcUrl}"/>
-        <property name="username" value="${center.jdbc.user}"/>
+        <property name="username" value="${center.jdbc.username}"/>
         <property name="password" value="${center.jdbc.password}"/>
         <!-- 配置初始化大小、最小、最大、配置获取连接等待超时的时间 -->
         <property name="initialSize" value="1"/>
@@ -51,6 +53,10 @@
         <!-- 配置监控统计拦截的filters -->
         <property name="filters" value="stat"/>
     </bean>
+    <jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
+        <jdbc:script location="classpath:db/h2/create_table.sql"/>
+        <!--<jdbc:script location="classpath:db/h2/import_data.sql"/>-->
+    </jdbc:initialize-database>
 
     <!-- *****************************myBatis文件***************************** -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
