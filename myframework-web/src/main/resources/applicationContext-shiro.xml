@@ -7,9 +7,9 @@
        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <description>Shiro安全配置</description>
-    <!-- 缓存管理器 使用Ehcache实现 -->
-    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
-        <property name="cacheManagerConfigFile" value="classpath:cn.mypandora.ehcache/cn.mypandora.ehcache-shiro.xml"/>
+    <!-- 缓存管理器 使用spring -->
+    <bean id="cacheManager" class="cn.mypandora.config.SpringCacheManagerWrapper">
+        <property name="cacheManager" ref="springCacheManager"/>
     </bean>
 
     <!-- 凭证匹配器 -->
@@ -25,10 +25,10 @@
     <bean id="myUserRealm" class="cn.mypandora.shiro.realm.UserRealm">
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
         <property name="cachingEnabled" value="true"/>
-        <property name="authenticationCachingEnabled" value="true"/>
-        <property name="authenticationCacheName" value="authenticationCache"/>
-        <property name="authorizationCachingEnabled" value="true"/>
-        <property name="authorizationCacheName" value="authorizationCache"/>
+        <!--<property name="authenticationCachingEnabled" value="true"/>-->
+        <!--<property name="authenticationCacheName" value="authenticationCache"/>-->
+        <!--<property name="authorizationCachingEnabled" value="true"/>-->
+        <!--<property name="authorizationCacheName" value="authorizationCache"/>-->
     </bean>
     <!-- 会话ID生成器 -->
     <bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
@@ -36,7 +36,18 @@
     <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
         <constructor-arg value="sid"/>
         <property name="httpOnly" value="true"/>
-        <property name="maxAge" value="180000"/>
+        <property name="maxAge" value="-1"/>
+    </bean>
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rememberMe"/>
+        <property name="httpOnly" value="true"/>
+        <property name="maxAge" value="2592000"/><!-- 30天 -->
+    </bean>
+    <!-- rememberMe管理器 -->
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <!-- rememberMe cookie加密的密钥 建议每个项目都不一样 默认AES算法 密钥长度（128 256 512 位）-->
+        <property name="cipherKey" value="#{T(org.apache.shiro.codec.Base64).decode('4AvVhmFLUs0KTA3Kprsdag==')}"/>
+        <property name="cookie" ref="rememberMeCookie"/>
     </bean>
     <!-- 会话DAO -->
     <bean id="sessionDAO" class="org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO">
@@ -63,6 +74,7 @@
         <property name="realm" ref="myUserRealm"/>
         <property name="sessionManager" ref="sessionManager"/>
         <property name="cacheManager" ref="cacheManager"/>
+        <property name="rememberMeManager" ref="rememberMeManager"/>
     </bean>
     <!-- 相当于调用SecurityUtils.setSecurityManager(securityManager) -->
     <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
@@ -73,12 +85,11 @@
     <bean id="formAuthenticationFilter" class="org.apache.shiro.web.filter.authc.FormAuthenticationFilter">
         <property name="usernameParam" value="username"/>
         <property name="passwordParam" value="password"/>
-        <property name="loginUrl" value="/login.jsp"/>
+        <property name="rememberMeParam" value="rememberMe"/>
+        <property name="loginUrl" value="/login"/>
     </bean>
     <!-- 退出登录过滤器 -->
-    <bean id="logoutFilter" class="org.apache.shiro.web.filter.authc.LogoutFilter">
-        <property name="redirectUrl" value="/login?logout=1"/>
-    </bean>
+    <bean id="sysUserFilter" class="cn.mypandora.shiro.filter.SysUserFilter" />
 
     <!-- Shiro主过滤器本身功能十分强大,其强大之处就在于它支持任何基于URL路径表达式的、自定义的过滤器的执行 -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
@@ -89,13 +100,13 @@
         <!-- 登陆成功后要跳转的连接 -->
         <!--<property name="successUrl" value="/"/>-->
         <!-- 用户访问未对其授权的资源时,所显示的连接 -->
-        <property name="unauthorizedUrl" value="/unauthor.jsp"/>
+        <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
         <property name="filters">
-            <util:map>
-                <entry key="authc" value-ref="formAuthenticationFilter"/>
-                <entry key="logout" value-ref="logoutFilter"/>
-            </util:map>
-        </property>
+        <util:map>
+            <entry key="authc" value-ref="formAuthenticationFilter"/>
+            <entry key="sysUser" value-ref="sysUserFilter"/>
+        </util:map>
+    </property>
         <!-- Shiro连接约束配置,即过滤链的定义 -->
         <!-- anon：它对应的过滤器里面是空的,什么都没做 -->
         <!-- authc：该过滤器下的页面必须验证后才能访问,它是Shiro内置的一个拦截器org.apache.shiro.web.filter.authc.FormAuthenticationFilter -->
@@ -104,8 +115,8 @@
                 /login = anon
                 /logout = logout
                 /resources/** = anon
-                /captchaImage=anon
-                /**=authc
+                /authenticated = authc
+                /**=user,sysUser
             </value>
         </property>
     </bean>

@@ -20,43 +20,31 @@
     </context:component-scan>
 
     <!-- *****************************数据库配置文件***************************** -->
-    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="locations">
-            <list>
-                <value>classpath:db.properties</value>
-            </list>
-        </property>
-    </bean>
+    <context:property-placeholder location="classpath:db.properties"/>
 
     <!-- *****************************数据库连接***************************** -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
         <property name="url" value="${center.jdbc.jdbcUrl}"/>
         <property name="username" value="${center.jdbc.username}"/>
         <property name="password" value="${center.jdbc.password}"/>
-        <!-- 配置初始化大小、最小、最大、配置获取连接等待超时的时间 -->
-        <property name="initialSize" value="1"/>
-        <property name="minIdle" value="1"/>
-        <property name="maxActive" value="20"/>
-        <property name="maxWait" value="60000"/>
-        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
-        <property name="timeBetweenEvictionRunsMillis" value="60000"/>
-        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
-        <property name="minEvictableIdleTimeMillis" value="300000"/>
-
-        <property name="validationQuery" value="SELECT 'x'"/>
-        <property name="testWhileIdle" value="true"/>
-        <property name="testOnBorrow" value="false"/>
-        <property name="testOnReturn" value="false"/>
-        <!-- 打开PSCache，并且指定每个连接上PSCache的大小 -->
-        <property name="poolPreparedStatements" value="false"/>
-        <property name="maxPoolPreparedStatementPerConnectionSize" value="20"/>
-        <!-- 配置监控统计拦截的filters -->
-        <property name="filters" value="stat"/>
+        <property name="initialSize" value="${druid.initialSize}"/>
+        <property name="minIdle" value="${druid.minIdle}"/>
+        <property name="maxActive" value="${druid.maxActive}"/>
+        <property name="maxWait" value="${druid.maxWait}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${druid.timeBetweenEvictionRunsMillis}"/>
+        <property name="minEvictableIdleTimeMillis" value="${druid.minEvictableIdleTimeMillis}"/>
+        <property name="validationQuery" value="${druid.validationQuery}"/>
+        <property name="testWhileIdle" value="${druid.testWhileIdle}"/>
+        <property name="testOnBorrow" value="${druid.testOnBorrow}"/>
+        <property name="testOnReturn" value="${druid.testOnReturn}"/>
+        <property name="poolPreparedStatements" value="${druid.poolPreparedStatements}"/>
+        <property name="maxPoolPreparedStatementPerConnectionSize" value="${druid.maxPoolPreparedStatementPerConnectionSize}"/>
+        <property name="filters" value="${druid.filters}"/>
     </bean>
-    <jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">
-        <jdbc:script location="classpath:db/h2/create_table.sql"/>
+    <!--<jdbc:initialize-database data-source="dataSource" ignore-failures="ALL">-->
+        <!--<jdbc:script location="classpath:db/h2/create_table.sql"/>-->
         <!--<jdbc:script location="classpath:db/h2/import_data.sql"/>-->
-    </jdbc:initialize-database>
+    <!--</jdbc:initialize-database>-->
 
     <!-- *****************************myBatis文件***************************** -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -77,10 +65,23 @@
     </bean>
     <!-- 可通过注解控制事务 -->
     <tx:annotation-driven/>
+
     <!-- *****************************日志***************************** -->
     <bean class="cn.mypandora.log.MyLogAspect"/>
 
+    <bean class="cn.mypandora.config.SpringUtils" />
+
+    <!-- *****************************spring缓存管理***************************** -->
+    <bean id="springCacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">
+        <property name="cacheManager" ref="ehcacheManager"/>
+    </bean>
+    <!--ehcache-->
+    <bean id="ehcacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
+        <property name="configLocation" value="classpath:ehcache/ehcache.xml"/>
+    </bean>
 
     <!-- *****************************spring-task定时任务***************************** -->
     <task:annotation-driven/>
+
+    <import resource="classpath:applicationContext-shiro.xml" />
 </beans>
