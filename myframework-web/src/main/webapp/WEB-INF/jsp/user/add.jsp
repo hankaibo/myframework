@@ -18,11 +18,11 @@
                 <fieldset>
                     <div class="pure-control-group">
                         <label for="username">用户名</label>
-                        <input type="text" placeholder="username">
+                        <input type="text" value="{{username}}" placeholder="username">
                     </div>
                     <div class="pure-control-group">
                         <label for="password">密码</label>
-                        <input type="password" placeholder="password">
+                        <input type="password" value="{{password}}" placeholder="password">
                     </div>
                     <div class="pure-control-group">
                         <label for="sex">性别</label>
@@ -41,23 +41,47 @@
                         <input type="date" placeholder="birthday">
                     </div>
                     <div class="pure-controls">
-                        <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+                        <button type="submit" class="pure-button pure-button-primary" on-click="save">Sign in</button>
                         <button type="reset" class="pure-button pure-button-warning">取消</button>
                     </div>
                 </fieldset>
              </form>
         </div>
     </div>
+
+
 </script>
 <script src="${pageContext.request.contextPath}/resources/js/ractive.min.js"></script>
 <script type="text/javascript">
     var ractive = new Ractive({
         el: '#container',
         template: '#template',
-        data: {}
+        data: {
+            username: '',
+            password: ''
+        }
     });
     ractive.on({
-
+        save: function () {
+            console.log(ractive.get());
+            var data = ractive.get();
+            fetch("/users", {
+                method: 'post',
+                headers:{
+                    'Content-Type':'application/json'
+                },
+                body: JSON.stringify(data)
+            }).then(function (res) {
+                console.log(res);
+                if (res.ok) {
+                   console.log('ok');
+                } else {
+                    console.log('error');
+                }
+            }, function (e) {
+                console.error(e);
+            });
+        }
     });
 </script>
 </body>

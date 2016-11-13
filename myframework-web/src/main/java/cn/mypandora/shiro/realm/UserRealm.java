@@ -54,13 +54,8 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         UsernamePasswordToken upToken = (UsernamePasswordToken) token;
         String username = upToken.getUsername().trim();
-//        BaseUser user = baseUserService.findUserByUsername(username);
-        BaseUser user=new BaseUser();
-        user.setUsername("admin");
-        user.setPassword("123456");
-        user.setSalt("salt");
+        BaseUser user = baseUserService.findUserByUsername(username);
         if (user == null) {
-
             throw new UnknownAccountException();//没找到帐号
         }
         if (Boolean.TRUE.equals(user.getLocked())) {
@@ -71,7 +66,7 @@ public class UserRealm extends AuthorizingRealm {
         SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(
                 user.getUsername(), //用户名
                 user.getPassword(), //密码
-//                ByteSource.Util.bytes(user.getCredentialsSalt()),//salt=username+salt
+                ByteSource.Util.bytes(user.getCredentialsSalt()),//salt=username+salt
                 getName()  //realm name
         );
         return authenticationInfo;

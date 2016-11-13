@@ -107,7 +107,7 @@ public class BaseUserController {
      */
     @ApiOperation(value = "创建用户", notes = "返回用户实体对象", response = BaseUser.class)
     @RequestMapping(method = RequestMethod.POST)
-    public String add(BaseUser baseUser) {
+    public String add(@RequestBody BaseUser baseUser,HttpServletRequest request) {
         baseUserService.addUser(baseUser);
         return "user/list";
     }

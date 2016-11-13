@@ -46,6 +46,6 @@ public class RetryLimitHashedCredentialsMatcher extends HashedCredentialsMatcher
             //clear retry count
             passwordRetryCache.remove(username);
         }
-        return !matches;
+        return matches;
     }
 }
