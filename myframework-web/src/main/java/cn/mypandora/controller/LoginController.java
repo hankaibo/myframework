@@ -5,9 +5,18 @@
  */
 package cn.mypandora.controller;
 
+import cn.mypandora.po.BaseRes;
+import cn.mypandora.po.BaseUser;
 import cn.mypandora.service.BaseResService;
 import cn.mypandora.service.BaseUserService;
+import cn.mypandora.util.MyTreeUtil;
 import cn.mypandora.vo.LoginCommand;
+import cn.mypandora.vo.ParentChildTree;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.ExcessiveAttemptsException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -19,6 +28,10 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @ClassName:LoginController
@@ -53,10 +66,11 @@ public class LoginController {
     private ModelAndView actualLoginCheck(HttpServletRequest request, HttpServletResponse response, LoginCommand loginCommand, boolean isCaptcha) {
 //        boolean rememberMe = WebUtils.isTrue(request, FormAuthenticationFilter.DEFAULT_REMEMBER_ME_PARAM);
 //
-//        //构造登陆令牌环
-//        UsernamePasswordToken token = new UsernamePasswordToken(loginCommand.getUsername(), loginCommand.getPassword());
+        //构造登陆令牌环
+        UsernamePasswordToken token = new UsernamePasswordToken(loginCommand.getUsername(), loginCommand.getPassword());
+        return new ModelAndView("main");
 //        try {
-
+//
 //            SecurityUtils.getSubject().login(token);
 //            HttpSession session = request.getSession(true);
 //            //登陆成功后，积分+5；查询对应资源；显示相应页面。
@@ -68,12 +82,12 @@ public class LoginController {
 //            session.setAttribute("user", user);
 //            List<BaseRes> listResoureces = baseResService.getResDescendant(1L);
 //            List<ParentChildTree> listPCTrees = new ArrayList<>();
-
+//
 //            for (BaseRes res : listResoureces) {
 //                listPCTrees.add(MyTreeUtil.lfNode2pcNode(res));
 //            }
 //            request.getSession().setAttribute("menuTree", listPCTrees);
-        return new ModelAndView("main");
+//            return new ModelAndView("main");
 //        } catch (UnknownAccountException e) {
 //            logger.error("账号不存在!:" + e);
 //        } catch (IncorrectCredentialsException e) {

@@ -103,7 +103,7 @@
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link" value="/depts/gotoList">部门管理</a></li>
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link" value="/logs/toList">日志管理</a></li>
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link">资源管理</a></li>
-                            <li class="pure-menu-item"><a href="#" class="pure-menu-link">用户管理</a></li>
+                            <li class="pure-menu-item"><a href="#" class="pure-menu-link" value="/users/toList">用户管理</a></li>
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link">角色管理</a></li>
                             <li class="pure-menu-item"><a href="#" class="pure-menu-link">权限管理</a></li>
                         </ul>

@@ -69,8 +69,8 @@ CREATE TABLE `t_base_permission_res` (
   `id` int(11) NOT NULL,
   `permission_id` int(11) DEFAULT NULL,
   `res_id` int(11) DEFAULT NULL,
-  `create_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `update_time` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `create_time` datetime DEFAULT '0000-00-00 00:00:00',
+  `update_time` datetime DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

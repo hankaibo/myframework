@@ -1,66 +1,64 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <c:set var="ctx" value="${pageContext.request.contextPath}"/>
 <!DOCTYPE HTML>
 <html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<%@ include file="../home.jsp" %>
-<script type="text/javascript">
-$(function() {
-    $( "#inputBirthday" ).datepicker({
-        maxDate: new Date()
-    });
-});
-</script>
-<title>用户新增</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%--<link href="//cdn.bootcss.com/pure/0.6.0/pure.css" rel="stylesheet">--%>
+    <link href="${pageContext.request.contextPath}/resources/css/pure.css" rel="stylesheet">
+    <title>用户新增</title>
 </head>
 <body>
-<div class="container-fluid">
-    <ul class="nav nav-tabs">
-        <li><a href="${ctx}/users/toList">用户列表</a></li>
-        <li class="active"><a href="#">添加</a></li>
-    </ul>
-    <form class="form-horizontal" role="form" action="${ctx}/users" method="post">
-        <div class="form-group">
-            <label for="inputUsername" class="col-sm-2 control-label">用户名</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" id="inputUsername" placeholder="用户名" name="username">
-            </div>
+<div id='container'></div>
+<script id="template" type="text/ractive">
+    <div class="pure-g">
+        <div class="pure-u-1">
+            <form class="pure-form pure-form-aligned">
+                <fieldset>
+                    <div class="pure-control-group">
+                        <label for="username">用户名</label>
+                        <input type="text" placeholder="username">
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="password">密码</label>
+                        <input type="password" placeholder="password">
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="sex">性别</label>
+                        <label class="pure-radio">
+                            <input type="radio" name="sex" value="1"> 男
+                        </label>
+                        <label class="pure-radio">
+                            <input type="radio" name="sex" value="0"> 女
+                        </label>
+                        <label class="pure-radio">
+                            <input type="radio" name="sex" value="2" checked> 保密
+                        </label>
+                    </div>
+                    <div class="pure-control-group">
+                        <label for="birthday">生日</label>
+                        <input type="date" placeholder="birthday">
+                    </div>
+                    <div class="pure-controls">
+                        <button type="submit" class="pure-button pure-button-primary">Sign in</button>
+                        <button type="reset" class="pure-button pure-button-warning">取消</button>
+                    </div>
+                </fieldset>
+             </form>
         </div>
-        <div class="form-group">
-            <label for="inputPassword" class="col-sm-2 control-label">密码</label>
-            <div class="col-sm-4">
-                <input type="password" class="form-control" id="inputPassword" placeholder="密码" name="password">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">性别</label>
-            <div class="col-sm-4">
-                <label class="radio-inline">
-                    <input type="radio" name="sex" id="inlineCheckbox1" value="1"> 男
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="sex" id="inlineCheckbox2" value="0"> 女
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="sex" id="inlineCheckbox3" value="2" checked> 保密
-                </label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputBirthday" class="col-sm-2 control-label">生日</label>
-            <div class="col-sm-4">
-                <input type="text" class="form-control" id="inputBirthday" placeholder="生日" name="birthday">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-4">
-                <button type="submit" class="btn btn-primary active">保存</button>
-                <button type="reset" class="btn btn-primary active">取消</button>
-            </div>
-        </div>
-    </form>
-</div>
+    </div>
+</script>
+<script src="${pageContext.request.contextPath}/resources/js/ractive.min.js"></script>
+<script type="text/javascript">
+    var ractive = new Ractive({
+        el: '#container',
+        template: '#template',
+        data: {}
+    });
+    ractive.on({
+
+    });
+</script>
 </body>
 </html>

@@ -60,7 +60,7 @@
 
     <bean class="cn.mypandora.exception.DefaultExceptionHandler"></bean>
 
-    <!--shiro-->
+    <!--开启shiro注解-->
     <aop:config proxy-target-class="true"></aop:config>
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
