@@ -46,7 +46,7 @@ public class MyExcelUtil {
                 int i = 0;
                 while (true) {
                     Cell cell = row.getCell(i);
-                    if (cell == null) {
+                    if (cell == null || StringUtils.isBlank(cell.getStringCellValue())) {
                         break;
                     }
                     titles.add(cell.getStringCellValue());

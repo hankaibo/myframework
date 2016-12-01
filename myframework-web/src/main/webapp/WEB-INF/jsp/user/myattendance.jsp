@@ -12,6 +12,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%--<link href="//cdn.bootcss.com/pure/0.6.0/pure.css" rel="stylesheet">--%>
     <link href="${pageContext.request.contextPath}/resources/css/pure.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/resources/css/visavail.css" rel="stylesheet" type="text/css">
+    <link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <title>attendance</title>
 </head>
 <body>
@@ -24,87 +27,78 @@
             <input type="file" id="file">
             <button type="button" class="button button-success" on-click="upload">upload</button>
         </form>
-        <div id="main" style="min-width:300px;height:800px"></div>
+        <p id="example">
     </div>
 </div>
-
 </script>
-<script type="text/javascript" src="http://cdn.hcharts.cn/jquery/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/highcharts.js"></script>
-<script type="text/javascript" src="http://cdn.hcharts.cn/highcharts/highcharts-more.js"></script>
+<script src="http://cdn.bootcss.com/moment.js/2.17.0/moment-with-locales.min.js"></script>
+<script src="http://cdn.bootcss.com/d3/3.5.17/d3.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/ractive.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/visavail.js"></script>
 <script type="text/javascript">
+    moment.locale("zh-cn");
+    var dataset = [{
+        "measure": "Room Occupancy", // name of the data series, will become y-axis label
+        "data": [
+            ["2016-01-01 20:30:00", 1, "2016-01-01 22:00:00"]
+        ]
+    }];
     var ractive = new Ractive({
         el: '#container',
         template: '#template',
-        data: {}
+        data: []
     });
     ractive.on({
-        upload:function () {
+        upload: function () {
             uploadFiles();
         }
     });
 
     function createChart(data) {
-        $('#main').highcharts({
-            chart: {
-                type: 'columnrange',
-                inverted: true
-            },
-            title: {
-                text: '考勤图示'
-            },
-            xAxis: {
-                categories: data.categories
-            },
-            yAxis: { },
-            plotOptions: {
-                columnrange: {
-                    dataLabels: {
-                        enabled: true,
-                        formatter: function () {
-                            return this.y;
-                        }
-                    }
-                }
-            },
-            series: [{
-                name: '工作中',
-                data: data.data
-            }]
-        });
+        // draw Visavail.js chart
+        var chart = visavailChart().width(800);
+        for(var i=0;i<data.data.length;i++){
+            var foo={};
+            foo.measure=data.categories[i];
+            foo.data=[[data.data[i][0],1,data.data[i][1]]];
+            dataset.push(foo);
+        }
+        for(var j=0;j<dataset.length;j++){
+            console.log(dataset[j].data);
+        }
+        console.log(dataset);
+        d3.select("#example").datum(dataset).call(chart);
     }
 
     function uploadFiles() {
-        var files=document.querySelector("#file").files;
-        var reader=new FileReader();
-        var file=files[0];
-        var data=new FormData();
-        data.append('file',file);
-        data.append('user','hankaibo');
+        var files = document.querySelector("#file").files;
+        var reader = new FileReader();
+        var file = files[0];
+        var data = new FormData();
+        data.append('file', file);
+        data.append('user', 'hankaibo');
 
-        reader.onload=function(e){
-            fetch("/users/me/addendance/upload",{
-                method:'post',
+        reader.onload = function (e) {
+            fetch("/users/me/addendance/upload", {
+                method: 'post',
 //                headers:{
 //                    'Content-Type':'multipart/form-data'
 //                },
-                body:data
-            })
-            .then(function (res) {
+                body: data
+            }).then(function (res) {
                 console.log(res);
-                if(res.ok){
-                    res.json().then(function (data){
+                if (res.ok) {
+                    res.json().then(function (data) {
                         createChart(data);
                     });
-                } else{
+                } else {
                     console.log('error');
                 }
-            },function (e) {
+            }, function (e) {
                 console.error(e);
             });
         }.bind(this);
-        reader.readAsBinaryString( file );
+        reader.readAsBinaryString(file);
     }
 </script>
 </body>

@@ -1,6 +1,6 @@
 /**
  * Copyright © 2015.
- *
+ * <p>
  * Licensed under the Apache License, Version 2.0 (the "License");
  */
 package cn.mypandora.util;
@@ -28,7 +28,7 @@ public class MyDateUtils {
     /**
      * 得到当前月的第一天.
      *
-     * @return
+     * @return 得到当前月的第一天
      */
     public static String getMonthFirstDay() {
         Calendar cal = Calendar.getInstance();
@@ -49,7 +49,7 @@ public class MyDateUtils {
     /**
      * 得到当前月最后一天
      *
-     * @return
+     * @return 得到当前月最后一天
      */
     public static String getMonthLastDay() {
         Calendar cal = Calendar.getInstance();
@@ -77,7 +77,7 @@ public class MyDateUtils {
     /**
      * 得到上个月的第一天
      *
-     * @return
+     * @return 得到上个月的第一天
      */
     public static String getPreviousMonthFirst() {
         Calendar cal = Calendar.getInstance();
@@ -104,7 +104,7 @@ public class MyDateUtils {
     /**
      * 得到上个月最后一天
      *
-     * @return
+     * @return 得到上个月最后一天
      */
     public static String getPreviousMonthEnd() {
         Calendar cal = Calendar.getInstance();
@@ -132,7 +132,7 @@ public class MyDateUtils {
     /**
      * 得到下个月的第一天
      *
-     * @return
+     * @return 得到下个月的第一天
      */
     public static String getNextMonthFirst() {
         Calendar cal = Calendar.getInstance();
@@ -154,7 +154,7 @@ public class MyDateUtils {
     /**
      * 得到下个月最后一天。
      *
-     * @return
+     * @return 得到下个月最后一天
      */
     public static String getNextMonthEnd() {
         Calendar cal = Calendar.getInstance();
@@ -173,122 +173,84 @@ public class MyDateUtils {
     /**
      * 得到当前月的天数
      *
-     * @return
+     * @return 得到当前月的天数
      */
     public static int getCurrentMonthDays() {
         Calendar cal = new GregorianCalendar();// Calendar.getInstance();
-        int days = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-        return days;
+        return cal.getActualMaximum(Calendar.DAY_OF_MONTH);
     }
 
     /**
      * 得到指定的月份的天数
      *
      * @param date 指定的月份 yyyy-MM
-     * @return
+     * @return 得到指定的月份的天数
      */
     public static int getSpecifiedMonthDays(String date) {
         Calendar cal = Calendar.getInstance();
+        int days=0;
         try {
             cal.setTime(DateUtils.parseDate(date, MONTH_FORMAT));
-            int days = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
-            return days;
+            days = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
         } catch (Exception e1) {
             e1.printStackTrace();
         }
-        return 0;
+        return days;
     }
 
     /**
      * 得到当前月份
      *
-     * @return
+     * @return 得到当前月份
      */
     public static String getCurrentMonth() {
         Calendar cal = Calendar.getInstance();
-        String currentMonth = DateFormatUtils.format(cal, MONTH_FORMAT);
-        return currentMonth;
+        return DateFormatUtils.format(cal, MONTH_FORMAT);
     }
 
     /**
      * 得到当前日期
      *
-     * @return
+     * @return 得到当前日期
      */
     public static String getCurrentDate() {
         Calendar cal = Calendar.getInstance();
-        String currentDate = DateFormatUtils.format(cal, DATE_FORMAT);
-        return currentDate;
+        return DateFormatUtils.format(cal, DATE_FORMAT);
     }
 
     /**
      * 得到当前的时间
      *
-     * @return
+     * @return 得到当前的时间
      */
     public static String getCurrentTime() {
         Calendar cal = Calendar.getInstance();
-        String currentDate = DateFormatUtils.format(cal, TIME_FORMAT);
-        return currentDate;
+        return DateFormatUtils.format(cal, TIME_FORMAT);
     }
 
     /**
      * 得到当前日期的前一个月
      *
-     * @return
+     * @return 得到当前日期的前一个月
      */
     public static String getPreviousMonthDate() {
         Calendar calendar = Calendar.getInstance();
         calendar.add(Calendar.DATE, -1); // 得到前一天
         calendar.add(Calendar.MONTH, -1); // 得到前一个月
 
-        String currentDate = DateFormatUtils.format(calendar, DATE_FORMAT);
-        return currentDate;
+        return DateFormatUtils.format(calendar, DATE_FORMAT);
     }
 
     /**
      * 得到与当前日期偏移量为X的日期。
      *
      * @param offset
-     * @return
+     * @return 得到与当前日期偏移量为X的日期
      */
     public static String getOffsetDate(int offset) {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.DAY_OF_MONTH, offset);
-        String currentDate = DateFormatUtils.format(cal, DATE_FORMAT);
-        return currentDate;
-    }
-
-    /**
-     * 得到与指定日期偏移量为X的日期。
-     *
-     * @param specifiedDate 指定的日期,格式为YYYY-MM-DD
-     * @param offset        偏移的天数
-     * @return
-     * @throws ParseException
-     */
-    public static String getSpecifiedOffsetDate(String specifiedDate, int offset) throws ParseException {
-        Date date = DateUtils.parseDate(specifiedDate, DATE_FORMAT);
-        Calendar cal = DateUtils.toCalendar(date);
-        cal.add(Calendar.DAY_OF_MONTH, offset);
-        String returnDate = DateFormatUtils.format(cal, DATE_FORMAT);
-        return returnDate;
-    }
-
-    /**
-     * 得到与指定日期时间偏移量为X的时间。
-     *
-     * @param specifiedTime 指定的时间,格式为yyyy-MM-dd HH:mm:ss
-     * @param offset        偏移天数
-     * @return
-     * @throws ParseException
-     */
-    public static String getSpecifiedOffsetTime(String specifiedTime, int offset) throws ParseException {
-        Date date = DateUtils.parseDate(specifiedTime, TIME_FORMAT);
-        Calendar cal = DateUtils.toCalendar(date);
-        cal.add(Calendar.DAY_OF_MONTH, offset);
-        String returnDate = DateFormatUtils.format(cal, TIME_FORMAT);
-        return returnDate;
+        return DateFormatUtils.format(cal, DATE_FORMAT);
     }
 
     /**
@@ -296,23 +258,31 @@ public class MyDateUtils {
      *
      * @param specifiedDateTime 指定的时间,格式为yyyy-MM-dd HH:mm:ss/yyyy-MM-dd
      * @param offset            偏移天数
-     * @return
+     * @return 得到与指定日期时间偏移量为X的时间
      * @throws ParseException
      */
     public static String getOffsetDateTime(String specifiedDateTime, int offset) throws ParseException {
         String regexStr = "\\d{4}-\\d{2}-\\d{2}";
+        String returnDate;
         if (specifiedDateTime.matches(regexStr)) {
-            return getSpecifiedOffsetDate(specifiedDateTime, offset);
+            Date date = DateUtils.parseDate(specifiedDateTime, DATE_FORMAT);
+            Calendar cal = DateUtils.toCalendar(date);
+            cal.add(Calendar.DAY_OF_MONTH, offset);
+            returnDate = DateFormatUtils.format(cal, DATE_FORMAT);
         } else {
-            return getSpecifiedOffsetTime(specifiedDateTime, offset);
+            Date date = DateUtils.parseDate(specifiedDateTime, TIME_FORMAT);
+            Calendar cal = DateUtils.toCalendar(date);
+            cal.add(Calendar.DAY_OF_MONTH, offset);
+            returnDate = DateFormatUtils.format(cal, TIME_FORMAT);
         }
+        return returnDate;
     }
 
     /**
      * 判断是否为润年
      *
-     * @param year
-     * @return
+     * @param year 数字格式的年
+     * @return true is 润年
      */
     public static boolean isLeapYear(int year) {
         return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
@@ -321,8 +291,8 @@ public class MyDateUtils {
     /**
      * 判断是星期几.
      *
-     * @param c
-     * @return
+     * @param c 日历值
+     * @return 星期[一，二，三，四，五，六，日]
      */
     public static String getWeekDay(Calendar c) {
         if (c == null) {
@@ -351,7 +321,7 @@ public class MyDateUtils {
      *
      * @param begin 开始日期 .
      * @param end   结束日期 .
-     * @return
+     * @return 两个日期之间的连续日期
      */
     public static List<String> getDaysListBetweenDates(String begin, String end) {
         List<String> dateList = new ArrayList<String>();
@@ -376,9 +346,9 @@ public class MyDateUtils {
     /**
      * 获得连续的月份
      *
-     * @param begin
-     * @param end
-     * @return
+     * @param begin 开始月份
+     * @param end 结束月份
+     * @return 连续的月份
      */
     public static List<String> getMonthsListBetweenDates(String begin, String end) {
         List<String> dateList = new ArrayList<String>();
@@ -403,19 +373,45 @@ public class MyDateUtils {
     /**
      * 将long类型的时间值转换成标准格式的时间（yyyy-MM-dd HH:mm:ss）
      *
-     * @param createTime
-     * @return
+     * @param createTime 字符串格式的时间戳
+     * @return 标准格式的时间（yyyy-MM-dd HH:mm:ss）
      */
-    public static String timestamp2Time(String createTime) {
+    public static String timestamp2TimeFormat(String createTime) {
         long fooTime = Long.parseLong(createTime) * 1000L;
         return DateFormatUtils.format(fooTime, TIME_FORMAT);
     }
 
     /**
+     * 将字符串类型的时间值转换成标准格式的时间(yyyy-MM-dd HH:mm:ss)
+     * @param stringTime 非标准形式的字符串时间
+     * @return 标准格式的时间（yyyy-MM-dd HH:mm:ss）
+     */
+    public static String string2TimeFormat(String stringTime) {
+        Date d = null;
+        try {
+            d = DateUtils.parseDate(stringTime, TIME_FORMAT);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return DateFormatUtils.format(d, TIME_FORMAT);
+    }
+
+    public static String formatTime(String strDate,String strTime) {
+        Date d = null;
+        String stringTime="2016-"+strDate+" "+strTime+":00";
+        try {
+            d = DateUtils.parseDate(stringTime, TIME_FORMAT);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return DateFormatUtils.format(d, TIME_FORMAT);
+    }
+
+    /**
      * 将时间转换为yyyy-MM-dd格式字符串
      *
-     * @param date
-     * @return
+     * @param date 指定时间
+     * @return yyyy-MM-dd格式字符串
      */
     public static String date2StrDate(Date date) {
         return DateFormatUtils.format(date, DATE_FORMAT);
@@ -424,35 +420,36 @@ public class MyDateUtils {
     /**
      * 将时间转换为yyyy-MM-dd HH:mm:ss格式字符串
      *
-     * @param date
-     * @return
+     * @param date 指定时间
+     * @return yyyy-MM-dd HH:mm:ss格式字符串
      */
     public static String date2StrTime(Date date) {
         return DateFormatUtils.format(date, TIME_FORMAT);
     }
 
     public static void main(String[] args) throws ParseException {
-//        System.out.println(getMonthFirstDay());
-//        System.out.println(getMonthLastDay());
-//        System.out.println(getPreviousMonthFirst());
-//        System.out.println(getPreviousMonthEnd());
-//        System.out.println(getNextMonthFirst());
-//        System.out.println(getNextMonthEnd());
-//        System.out.println(getCurrentMonthDays());
-//        System.out.println(getSpecifiedMonthDays("1900-02"));
-//        System.out.println(getCurrentMonth());
-//        System.out.println(getCurrentDate());
-//        System.out.println(getOffsetDate(-4));
-//        System.out.println(isLeapYear(1900));
-//        System.out.println(getWeekDay(Calendar.getInstance()));
-//        System.out.println(getDaysListBetweenDates("2012-1-12", "2012-1-21"));
-//        System.out.println(getMonthsListBetweenDates("2012-1-12", "2012-3-21"));
-//        System.out.println(getSpecifiedOffsetTime("2012-09-09 12:12:12", 12));
-//        System.out.println(getOffsetDateTime("2012-09-09", 12));
-//        System.out.println(getOffsetDateTime("2012-09-09 12:12:12", 12));
-//        System.out.println(long2Time("1234567890"));
+        System.out.println(getMonthFirstDay());
+        System.out.println(getMonthLastDay());
+        System.out.println(getPreviousMonthFirst());
+        System.out.println(getPreviousMonthEnd());
+        System.out.println(getNextMonthFirst());
+        System.out.println(getNextMonthEnd());
+        System.out.println(getCurrentMonthDays());
+        System.out.println(getSpecifiedMonthDays("1900-02"));
+        System.out.println(getCurrentMonth());
+        System.out.println(getCurrentDate());
+        System.out.println(getOffsetDate(-4));
+        System.out.println(isLeapYear(1900));
+        System.out.println(getWeekDay(Calendar.getInstance()));
+        System.out.println(getDaysListBetweenDates("2012-1-12", "2012-1-21"));
+        System.out.println(getMonthsListBetweenDates("2012-1-12", "2012-3-21"));
+        System.out.println(getOffsetDateTime("2012-09-09 12:12:12", 12));
+        System.out.println(getOffsetDateTime("2012-09-09", 12));
+        System.out.println(getOffsetDateTime("2012-09-09 12:12:12", 12));
+        System.out.println(timestamp2TimeFormat("1234567890"));
         System.out.println(date2StrDate(new Date()));
         System.out.println(date2StrTime(new Date()));
+        System.out.println(string2TimeFormat("2016-11-1 09:15:00"));
 
     }
 }

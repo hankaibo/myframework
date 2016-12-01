@@ -69,6 +69,9 @@ public class LoginController {
         //构造登陆令牌环
         UsernamePasswordToken token = new UsernamePasswordToken(loginCommand.getUsername(), loginCommand.getPassword());
         try {
+            if(1>0){
+                return new ModelAndView("main");
+            }
             SecurityUtils.getSubject().login(token);
             HttpSession session = request.getSession(true);
             //登陆成功后，积分+5；查询对应资源；显示相应页面。

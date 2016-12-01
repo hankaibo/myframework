@@ -107,7 +107,7 @@ public class BaseUserController {
      */
     @ApiOperation(value = "创建用户", notes = "返回用户实体对象", response = BaseUser.class)
     @RequestMapping(method = RequestMethod.POST)
-    public String add(@RequestBody BaseUser baseUser,HttpServletRequest request) {
+    public String add(@RequestBody BaseUser baseUser, HttpServletRequest request) {
         baseUserService.addUser(baseUser);
         return "user/list";
     }
@@ -242,37 +242,37 @@ public class BaseUserController {
             }
 
             // y
-            List<Double[]> data = new ArrayList<>();
+            List<String[]> data = new ArrayList<>();
             for (int j = 0; j < listMap.size(); j++) {
-                if (StringUtils.endsWithIgnoreCase(listMap.get(j).get("姓名"), "吕颖萍")) {
+                if (StringUtils.endsWithIgnoreCase(listMap.get(j).get("姓名"), "韩凯波")) {
                     Iterator<String> it = categories.iterator();
                     while (it.hasNext()) {
                         // 打卡时间
-                        Double[] attendance=new Double[2];
-
+                        String[] attendance = new String[2];
+                        String strDate=it.next();
                         // 首先获取指定日期的值，可能为空
-                        String cellValue=StringUtils.trim(listMap.get(j).get(it.next()));
+                        String cellValue = StringUtils.trim(listMap.get(j).get(strDate));
                         // 如果为空，设为默认的0 0
-                        if(StringUtils.isEmpty(cellValue)){
-                            attendance[0]=0D;
-                            attendance[1]=0D;
-                        }else{ // 如果不为空，就开始进行分割
-                            String pattern="^0";
-                            Pattern r=Pattern.compile(pattern);
-
-                            String[] arrCellValue=cellValue.split(" ");
-                            if(arrCellValue.length==1){// 长度为1时，有可能是第一个也有可能是第二个，要判断，他妈的
-                                // 把它转为数字，如果大于12就认为是下午的打卡记录，设上午记录为0；反之，则设下午记录为24.
-                                if(Double.parseDouble(r.matcher(arrCellValue[0]).replaceAll("").replace(":","."))>=12.0){
-                                    attendance[0]=0D;
-                                    attendance[1]=Double.parseDouble(r.matcher(arrCellValue[0]).replaceAll("").replace(":","."));
-                                }else {
-                                    attendance[0]=Double.parseDouble(r.matcher(arrCellValue[0]).replaceAll("").replace(":","."));
-                                    attendance[1]=0D;
+                        if (StringUtils.isEmpty(cellValue)) {
+                            attendance[0] = MyDateUtils.formatTime(strDate, "02:00");
+                            attendance[1] = MyDateUtils.formatTime(strDate, "23:59");
+                        } else { // 如果不为空，就开始进行分割
+                            String[] arrCellValue = cellValue.split(" ");
+                            if (arrCellValue.length == 1) {
+                                if (arrCellValue[0].compareTo("12:00") < 0) { // 有上午打卡记录
+                                    attendance[0] = MyDateUtils.formatTime(strDate, arrCellValue[0]);
+                                    attendance[1] = MyDateUtils.formatTime(strDate, arrCellValue[0]);
+                                } else {
+                                    attendance[0] = MyDateUtils.formatTime(strDate, arrCellValue[0]);
+                                    attendance[1] = MyDateUtils.formatTime(strDate, arrCellValue[0]);
                                 }
-                            }else {// 长度大于1时，取第一个和最后一个
-                                attendance[0]=Double.parseDouble(r.matcher(arrCellValue[0]).replaceAll("").replace(":","."));
-                                attendance[1]=Double.parseDouble(r.matcher(arrCellValue[arrCellValue.length-1]).replaceAll("").replace(":","."));
+                            } else if (arrCellValue.length == 2) {
+                                attendance[0] = MyDateUtils.formatTime(strDate, arrCellValue[0]);
+                                attendance[1] = MyDateUtils.formatTime(strDate, arrCellValue[1]);
+                            } else {
+                                // 长度大于1时，取第一个和最后一个
+                                attendance[0] = MyDateUtils.formatTime(strDate, arrCellValue[0]);
+                                attendance[1] = MyDateUtils.formatTime(strDate, arrCellValue[arrCellValue.length - 1]);
                             }
                         }
                         data.add(attendance);
