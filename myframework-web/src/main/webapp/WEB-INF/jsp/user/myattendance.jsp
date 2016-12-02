@@ -37,12 +37,7 @@
 <script src="${pageContext.request.contextPath}/resources/js/visavail.js"></script>
 <script type="text/javascript">
     moment.locale("zh-cn");
-    var dataset = [{
-        "measure": "Room Occupancy", // name of the data series, will become y-axis label
-        "data": [
-            ["2016-01-01 20:30:00", 1, "2016-01-01 22:00:00"]
-        ]
-    }];
+    var dataset = [];
     var ractive = new Ractive({
         el: '#container',
         template: '#template',

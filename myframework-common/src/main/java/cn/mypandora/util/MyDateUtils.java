@@ -398,7 +398,7 @@ public class MyDateUtils {
 
     public static String formatTime(String strDate,String strTime) {
         Date d = null;
-        String stringTime="2016-"+strDate+" "+strTime+":00";
+        String stringTime=strDate+" "+strTime+":00";
         try {
             d = DateUtils.parseDate(stringTime, TIME_FORMAT);
         } catch (ParseException e) {

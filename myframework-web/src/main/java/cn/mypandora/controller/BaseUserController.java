@@ -249,9 +249,9 @@ public class BaseUserController {
                     while (it.hasNext()) {
                         // 打卡时间
                         String[] attendance = new String[2];
-                        String strDate=it.next();
+                        String strDate=MyDateUtils.getMonthLastDay();
                         // 首先获取指定日期的值，可能为空
-                        String cellValue = StringUtils.trim(listMap.get(j).get(strDate));
+                        String cellValue = StringUtils.trim(listMap.get(j).get(it.next()));
                         // 如果为空，设为默认的0 0
                         if (StringUtils.isEmpty(cellValue)) {
                             attendance[0] = MyDateUtils.formatTime(strDate, "02:00");
