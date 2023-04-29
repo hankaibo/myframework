@@ -30,6 +30,7 @@
         <!--<property name="authorizationCachingEnabled" value="true"/>-->
         <!--<property name="authorizationCacheName" value="authorizationCache"/>-->
     </bean>
+
     <!-- 会话ID生成器 -->
     <bean id="sessionIdGenerator" class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"/>
     <!-- 会话Cookie模板 -->
@@ -38,6 +39,7 @@
         <property name="httpOnly" value="true"/>
         <property name="maxAge" value="-1"/>
     </bean>
+
     <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
         <constructor-arg value="rememberMe"/>
         <property name="httpOnly" value="true"/>
@@ -61,18 +63,24 @@
     </bean>
     <!-- 会话管理器 -->
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">
+        <!--超时时间-->
         <property name="globalSessionTimeout" value="1800000"/>
         <property name="deleteInvalidSessions" value="true"/>
         <property name="sessionValidationSchedulerEnabled" value="true"/>
         <property name="sessionValidationScheduler" ref="sessionValidationScheduler"/>
+        <!--session存储的实现-->
         <property name="sessionDAO" ref="sessionDAO"/>
         <property name="sessionIdCookieEnabled" value="true"/>
+        <!--sessionIdCookie的实现,用于重写覆盖容器默认的JSESSIONID-->
         <property name="sessionIdCookie" ref="sessionIdCookie"/>
     </bean>
     <!-- 安全管理器 -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!--数据库认证的实现-->
         <property name="realm" ref="myUserRealm"/>
+        <!--session管理器-->
         <property name="sessionManager" ref="sessionManager"/>
+        <!--缓存管理器-->
         <property name="cacheManager" ref="cacheManager"/>
         <property name="rememberMeManager" ref="rememberMeManager"/>
     </bean>
@@ -101,22 +109,23 @@
         <!--<property name="successUrl" value="/"/>-->
         <!-- 用户访问未对其授权的资源时,所显示的连接 -->
         <property name="unauthorizedUrl" value="/unauthorized.jsp"/>
+        <!-- 声明自定义的过滤器 -->
         <property name="filters">
-        <util:map>
-            <entry key="authc" value-ref="formAuthenticationFilter"/>
-            <entry key="sysUser" value-ref="sysUserFilter"/>
-        </util:map>
-    </property>
+            <util:map>
+                <entry key="authc" value-ref="formAuthenticationFilter"/>
+                <entry key="sysUser" value-ref="sysUserFilter"/>
+            </util:map>
+        </property>
         <!-- Shiro连接约束配置,即过滤链的定义 -->
         <!-- anon：它对应的过滤器里面是空的,什么都没做 -->
         <!-- authc：该过滤器下的页面必须验证后才能访问,它是Shiro内置的一个拦截器org.apache.shiro.web.filter.authc.FormAuthenticationFilter -->
         <property name="filterChainDefinitions">
             <value>
-                <!--/login = anon-->
+                /login = anon
                 /logout = logout
                 /resources/** = anon
-                <!--/authenticated = authc-->
-                <!--/**=user,sysUser-->
+                /authenticated = authc
+                /**=user,sysUser
             </value>
         </property>
     </bean>
